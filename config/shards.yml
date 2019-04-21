@@ -2,21 +2,21 @@
 octopus:
   environments:
     - development
-    - production
+
   development:
-    postgres:
+    rrhh:
       host: localhost
       port: 5432
       adapter: postgresql
       database: laravel-etl
 
-    mysql:
+    restaurant:
       adapter: mysql2
       database: hotel_mysql
       username: root
       password:
 
-    sqlserver:
+    dwh:
       adapter: sqlserver
       mode: dblib
       host: localhost
@@ -25,14 +25,8 @@ octopus:
       password:
       database: DWH
 
-    mysql_etl:
+    dwh_t:
       adapter: mysql2
-      database: db/development_etl
+      database: DWH_tempory
       username: root
       password:
-
-  production:
-    shard_one:
-      host: localhost
-      adapter: mysql
-      database: app_production

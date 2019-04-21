@@ -1,3 +1,30 @@
 %h1 Bienvenido
 %a
   = link_to 'Cerrar sesión', destroy_user_session_path, method: :delete
+
+%table
+  %thead
+    %tr
+      %td='id'
+      %td='Nombre'
+      %td='F.nacimiento'
+      %td='C.electronico'
+      %td='N.telefono'
+      %td='F.Entrada'
+      %td='Genero'
+      %td='RFC'
+      %td='Baja'
+  %tbody
+    - @empleados.each do |empleado|
+      %tr
+        %td=empleado.id
+        %td=empleado.nombre
+        %td=empleado.f_nacimiento
+        %td=empleado.c_electronico
+        %td=empleado.n_telefono
+        %td=empleado.f_entrada
+        %td=empleado.genero
+        %td=empleado.rfc
+        %td=empleado.baja
+    %tr='Total'
+    %tr=@empleados.count
