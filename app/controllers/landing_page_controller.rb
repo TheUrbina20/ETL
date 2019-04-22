@@ -1,7 +1,10 @@
 class LandingPageController < ApplicationController
     def index
+      initialize_empleados
+      @empleados = Empleado.using(:dwh_t).all.order(:nombre)
+    end
 
-
+    def initialize_empleados
       Empleado.using(:dwh_t).destroy_all
 
       empleados_rrhh = Empleado.using(:rrhh).all
@@ -20,7 +23,6 @@ class LandingPageController < ApplicationController
 
       empleados_rrhh.each do |empleado_r|
         empleado = Empleado.using(:dwh_t).new()
-
         empleado.nombre = empleado_r.Nombre
         empleado.f_nacimiento = empleado_r.F_nacimiento
         empleado.c_electronico = empleado_r.C_electronico
@@ -30,7 +32,6 @@ class LandingPageController < ApplicationController
         empleado.rfc = empleado_r.RFC
         empleado.baja = empleado_r.Baja
         empleado.sistema = 'M'
-
         empleado.save!
       end
 
@@ -40,10 +41,7 @@ class LandingPageController < ApplicationController
         empleado.f_nacimiento = empleado_r.FechaNa
         empleado.n_telefono = empleado_r.Telefono
         empleado.sistema = 'R'
-
         empleado.save!
       end
-
-      @empleados = Empleado.using(:dwh_t).all.order(:nombre)
     end
 end

@@ -1,0 +1,16 @@
+%table
+  %thead
+    %tr
+      %td='id'
+      %td='Nombre'
+      %td='id_empresa'
+  %tbody
+    - @proveedores.each do |proveedor|
+      %tr
+        %td=proveedor.id
+        %td=proveedor.nombre
+        %td=proveedor.id_empresa
+    %tr='Total'
+    %tr=@proveedores.count
+
+
