@@ -13,7 +13,7 @@ class ProveedoresController < ApplicationController
 
     proveedores.each do |proveedor_r|
       proveedor = Proveedor.using(:dwh_t).new()
-
+      proveedor.id = proveedor_r.id
       #proveedor.id = proveedor_r.id
       proveedor.nombre = proveedor_r.nombre
       proveedor.id_empresa = proveedor_r.id_empresa

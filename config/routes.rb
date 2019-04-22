@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   resources :landing_page, only: [:index]
   resources :proveedores
   resources :vacantes
+  resources :clientes
 end
