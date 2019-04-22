@@ -1,0 +1,3 @@
+class Vacante < ApplicationRecord
+
+end

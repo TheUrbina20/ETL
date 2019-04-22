@@ -15,7 +15,7 @@ class ProveedoresController < ApplicationController
       proveedor = Proveedor.using(:dwh_t).new()
 
       #proveedor.id = proveedor_r.id
-      proveedor.nombre = proveedor_r.Nombre
+      proveedor.nombre = proveedor_r.nombre
       proveedor.id_empresa = proveedor_r.id_empresa
       proveedor.save!
     end
