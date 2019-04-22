@@ -1,0 +1,21 @@
+%table
+  %thead
+    %tr
+      %td='id'
+      %td='Nombre'
+      %td='Estado'
+      %td='Correo'
+      %td='Telefono'
+  %tbody
+    - @clientes.each do |cliente|
+      %tr
+        %td=cliente.id
+        %td=cliente.nombre
+        %td=cliente.estado
+        %td=cliente.correo
+        %td=cliente.telefono
+
+    %tr='Total'
+    %tr=@clientes.count
+
+

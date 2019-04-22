@@ -13,7 +13,7 @@ class VacantesController < ApplicationController
 
     vacantes.each do |vacante_r|
       vacante = Vacante.using(:dwh_t).new()
-
+      vacante.id = vacante_r.id
       vacante.nombre = vacante_r.nombre
       vacante.estado = vacante_r.estado
       vacante.save!
