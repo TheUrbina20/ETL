@@ -1,0 +1,16 @@
+%table
+  %thead
+    %tr
+      %td='id'
+      %td='Nombre'
+      %td='Estado'
+  %tbody
+    - @vacantes.each do |vacante|
+      %tr
+        %td=vacante.id
+        %td=vacante.nombre
+        %td=vacante.estado
+    %tr='Total'
+    %tr=@vacantes.count
+
+
