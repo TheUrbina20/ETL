@@ -1,0 +1,18 @@
+%table
+  %thead
+    %tr
+      %td='id'
+      %td='nombre'
+      %td='estado'
+
+  %tbody
+    - @postulantes.each do |postulante|
+      %tr
+        %td=postulante.id
+        %td=postulante.nombre
+        %td=postulante.estado
+
+    %tr='Total'
+    %tr=@postulantes.count
+
+

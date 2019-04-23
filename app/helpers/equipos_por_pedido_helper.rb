@@ -1,0 +1,2 @@
+module EquiposPorPedidoHelper
+end

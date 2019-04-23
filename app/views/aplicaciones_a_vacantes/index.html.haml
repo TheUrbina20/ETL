@@ -1,0 +1,16 @@
+%table
+  %thead
+    %tr
+      %td='id'
+      %td='id_empleado'
+      %td='id_vacante'
+  %tbody
+    - @aplicaciones.each do |aplicacion|
+      %tr
+        %td=aplicacion.id
+        %td=aplicacion.id_postulante
+        %td=aplicacion.id_vacante
+
+    %tr='Total'
+    %tr=@aplicaciones.count
+

@@ -1,0 +1,2 @@
+module AplicacionesAVacantesHelper
+end
