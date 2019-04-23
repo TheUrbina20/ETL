@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   resources :bajas_empleado
   resources :capacitaciones_por_empleado
   resources :clientes
+  resources :equipos
+  resources :empleados
   resources :empresas
   resources :landing_page, only: [:index]
   resources :postulantes
@@ -17,4 +19,5 @@ Rails.application.routes.draw do
   resources :proveedores
   resources :solicitudes_de_mantenimiento
   resources :vacantes
+
 end
