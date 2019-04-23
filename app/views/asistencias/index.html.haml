@@ -1,0 +1,22 @@
+%table
+  %thead
+    %tr
+      %td='id'
+      %td='id_empleado'
+      %td='Fecha'
+      %td='H.Entrada'
+      %td='H.Salida'
+
+  %tbody
+    - @asistencias.each do |asistencia|
+      %tr
+        %td=asistencia.id
+        %td=asistencia.id_empleado
+        %td=asistencia.fecha
+        %td=asistencia.hora_entrada
+        %td=asistencia.hora_salida
+
+    %tr='Total'
+    %tr=@asistencias.count
+
+

@@ -2,8 +2,16 @@ Rails.application.routes.draw do
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'landing_page#index'
-  resources :landing_page, only: [:index]
-  resources :proveedores
-  resources :vacantes
+  resources :accidentes_laborales
+  resources :areas
+  resources :areas_por_empleado
+  resources :asistencias
+  resources :bajas_empleado
+  resources :capacitaciones_por_empleado
   resources :clientes
+  resources :empresas
+  resources :programas_capacitacion
+  resources :proveedores
+  resources :landing_page, only: [:index]
+  resources :vacantes
 end

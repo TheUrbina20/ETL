@@ -1,0 +1,15 @@
+%table
+  %thead
+    %tr
+      %td='id'
+      %td='Nombre'
+  %tbody
+    - @empresas.each do |empresa|
+      %tr
+        %td=empresa.id
+        %td=empresa.nombre
+
+    %tr='Total'
+    %tr=@empresas.count
+
+

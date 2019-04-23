@@ -1,0 +1,21 @@
+%table
+  %thead
+    %tr
+      %td='id'
+      %td='id_empresa'
+      %td='nombre'
+      %td='costo'
+      %td='duracion'
+
+  %tbody
+    - @programas.each do |programa|
+      %tr
+        %td=programa.id
+        %td=programa.nombre
+        %td=programa.costo
+        %td=programa.duracion
+
+    %tr='Total'
+    %tr=@programas.count
+
+
