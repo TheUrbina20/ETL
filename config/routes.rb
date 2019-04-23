@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :capacitaciones_por_empleado
   resources :clientes
   resources :equipos
+  resources :equipos_por_pedido
   resources :empleados
   resources :empresas
   resources :landing_page, only: [:index]
