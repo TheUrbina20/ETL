@@ -1,0 +1,4 @@
+- flash.each do | key, value |
+    %div{class: "#{flash_class(key)}"}
+        .conteiner
+        %span.alert-message= value

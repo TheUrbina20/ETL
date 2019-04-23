@@ -1,9 +1,14 @@
-%h1= t('.forgot_your_password')
-= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
-  = bootstrap_devise_error_messages!
-  .form-group
-    = f.label :email
-    = f.email_field :email, autofocus: true, autocomplete: 'email', class: 'form-control'
-  .form-group
-    = f.submit t('.send_me_reset_password_instructions'), class: 'btn btn-primary'
-= render 'devise/shared/links'
+.devise-bootstrap-form
+  .devise-bootstrap-form-row
+    .devise-bootstrap-form-col
+      .fromC
+      %h2.text-center ¿Olvidaste tu contraseña?
+      = bootstrap_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+        = render "devise/shared/error_messages", resource: resource
+        %br/
+        %p.text-left Introduzca su correo electrónico
+        = f.email_field :email, autofocus: true, autocomplete: "email"
+        = f.form_group do
+          = f.submit "Enviar instrucciones para restablecer contraseña", class: 'btn btn-primary btn-block btn-lg'
+      .text-center
+        = render "devise/shared/links"
