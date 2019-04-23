@@ -1,0 +1,18 @@
+%table
+  %thead
+    %tr
+      %td='id'
+      %td='id_pedido'
+      %td='id_equipo'
+
+  %tbody
+    - @equipos_por_pedido.each do |equipo|
+      %tr
+        %td=equipo.id
+        %td=equipo.id_pedido
+        %td=equipo.id_equipo
+
+    %tr='Total'
+    %tr=@equipos_por_pedido.count
+
+

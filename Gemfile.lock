@@ -61,6 +61,9 @@ GEM
     bootstrap-sass (3.4.1)
       autoprefixer-rails (>= 5.2.1)
       sassc (>= 2.0.0)
+    bootstrap_form (4.2.0)
+      actionpack (>= 5.0)
+      activemodel (>= 5.0)
     builder (3.2.3)
     byebug (11.0.1)
     capybara (2.15.0)
@@ -92,6 +95,7 @@ GEM
       responders
       warden (~> 1.2.3)
     devise-bootstrap-views (1.1.0)
+    devise-i18n-views (0.3.7)
     duktape (2.0.1.0)
     erubi (1.8.0)
     erubis (2.7.0)
@@ -251,12 +255,14 @@ DEPENDENCIES
   activerecord-sqlserver-adapter
   ar-octopus
   bootstrap-sass
+  bootstrap_form (>= 4.0.0.alpha1)
   byebug
   capybara (= 2.15)
   chromedriver-helper
   coffee-rails (~> 4.2)
   devise
   devise-bootstrap-views (~> 1.0)
+  devise-i18n-views
   duktape
   haml-rails (~> 2.0)
   jbuilder (~> 2.5)

@@ -23,6 +23,10 @@ gem 'tiny_tds'
 gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
 
+
+gem 'bootstrap_form', '>= 4.0.0.alpha1'
+gem 'devise-i18n-views'
+
 group :development, :test do
   gem 'pry'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

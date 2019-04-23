@@ -1,16 +1,15 @@
-%h1= t('.sign_in')
-= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "formC"}) do |f|
-  .form-group
-    = f.label :email
-    = f.email_field :email, autofocus: true, autocomplete: 'email', class: 'form-control'
-  .form-group
-    = f.label :password
-    = f.password_field :password, autocomplete: 'current-password', class: 'form-control'
-  - if devise_mapping.rememberable?
-    .form-group.form-check
-      = f.check_box :remember_me, class: 'form-check-input'
-      = f.label :remember_me, class: 'form-check-label' do
-        = resource.class.human_attribute_name('remember_me')
-  .form-group
-    = f.submit  t('.sign_in'), class: 'btn btn-primary'
-= render 'devise/shared/links'
+.devise-bootstrap-form
+  .devise-bootstrap-form-row
+    .devise-bootstrap-form-col
+      .formC
+      %h2.text-center Iniciar Sesión
+      = bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+        = f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Correo eléctronico"
+        = f.password_field :password, autocomplete: "current-password", placeholder: 'Contraseña'
+        - if devise_mapping.rememberable?
+          = f.form_group do
+            = f.check_box :remember_me
+        = f.form_group do
+          = f.submit "Iniciar sesión", class: "btn btn-primary btn-block btn-lg"
+      .text-center
+        = render "devise/shared/links"

@@ -1,0 +1,15 @@
+%table
+  %thead
+    %tr
+      %td='id'
+      %td='Nombre'
+  %tbody
+    - @areas.each do |area|
+      %tr
+        %td=area.id
+        %td=area.nombre
+
+    %tr='Total'
+    %tr=@areas.count
+
+

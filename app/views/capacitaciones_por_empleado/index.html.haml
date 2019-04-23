@@ -1,0 +1,24 @@
+%table
+  %thead
+    %tr
+      %td='id'
+      %td='id_empleado'
+      %td='id_capacitacion'
+      %td='f_inicio'
+      %td='f_fin'
+      %td='estado'
+
+  %tbody
+    - @capacitaciones.each do |capacitacion|
+      %tr
+        %td=capacitacion.id
+        %td=capacitacion.id_empleado
+        %td=capacitacion.id_programa
+        %td=capacitacion.f_inicio
+        %td=capacitacion.f_fin
+        %td=capacitacion.estado
+
+    %tr='Total'
+    %tr=@capacitaciones.count
+
+

@@ -1,0 +1,18 @@
+%table
+  %thead
+    %tr
+      %td='id'
+      %td='nombre'
+      %td='modelo'
+
+  %tbody
+    - @equipos.each do |equipo|
+      %tr
+        %td=equipo.id
+        %td=equipo.nombre
+        %td=equipo.modelo
+
+    %tr='Total'
+    %tr=@equipos.count
+
+
