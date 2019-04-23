@@ -1,0 +1,18 @@
+%table
+  %thead
+    %tr
+      %td='id'
+      %td='id_empleado'
+      %td='Fecha accidente'
+
+  %tbody
+    - @accidentes.each do |accidente|
+      %tr
+        %td=accidente.id
+        %td=accidente.id_empleado
+        %td=accidente.f_accidente
+
+    %tr='Total'
+    %tr=@accidentes.count
+
+
