@@ -1,0 +1,18 @@
+%table
+  %thead
+    %tr
+      %td='id'
+      %td='id_pedido_compra'
+      %td='f_generacion'
+      %td='f_entrega'
+  %tbody
+    - @recibos.each do |recibo|
+      %tr
+        %td=recibo.id
+        %td=recibo.id_pedido_compra
+        %td=recibo.f_generacion
+        %td=recibo.f_entrega
+    %tr='Total'
+    %tr=@recibos.count
+
+

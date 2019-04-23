@@ -1,0 +1,2 @@
+class Baja < ApplicationRecord
+end

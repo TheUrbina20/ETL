@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :areas
   resources :areas_por_empleado
   resources :asistencias
+  resources :bajas
   resources :bajas_empleado
   resources :capacitaciones_por_empleado
   resources :clientes
@@ -19,7 +20,9 @@ Rails.application.routes.draw do
   resources :postulantes
   resources :programas_capacitacion
   resources :proveedores
+  resources :recibos_de_compras
   resources :solicitudes_de_mantenimiento
   resources :vacantes
 
 end
+
