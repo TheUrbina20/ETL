@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'landing_page#index'
   resources :accidentes_laborales
+  resources :aplicaciones_a_vacantes
   resources :areas
   resources :areas_por_empleado
   resources :asistencias
