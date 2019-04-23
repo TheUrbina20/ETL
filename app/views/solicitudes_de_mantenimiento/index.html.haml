@@ -1,0 +1,28 @@
+%table
+  %thead
+    %tr
+      %td='id'
+      %td='id_empleado'
+      %td='id_equipo_por_recibo'
+      %td='f_solicitud'
+      %td='f_recibo'
+      %td='estado'
+      %td='motivo'
+      %td='tipo'
+
+  %tbody
+    - @solicitudes.each do |solicitud|
+      %tr
+        %td=solicitud.id
+        %td=solicitud.id_empleado
+        %td=solicitud.id_equipo_por_recibo
+        %td=solicitud.f_solicitud
+        %td=solicitud.f_recibo
+        %td=solicitud.estado
+        %td=solicitud.motivo
+        %td=solicitud.tipo
+
+    %tr='Total'
+    %tr=@solicitudes.count
+
+
