@@ -1,5 +1,5 @@
 # Traducciones adicionales en https://github.com/plataformatec/devise/wiki/I18n
- 
+
 es:
   activerecord:
     errors:
@@ -7,9 +7,13 @@ es:
         user:
           attributes:
             email:
-              blank: "no puede ser vacio"
+              blank: "E-mail no puede ser vacio"
             password:
-              blank: "no puede ser vacia"
+              blank: "Debe ingresar contraseña"
+              too_short: 'La contraseña es demasiado corta'
+            password_confirmation:
+              confirmation: 'Las contraseñas no coinciden'
+
   devise:
     confirmations:
       confirmed: "Su cuenta ha sido confirmada."
