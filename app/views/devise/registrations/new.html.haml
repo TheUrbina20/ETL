@@ -4,15 +4,15 @@
       .formC
       %h2.text-center Registrarse
       = bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-        = render "devise/shared/error_messages", resource: resource
-        = f.email_field :email, autofocus: true, autocomplete: "email"
-        = f.password_field :password,                              |
+        = f.email_field :email, autofocus: true, autocomplete: "email", required: true
+        = f.password_field :password, required: true,               |
           autocomplete: "new-password",                            |
-          help: "(#{@minimum_password_length} characters minimum)" |
+          help: "(mínimo #{@minimum_password_length} caracteres)" |
         -#
-        = f.password_field :password_confirmation, |
-          autocomplete: "new-password",            |
-          label_class: "required"                  |
+        = f.password_field :password_confirmation, required: true, |
+          autocomplete: "new-password",                           |
+          label_class: "required"                                 |
+        = f.select :role, User.using(:dwh_t).roles.keys, include_blank: false
         = f.form_group do
           = f.submit "Registrarse", class: "btn btn-primary btn-block btn-lg"
       .text-center

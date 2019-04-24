@@ -1,0 +1,22 @@
+%table
+  %thead
+    %tr
+      %td='id'
+      %td='id_articulo'
+      %td='tipo'
+      %td='fecha'
+      %td='motivo'
+
+  %tbody
+    - @bajas.each do |baja|
+      %tr
+        %td=baja.id
+        %td=baja.id_articulo
+        %td=baja.tipo
+        %td=baja.fecha
+        %td=baja.motivo
+
+    %tr='Total'
+    %tr=@bajas.count
+
+

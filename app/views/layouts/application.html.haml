@@ -8,7 +8,7 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
-    
-    .container.containerStyle
-      = render 'layouts/shared/flash_notification'
-      = yield
+    = render 'layouts/shared/flash_notification'
+    .application-content
+      .container.containerStyle
+        = yield
