@@ -5,6 +5,18 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :validatable
 
-         enum roles: %i[admin hotel restaurant rrhh ]
+  enum role: %i[admin hotel restaurant rrhh ]
 
+
+  def can_manage_hotel?
+    admin? || hotel?
+  end
+
+  def can_manage_restaurant?
+    admin? || restaurant?
+  end
+
+  def can_manage_rrhh?
+    admin? || rrhh?
+  end
 end
