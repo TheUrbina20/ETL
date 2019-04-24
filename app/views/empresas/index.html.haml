@@ -3,11 +3,20 @@
     %tr
       %td='id'
       %td='Nombre'
+      %td='Acciones'
   %tbody
     - @empresas.each do |empresa|
       %tr
         %td=empresa.id
-        %td=empresa.nombre
+        - if valid_name?(empresa.nombre)
+          %td=empresa.nombre
+        - else
+          %td.text-danger=empresa.nombre
+        %td
+          = link_to edit_empresa_path(empresa) do
+            = fa_icon 'pencil'
+          = link_to empresa_path(empresa), method: :delete, data: {confirm: '¿Estás seguro?'} do
+            = fa_icon 'trash'
 
     %tr='Total'
     %tr=@empresas.count
