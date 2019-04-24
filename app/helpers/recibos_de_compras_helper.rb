@@ -1,0 +1,2 @@
+module RecibosDeComprasHelper
+end
