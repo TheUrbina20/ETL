@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   resources :recibos_de_compras
   resources :servicios_a_domicilio
   resources :solicitudes_de_mantenimiento
+  resources :tipos_medidas
   resources :vacantes
 
 end
