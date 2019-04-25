@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :asistencias
   resources :bajas
   resources :bajas_empleado
+  resources :bebidas_por_comanda
   resources :capacitaciones_por_empleado
   resources :clientes
   resources :equipos
