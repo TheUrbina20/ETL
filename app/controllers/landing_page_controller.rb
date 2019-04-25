@@ -9,17 +9,17 @@ class LandingPageController < ApplicationController
 
       empleados_rrhh = Empleado.using(:rrhh).all
       empleados_hot = Empleado.using(:restaurant).all
-      empleados_rest = Mdb.open(Rails.root.join('db', 'access_db.accdb'))['Empleados']
+      #empleados_rest = Mdb.open(Rails.root.join('db', 'access_db.accdb'))['Empleados']
 
-      empleados_rest.each do |empleado_r|
-        empleado = Empleado.using(:dwh_t).new()
-        empleado.nombre = empleado_r[:nombre] + ' ' + empleado_r[:apellido_p]
-                                            + ' ' + empleado_r[:apellido_m]
-        empleado.n_telefono = empleado_r[:telefono]
-        empleado.sistema = 'A'
+      #empleados_rest.each do |empleado_r|
+        #empleado = Empleado.using(:dwh_t).new()
+        #empleado.nombre = empleado_r[:nombre] + ' ' + empleado_r[:apellido_p]
+                                            #+ ' ' + empleado_r[:apellido_m]
+        #empleado.n_telefono = empleado_r[:telefono]
+        #empleado.sistema = 'A'
 
-        empleado.save!
-      end
+        #empleado.save!
+      #end
 
       empleados_rrhh.each do |empleado_r|
         empleado = Empleado.using(:dwh_t).new()

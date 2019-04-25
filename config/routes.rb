@@ -11,16 +11,32 @@ Rails.application.routes.draw do
   resources :bajas_empleado
   resources :capacitaciones_por_empleado
   resources :clientes
+  resources :dmantenimiento_equipos
+  resources :dmantenimiento_habitaciones
   resources :equipos
+  resources :equipo_habitaciones
   resources :equipos_por_pedido
   resources :empleados
   resources :empresas
   resources :empleados
+  resources :habitaciones
+  resources :habitaciones_rentadas
+  resources :habitaciones_reservadas
+  resources :historico_servicios
   resources :landing_page, only: [:index]
+  resources :mantenimientos
+  resources :paquetes
+  resources :paquetes_vendidos_rentas
   resources :postulantes
   resources :programas_capacitacion
   resources :proveedores
+  resources :reservaciones
   resources :recibos_de_compras
+  resources :servicios
+  resources :serviciol_habitaciones
+  resources :servicio_limpiezas
+  resources :servicio_habitaciones
+  resources :servicios_paquetes
   resources :solicitudes_de_mantenimiento
   resources :vacantes
 

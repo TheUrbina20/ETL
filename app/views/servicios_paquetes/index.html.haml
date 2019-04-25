@@ -1,0 +1,20 @@
+%table
+  %thead
+    %tr
+      %td='id'
+      %td='idServicioP'
+      %td='idHistoricoS'
+      %td='idPaquetes'
+      %td='Acciones'
+  %tbody
+    - @serviciop.each do |s|
+      %tr
+        %td=s.id
+        %td=s.idServicioP
+        %td=s.idHistoricoS
+        %td=s.idPaquete
+        %td
+          = link_to edit_servicios_paquete_path(s) do
+            = fa_icon 'pencil'
+          = link_to servicios_paquete_path(s), method: :delete, data: {confirm: '¿Estás seguro?'} do
+            = fa_icon 'trash'

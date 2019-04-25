@@ -1,0 +1,22 @@
+%table
+  %thead
+    %tr
+      %td='id'
+      %td='idHabitacion'
+      %td='Tipo'
+      %td='Estado'
+      %td='Acciones'
+  %tbody
+    - @habitaciones.each do |habitacion|
+      %tr
+        %td=habitacion.id
+        %td=habitacion.id_habitacion
+        %td=habitacion.tipo_h
+        %td=habitacion.estado_h
+        %td
+          = link_to edit_habitacione_path(habitacion) do
+            = fa_icon 'pencil'
+          = link_to habitacione_path(habitacion), method: :delete, data: {confirm: '¿Estás seguro?'} do
+            = fa_icon 'trash'
+    %tr='Total'
+    %tr=@habitaciones.count
