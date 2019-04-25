@@ -17,10 +17,14 @@ Rails.application.routes.draw do
   resources :empresas
   resources :empleados
   resources :landing_page, only: [:index]
+  resources :mesas
+  resources :platillos
   resources :postulantes
   resources :programas_capacitacion
   resources :proveedores
+  resources :rentas
   resources :recibos_de_compras
+  resources :servicios_a_domicilio
   resources :solicitudes_de_mantenimiento
   resources :vacantes
 

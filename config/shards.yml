@@ -9,6 +9,7 @@ octopus:
       port: 5432
       adapter: postgresql
       database: laravel-etl
+      username: admin
 
     restaurant:
       adapter: mysql2
