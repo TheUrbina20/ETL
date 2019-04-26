@@ -1,0 +1,27 @@
+%table
+  %thead
+    %tr
+      %td='id'
+      %td='id_comanda'
+      %td='id_platilo'
+      %td='cantidad'
+      %td='acciones'
+
+  %tbody
+    - @platillos_por_comanda.each do |platillo_por_comanda|
+      %tr
+        %td=platillo_por_comanda.id
+        %td=platillo_por_comanda.id_comanda
+        %td=platillo_por_comanda.id_platillo
+        %td=platillo_por_comanda.cantidad
+        %td
+          = link_to edit_platillos_por_comanda_path(platillo_por_comanda) do
+            = fa_icon 'pencil'
+          = link_to platillos_por_comanda_path(platillo_por_comanda), method: :delete, data: {confirm: '¿Estás seguro?'} do
+            = fa_icon 'trash'
+
+
+    %tr='Total'
+    %tr=@platillos_por_comanda.count
+
+

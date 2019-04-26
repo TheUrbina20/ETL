@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   resources :landing_page, only: [:index]
   resources :mesas
   resources :platillos
+  resources :platillos_por_comanda
   resources :postulantes
   resources :programas_capacitacion
   resources :proveedores
