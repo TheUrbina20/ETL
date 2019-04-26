@@ -1,0 +1,27 @@
+%table
+  %thead
+    %tr
+      %td='id'
+      %td='id_bebida'
+      %td='id_producto'
+      %td='id_tipo_medida'
+      %td='cantidad'
+      %td='Acciones'
+  %tbody
+    - @ingredientes_por_platillo.each do |ingrediente_por_platillo|
+      %tr
+        %td=ingrediente_por_platillo.id
+        %td=ingrediente_por_platillo.id_platillo
+        %td=ingrediente_por_platillo.id_producto
+        %td=ingrediente_por_platillo.id_tipo_medida
+        %td=ingrediente_por_platillo.cantidad
+        %td
+          = link_to edit_ingredientes_por_platillo_path(ingrediente_por_platillo) do
+            = fa_icon 'pencil'
+          = link_to ingredientes_por_platillo_path(ingrediente_por_platillo), method: :delete, data: {confirm: '¿Estás seguro?'} do
+            = fa_icon 'trash'
+
+    %tr='Total'
+    %tr=@ingredientes_por_platillo.count
+
+

@@ -1,0 +1,25 @@
+%table
+  %thead
+    %tr
+      %td='id'
+      %td='idHistorico'
+      %td='Precio'
+      %td='FechaInicio'
+      %td='FechaTermino'
+      %td='idServicio'
+      %td='Acción'
+
+  %tbody
+    - @historicos.each do |ma|
+      %tr
+        %td=ma.id
+        %td=ma.idHistorico
+        %td=ma.Precio
+        %td=ma.FechaInicio
+        %td=ma.FechaTermino
+        %td=ma.idServicio
+        %td
+          = link_to edit_historico_servicio_path(ma) do
+            = fa_icon 'pencil'
+          = link_to historico_servicio_path(ma), method: :delete, data: {confirm: '¿Estás seguro?'} do
+            = fa_icon 'trash'

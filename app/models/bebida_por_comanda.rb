@@ -1,0 +1,2 @@
+class BebidaPorComanda < ApplicationRecord
+end

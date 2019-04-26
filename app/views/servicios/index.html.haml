@@ -1,0 +1,18 @@
+%table
+  %thead
+    %tr
+      %td='id'
+      %td='idServicio'
+      %td='Nombre'
+      %td='Acciones'
+  %tbody
+    - @servicio.each do |s|
+      %tr
+        %td=s.id
+        %td=s.idServicio
+        %td=s.Nombre
+        %td
+          = link_to edit_servicio_path(s) do
+            = fa_icon 'pencil'
+          = link_to servicio_path(s), method: :delete, data: {confirm: '¿Estás seguro?'} do
+            = fa_icon 'trash'

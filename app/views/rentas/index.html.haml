@@ -1,0 +1,28 @@
+%table
+  %thead
+    %tr
+      %td='id'
+      %td='id_cliente'
+      %td='id_reservacion'
+      %td='id_empleado'
+      %td='f_entrada'
+      %td='f_salida'
+      %td='Acciones'
+  %tbody
+    - @rentas.each do |renta|
+      %tr
+        %td=renta.id
+        %td=renta.id_cliente
+        %td=renta.id_reservacion
+        %td=renta.id_empleado
+        %td=renta.f_entrada
+        %td=renta.f_salida
+        %td
+          = link_to edit_renta_path(renta) do
+            = fa_icon 'pencil'
+          = link_to renta_path(renta), method: :delete, data: {confirm: '¿Estás seguro?'} do
+            = fa_icon 'trash'
+    %tr='Total'
+    %tr=@rentas.count
+
+

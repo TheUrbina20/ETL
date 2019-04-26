@@ -1,0 +1,23 @@
+%table
+  %thead
+    %tr
+      %td='id'
+      %td='idEquipoH'
+      %td='idEquipo'
+      %td='idHabitacion'
+      %td='Acción'
+
+  %tbody
+    - @equiposh.each do |equipo|
+      %tr
+        %td=equipo.id
+        %td=equipo.idEquipoH
+        %td=equipo.idEquipo
+        %td=equipo.idHabitacion
+        %td
+          = link_to edit_equipo_habitacione_path(equipo) do
+            = fa_icon 'pencil'
+          = link_to equipo_habitacione_path(equipo), method: :delete, data: {confirm: '¿Estás seguro?'} do
+            = fa_icon 'trash'
+
+
