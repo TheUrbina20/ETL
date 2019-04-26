@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   resources :empleados
   resources :empresas
   resources :empleados
+  resources :ingredientes
   resources :ingredientes_por_bebida
   resources :ingredientes_por_platillo
   resources :landing_page, only: [:index]
