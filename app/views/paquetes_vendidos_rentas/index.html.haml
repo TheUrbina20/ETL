@@ -1,0 +1,22 @@
+%table
+  %thead
+    %tr
+      %td='id'
+      %td='idpvr'
+      %td='idPaquete'
+      %td='idRenta'
+      %td='idEmpleado'
+      %td='Acciones'
+  %tbody
+    - @paquetevr.each do |pvr|
+      %tr
+        %td=pvr.id
+        %td=pvr.idpvr
+        %td=pvr.idPaquete
+        %td=pvr.idRenta
+        %td=pvr.idEmpleado
+        %td
+          = link_to edit_paquetes_vendidos_renta_path(pvr) do
+            = fa_icon 'pencil'
+          = link_to paquetes_vendidos_renta_path(pvr), method: :delete, data: {confirm: '¿Estás seguro?'} do
+            = fa_icon 'trash'

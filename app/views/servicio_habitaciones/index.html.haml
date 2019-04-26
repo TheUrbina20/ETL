@@ -1,0 +1,24 @@
+%table
+  %thead
+    %tr
+      %td='id'
+      %td='idServicioH'
+      %td='idHabitacionR'
+      %td='idRenta'
+      %td='idHistoricoS'
+      %td='idEmpleado'
+      %td='Acciones'
+  %tbody
+    - @servicioh.each do |s|
+      %tr
+        %td=s.id
+        %td=s.idServicioH
+        %td=s.idHabitacionR
+        %td=s.idRenta
+        %td=s.idHistoricoS
+        %td=s.idEmpleado
+        %td
+          = link_to edit_servicio_habitacione_path(s) do
+            = fa_icon 'pencil'
+          = link_to servicio_habitacione_path(s), method: :delete, data: {confirm: '¿Estás seguro?'} do
+            = fa_icon 'trash'
