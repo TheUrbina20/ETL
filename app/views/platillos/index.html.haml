@@ -1,0 +1,27 @@
+%table
+  %thead
+    %tr
+      %td='id'
+      %td='nombre'
+      %td='precio'
+      %td='descripcion'
+      %td='acciones'
+
+  %tbody
+    - @platillos.each do |platillo|
+      %tr
+        %td=platillo.id
+        %td=platillo.nombre
+        %td=platillo.precio
+        %td=platillo.descripcion
+        %td
+          = link_to edit_platillo_path(platillo) do
+            = fa_icon 'pencil'
+          = link_to platillo_path(platillo), method: :delete, data: {confirm: '¿Estás seguro?'} do
+            = fa_icon 'trash'
+
+
+    %tr='Total'
+    %tr=@platillos.count
+
+
