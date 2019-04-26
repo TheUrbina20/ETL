@@ -32,6 +32,7 @@ Rails.application.routes.draw do
   resources :servicios_a_domicilio
   resources :solicitudes_de_mantenimiento
   resources :tipos_medidas
+  resources :tipos_de_productos
   resources :vacantes
 
 end
