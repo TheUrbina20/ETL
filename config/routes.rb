@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :bebidas_por_comanda
   resources :capacitaciones_por_empleado
   resources :clientes
+  resources :comandas
   resources :dmantenimiento_equipos
   resources :dmantenimiento_habitaciones
   resources :equipos
@@ -31,6 +32,7 @@ Rails.application.routes.draw do
   resources :landing_page, only: [:index]
   resources :mantenimientos
   resources :mesas
+  resources :mesas_por_reservacion
   resources :paquetes
   resources :paquetes_vendidos_rentas
   resources :platillos
@@ -47,6 +49,7 @@ Rails.application.routes.draw do
   resources :rentas
   resources :recibos_de_compras
   resources :servicios_a_domicilio
+  resources :reservaciones_en_restaurante
   resources :solicitudes_de_mantenimiento
   resources :tipos_medidas
   resources :tipos_de_productos

@@ -1,0 +1,23 @@
+%table
+  %thead
+    %tr
+      %td='id'
+      %td='id reservacion'
+      %td='id empleado'
+      %td='fecha'
+      %td='hora de reservacion'
+      %td='Acción'
+
+  %tbody
+    - @comandas.each do |comanda|
+      %tr
+        %td=comanda.id
+        %td=comanda.id_reservacion
+        %td=comanda.id_empleado
+        %td=comanda.fecha
+        %td=comanda.hora_reservacion
+        %td
+          = link_to edit_comanda_path(comanda) do
+            = fa_icon 'pencil'
+          = link_to comandas_path(comanda), method: :delete, data: {confirm: '¿Estás seguro?'} do
+            = fa_icon 'trash'

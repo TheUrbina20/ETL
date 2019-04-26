@@ -1,0 +1,24 @@
+%table
+  %thead
+    %tr
+      %td='id'
+      %td='fecha reservacion'
+      %td='hora'
+      %td='id cliente'
+      %td= 'id empleado'
+      %td='Acciones'
+  %tbody
+    - @reservaciones_en_restaurante.each do |reservacion_restaurante|
+      %tr
+        %td=reservacion_restaurante.id
+        %td=reservacion_restaurante.f_reservacion
+        %td=reservacion_restaurante.hora
+        %td=reservacion_restaurante.id_cliente
+        %td=reservacion_restaurante.id_empleado
+        %td
+          = link_to edit_reservaciones_en_restaurante_path(reservacion_restaurante) do
+            = fa_icon 'pencil'
+          = link_to reservaciones_en_restaurante_path(reservacion_restaurante), method: :delete, data: {confirm: '¿Estás seguro?'} do
+            = fa_icon 'trash'
+    %tr='Total'
+    %tr=@reservaciones_en_restaurante.count

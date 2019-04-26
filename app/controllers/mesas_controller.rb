@@ -8,7 +8,7 @@ class MesasController < ApplicationController
 
   def initialize_mesas
     Mesa.using(:dwh_t).delete_all
-    mesas = empleados_rest = Mdb.open(Rails.root.join('db', 'access_db.accdb'))['Mesa']
+    mesas = Mdb.open(Rails.root.join('db', 'access_db.accdb'))['Mesa']
     mesa = Mesa.using(:dwh_t).new()
     mesas.each do |mesa_r|
       mesa = Mesa.using(:dwh_t).new()
