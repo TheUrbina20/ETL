@@ -1,0 +1,10 @@
+= simple_form_for @reporte, url:  reporte_perdido_robo_path, method: :put do |f|
+    = f.input :id
+    = f.input :idReporte
+    = f.input :Cantidad
+    = f.input :Fecha
+    = f.input :idServicioLH
+    = f.input :idHabitacion
+    = f.input :idEmpleado
+    = f.input :idMaterial
+    = f.button :submit, class: 'btn btn-primary'
