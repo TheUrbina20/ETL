@@ -41,15 +41,15 @@ Rails.application.routes.draw do
   resources :programas_capacitacion
   resources :proveedores
   resources :postulantes
-  resources :reservaciones
+  resources :recibos_de_compras
+  resources :rentas
+  resources :reservaciones_en_hotel
+  resources :reservaciones_en_restaurante
   resources :serviciol_habitaciones
   resources :servicio_limpiezas
   resources :servicio_habitaciones
   resources :servicios_paquetes
-  resources :rentas
-  resources :recibos_de_compras
   resources :servicios_a_domicilio
-  resources :reservaciones_en_restaurante
   resources :solicitudes_de_mantenimiento
   resources :tipos_medidas
   resources :tipos_de_productos
