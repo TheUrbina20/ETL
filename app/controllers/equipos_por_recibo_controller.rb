@@ -1,0 +1,2 @@
+class EquiposPorReciboController < ApplicationController
+end

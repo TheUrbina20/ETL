@@ -5,7 +5,7 @@ class MantenimientosController < ApplicationController
     end
 
     def edit
-      @mantenimientoe = Mantenimiento.using(:dwh_t).find(params[:id]) 
+      @mantenimientoe = Mantenimiento.using(:dwh_t).find(params[:id])
     end
 
     def update
@@ -14,7 +14,7 @@ class MantenimientosController < ApplicationController
       if @mantenimientoe.update(mantenimientos_params)
         flash[:notice] = 'Actualizado Correctamente'
         redirect_to mantenimientos_path
-      else 
+      else
         flash[:alert] = 'Error actualizando'
         render 'edit'
       end
@@ -35,7 +35,7 @@ class MantenimientosController < ApplicationController
 
     mantenimientos.each do |ma|
       mantenimiento = Mantenimiento.using(:dwh_t).new()
-      mantenimiento.idMantenimiento = ma.idMatenimiento	
+      mantenimiento.idMantenimiento = ma.idMatenimiento
       mantenimiento.Tipo = ma.Tipo
       mantenimiento.save!
     end

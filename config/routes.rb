@@ -37,9 +37,11 @@ Rails.application.routes.draw do
   resources :ingredientes_por_platillo
   resources :landing_page, only: [:index]
   resources :mantenimientos
+  resources :materiales
   resources :materialgastado_habitaciones
   resources :mesas
   resources :mesas_por_reservacion
+  resources :ordenes_de_mantenimiento
   resources :paquetes
   resources :paquetes_vendidos_rentas
   resources :platillos
