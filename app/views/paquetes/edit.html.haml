@@ -1,0 +1,7 @@
+= simple_form_for @paquete, url: paquete_path, method: :put do |f|
+    = f.input :id
+    = f.input :idPaquete
+    = f.input :Nombre
+    = f.input :Descripcion
+    = f.input :PrecioDia
+    = f.button :submit, class: 'btn btn-primary'

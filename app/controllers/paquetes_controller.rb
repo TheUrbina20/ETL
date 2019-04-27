@@ -3,7 +3,27 @@ class PaquetesController < ApplicationController
         initialize_paquetes
         @paquete = Paquete.using(:dwh_t).all
     end
- private
+    
+    def edit
+      @paquete = Paquete.using(:dwh_t).find(params[:id]) 
+    end
+
+    def update
+      @paquete = Paquete.using(:dwh_t).find(params[:id])
+
+      if @paquete.update(paquetes_params)
+        flash[:notice] = 'Actualizado Correctamente'
+        redirect_to paquetes_path
+      else 
+        flash[:alert] = 'Error actualizando'
+        render 'edit'
+      end
+    end
+
+    def paquetes_params
+      params.require(:paquete).permit(:id, :idPaquete, :Nombre, :Descripcion, :PrecioDia)
+    end
+
     def initialize_paquetes
         Paquete.using(:dwh_t).delete_all
     
