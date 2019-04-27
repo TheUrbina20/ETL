@@ -15,7 +15,8 @@ Rails.application.routes.draw do
   resources :capacitaciones_por_empleado
   resources :clientes
   resources :comandas
-  resources :detalles_de_factura
+  resources :detalles_de_factura_restaurante
+  resources :detalles_de_factura_hotel
   resources :dhabitaciones
   resources :dmantenimiento_equipos
   resources :dmantenimiento_habitaciones
