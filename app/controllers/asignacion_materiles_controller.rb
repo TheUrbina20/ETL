@@ -15,7 +15,7 @@ class AsignacionMaterilesController < ApplicationController
         flash[:notice] = 'Actualizado Correctamente'
         redirect_to asignacion_materiles_path
       else 
-        flash[:alert] = 'Error actualizando'
+        flash.now[:alert] = 'Error actualizando'
         render 'edit'
       end
     end

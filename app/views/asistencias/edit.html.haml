@@ -1,0 +1,7 @@
+= simple_form_for @asistencias, url:  asistencia_path, method: :put do |f|
+    = f.input :id
+    = f.input :id_empleado
+    = f.input :fecha
+    = f.input :hora_entrada
+    = f.input :hora_salida
+    = f.button :submit, class: 'btn btn-primary'

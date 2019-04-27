@@ -4,6 +4,8 @@
       %td='id'
       %td='id_empleado'
       %td='id_area'
+      %td='Fecha Asignaci`pon'
+      %td='Acciones'
 
   %tbody
     - @areas_por_empleado.each do |area|
@@ -11,8 +13,12 @@
         %td=area.id
         %td=area.id_empleado
         %td=area.id_area
+        %td=area.fechasignacion
+        %td
+          = link_to  edit_areas_por_empleado_path(area) do
+            = fa_icon 'pencil'
+          = link_to areas_por_empleado_path(area), method: :delete, data: {confirm: '¿Estás seguro?'} do
+            = fa_icon 'trash'
 
-    %tr='Total'
-    %tr=@areas_por_empleado.count
 
 
