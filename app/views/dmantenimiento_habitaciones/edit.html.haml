@@ -1,0 +1,10 @@
+= simple_form_for @mantenimientoh, url: dmantenimiento_habitacione_path, method: :put do |f|
+    = f.input :id
+    = f.input :idDetalle
+    = f.input :Descripcion
+    = f.input :FechaInicio
+    = f.input :FechaTermino
+    = f.input :idHabitacion
+    = f.input :idMantenimientoH
+    = f.input :idEmpleado
+    = f.button :submit, class: 'btn btn-primary'

@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'landing_page#index'
   resources :accidentes_laborales
+  resources :asignacion_materiles
   resources :aplicaciones_a_vacantes
   resources :areas
   resources :areas_por_empleado
@@ -14,6 +15,7 @@ Rails.application.routes.draw do
   resources :capacitaciones_por_empleado
   resources :clientes
   resources :comandas
+  resources :dhabitaciones
   resources :dmantenimiento_equipos
   resources :dmantenimiento_habitaciones
   resources :equipos
@@ -31,6 +33,7 @@ Rails.application.routes.draw do
   resources :ingredientes_por_platillo
   resources :landing_page, only: [:index]
   resources :mantenimientos
+  resources :materialgastado_habitaciones
   resources :mesas
   resources :mesas_por_reservacion
   resources :paquetes
@@ -45,6 +48,8 @@ Rails.application.routes.draw do
   resources :rentas
   resources :reservaciones_en_hotel
   resources :reservaciones_en_restaurante
+  resources :reporte_perdido_robos
+  resources :servicios
   resources :serviciol_habitaciones
   resources :servicio_limpiezas
   resources :servicio_habitaciones
@@ -54,6 +59,5 @@ Rails.application.routes.draw do
   resources :tipos_medidas
   resources :tipos_de_productos
   resources :vacantes
-
 end
 

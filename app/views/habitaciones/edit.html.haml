@@ -1,0 +1,6 @@
+= simple_form_for @habitaciones, url: habitacione_path, method: :put do |f|
+    = f.input :id
+    = f.input :id_habitacion
+    = f.input :tipo_h
+    = f.input :estado_h
+    = f.button :submit, class: 'btn btn-primary'

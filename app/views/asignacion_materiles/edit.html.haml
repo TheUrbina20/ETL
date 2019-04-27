@@ -1,0 +1,7 @@
+= simple_form_for @asignacionm, url: asignacion_materile_path, method: :put do |f|
+    = f.input :id
+    = f.input :idAsignacion
+    = f.input :Cantidad
+    = f.input :idHabitacion
+    = f.input :idMaterial
+    = f.button :submit, class: 'btn btn-primary'
