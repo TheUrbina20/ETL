@@ -42,6 +42,7 @@ Rails.application.routes.draw do
   resources :mesas
   resources :mesas_por_reservacion
   resources :ordenes_de_mantenimiento
+  resources :pedidos_por_empleado
   resources :paquetes
   resources :paquetes_vendidos_rentas
   resources :platillos

@@ -1,0 +1,22 @@
+%table
+  %thead
+    %tr
+      %td='id'
+      %td='id sistema'
+      %td='sistema'
+      %td='f_peticion'
+      %td='id_empleado'
+      %td='Acciones'
+  %tbody
+    - @ordenes_por_empleados.each do |orden_por_empleado|
+      %tr
+        %td=orden_por_empleado.id
+        %td=orden_por_empleado.id_sistema
+        %td=orden_por_empleado.sistema
+        %td=orden_por_empleado.f_peticion
+        %td=orden_por_empleado.id_empleado
+        %td
+          = link_to edit_pedidos_por_empleado_path(orden_por_empleado) do
+            = fa_icon 'pencil'
+          = link_to pedidos_por_empleado_path(orden_por_empleado), method: :delete, data: {confirm: '¿Estás seguro?'} do
+            = fa_icon 'trash'
