@@ -1,2 +1,0 @@
-module ReservacionesEnRetauranteHelper
-end
