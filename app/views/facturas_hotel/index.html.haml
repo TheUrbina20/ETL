@@ -1,0 +1,36 @@
+%h1 Bienvenido
+%a
+  = link_to 'Cerrar sesión', destroy_user_session_path, method: :delete
+
+%table
+  %thead
+    %tr
+      %td='id'
+      %td='id sistema'
+      %td='id cliente'
+      %td='total'
+      %td='fecha de emision'
+      %td='tipo pago'
+      %td='id renta'
+      %td='Sistema'
+      %td='Acciones'
+  %tbody
+    - @facturas.each do |factura|
+      %tr
+        %td=factura.id
+        %td=factura.id_sistema
+        %td=factura.id_cliente
+        %td=factura.total
+        %td=factura.fecha_emision
+        %td=factura.tipo_pago
+        %td=factura.id_renta
+        %td=factura.sistema
+        %td
+          = link_to edit_facturas_hotel_path(factura) do
+            = fa_icon 'pencil'
+          = link_to facturas_hotel_path(factura), method: :delete, data: {confirm: '¿Estás seguro?'} do
+            = fa_icon 'trash'
+    %tr='Total'
+    %tr=@facturas.count
+
+

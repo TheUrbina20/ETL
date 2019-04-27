@@ -14,6 +14,7 @@
       %td='Genero'
       %td='RFC'
       %td='Baja'
+      %td='Sistema'
       %td='Acciones'
   %tbody
     - @empleados.each do |empleado|
@@ -30,8 +31,12 @@
         %td=empleado.genero
         %td=empleado.rfc
         %td=empleado.baja
+        %td=empleado.sistema
         %td
-          = link_to 'Edit', edit_empleado_path(empleado)
+          = link_to edit_empleado_path(empleado) do
+            = fa_icon 'pencil'
+          = link_to empleado_path(empleado), method: :delete, data: {confirm: '¿Estás seguro?'} do
+            = fa_icon 'trash'
     %tr='Total'
     %tr=@empleados.count
 
