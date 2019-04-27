@@ -12,7 +12,7 @@
         = f.password_field :password_confirmation, required: true, |
           autocomplete: "new-password",                           |
           label_class: "required"                                 |
-        = f.select :role, User.using(:dwh_t).roles.keys, include_blank: false
+        = f.select :roles, User.using(:dwh_t).roles.keys, include_blank: false
         = f.form_group do
           = f.submit "Registrarse", class: "btn btn-primary btn-block btn-lg"
       .text-center

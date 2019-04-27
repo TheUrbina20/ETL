@@ -1,0 +1,2 @@
+module IngredientesPorBebidaHelper
+end
