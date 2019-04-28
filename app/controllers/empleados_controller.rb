@@ -1,7 +1,15 @@
 class EmpleadosController < ApplicationController
   def index
     initialize_empleados
-    @empleados = Empleado.using(:dwh_t).all.order(:nombre)
+    if current_user.admin?
+      @empleados = Empleado.using(:dwh_t).all.order(:nombre)
+    elsif current_user.hotel?
+      @empleados = Empleado.using(:dwh_t).where(sistema: 'H').order(:nombre)
+    elsif current_user.rrhh?
+      @empleados = Empleado.using(:dwh_t).where(sistema: 'RR').order(:nombre)
+    else
+      @empleados = Empleado.using(:dwh_t).where(sistema: 'R').order(:nombre)
+    end
   end
 
   def edit

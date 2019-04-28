@@ -1,7 +1,15 @@
 class RecibosDeComprasController < ApplicationController
   def index
     initialize_recibos
-    @recibos = ReciboDeCompra.using(:dwh_t).all
+    if current_user.admin?
+      @recibos = ReciboDeCompra.using(:dwh_t).all
+    elsif current_user.hotel?
+      @recibos = ReciboDeCompra.using(:dwh_t).where(sistema: 'H')
+    elsif current_user.rrhh?
+      @recibos = ReciboDeCompra.using(:dwh_t).where(sistema: 'RR')
+    else
+      @recibos = ReciboDeCompra.using(:dwh_t).where(sistema: 'R')
+    end
   end
 
   def edit

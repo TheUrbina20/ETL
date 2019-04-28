@@ -1,7 +1,16 @@
 class MaterialesController < ApplicationController
   def index
     initialize_materials
-    @materiales = Material.using(:dwh_t).all
+    if current_user.admin?
+      @materiales = Material.using(:dwh_t).all.order(:nombre)
+    elsif current_user.hotel?
+      @materiales = Material.using(:dwh_t).where(sistema: 'H').order(:nombre)
+    elsif current_user.rrhh?
+      @materiales = Material.using(:dwh_t).where(sistema: 'RR').order(:nombre)
+    else
+      @materiales = Material.using(:dwh_t).where(sistema: 'R').order(:nombre)
+    end
+
   end
 
   def edit
