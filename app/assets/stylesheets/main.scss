@@ -1,3 +1,30 @@
 .invalid-feedback{
   color: $red;
 }
+
+barranav .navbar-brand {
+  padding: 0px;
+  margin-left: -10px;
+}
+.navbar-brand > img {
+  height: auto;
+  width: 86px;
+  margin-top: -19px;
+
+} 
+
+.barranav .nav >li >a {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+.barranav .navbar-toggle {
+  padding: 10px;
+  margin: 25px 15px 25px 0;
+}
+
+.containerStyle {
+  width: 900px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+} 

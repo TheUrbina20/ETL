@@ -1,18 +1,22 @@
-%table
-  %thead
+<h1>Postulantes</h1>
+%table.table.table-striped
+%thead
+  %tr
+    %td='id'
+    %td='nombre'
+    %td='estado'
+
+%tbody
+  - @postulantes.each do |postulante|
     %tr
-      %td='id'
-      %td='nombre'
-      %td='estado'
+      %td=postulante.id
+      %td=postulante.nombre
+      %td=postulante.estado
 
-  %tbody
-    - @postulantes.each do |postulante|
-      %tr
-        %td=postulante.id
-        %td=postulante.nombre
-        %td=postulante.estado
-
-    %tr='Total'
-    %tr=@postulantes.count
+  %tr='Total'
+  %tr=@postulantes.count
 
 
+
+
+    
