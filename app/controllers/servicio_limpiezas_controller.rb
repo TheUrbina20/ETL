@@ -14,7 +14,7 @@ class ServicioLimpiezasController < ApplicationController
         flash[:notice] = 'Actualizado Correctamente'
         redirect_to servicio_limpiezas_path
       else 
-        flash[:alert] = 'Error actualizando'
+        flash.now[:alert] = 'Error actualizando'
         render 'edit'
       end
     end

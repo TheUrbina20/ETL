@@ -1,6 +1,6 @@
 class MantenimientosController < ApplicationController
     def index
-        initialize_mantenimientoe
+        initialize_mantenimientos
         @mantenimientoe = Mantenimiento.using(:dwh_t).all
     end
 
@@ -15,7 +15,7 @@ class MantenimientosController < ApplicationController
         flash[:notice] = 'Actualizado Correctamente'
         redirect_to mantenimientos_path
       else
-        flash[:alert] = 'Error actualizando'
+        flash.now[:alert] = 'Error actualizando'
         render 'edit'
       end
     end
@@ -26,7 +26,7 @@ class MantenimientosController < ApplicationController
 
   private
 
-  def initialize_mantenimientoe
+  def initialize_mantenimientos
     Mantenimiento.using(:dwh_t).delete_all
 
     mantenimientos = Mantenimiento.using(:restaurant).all

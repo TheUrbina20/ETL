@@ -15,7 +15,7 @@ class HistoricoServiciosController < ApplicationController
         flash[:notice] = 'Actualizado Correctamente'
         redirect_to historico_servicios_path
       else 
-        flash[:alert] = 'Error actualizando'
+        flash.now[:alert] = 'Error actualizando'
         render 'edit'
       end
     end
