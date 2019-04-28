@@ -1,0 +1,32 @@
+
+%table
+  %thead
+    %tr
+      %td='id'
+      %td='id sistems'
+      %td='sistema'
+      %td='nombre'
+      %td='stock minimo'
+      %td='stock maximo'
+      %td='cantidad en stock'
+      %td='acciones'
+  %tbody
+    - @materiales.each do |material|
+      %tr
+        %td=material.id
+        %td=material.id_sistema
+        %td=material.sistema
+        %td=material.nombre
+        %td=material.stock_min
+        %td=material.stock_max
+        %td=material.cantidad_stock
+        %td
+          = link_to edit_materiale_path(material) do
+            = fa_icon 'pencil'
+          = link_to materiales_path(material), method: :delete, data: {confirm: '¿Estás seguro?'} do
+            = fa_icon 'trash'
+
+    %tr='Total: '
+    %tr=@materiales.count
+
+

@@ -1,0 +1,9 @@
+= simple_form_for @equipo_por_recibo, url: equipos_por_recibo_path, method: :put do |f|
+    = f.input :id
+    = f.input :id_sistema
+    = f.input :sistema
+    = f.input :id_equipoa
+    = f.input :n_serie
+    = f.input :id_recibo_compra
+    = f.input :f_finalizacion_garantia
+    = f.button :submit, class: 'btn btn-primary'

@@ -1,11 +1,11 @@
-class AsignacionMaterilesController < ApplicationController
+class AsignacionMaterialesController < ApplicationController
     def index
         initialize_mgh
         @asignacionm = AsignacionMaterial.using(:dwh_t).all
     end
 
     def edit
-      @asignacionm = AsignacionMaterial.using(:dwh_t).find(params[:id]) 
+      @asignacionm = AsignacionMaterial.using(:dwh_t).find(params[:id])
     end
 
     def update
@@ -13,9 +13,9 @@ class AsignacionMaterilesController < ApplicationController
 
       if @asignacionm.update(asignacion_params)
         flash[:notice] = 'Actualizado Correctamente'
-        redirect_to asignacion_materiles_path
-      else 
-        flash.now[:alert] = 'Error actualizando'
+        redirect_to asignacion_materiales_path
+      else
+        flash[:alert] = 'Error actualizando'
         render 'edit'
       end
     end
@@ -35,10 +35,11 @@ class AsignacionMaterilesController < ApplicationController
 
     materiales.each do |se|
       material = AsignacionMaterial.using(:dwh_t).new()
-      material.idAsignacion = se.idAsignacion 	
-      material.Cantidad = se.Cantidad	
-      material.idHabitacion = se.idHabitacion
-      material.idMaterial = se.idMaterial
+
+      material.id = se.idAsignacion
+      material.cantidad = se.Cantidad
+      material.id_habitacion = se.idHabitacion
+      material.id_material = se.idMaterial
       material.save!
     end
   end

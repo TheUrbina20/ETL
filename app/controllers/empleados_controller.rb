@@ -4,6 +4,25 @@ class EmpleadosController < ApplicationController
     @empleados = Empleado.using(:dwh_t).all.order(:nombre)
   end
 
+  def edit
+    @empleado = Empleado.using(:dwh_t).find(params[:id])
+  end
+
+  def update
+    @empleado = Empleado.using(:dwh_t).find(params[:id])
+    if @empleado.update(empleado_params)
+      flash[:notice] = 'Actualizado'
+      redirect_to empleados_path
+    else
+      flash.now[:alert] = 'Error actualizando'
+      render 'edit'
+    end
+  end
+
+  def empleado_params
+    params.require(:empleado).permit(:nombre, :f_nacimiento, :c_electronico, :n_telefono, :genero, :rfc, :baja, :sistema, :f_entrada)
+  end
+
   def initialize_empleados
     Empleado.using(:dwh_t).destroy_all
 
