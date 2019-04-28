@@ -21,7 +21,7 @@ class MantenimientosController < ApplicationController
     end
 
     def mantenimientos_params
-      params.require(:mantenimiento).permit(:id, :idMantenimiento, :Tipo)
+      params.require(:mantenimiento).permit(:id, :tipo)
     end
 
   private
@@ -35,8 +35,8 @@ class MantenimientosController < ApplicationController
 
     mantenimientos.each do |ma|
       mantenimiento = Mantenimiento.using(:dwh_t).new()
-      mantenimiento.idMantenimiento = ma.idMatenimiento
-      mantenimiento.Tipo = ma.Tipo
+      mantenimiento.id = ma.id
+      mantenimiento.tipo = ma.tipo
       mantenimiento.save!
     end
   end

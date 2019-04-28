@@ -1,3 +1,3 @@
 class Asistencia < ApplicationRecord
-  self.table_name = 'asistencia'
+  self.table_name = 'asistencias'
 end

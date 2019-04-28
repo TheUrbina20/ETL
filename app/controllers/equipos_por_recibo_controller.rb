@@ -14,7 +14,7 @@ class EquiposPorReciboController < ApplicationController
       flash[:notice] = 'Actualizado'
       redirect_to equipos_por_recibo_index_path
     else
-      flash[:alert] = 'Error actualizando'
+      flash.now[:alert] = 'Error actualizando'
       render 'edit'
     end
   end

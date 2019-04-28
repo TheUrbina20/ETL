@@ -1,0 +1,6 @@
+= simple_form_for @ingrediente_por_proveedor, url: ingredientes_por_proveedor_path, method: :put do |f|
+    = f.input :id
+    = f.input :id_proveedor
+    = f.input :id_ingrediente
+    = f.input :precio
+    = f.button :submit, class: 'btn btn-primary'

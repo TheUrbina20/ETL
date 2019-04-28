@@ -4,6 +4,25 @@ class EquiposController < ApplicationController
     @equipos = Equipo.using(:dwh_t).all
   end
 
+  def edit
+    @equipo = Equipo.using(:dwh_t).find(params[:id])
+  end
+
+  def update
+    @equipo = Equipo.using(:dwh_t).find(params[:id])
+    if @equipo.update(equipo_params)
+      flash[:notice] = 'Actualizado'
+      redirect_to equipos_path
+    else
+      flash.now[:alert] = 'Error actualizando'
+      render 'edit'
+    end
+  end
+
+  def equipo_params
+    params.require(:equipo).permit(:id_sistema, :sistema, :nombre, :modelo)
+  end
+
   private
 
   def initialize_equipos

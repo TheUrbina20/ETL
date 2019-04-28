@@ -1,8 +1,7 @@
 = simple_form_for @serviciolh, url:  serviciol_habitacione_path, method: :put do |f|
     = f.input :id
-    = f.input :idServicioLH
-    = f.input :Fecha
-    = f.input :idServicioL
-    = f.input :idHabitacion
-    = f.input :idEmpleado
+    = f.input :fecha
+    = f.input :id_servicio_limpieza
+    = f.input :id_habitacion
+    = f.input :id_empleado
     = f.button :submit, class: 'btn btn-primary'

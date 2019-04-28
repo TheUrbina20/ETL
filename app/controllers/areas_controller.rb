@@ -5,7 +5,7 @@ class AreasController < ApplicationController
   end
 
   def edit
-    @areas = Area.using(:dwh_t).find(params[:id]) 
+    @areas = Area.using(:dwh_t).find(params[:id])
   end
 
   def update
@@ -14,7 +14,7 @@ class AreasController < ApplicationController
     if @areas.update(areas_params)
       flash[:notice] = 'Actualizado Correctamente'
       redirect_to areas_path
-    else 
+    else
       flash.now[:alert] = 'Error actualizando'
       render 'edit'
     end
@@ -35,8 +35,8 @@ class AreasController < ApplicationController
       area = Area.using(:dwh_t).new()
 
       area.id = area_r.id
-      area.Nombre = area_r.Nombre
-      area.Clave = area_r.Clave
+      area.nombre = area_r.nombre
+      area.clave = area_r.clave
       area.save!
     end
   end

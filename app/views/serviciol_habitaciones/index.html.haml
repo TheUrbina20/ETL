@@ -2,7 +2,6 @@
   %thead
     %tr
       %td='id'
-      %td='idServicioLH'
       %td='Fecha'
       %td='idServicioL'
       %td='idHabitacion'
@@ -12,11 +11,10 @@
     - @serviciolh.each do |s|
       %tr
         %td=s.id
-        %td=s.idServicioLH
-        %td=s.Fecha
-        %td=s.idServicioL
-        %td=s.idHabitacion
-        %td=s.idEmpleado
+        %td=s.fecha
+        %td=s.id_servicio_limpieza
+        %td=s.id_habitacion
+        %td=s.id_empleado
         %td
           = link_to edit_serviciol_habitacione_path(s) do
             = fa_icon 'pencil'

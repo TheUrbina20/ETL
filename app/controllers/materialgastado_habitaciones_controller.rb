@@ -5,7 +5,7 @@ class MaterialgastadoHabitacionesController < ApplicationController
     end
 
     def edit
-      @materialgh = MgHabitacion.using(:dwh_t).find(params[:id]) 
+      @materialgh = MgHabitacion.using(:dwh_t).find(params[:id])
     end
 
     def update
@@ -14,14 +14,14 @@ class MaterialgastadoHabitacionesController < ApplicationController
       if @materialgh.update(hservicios_params)
         flash[:notice] = 'Actualizado Correctamente'
         redirect_to materialgastado_habitaciones_path
-      else 
+      else
         flash.now[:alert] = 'Error actualizando'
         render 'edit'
       end
     end
 
     def hservicios_params
-      params.require(:mg_habitacion).permit(:id, :idMaterialH, :Cantidad, :Material, :idServicioLH)
+      params.require(:mg_habitacion).permit(:id, :cantidad, :id_material_por_recibo, :id_servicio_limpieza)
     end
 
   private
@@ -35,10 +35,10 @@ class MaterialgastadoHabitacionesController < ApplicationController
 
     materiales.each do |se|
       material = MgHabitacion.using(:dwh_t).new()
-      material.idMaterialH = se.idMaterialH 	
-      material.Cantidad = se.Cantidad	
-      material.idMaterial = se.idMaterial
-      material.idServicioLH = se.idServicioLH
+      material.id = se.id
+      material.cantidad = se.Cantidad
+      material.id_material_por_recibo = se.idMaterial
+      material.id_servicio_limpieza = se.idServicioLH
       material.save!
     end
   end

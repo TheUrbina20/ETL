@@ -1,0 +1,6 @@
+= simple_form_for @platillo_por_comanda, url: platillos_por_comanda_path, method: :put do |f|
+    = f.input :id
+    = f.input :id_comanda
+    = f.input :id_platillo
+    = f.input :cantidad
+    = f.button :submit, class: 'btn btn-primary'

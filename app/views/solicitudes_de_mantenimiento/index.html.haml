@@ -9,6 +9,7 @@
       %td='estado'
       %td='motivo'
       %td='tipo'
+      %td='Acciones'
 
   %tbody
     - @solicitudes.each do |solicitud|
@@ -21,6 +22,11 @@
         %td=solicitud.estado
         %td=solicitud.motivo
         %td=solicitud.tipo
+        %td
+          = link_to edit_solicitudes_de_mantenimiento_path(solicitud) do
+            = fa_icon 'pencil'
+          = link_to solicitudes_de_mantenimiento_path(solicitud), method: :delete, data: {confirm: '¿Estás seguro?'} do
+            = fa_icon 'trash'
 
     %tr='Total'
     %tr=@solicitudes.count

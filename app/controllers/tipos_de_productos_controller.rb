@@ -4,6 +4,25 @@ class TiposDeProductosController < ApplicationController
     @tipos_de_productos = TipoDeProducto.using(:dwh_t).all
   end
 
+  def edit
+    @tipo_de_producto = TipoDeProducto.using(:dwh_t).find(params[:id])
+  end
+
+  def update
+    @tipo_de_producto = TipoDeProducto.using(:dwh_t).find(params[:id])
+    if @tipo_de_producto.update(tipo_de_producto_params)
+      flash[:notice] = 'Actualizado'
+      redirect_to tipos_de_productos_path
+    else
+      flash.now[:alert] = 'Error actuaizando'
+      render 'edit'
+    end
+  end
+
+  def tipo_de_producto_params
+    params.require(:tipo_de_producto).permit(:tipo)
+  end
+
   def initialize_tipos_productos
     TipoDeProducto.using(:dwh_t).delete_all
 

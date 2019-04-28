@@ -6,6 +6,7 @@
       %td='Estado'
       %td='Correo'
       %td='Telefono'
+      %td='Acciones'
   %tbody
     - @clientes.each do |cliente|
       %tr
@@ -14,6 +15,11 @@
         %td=cliente.estado
         %td=cliente.correo
         %td=cliente.telefono
+        %td
+          = link_to edit_cliente_path(cliente) do
+            = fa_icon 'pencil'
+          = link_to clientes_path(cliente), method: :delete, data: {confirm: '¿Estás seguro?'} do
+            = fa_icon 'trash'
 
     %tr='Total'
     %tr=@clientes.count

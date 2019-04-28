@@ -1,3 +1,3 @@
 class SolicitudMantenimiento < ApplicationRecord
-  self.table_name='solicitudes de mantenimiento'
+  self.table_name='solicitudes_de_mantenimiento'
 end

@@ -2,7 +2,6 @@
   %thead
     %tr
       %td='id'
-      %td='idReporte'
       %td='Cantidad'
       %td='Fecha'
       %td='idServicioLH'
@@ -14,13 +13,12 @@
     - @reporte.each do |s|
       %tr
         %td=s.id
-        %td=s.idReporte
-        %td=s.Cantidad
-        %td=s.Fecha
-        %td=s.idServicioLH
-        %td=s.idHabitacion
-        %td=s.idEmpleado
-        %td=s.idMaterial
+        %td=s.cantidad
+        %td=s.fecha
+        %td=s.id_servicio_limpieza
+        %td=s.id_habitacion
+        %td=s.id_empleado
+        %td=s.id_material
         %td
           = link_to edit_reporte_perdido_robo_path(s) do
             = fa_icon 'pencil'

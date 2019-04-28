@@ -2,14 +2,24 @@
   %thead
     %tr
       %td='id'
+      %td='id sistema'
+      %td='sistema'
       %td='Nombre'
       %td='id_empresa'
+      %td='Acciones'
   %tbody
     - @proveedores.each do |proveedor|
       %tr
         %td=proveedor.id
+        %td=proveedor.id_sistema
+        %td=proveedor.sistema
         %td=proveedor.nombre
         %td=proveedor.id_empresa
+        %td
+          = link_to edit_proveedore_path(proveedor) do
+            = fa_icon 'pencil'
+          = link_to proveedores_path(proveedor), method: :delete, data: {confirm: '¿Estás seguro?'} do
+            = fa_icon 'trash'
     %tr='Total'
     %tr=@proveedores.count
 

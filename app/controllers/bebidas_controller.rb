@@ -4,6 +4,25 @@ class BebidasController < ApplicationController
     @bebidas = Bebida.using(:dwh_t).all
   end
 
+  def edit
+    @bebida = Bebida.using(:dwh_t).find(params[:id])
+  end
+
+  def update
+    @bebida = Bebida.using(:dwh_t).find(params[:id])
+    if @bebida.update(bebida_params)
+      flash[:notice] = 'Actualizado'
+      redirect_to bebidas_path
+    else
+      flash.now[:alert] = 'Error actualizando'
+      render 'edit'
+    end
+  end
+
+  def bebida_params
+    params.require(:bebida).permit(:nombre, :precio, :descripcion)
+  end
+
   private
 
   def initialize_bebidas

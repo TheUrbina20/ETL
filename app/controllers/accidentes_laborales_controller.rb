@@ -5,7 +5,7 @@ class AccidentesLaboralesController < ApplicationController
   end
 
   def edit
-    @accidentes = AccidenteLaboral.using(:dwh_t).find(params[:id]) 
+    @accidentes = AccidenteLaboral.using(:dwh_t).find(params[:id])
   end
 
   def update
@@ -14,7 +14,7 @@ class AccidentesLaboralesController < ApplicationController
     if @accidentes.update(accidentes_params)
       flash[:notice] = 'Actualizado Correctamente'
       redirect_to accidentes_laborales_path
-    else 
+    else
       flash.now[:alert] = 'Error actualizando'
       render 'edit'
     end
@@ -36,7 +36,6 @@ class AccidentesLaboralesController < ApplicationController
       accidente.id = accidente_r.id
       accidente.id_empleado = accidente_r.id_empleado
       accidente.f_accidente = accidente_r.f_accidente
-      accidente.Descripcion = accidente_r.descripcion
       accidente.save!
     end
 

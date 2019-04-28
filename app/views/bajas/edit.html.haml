@@ -1,0 +1,7 @@
+= simple_form_for @baja, url:  baja_path, method: :put do |f|
+    = f.input :id
+    = f.input :id_articulo
+    = f.input :fecha
+    = f.input :tipo
+    = f.input :motivo
+    = f.button :submit, class: 'btn btn-primary'

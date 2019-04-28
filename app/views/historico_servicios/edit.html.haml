@@ -1,8 +1,7 @@
 = simple_form_for @historicos, url: historico_servicio_path, method: :put do |f|
     = f.input :id
-    = f.input :idHistorico
-    = f.input :Precio
-    = f.input :FechaInicio
-    = f.input :FechaTermino
-    = f.input :idServicio
+    = f.input :precio
+    = f.input :f_inicio
+    = f.input :f_termino
+    = f.input :id_servicio
     = f.button :submit, class: 'btn btn-primary'

@@ -1,6 +1,6 @@
 class EmpresasController < ApplicationController
   def index
-    #initialice_empresas
+    initialice_empresas
     @empresas = Empresa.using(:dwh_t).all
   end
 
@@ -15,7 +15,7 @@ class EmpresasController < ApplicationController
       flash[:notice] = 'Actualizado'
       redirect_to empresas_path
     else
-      flash[:alert] = 'Error actualizando'
+      flash.now[:alert] = 'Error actualizando'
       render 'edit'
     end
   end
