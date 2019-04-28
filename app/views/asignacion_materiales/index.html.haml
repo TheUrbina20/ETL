@@ -12,12 +12,11 @@
     - @asignacionm.each do |ma|
       %tr
         %td=ma.id
-        %td=ma.idAsignacion
-        %td=ma.Cantidad
-        %td=ma.idHabitacion
-        %td=ma.idMaterial
+        %td=ma.cantidad
+        %td=ma.id_habitacion
+        %td=ma.id_material
         %td
-          = link_to edit_asignacion_materile_path(ma) do
+          = link_to edit_asignacion_materiale_path(ma) do
             = fa_icon 'pencil'
-          = link_to asignacion_materile_path(ma), method: :delete, data: {confirm: '¿Estás seguro?'} do
+          = link_to asignacion_materiale_path(ma), method: :delete, data: {confirm: '¿Estás seguro?'} do
             = fa_icon 'trash'
