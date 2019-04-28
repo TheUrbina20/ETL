@@ -1,8 +1,26 @@
 class RentasController < ApplicationController
   def index
     initialize_rentas
-
     @rentas = Renta.using(:dwh_t).all
+  end
+
+  def edit
+    @renta = Renta.using(:dwh_t).find(params[:id])
+  end
+
+  def update
+    @renta = Renta.using(:dwh_t).find(params[:id])
+    if @renta.update(renta_params)
+      flash[:notice] = 'Actualizado'
+      redirect_to rentas_path
+    else
+      flash.now[:alert] = 'Error actualizando'
+      render 'edit'
+    end
+  end
+
+  def renta_params
+    params.require(:renta).permit(:id_cliente, :id_empleado, :f_entrada, :f_salida)
   end
 
   def initialize_rentas

@@ -1,0 +1,8 @@
+= simple_form_for @factura_hotel, url: facturas_hotel_path, method: :put do |f|
+    = f.input :id
+    = f.input :id_cliente
+    = f.input :total
+    = f.input :fecha_emision
+    = f.input :tipo_pago
+    = f.input :id_renta
+    = f.button :submit, class: 'btn btn-primary'

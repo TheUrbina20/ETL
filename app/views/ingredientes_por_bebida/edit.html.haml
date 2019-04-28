@@ -1,0 +1,7 @@
+= simple_form_for @ingrediente_por_bebida, url: ingredientes_por_bebida_path, method: :put do |f|
+    = f.input :id
+    = f.input :id_bebida
+    = f.input :id_producto
+    = f.input :id_tipo_medida
+    = f.input :cantidad
+    = f.button :submit, class: 'btn btn-primary'

@@ -2,7 +2,6 @@
   %thead
     %tr
       %td='id'
-      %td='idHabitacion'
       %td='Tipo'
       %td='Estado'
       %td='Acciones'
@@ -10,9 +9,8 @@
     - @habitaciones.each do |habitacion|
       %tr
         %td=habitacion.id
-        %td=habitacion.id_habitacion
-        %td=habitacion.tipo_h
-        %td=habitacion.estado_h
+        %td=habitacion.tipo_habitacion
+        %td=habitacion.estado
         %td
           = link_to edit_habitacione_path(habitacion) do
             = fa_icon 'pencil'

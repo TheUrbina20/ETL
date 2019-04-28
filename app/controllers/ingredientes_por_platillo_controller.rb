@@ -4,6 +4,25 @@ class IngredientesPorPlatilloController < ApplicationController
     @ingredientes_por_platillo = IngredientePorPlatillo.using(:dwh_t).all
   end
 
+  def edit
+    @ingrediente_por_platillo = IngredientePorPlatillo.using(:dwh_t).find(params[:id])
+  end
+
+  def update
+    @ingrediente_por_platillo = IngredientePorPlatillo.using(:dwh_t).find(params[:id])
+    if @ingrediente_por_platillo.update(ingrediente_por_platillo_param)
+      flash[:notice] = 'Actualizado'
+      redirect_to ingredientes_por_platillo_index_path
+    else
+      flash.now[:alert] = 'Error actualizando'
+      render 'edit'
+    end
+  end
+
+  def ingrediente_por_platillo_param
+    params.require(:ingrediente_por_platillo).permit(:id_platillo, :id_producto, :id_tipo_medida, :cantidad)
+  end
+
   def initialize_ingredientes_por_platillo
     IngredientePorPlatillo.using(:dwh_t).delete_all
 

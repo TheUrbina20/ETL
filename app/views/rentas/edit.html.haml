@@ -1,0 +1,7 @@
+= simple_form_for @renta, url:  renta_path, method: :put do |f|
+    = f.input :id
+    = f.input :id_cliente
+    = f.input :id_empleado
+    = f.input :f_entrada
+    = f.input :f_salida
+    = f.button :submit, class: 'btn btn-primary'

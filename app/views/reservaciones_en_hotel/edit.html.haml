@@ -1,0 +1,9 @@
+= simple_form_for @reservacion, url:  reservaciones_en_hotel_path, method: :put do |f|
+    = f.input :id
+    = f.input :f_entrada
+    = f.input :f_salida
+    = f.input :f_reservacion
+    = f.input :estado
+    = f.input :id_cliente
+    = f.input :id_empleado
+    = f.button :submit, class: 'btn btn-primary'

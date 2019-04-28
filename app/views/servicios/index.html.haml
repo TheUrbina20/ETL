@@ -2,15 +2,13 @@
   %thead
     %tr
       %td='id'
-      %td='idServicio'
       %td='Nombre'
       %td='Acciones'
   %tbody
     - @servicio.each do |s|
       %tr
         %td=s.id
-        %td=s.idServicio
-        %td=s.Nombre
+        %td=s.nombre
         %td
           = link_to edit_servicio_path(s) do
             = fa_icon 'pencil'

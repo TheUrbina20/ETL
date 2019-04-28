@@ -1,0 +1,5 @@
+= simple_form_for @mesa, url: mesa_path, method: :put do |f|
+    = f.input :id
+    = f.input :numero
+    = f.input :capacidad
+    = f.button :submit, class: 'btn btn-primary'

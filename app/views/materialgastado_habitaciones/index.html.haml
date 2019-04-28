@@ -2,20 +2,18 @@
   %thead
     %tr
       %td='id'
-      %td='idMaterialH'
       %td='Cantidad'
-      %td='idMaterial'
-      %td='idServicioLH'
-      %td='Acción'
+      %td='id material'
+      %td='id servicio limpieza'
+      %td='Acciónes'
 
   %tbody
     - @materialgh.each do |ma|
       %tr
         %td=ma.id
-        %td=ma.idMaterialH
-        %td=ma.Cantidad
-        %td=ma.idMaterial
-        %td=ma.idServicioLH
+        %td=ma.cantidad
+        %td=ma.id_material_por_recibo
+        %td=ma.id_servicio_limpieza
         %td
           = link_to edit_materialgastado_habitacione_path(ma) do
             = fa_icon 'pencil'

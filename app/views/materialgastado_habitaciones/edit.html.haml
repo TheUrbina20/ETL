@@ -1,7 +1,6 @@
 = simple_form_for @materialgh, url: materialgastado_habitacione_path, method: :put do |f|
     = f.input :id
-    = f.input :idMaterialH
-    = f.input :Cantidad
-    = f.input :idMaterial
-    = f.input :idServicioLH
+    = f.input :cantidad
+    = f.input :id_material_por_recibo
+    = f.input :id_servicio_limpieza
     = f.button :submit, class: 'btn btn-primary'

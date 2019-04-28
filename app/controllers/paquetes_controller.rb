@@ -3,9 +3,9 @@ class PaquetesController < ApplicationController
         initialize_paquetes
         @paquete = Paquete.using(:dwh_t).all
     end
-    
+
     def edit
-      @paquete = Paquete.using(:dwh_t).find(params[:id]) 
+      @paquete = Paquete.using(:dwh_t).find(params[:id])
     end
 
     def update
@@ -14,7 +14,7 @@ class PaquetesController < ApplicationController
       if @paquete.update(paquetes_params)
         flash[:notice] = 'Actualizado Correctamente'
         redirect_to paquetes_path
-      else 
+      else
         flash.now[:alert] = 'Error actualizando'
         render 'edit'
       end
@@ -26,17 +26,17 @@ class PaquetesController < ApplicationController
 
     def initialize_paquetes
         Paquete.using(:dwh_t).delete_all
-    
+
         paquetes_h = Paquete.using(:restaurant).all
         paquete_t = Paquete.using(:dwh_t).new()
-    
-    
+
+
         paquetes_h.each do |pa|
           paquete_t = Paquete.using(:dwh_t).new()
-          paquete_t.idPaquete = pa.idPaquete
-          paquete_t.Nombre = pa.Nombre
-          paquete_t.Descripcion = pa.Descripcion
-          paquete_t.PrecioDia = pa.PrecioDia
+          paquete_t.id = pa.idPaquete
+          paquete_t.nombre = pa.Nombre
+          paquete_t.descripcion = pa.Descripcion
+          paquete_t.precio_por_dia = pa.PrecioDia
           paquete_t.save!
         end
       end

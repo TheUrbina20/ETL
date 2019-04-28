@@ -5,7 +5,7 @@ class AreasPorEmpleadoController < ApplicationController
   end
 
   def edit
-    @areas_por_empleado = AreasPorEmpleado.using(:dwh_t).find(params[:id]) 
+    @areas_por_empleado = AreasPorEmpleado.using(:dwh_t).find(params[:id])
   end
 
   def update
@@ -14,8 +14,8 @@ class AreasPorEmpleadoController < ApplicationController
     if @areas_por_empleado.update(areas_params)
       flash[:notice] = 'Actualizado Correctamente'
       redirect_to areas_por_empleado_index_path
-    else 
-      flash[:alert] = 'Error actualizando'
+    else
+      flash.now[:alert] = 'Error actualizando'
       render 'edit'
     end
   end
@@ -36,7 +36,7 @@ class AreasPorEmpleadoController < ApplicationController
 
       area.id_area = area_r.id_area
       area.id_empleado = area_r.id_empleado
-      area.fechasignacion = area_r.fechasignacion
+      area.f_asignacion = area_r.f_asignacion
       area.save!
     end
   end

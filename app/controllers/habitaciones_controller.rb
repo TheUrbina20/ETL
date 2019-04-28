@@ -5,7 +5,7 @@ class HabitacionesController < ApplicationController
     end
 
     def edit
-      @habitaciones = Habitacion.using(:dwh_t).find(params[:id]) 
+      @habitaciones = Habitacion.using(:dwh_t).find(params[:id])
     end
 
     def update
@@ -14,14 +14,14 @@ class HabitacionesController < ApplicationController
       if @habitaciones.update(habitaciones_params)
         flash[:notice] = 'Actualizado Correctamente'
         redirect_to habitaciones_path
-      else 
+      else
         flash.now[:alert] = 'Error actualizando'
         render 'edit'
       end
     end
 
     def habitaciones_params
-      params.require(:habitacion).permit(:id, :id_habitacion, :tipo_h, :estado_h)
+      params.require(:habitacion).permit(:id, :tipo_habitacion, :estado)
     end
 
   private
@@ -35,9 +35,9 @@ class HabitacionesController < ApplicationController
 
     habitaciones.each do |ha|
       habitacion = Habitacion.using(:dwh_t).new()
-      habitacion.id_habitacion = ha.idHabitacion
-      habitacion.tipo_h = ha.idTipo
-      habitacion.estado_h = ha.Estado
+      habitacion.id = ha.idHabitacion
+      habitacion.tipo_habitacion = ha.idTipo
+      habitacion.estado = ha.Estado
       habitacion.save!
     end
   end

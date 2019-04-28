@@ -2,7 +2,6 @@
   %thead
     %tr
       %td='id'
-      %td='idMantenimiento'
       %td='Tipo'
       %td='Acción'
 
@@ -10,8 +9,7 @@
     - @mantenimientoe.each do |ma|
       %tr
         %td=ma.id
-        %td=ma.idMantenimiento
-        %td=ma.Tipo
+        %td=ma.tipo
         %td
           = link_to edit_mantenimiento_path(ma) do
             = fa_icon 'pencil'

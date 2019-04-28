@@ -2,19 +2,12 @@
   %thead
     %tr
       %td='id'
-      %td='idHabitacionR'
-      %td='idRrservacion'
-      %td='idHabitacion'
-      %td='Acciones'
+      %td='id habitacion'
+      %td='id reservacion'
+
   %tbody
     - @habitacionesreservadas.each do |habitacion|
       %tr
         %td=habitacion.id
-        %td=habitacion.idHabitacionR
-        %td=habitacion.idReservacion
-        %td=habitacion.idHabitacion
-        %td
-          = link_to edit_habitaciones_reservada_path(habitacion) do
-            = fa_icon 'pencil'
-          = link_to habitaciones_reservada_path(habitacion), method: :delete, data: {confirm: '¿Estás seguro?'} do
-            = fa_icon 'trash'
+        %td=habitacion.id_reservacion
+        %td=habitacion.id_habitacion
