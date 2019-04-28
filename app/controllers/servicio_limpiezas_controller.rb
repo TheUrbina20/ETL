@@ -3,6 +3,25 @@ class ServicioLimpiezasController < ApplicationController
         initialize_serviciosl
         @serviciol = ServicioLimpieza.using(:dwh_t).all
     end
+    def edit
+      @serviciol = ServicioLimpieza.using(:dwh_t).find(params[:id]) 
+    end
+
+    def update
+      @serviciol = ServicioLimpieza.using(:dwh_t).find(params[:id])
+
+      if @serviciol.update(serviciosl_params)
+        flash[:notice] = 'Actualizado Correctamente'
+        redirect_to servicio_limpiezas_path
+      else 
+        flash.now[:alert] = 'Error actualizando'
+        render 'edit'
+      end
+    end
+
+    def serviciosl_params
+      params.require(:servicio_limpieza).permit(:id, :idServicioL, :Nombre)
+    end
  private
     def initialize_serviciosl
         ServicioLimpieza.using(:dwh_t).delete_all

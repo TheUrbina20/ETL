@@ -5,6 +5,8 @@
       %td='id'
       %td='id_empleado'
       %td='Fecha accidente'
+      %td='Descripcion'
+      %td='Acciones'
 
   %tbody
     - @accidentes.each do |accidente|
@@ -12,8 +14,11 @@
         %td=accidente.id
         %td=accidente.id_empleado
         %td=accidente.f_accidente
-
-    %tr='Total'
-    %tr=@accidentes.count
+        %td=accidente.descripcion
+        %td
+          = link_to edit_accidentes_laborale_path(accidente) do
+            = fa_icon 'pencil'
+          = link_to accidentes_laborale_path(accidente), method: :delete, data: {confirm: '¿Estás seguro?'} do
+            = fa_icon 'trash'
 
 

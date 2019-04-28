@@ -4,6 +4,26 @@ class PostulantesController < ApplicationController
     @postulantes = Postulante.using(:dwh_t).all
   end
 
+  def edit
+    @postulantes = Postulante.using(:dwh_t).find(params[:id]) 
+  end
+
+  def update
+    @postulantes = Postulante.using(:dwh_t).find(params[:id])
+
+    if @postulantes.update(postulantes_params)
+      flash[:notice] = 'Actualizado Correctamente'
+      redirect_to postulantes_path
+    else 
+      flash.now[:alert] = 'Error actualizando'
+      render 'edit'
+    end
+  end
+
+  def postulantes_params
+    params.require(:postulante).permit(:id, :nombre, :estado)
+  end
+
   private
 
   def initialice_postulantes

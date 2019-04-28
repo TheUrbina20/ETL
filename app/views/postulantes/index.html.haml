@@ -2,20 +2,22 @@
 %table.table.table-striped
 %thead
   %tr
-    %td='id'
-    %td='nombre'
-    %td='estado'
+      %td='id'
+      %td='Nombre'
+      %td='Estado'
+      %td='Acciones'
 
-%tbody
-  - @postulantes.each do |postulante|
-    %tr
-      %td=postulante.id
-      %td=postulante.nombre
-      %td=postulante.estado
-
-  %tr='Total'
-  %tr=@postulantes.count
-
+  %tbody
+    - @postulantes.each do |postulante|
+      %tr
+        %td=postulante.id
+        %td=postulante.nombre
+        %td=postulante.estado
+        %td
+          = link_to edit_postulante_path(postulante) do
+            = fa_icon 'pencil'
+          = link_to postulante_path(postulante), method: :delete, data: {confirm: '¿Estás seguro?'} do
+            = fa_icon 'trash'
 
 
 

@@ -4,6 +4,26 @@ class HabitacionesController < ApplicationController
         @habitaciones = Habitacion.using(:dwh_t).all
     end
 
+    def edit
+      @habitaciones = Habitacion.using(:dwh_t).find(params[:id]) 
+    end
+
+    def update
+      @habitaciones = Habitacion.using(:dwh_t).find(params[:id])
+
+      if @habitaciones.update(habitaciones_params)
+        flash[:notice] = 'Actualizado Correctamente'
+        redirect_to habitaciones_path
+      else 
+        flash.now[:alert] = 'Error actualizando'
+        render 'edit'
+      end
+    end
+
+    def habitaciones_params
+      params.require(:habitacion).permit(:id, :id_habitacion, :tipo_h, :estado_h)
+    end
+
   private
 
   def initialize_habitaciones

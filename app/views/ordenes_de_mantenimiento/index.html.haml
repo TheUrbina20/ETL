@@ -1,0 +1,28 @@
+%table
+  %thead
+    %tr
+      %td='id'
+      %td='id sistema'
+      %td='sistema'
+      %td='f_inicio'
+      %td='f_termino'
+      %td='id_equipo'
+      %td='tipo_mantenimiento'
+      %td='id_empleado'
+      %td='Acciones'
+  %tbody
+    - @mantenimientos_por_equipo.each do |mantenimiento_por_equipo|
+      %tr
+        %td=mantenimiento_por_equipo.id
+        %td=mantenimiento_por_equipo.id_sistema
+        %td=mantenimiento_por_equipo.sistema
+        %td=mantenimiento_por_equipo.f_inicio
+        %td=mantenimiento_por_equipo.f_termino
+        %td=mantenimiento_por_equipo.id_equipo
+        %td=mantenimiento_por_equipo.tipo_mantenimiento
+        %td=mantenimiento_por_equipo.id_empleado
+        %td
+          = link_to edit_ordenes_de_mantenimiento_path(mantenimiento_por_equipo) do
+            = fa_icon 'pencil'
+          = link_to ordenes_de_mantenimiento_path(mantenimiento_por_equipo), method: :delete, data: {confirm: '¿Estás seguro?'} do
+            = fa_icon 'trash'

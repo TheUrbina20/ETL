@@ -8,6 +8,7 @@
       %td='f_inicio'
       %td='f_fin'
       %td='estado'
+      %td='Acciones'
 
   %tbody
     - @capacitaciones.each do |capacitacion|
@@ -18,8 +19,10 @@
         %td=capacitacion.f_inicio
         %td=capacitacion.f_fin
         %td=capacitacion.estado
-
-    %tr='Total'
-    %tr=@capacitaciones.count
+        %td
+          = link_to edit_capacitaciones_por_empleado_path(capacitacion) do
+            = fa_icon 'pencil'
+          = link_to capacitaciones_por_empleado_path(capacitacion), method: :delete, data: {confirm: '¿Estás seguro?'} do
+            = fa_icon 'trash'
 
 

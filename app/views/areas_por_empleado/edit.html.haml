@@ -1,0 +1,6 @@
+= simple_form_for @areas_por_empleado, url:  areas_por_empleado_path, method: :put do |f|
+    = f.input :id
+    = f.input :id_empleado
+    = f.input :id_area
+    = f.input :fechasignacion 
+    = f.button :submit, class: 'btn btn-primary'

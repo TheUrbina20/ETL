@@ -4,10 +4,30 @@ class AsistenciasController < ApplicationController
     @asistencias = Asistencia.using(:dwh_t).all
   end
 
+  def edit
+    @asistencias = Asistencia.using(:dwh_t).find(params[:id]) 
+  end
+
+  def update
+    @asistencias = Asistencia.using(:dwh_t).find(params[:id])
+
+    if @asistencias.update(areas_params)
+      flash[:notice] = 'Actualizado Correctamente'
+      redirect_to asistencias_path
+    else 
+      flash.now[:alert] = 'Error actualizando'
+      render 'edit'
+    end
+  end
+
+  def areas_params
+    params.require(:asistencia).permit(:id, :id_empleado, :fecha, :hora_entrada, :hora_salida)
+  end
+
   private
 
   def initialize_asistencias
-    Asistencia.using(:dwh_t).destroy_all
+    asistencia = Asistencia.using(:dwh_t).destroy_all
 
     asistencias = Asistencia.using(:rrhh).all
 

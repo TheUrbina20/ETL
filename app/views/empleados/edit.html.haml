@@ -1,0 +1,12 @@
+= simple_form_for @empleado, url: empleado_path, method: :put do |f|
+    = f.input :id
+    = f.input :nombre
+    = f.input :f_nacimiento
+    = f.input :c_electronico
+    = f.input :n_telefono
+    = f.input :genero
+    = f.input :rfc
+    = f.input :baja
+    = f.input :sistema
+    = f.input :f_entrada
+    = f.button :submit, class: 'btn btn-primary'

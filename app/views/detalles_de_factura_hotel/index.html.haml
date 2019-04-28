@@ -1,0 +1,23 @@
+%table
+  %thead
+    %tr
+      %td='id'
+      %td='cantidad'
+      %td='total'
+      %td='id_factura'
+      %td='id servicio a hotel'
+      %td='Acción'
+
+  %tbody
+    - @detalles_de_factura_hotel.each do |detalle_factura|
+      %tr
+        %td=detalle_factura.id
+        %td=detalle_factura.cantidad
+        %td=detalle_factura.total
+        %td=detalle_factura.id_factura
+        %td=detalle_factura.id_servicio_hotel
+        %td
+          = link_to edit_detalles_de_factura_hotel_path(detalle_factura) do
+            = fa_icon 'pencil'
+          = link_to detalles_de_factura_hotel_path(detalle_factura), method: :delete, data: {confirm: '¿Estás seguro?'} do
+            = fa_icon 'trash'

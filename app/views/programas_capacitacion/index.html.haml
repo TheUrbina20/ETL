@@ -8,6 +8,7 @@
       %td='nombre'
       %td='costo'
       %td='duracion'
+      %td='Acciones'
 
   %tbody
     - @programas.each do |programa|
@@ -16,7 +17,9 @@
         %td=programa.nombre
         %td=programa.costo
         %td=programa.duracion
-
-    %tr='Total'
-    %tr=@programas.count
+        %td
+          = link_to edit_programas_capacitacion_path(programa) do
+            = fa_icon 'pencil'
+          = link_to programas_capacitacion_path(programa), method: :delete, data: {confirm: '¿Estás seguro?'} do
+            = fa_icon 'trash'
 
