@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   resources :equipos
   resources :equipo_habitaciones
   resources :equipos_por_pedido
+  resources :equipos_por_recibo
   resources :empleados
   resources :empresas
   resources :facturas_restaurante
@@ -38,6 +39,8 @@ Rails.application.routes.draw do
   resources :landing_page, only: [:index]
   resources :mantenimientos
   resources :materiales
+  resources :materiales_por_pedido
+  resources :materiales_por_recibo
   resources :materialgastado_habitaciones
   resources :mesas
   resources :mesas_por_reservacion

@@ -1,0 +1,27 @@
+%table
+  %thead
+    %tr
+      %td='id'
+      %td='id sistema'
+      %td='sistema'
+      %td='id recibo'
+      %td='n serie'
+      %td='id equipo'
+      %td='garantia'
+      %td='Acción'
+
+  %tbody
+    - @equipos_por_recibo.each do |equipo_por_recibo|
+      %tr
+        %td=equipo_por_recibo.id
+        %td=equipo_por_recibo.id_sistema
+        %td=equipo_por_recibo.sistema
+        %td=equipo_por_recibo.id_recibo_compra
+        %td=equipo_por_recibo.n_serie
+        %td=equipo_por_recibo.id_equipo
+        %td=equipo_por_recibo.f_finalizacion_garantia
+        %td
+          = link_to edit_equipos_por_recibo_path(equipo_por_recibo) do
+            = fa_icon 'pencil'
+          = link_to equipos_por_recibo_path(equipo_por_recibo), method: :delete, data: {confirm: '¿Estás seguro?'} do
+            = fa_icon 'trash'
