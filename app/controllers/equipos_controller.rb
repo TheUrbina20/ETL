@@ -1,7 +1,15 @@
 class EquiposController < ApplicationController
   def index
     initialize_equipos
-    @equipos = Equipo.using(:dwh_t).all
+    if current_user.admin?
+      @equipos = Equipo.using(:dwh_t).all
+    elsif current_user.hotel?
+      @equipos = Equipo.using(:dwh_t).where(sistema: 'H')
+    elsif current_user.rrhh?
+      @equipos = Equipo.using(:dwh_t).where(sistema: 'RR')
+    else
+      @equipos = Equipo.using(:dwh_t).where(sistema: 'R')
+    end
   end
 
   def edit
