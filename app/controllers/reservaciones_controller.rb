@@ -14,7 +14,7 @@ class ReservacionesController < ApplicationController
         flash[:notice] = 'Actualizado Correctamente'
         redirect_to reservaciones_path
       else 
-        flash[:alert] = 'Error actualizando'
+        flash.now[:alert] = 'Error actualizando'
         render 'edit'
       end
     end

@@ -14,7 +14,7 @@ class ServiciolHabitacionesController < ApplicationController
         flash[:notice] = 'Actualizado Correctamente'
         redirect_to serviciol_habitaciones_path
       else 
-        flash[:alert] = 'Error actualizando'
+        flash.now[:alert] = 'Error actualizando'
         render 'edit'
       end
     end

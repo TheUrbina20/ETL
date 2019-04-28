@@ -1,0 +1,7 @@
+= simple_form_for @programas, url:  programas_capacitacion_path, method: :put do |f|
+    = f.input :id
+    = f.input :id_empresa
+    = f.input :nombre
+    = f.input :costo
+    = f.input :duracion
+    = f.button :submit, class: 'btn btn-primary'

@@ -4,6 +4,25 @@ class VacantesController < ApplicationController
     @vacantes = Vacante.using(:dwh_t).all
   end
 
+  def edit
+    @vacantes = Vacante.using(:dwh_t).find(params[:id]) 
+  end
+
+  def update
+    @vacantes = Vacante.using(:dwh_t).find(params[:id])
+
+    if @vacantes.update(vacantes_params)
+      flash[:notice] = 'Actualizado Correctamente'
+      redirect_to vacantes_path
+    else 
+      flash.now[:alert] = 'Error actualizando'
+      render 'edit'
+    end
+  end
+
+  def vacantes_params
+    params.require(:vacante).permit(:id, :nombre, :estado)
+  end
   private
 
   def initialize_vacantes
