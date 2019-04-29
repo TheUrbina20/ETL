@@ -1,4 +1,7 @@
 = simple_form_for @mantenimientoe, url: mantenimiento_path, method: :put do |f|
-    = f.input :id
-    = f.input :tipo
-    = f.button :submit, class: 'btn btn-primary'
+ = f.input :id, readonly: true
+ - if valid_tipomantenimietno(@mantenimientoe.tipo)
+  = f.input :tipo, readonly: true
+ - else 
+  = f.input :tipo, disabled: false
+ = f.button :submit, class: 'btn btn-primary'

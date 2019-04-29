@@ -1,6 +1,9 @@
 = simple_form_for @materialgh, url: materialgastado_habitacione_path, method: :put do |f|
-    = f.input :id
-    = f.input :cantidad
-    = f.input :id_material_por_recibo
-    = f.input :id_servicio_limpieza
-    = f.button :submit, class: 'btn btn-primary'
+ = f.input :id, readonly: true 
+ - if valid_cantidad?(@materialgh.cantidad)
+  = f.input :cantidad, readonly: true 
+ - else 
+  = f.input :cantidad, disabled: false
+ = f.input :id_material_por_recibo, readonly: true
+ = f.input :id_servicio_limpieza, readonly: true
+ = f.button :submit, class: 'btn btn-primary'

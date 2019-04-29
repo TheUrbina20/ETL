@@ -1,7 +1,16 @@
 = simple_form_for @historicos, url: historico_servicio_path, method: :put do |f|
-    = f.input :id
-    = f.input :precio
-    = f.input :f_inicio
-    = f.input :f_termino
-    = f.input :id_servicio
-    = f.button :submit, class: 'btn btn-primary'
+ = f.input :id, readonly: true
+ - if valid_precio?(@historicos.precio)
+  = f.input :precio, readonly: true
+ - else 
+  = f.input :precio, disabled: false
+ - if valid_date?(@historicos.f_inicio)
+  = f.input :f_inicio, readonly: true 
+ - else 
+  = f.input :f_inicio, disabled: false 
+ - if valid_date?(@historicos.f_termino)
+  = f.input :f_termino, readonly: true 
+ - else 
+  = f.input :f_termino, disabled: false
+ = f.input :id_servicio, readonly: true
+ = f.button :submit, class: 'btn btn-primary'

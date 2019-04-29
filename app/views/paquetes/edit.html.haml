@@ -1,6 +1,12 @@
 = simple_form_for @paquete, url: paquete_path, method: :put do |f|
-    = f.input :id
-    = f.input :nombre
-    = f.input :descripcion
-    = f.input :precio_por_dia
-    = f.button :submit, class: 'btn btn-primary'
+ = f.input :id, readonly: true
+ - if valid_name?(@paquete.nombre)
+  = f.input :nombre, readonly: true
+ - else 
+  = f.input :nombre, disabled: false
+ = f.input :descripcion, readonly: true
+ - if valid_precio?(@paquete.precio_por_dia)
+  = f.input :precio_por_dia, readonly: true 
+ - else 
+  = f.input :precio_por_dia, disabled: false
+ = f.button :submit, class: 'btn btn-primary'
