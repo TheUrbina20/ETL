@@ -1,10 +1,20 @@
 class ReservacionesController < ApplicationController
     def index
-
         @reservaciones = Reservacion.using(:dwh_t).where(error: true)
     end
+
     def edit
       @reservaciones = Reservacion.using(:dwh_t).find(params[:id])
+    end
+
+    def destroy
+      @reservaciones = Reservacion.using(:dwh_t).find(params[:id])
+      if @reservaciones.destroy
+        flash[:notice] = 'Eliminado'
+      else
+        flash[:alert] = 'Error eliminando'
+      end
+      redirect_to reservaciones_path
     end
 
     def update

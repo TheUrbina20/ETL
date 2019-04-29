@@ -8,6 +8,16 @@ class ComandasController < ApplicationController
     @comanda = Comanda.using(:dwh_t).find(params[:id])
   end
 
+  def destroy
+    @comanda = Comanda.using(:dwh_t).find(params[:id])
+    if @comanda.destroy
+      flash[:notice] = 'Eliminado'
+    else
+      flash[:alert] = 'Error eliminando'
+    end
+    redirect_to comandas_path
+  end
+
   def update
     @comanda = Comanda.using(:dwh_t).find(params[:id])
     if @comanda.update(comanda_params)

@@ -3,10 +3,10 @@
   %thead
     %tr
       %td='ID'
+      %td='Num de recibo'
+      %td='Num de material'
       %td='Num sistema'
       %td='Sistema'
-      %td='Num de material'
-      %td='Num de recibo'
       %td='Cantidad'
       %td='Tipo de paquete'
       %td='Fecha caducidad'
@@ -16,9 +16,10 @@
     - @materiales_por_recibo.each do |material_por_recibo|
       %tr
         %td=material_por_recibo.id
+        %td=material_por_recibo.id_recibo_compra
+        %td=material_por_recibo.id_material
         %td=material_por_recibo.id_sistema
         %td=material_por_recibo.sistema
-        %td=material_por_recibo.id_material
         %td=material_por_recibo.cantidad
         %td=material_por_recibo.tipo_paquete
         %td=material_por_recibo.f_caducidad

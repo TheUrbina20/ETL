@@ -8,6 +8,16 @@ class DhabitacionesController < ApplicationController
     @dhabitaciones = Dhabitacion.using(:dwh_t).find(params[:id])
   end
 
+  def destroy
+    @dhabitaciones = Dhabitacion.using(:dwh_t).find(params[:id])
+    if @dhabitaciones.destroy
+      flash[:notice] = 'Eliminado'
+    else
+      flash[:alert] = 'Error eliminando'
+    end
+    redirect_to dhabitaciones_path
+  end
+
   def update
     @dhabitaciones = Dhabitacion.using(:dwh_t).find(params[:id])
     if @dhabitaciones.update(dhabitaciones_params)

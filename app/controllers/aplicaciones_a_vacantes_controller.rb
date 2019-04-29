@@ -8,6 +8,17 @@ class AplicacionesAVacantesController < ApplicationController
     @aplicacion_a_vacante = AplicacionAVacante.using(:dwh_t).find(params[:id])
   end
 
+  def destroy
+    @aplicacion_a_vacante = AplicacionAVacante.using(:dwh_t).find(params[:id])
+    if @aplicacion_a_vacante.destroy
+      flash[:notice] = 'Eliminado'
+    else
+      flash[:alert] = 'Error eliminando'
+    end
+    redirect_to aplicaciones_a_vacantes_path
+  end
+
+
   def update
     @aplicacion_a_vacante = AplicacionAVacante.using(:dwh_t).find(params[:id])
     if @aplicacion_a_vacante.update(aplicacion_a_vacante_params)

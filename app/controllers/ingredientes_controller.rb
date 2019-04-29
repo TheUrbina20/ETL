@@ -8,6 +8,16 @@ class IngredientesController < ApplicationController
     @ingrediente = Ingrediente.using(:dwh_t).find(params[:id])
   end
 
+  def destroy
+    @ingrediente = Ingrediente.using(:dwh_t).find(params[:id])
+    if @ingrediente.destroy
+      flash[:notice] = 'Eliminado'
+    else
+      flash[:alert] = 'Error eliminando'
+    end
+    redirect_to ingredientes_path
+  end
+
   def update
     @ingrediente = Ingrediente.using(:dwh_t).find(params[:id])
     if @ingrediente.update(ingrediente_params)

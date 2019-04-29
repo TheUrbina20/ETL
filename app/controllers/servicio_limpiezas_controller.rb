@@ -8,6 +8,16 @@ class ServicioLimpiezasController < ApplicationController
       @serviciol = ServicioLimpieza.using(:dwh_t).find(params[:id])
     end
 
+    def destroy
+      @serviciol = ServicioLimpieza.using(:dwh_t).find(params[:id])
+      if @serviciol.destroy
+        flash[:notice] = 'Eliminado'
+      else
+        flash[:alert] = 'Error eliminando'
+      end
+      redirect_to servicio_limpiezas_path
+    end
+
     def update
       @serviciol = ServicioLimpieza.using(:dwh_t).find(params[:id])
 

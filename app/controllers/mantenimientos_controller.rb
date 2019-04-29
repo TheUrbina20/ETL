@@ -1,11 +1,20 @@
 class MantenimientosController < ApplicationController
     def index
-
         @mantenimientoe = Mantenimiento.using(:dwh_t).where(error: true)
     end
 
     def edit
       @mantenimientoe = Mantenimiento.using(:dwh_t).find(params[:id])
+    end
+
+    def destroy
+      @mantenimientoe = Mantenimiento.using(:dwh_t).find(params[:id])
+      if @mantenimientoe.destroy
+        flash[:notice] = 'Eliminado'
+      else
+        flash[:alert] = 'Error eliminando'
+      end
+      redirect_to mantenimientos_path
     end
 
     def update

@@ -8,6 +8,16 @@ class DetallesDeFacturaRestauranteController < ApplicationController
     @detalle_de_factura_restaurante = DetalleDeFacturaRestaurante.using(:dwh_t).find(params[:id])
   end
 
+  def destroy
+    @detalle_de_factura_restaurante = DetalleDeFacturaRestaurante.using(:dwh_t).find(params[:id])
+    if @detalle_de_factura_restaurante.destroy
+      flash[:notice] = 'Eliminado'
+    else
+      flash[:alert] = 'Error eliminando'
+    end
+    redirect_to detalles_de_factura_restaurante_index_path
+  end
+
   def update
     @detalle_de_factura_restaurante = DetalleDeFacturaRestaurante.using(:dwh_t).find(params[:id])
     if @detalle_de_factura_restaurante.update(detalle_de_factura_params)

@@ -1,6 +1,5 @@
 class MaterialesController < ApplicationController
   def index
-
     if current_user.admin?
       @materiales = Material.using(:dwh_t).where(error: true).order(:nombre)
     elsif current_user.hotel?
@@ -10,11 +9,20 @@ class MaterialesController < ApplicationController
     else
       @materiales = Material.using(:dwh_t).where(sistema: 'R', error: true).order(:nombre)
     end
-
   end
 
   def edit
     @material = Material.using(:dwh_t).find(params[:id])
+  end
+
+  def destroy
+    @material = Material.using(:dwh_t).find(params[:id])
+    if @material.destroy
+      flash[:notice] = 'Eliminado'
+    else
+      flash[:alert] = 'Error eliminando'
+    end
+    redirect_to materiales_path
   end
 
   def update

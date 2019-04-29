@@ -16,6 +16,16 @@ class OrdenesDeMantenimientoController < ApplicationController
     @mantenimiento_por_equipo = MantenimientoPorEquipo.using(:dwh_t).find(params[:id])
   end
 
+  def destroy
+    @mantenimiento_por_equipo = MantenimientoPorEquipo.using(:dwh_t).find(params[:id])
+    if @mantenimiento_por_equipo.destroy
+      flash[:notice] = 'Eliminado'
+    else
+      flash[:alert] = 'Error eliminando'
+    end
+    redirect_to ordenes_de_mantenimiento_index_path
+  end
+
   def update
     @mantenimiento_por_equipo = MantenimientoPorEquipo.using(:dwh_t).find(params[:id])
     if @mantenimiento_por_equipo.update(orden_de_mantenimiento_params)

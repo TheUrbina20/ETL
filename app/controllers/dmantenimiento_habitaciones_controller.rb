@@ -7,6 +7,17 @@ class DmantenimientoHabitacionesController < ApplicationController
     @mantenimientoh = DmantenimientoHabitacion.using(:dwh_t).find(params[:id])
   end
 
+
+  def destroy
+    @mantenimientoh = DmantenimientoHabitacion.using(:dwh_t).find(params[:id])
+    if @mantenimientoh.destroy
+      flash[:notice] = 'Eliminado'
+    else
+      flash[:alert] = 'Error eliminando'
+    end
+    redirect_to dmantenimiento_habitaciones_path
+  end
+
   def update
     @mantenimientoh = DmantenimientoHabitacion.using(:dwh_t).find(params[:id])
 

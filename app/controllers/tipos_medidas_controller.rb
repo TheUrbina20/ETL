@@ -8,6 +8,16 @@ class TiposMedidasController < ApplicationController
     @tipo_medida = TipoMedida.using(:dwh_t).find(params[:id])
   end
 
+  def destroy
+    @tipo_medida = TipoMedida.using(:dwh_t).find(params[:id])
+    if @tipo_medida.destroy
+      flash[:notice] = 'Eliminado'
+    else
+      flash[:alert] = 'Error eliminando'
+    end
+    redirect_to tipos_medidas_path
+  end
+
   def update
     @tipo_medida = TipoMedida.using(:dwh_t).find(params[:id])
 

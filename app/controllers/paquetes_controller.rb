@@ -7,6 +7,16 @@ class PaquetesController < ApplicationController
     @paquete = Paquete.using(:dwh_t).find(params[:id])
   end
 
+  def destroy
+    @paquete = Paquete.using(:dwh_t).find(params[:id])
+    if @paquete.destroy
+      flash[:notice] = 'Eliminado'
+    else
+      flash[:alert] = 'Error eliminando'
+    end
+    redirect_to paquetes_path
+  end
+
   def update
     @paquete = Paquete.using(:dwh_t).find(params[:id])
 

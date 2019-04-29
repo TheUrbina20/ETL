@@ -8,6 +8,16 @@ class MesasController < ApplicationController
     @mesa = Mesa.using(:dwh_t).find(params[:id])
   end
 
+  def destroy
+    @mesa = Mesa.using(:dwh_t).find(params[:id])
+    if @mesa.destroy
+      flash[:notice] = 'Eliminado'
+    else
+      flash[:alert] = 'Error eliminando'
+    end
+    redirect_to mesas_path
+  end
+
   def update
     @mesa = Mesa.using(:dwh_t).find(params[:id])
     if @mesa.update(mesa_params)

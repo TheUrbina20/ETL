@@ -8,6 +8,16 @@ class IngredientesPorProveedorController < ApplicationController
     @ingrediente_por_proveedor = IngredientePorProveedor.using(:dwh_t).find(params[:id])
   end
 
+  def destroy
+    @ingrediente_por_proveedor = IngredientePorProveedor.using(:dwh_t).find(params[:id])
+    if @areingrediente_por_proveedoras.destroy
+      flash[:notice] = 'Eliminado'
+    else
+      flash[:alert] = 'Error eliminando'
+    end
+    redirect_to ingredientes_por_proveedor_index_path
+  end
+
   def update
     @ingrediente_por_proveedor = IngredientePorProveedor.using(:dwh_t).find(params[:id])
     if @ingrediente_por_proveedor.update(ingrediente_por_proveedor_params)

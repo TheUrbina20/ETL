@@ -16,6 +16,17 @@ class EquiposController < ApplicationController
     @equipo = Equipo.using(:dwh_t).find(params[:id])
   end
 
+
+  def destroy
+    @equipo = Equipo.using(:dwh_t).find(params[:id])
+    if @equipo.destroy
+      flash[:notice] = 'Eliminado'
+    else
+      flash[:alert] = 'Error eliminando'
+    end
+    redirect_to equipos_path
+  end
+
   def update
     @equipo = Equipo.using(:dwh_t).find(params[:id])
     if @equipo.update(equipo_params)

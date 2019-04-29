@@ -7,6 +7,16 @@ class AccidentesLaboralesController < ApplicationController
     @accidentes = AccidenteLaboral.using(:dwh_t).find(params[:id])
   end
 
+  def destroy
+    @accidentes = AccidenteLaboral.using(:dwh_t).find(params[:id])
+    if @accidentes.destroy
+      flash[:notice] = 'Eliminado'
+    else
+      flash[:alert] = 'Error eliminando'
+    end
+    redirect_to accidentes_laborales_path
+  end
+
   def update
     @accidentes = AccidenteLaboral.using(:dwh_t).find(params[:id])
 
