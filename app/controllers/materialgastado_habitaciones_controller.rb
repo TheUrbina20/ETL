@@ -1,6 +1,6 @@
 class MaterialgastadoHabitacionesController < ApplicationController
     def index
-        initialize_mgh
+
         @materialgh = MgHabitacion.using(:dwh_t).where(error: true)
     end
 
@@ -26,24 +26,4 @@ class MaterialgastadoHabitacionesController < ApplicationController
 
   private
 
-  def initialize_mgh
-    MgHabitacion.using(:dwh_t).delete_all
-
-    materiales = MgHabitacion.using(:restaurant).all
-    material = MgHabitacion.using(:dwh_t).new()
-
-
-    materiales.each do |se|
-      material = MgHabitacion.using(:dwh_t).new()
-      material.id = se.id
-      material.cantidad = se.Cantidad
-      material.id_material_por_recibo = se.idMaterial
-      material.id_servicio_limpieza = se.idServicioLH
-      unless valid_number?(material.cantidad)
-        material.error = true
-      end
-
-      material.save!
-    end
-  end
 end

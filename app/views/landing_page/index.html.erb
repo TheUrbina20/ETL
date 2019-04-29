@@ -6,7 +6,7 @@
     </div>
 
     <div align="center" >
-    <%= link_to image_tag("procetl.png", alt: "img"), '/' %>
+    <%= link_to image_tag("procetl.png", alt: "img"), root_path %>
     </div>
       <!-- /parte blanca -->
       <div class="jumbotron" align="center">
@@ -18,19 +18,16 @@
           <div class="card-body">
             <h4 class="card-title">Extraccion - Transformacion - Carga</h4>
             <h4 class="pservices text-justify" class="card-text">La palabra ETL corresponde a las siglas y fases en inglés de:</h4>
-              
+
                 <h4 class="pservices text-justify">Extraer(extract): Extracción de los datos desde uno o varios sistemas fuente.</h4>
                 <h4 class="pservices text-justify">Transformar(transform): Posibilidad de reformatear y limpiar estos datos cuando sea necesario.</h4>
                 <h4 class="pservices text-justify">Cargar(load): Carga de datos en otro lugar o base de datos, un data mart o un data warehouse, con el objeto de analizarlos o apoyar un proceso de negocio.</h4>
-              
+
             <h4 class="pservices text-justify">Los procesos ETL son un término estándar que se utiliza para referirse al movimiento y transformación de datos. Se trata del proceso que permite a las organizaciones mover datos desde múltiples fuentes, reformatearlos y cargarlos en otra base de datos (denominada data mart o data warehouse) con el objeto de analizarlos. También pueden ser enviados a otro sistema operacional para apoyar un proceso de negocio.</h4>
 
             <br>
             <br>
-            <button style="margin-top" type="button" class="btn btn-primary " data-toggle="modal" data-target="#exampleModal">
-              Iniciar proceso ETL
-            </button>
-
+            <%= link_to 'Iniciar ETL', new_landing_page_path, class: 'btn btn-primary' %>
             <p></p>
           </div>
           </div>

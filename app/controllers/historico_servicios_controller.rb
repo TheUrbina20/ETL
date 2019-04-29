@@ -1,6 +1,6 @@
 class HistoricoServiciosController < ApplicationController
     def index
-        initialize_servicios
+
         @historicos = HistoricoServicio.using(:dwh_t).where(error: true)
     end
 
@@ -24,29 +24,4 @@ class HistoricoServiciosController < ApplicationController
       params.require(:historico_servicio).permit(:id,:precio, :f_inicio, :f_termino, :id_servicio)
     end
 
-  private
-
-  def initialize_servicios
-    HistoricoServicio.using(:dwh_t).delete_all
-
-    historicos = HistoricoServicio.using(:restaurant).all
-    historico = HistoricoServicio.using(:dwh_t).new()
-
-
-    historicos.each do |se|
-      historico = HistoricoServicio.using(:dwh_t).new()
-      historico.id = se.idHistorico
-      historico.precio = se.Precio
-      historico.f_inicio = se.FechaInicio
-      historico.f_termino = se.FechaTermino
-      historico.id_servicio = se.idServicio
-      unless valid_date?(historico.f_inicio)
-        historico.error
-      end
-      unless valid_date?(historico.f_termino)
-        historico.error
-      end
-      historico.save!
-    end
-  end
 end

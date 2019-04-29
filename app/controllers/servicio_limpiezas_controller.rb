@@ -1,6 +1,6 @@
 class ServicioLimpiezasController < ApplicationController
     def index
-        initialize_serviciosl
+
         @serviciol = ServicioLimpieza.using(:dwh_t).where(error: true)
     end
 
@@ -23,22 +23,5 @@ class ServicioLimpiezasController < ApplicationController
     def serviciosl_params
       params.require(:servicio_limpieza).permit(:id, :nombre)
     end
- private
-    def initialize_serviciosl
-        ServicioLimpieza.using(:dwh_t).delete_all
 
-        servicios_h = ServicioLimpieza.using(:restaurant).all
-        servicio_t = ServicioLimpieza.using(:dwh_t).new()
-
-
-        servicios_h.each do |s|
-          servicio_t = ServicioLimpieza.using(:dwh_t).new()
-          servicio_t.id = s.idServicioL
-          servicio_t.nombre = s.Nombre
-          unless valid_words?(servicio_t.nombre)
-            servicio_t.error = true
-          end
-          servicio_t.save!
-        end
-      end
 end

@@ -1,6 +1,6 @@
 class PostulantesController < ApplicationController
   def index
-    initialice_postulantes
+
     @postulantes = Postulante.using(:dwh_t).where(error: true)
   end
 
@@ -26,24 +26,4 @@ class PostulantesController < ApplicationController
 
   private
 
-  def initialice_postulantes
-    Postulante.using(:dwh_t).delete_all
-    postulantes = Postulante.using(:rrhh).all
-    postulante = Postulante.using(:dwh_t).new
-
-    postulantes.each do |postulante_r|
-      postulante = Postulante.using(:dwh_t).new
-
-      postulante.id = postulante_r.id
-      postulante.nombre = postulante_r.nombre
-      postulante.estado = postulante_r.estado
-      unless valid_name?(postulante.nombre)
-        postulante.error = true
-      end
-      unless valid_name?(postulante.estado.to_s)
-        postulante.error = true
-      end
-      postulante.save!
-    end
-  end
 end

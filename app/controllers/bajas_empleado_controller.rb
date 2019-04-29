@@ -1,6 +1,6 @@
 class BajasEmpleadoController < ApplicationController
   def index
-    initiallize_bajas_empleados
+
     @bajas_por_empleado = BajaEmpleado.using(:dwh_t).where(error: true)
   end
 
@@ -23,19 +23,4 @@ class BajasEmpleadoController < ApplicationController
     params.require(:baja_empleado).permit(:id_empleado, :motivo)
   end
 
-  def initiallize_bajas_empleados
-    BajaEmpleado.using(:dwh_t).delete_all
-
-    bajas = BajaEmpleado.using(:rrhh).all
-
-    bajas.each do |baja_r|
-      baja = BajaEmpleado.using(:dwh_t).new()
-
-      baja.id = baja_r.id
-      baja.id_empleado = baja_r.id_empleado
-      baja.motivo = baja_r.motivo
-      baja.save!
-    end
-
-  end
 end

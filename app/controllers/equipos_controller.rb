@@ -1,6 +1,6 @@
 class EquiposController < ApplicationController
   def index
-    initialize_equipos
+
     if current_user.admin?
       @equipos = Equipo.using(:dwh_t).where(error: true)
     elsif current_user.hotel?

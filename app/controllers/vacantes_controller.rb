@@ -1,6 +1,6 @@
 class VacantesController < ApplicationController
   def index
-    initialize_vacantes
+
     @vacantes = Vacante.using(:dwh_t).where(error: true)
   end
 
@@ -25,23 +25,4 @@ class VacantesController < ApplicationController
   end
   private
 
-  def initialize_vacantes
-    Vacante.using(:dwh_t).delete_all
-
-    vacantes = Vacante.using(:rrhh).all
-
-    vacantes.each do |vacante_r|
-      vacante = Vacante.using(:dwh_t).new()
-      vacante.id = vacante_r.id
-      vacante.nombre = vacante_r.nombre
-      vacante.estado = vacante_r.estado
-      unless valid_words?(vacante.nombre)
-        solicitud.error = true
-      end
-      unless valid_name?(vacante.estado.to_s)
-        solicitud.error = true
-      end
-      vacante.save!
-    end
-  end
 end
