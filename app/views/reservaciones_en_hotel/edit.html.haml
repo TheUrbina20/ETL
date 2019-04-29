@@ -1,9 +1,21 @@
 = simple_form_for @reservacion, url:  reservaciones_en_hotel_path, method: :put do |f|
-    = f.input :id
-    = f.input :f_entrada
-    = f.input :f_salida
-    = f.input :f_reservacion
-    = f.input :estado
-    = f.input :id_cliente
-    = f.input :id_empleado
-    = f.button :submit, class: 'btn btn-primary'
+ = f.input :id, readonly: true 
+ - if valid_date?(@reservacion.f_entrada)
+  = f.input :f_entrada, readonly: true 
+ - else 
+  = f.input :f_entrada, disabled: false 
+ - if valid_date?(@reservacion.f_salida)
+  = f.input :f_salida, readonly: true 
+ - else 
+  = f.input :f_salida, disabled: false 
+ - if valid_date?(@reservacion.f_reservacion)
+  = f.input :f_reservacion, readonly: true 
+ - else 
+  = f.input :f_reservacion, disabled: false
+ - if valid_status?(@reservacion.estado)
+  = f.input :estado, readonly: true 
+ - else 
+  = f.input :estado, disabled: false
+ = f.input :id_cliente, readonly: true
+ = f.input :id_empleado, readonly: true
+ = f.button :submit, class: 'btn btn-primary'

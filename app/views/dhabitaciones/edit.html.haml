@@ -1,5 +1,11 @@
 = simple_form_for @dhabitaciones, url: dhabitacione_path, method: :put do |f|
-    = f.input :id
-    = f.input :nombre
-    = f.input :precio
-    = f.button :submit, class: 'btn btn-primary'
+ = f.input :id, readonly:true
+ - if valid_name?(@dhabitaciones.nombre)
+  = f.input :nombre, readonly: true 
+ - else 
+  = f.input :nombre, disabled: false
+ - if valid_precio?(@dhabitaciones.precio)
+  = f.input :precio, readonly: true 
+ - else 
+  =f.input :precio, disabled: false
+ = f.button :submit, class: 'btn btn-primary'

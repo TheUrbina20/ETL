@@ -1,6 +1,6 @@
 class HabitacionesController < ApplicationController
     def index
-        initialize_habitaciones
+        #initialize_habitaciones
         @habitaciones = Habitacion.using(:dwh_t).all
     end
 

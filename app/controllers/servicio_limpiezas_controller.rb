@@ -1,6 +1,6 @@
 class ServicioLimpiezasController < ApplicationController
     def index
-        initialize_serviciosl
+        #initialize_serviciosl
         @serviciol = ServicioLimpieza.using(:dwh_t).all
     end
 
