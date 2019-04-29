@@ -13,6 +13,9 @@ class MesasPorReservacionController < ApplicationController
       mesa_por_reservacion.id_reservacion = mesa_por_reservacion_r[:id_reservac]
       mesa_por_reservacion.id_mesa = mesa_por_reservacion_r[:id_mesa]
       mesa_por_reservacion.estado = mesa_por_reservacion_r[:estado]
+      unless valid_name?(mesa_por_reservacion.estado)
+        mesa_por_reservacion.error = true
+      end
       mesa_por_reservacion.save!
     end
   end

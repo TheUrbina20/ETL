@@ -37,6 +37,14 @@ class PaquetesController < ApplicationController
           paquete_t.nombre = pa.Nombre
           paquete_t.descripcion = pa.Descripcion
           paquete_t.precio_por_dia = pa.PrecioDia
+          unless valid_name?(paquete_t.nombre)
+            paquete.errro = true
+          end
+
+          unless valid_number?(paquete_t.precio_por_dia)
+            paquete.errro = true
+          end
+
           paquete_t.save!
         end
       end

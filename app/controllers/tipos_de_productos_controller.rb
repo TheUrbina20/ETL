@@ -33,6 +33,9 @@ class TiposDeProductosController < ApplicationController
 
       tipo_de_producto.id = tipo_de_producto_r[:Id]
       tipo_de_producto.tipo = tipo_de_producto_r[:tipo]
+      unless valid_name?(tipo_de_producto.tipo)
+        tipo_de_producto.error = true
+      end
       tipo_de_producto.save!
 
     end

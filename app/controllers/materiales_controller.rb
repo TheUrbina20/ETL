@@ -61,6 +61,15 @@ class MaterialesController < ApplicationController
       material.stock_max = material_r.cantidad_maxima
       material.stock_min = material_r.cantidad_minima
       material.sistema = 'RR'
+      unless valid_number?(material.stock_max)
+        material.error = true
+      end
+      unless valid_number?(material.stock_min)
+        material.error = true
+      end
+      unless valid_number?(material.cantidad_stock)
+        material.error = true
+      end
       material.save!
     end
 

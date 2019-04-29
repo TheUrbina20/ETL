@@ -35,6 +35,9 @@ class ServicioLimpiezasController < ApplicationController
           servicio_t = ServicioLimpieza.using(:dwh_t).new()
           servicio_t.id = s.idServicioL
           servicio_t.nombre = s.Nombre
+          unless valid_words?(servicio_t.nombre)
+            servicio_t.error = true
+          end
           servicio_t.save!
         end
       end

@@ -38,6 +38,9 @@ class IngredientesPorBebidaController < ApplicationController
       ingrediente.id_producto = ingrediente_r[:id_producto]
       ingrediente.id_tipo_medida = ingrediente_r[:id_tipo_med]
       ingrediente.cantidad = ingrediente_r[:cantidad]
+      unless valid_number?(ingrediente.cantidad)
+        ingrediente.error = true
+      end
       ingrediente.save!
 
     end

@@ -41,6 +41,18 @@ class SolicitudesDeMantenimientoController < ApplicationController
       solicitud.estado = solicitud_r.estado
       solicitud.motivo = solicitud_r.estado
       solicitud.tipo = solicitud_r.tipo
+      unless valid_date?(solicitud.f_solicitud)
+        solicitud.error = true
+      end
+      unless valid_date?(solicitud.f_recibo)
+        solicitud.error = true
+      end
+      unless valid_name?(solicitud.estado)
+        solicitud.error = true
+      end
+      unless valid_name?(solicitud.motivo)
+        solicitud.error = true
+      end
       solicitud.save!
     end
   end

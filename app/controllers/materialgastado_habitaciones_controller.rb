@@ -39,6 +39,10 @@ class MaterialgastadoHabitacionesController < ApplicationController
       material.cantidad = se.Cantidad
       material.id_material_por_recibo = se.idMaterial
       material.id_servicio_limpieza = se.idServicioLH
+      unless valid_number?(material.cantidad)
+        material.error = true
+      end
+
       material.save!
     end
   end

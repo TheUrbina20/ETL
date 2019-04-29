@@ -37,6 +37,9 @@ class MantenimientosController < ApplicationController
       mantenimiento = Mantenimiento.using(:dwh_t).new()
       mantenimiento.id = ma.id
       mantenimiento.tipo = ma.tipo
+      unless valid_word?(mantenimiento.tipo)
+        mantenimiento.error = true
+      end
       mantenimiento.save!
     end
   end

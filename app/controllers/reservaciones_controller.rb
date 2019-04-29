@@ -4,7 +4,7 @@ class ReservacionesController < ApplicationController
         @reservaciones = Reservacion.using(:dwh_t).all
     end
     def edit
-      @reservaciones = Reservacion.using(:dwh_t).find(params[:id]) 
+      @reservaciones = Reservacion.using(:dwh_t).find(params[:id])
     end
 
     def update
@@ -13,7 +13,7 @@ class ReservacionesController < ApplicationController
       if @reservaciones.update(reservaciones_params)
         flash[:notice] = 'Actualizado Correctamente'
         redirect_to reservaciones_path
-      else 
+      else
         flash.now[:alert] = 'Error actualizando'
         render 'edit'
       end
@@ -41,6 +41,18 @@ class ReservacionesController < ApplicationController
         reservacion.Estado = r.Estado
         reservacion.idCliente = r.idCliente
         reservacion.idEmpleado = r.idEmpleado
+        unless valid_date?(reservacion.FechaIn)
+          reservacion.error = true
+        end
+        unless valid_date?(reservacion.FechaOut)
+          reservacion.error = true
+        end
+        unless valid_date?(reservacion.FechaReserv)
+          reservacion.error = true
+        end
+        unless valid_name?(reservacion.Estado)
+          reservacion.error = true
+        end
         reservacion.save!
     end
   end

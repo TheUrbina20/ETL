@@ -42,6 +42,9 @@ class RecibosDeComprasController < ApplicationController
       recibo.sistema = 'RR'
       recibo.id_pedido_compra = recibo_r.id_pedido_compra
       recibo.f_entrega = recibo_r.f_entrega
+      unless valid_date?(recibo.f_entrega)
+        recibo.error = true
+      end
       recibo.save!
     end
 

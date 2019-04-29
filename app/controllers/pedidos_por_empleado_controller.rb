@@ -69,6 +69,9 @@ class PedidosPorEmpleadoController < ApplicationController
       pedido.id_empleado = pedido_r.id_empleado
       pedido.f_peticion = pedido_r.Fecha
       pedido.sistema = 'H'
+      unless valid_date?(pedido.f_peticion)
+        pedido.error = true
+      end
       pedido.save!
     end
 

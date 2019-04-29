@@ -33,6 +33,9 @@ class TiposMedidasController < ApplicationController
       tipo_medida = TipoMedida.using(:dwh_t).new
       tipo_medida.id = tipo_medida_r[:Id]
       tipo_medida.nombre = tipo_medida_r[:nombre]
+      unless valid_name?(tipo_medida.nombre)
+        tipo_medida.error = true
+      end
       tipo_medida.save!
     end
   end

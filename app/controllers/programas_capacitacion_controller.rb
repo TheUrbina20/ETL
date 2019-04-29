@@ -38,6 +38,15 @@ class ProgramasCapacitacionController < ApplicationController
       programa.nombre = programa_r.nombre
       programa.costo = programa_r.costo
       programa.duracion = programa_r.duracion
+      unless valid_words?(programa.nombre)
+        programa.error = true
+      end
+      unless valid_price?(programa.costo)
+        programa.error = true
+      end
+      unless valid_number?(programa.duracion)
+        programa.error = true
+      end
       programa.save!
     end
   end

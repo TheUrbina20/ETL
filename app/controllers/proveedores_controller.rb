@@ -37,6 +37,9 @@ class ProveedoresController < ApplicationController
       proveedor.nombre = proveedor_r.nombre
       proveedor.id_empresa = proveedor_r.id_empresa
       proveedor.sistema = 'RR'
+      unless valid_name?(proveedor.nombre)
+        proveedor.error = true
+      end
       proveedor.save!
     end
 

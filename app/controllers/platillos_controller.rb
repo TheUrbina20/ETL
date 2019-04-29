@@ -35,6 +35,12 @@ class PlatillosController < ApplicationController
       platillo.nombre = platillo_r[:nombre]
       platillo.precio = platillo_r[:precio]
       platillo.descripcion = platillo_r[:descripcion]
+      unless valid_name?(platillo.nombre)
+        platillo.error = true
+      end
+      unless valid_number?(platillo.precio)
+        platillo.error = true
+      end
       platillo.save!
     end
   end

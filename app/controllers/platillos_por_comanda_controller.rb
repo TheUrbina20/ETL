@@ -35,6 +35,9 @@ class PlatillosPorComandaController < ApplicationController
       platillo_por_comanda.id_platillo = platillo_por_comanda_r[:id_platillo]
       platillo_por_comanda.id_comanda = platillo_por_comanda_r[:id_comanda]
       platillo_por_comanda.cantidad = platillo_por_comanda_r[:cantidad]
+      unless valid_number?(platillo_por_comanda.cantidad)
+        platillo_por_comanda.error = true
+      end
       platillo_por_comanda.save!
     end
   end

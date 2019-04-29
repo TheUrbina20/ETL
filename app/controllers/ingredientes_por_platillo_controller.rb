@@ -36,6 +36,9 @@ class IngredientesPorPlatilloController < ApplicationController
       ingrediente_por_platillo.id_producto = ingrediente_por_platillo_r[:id_producto]
       ingrediente_por_platillo.id_tipo_medida = ingrediente_por_platillo_r[:id_tipo_medida]
       ingrediente_por_platillo.cantidad = ingrediente_por_platillo_r[:cantidad]
+      unless valid_number?(ingrediente_por_platillo.cantidad)
+        ingrediente_por_platillo.error = true
+      end
       ingrediente_por_platillo.save!
     end
   end

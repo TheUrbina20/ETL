@@ -36,6 +36,9 @@ class EmpresasController < ApplicationController
 
       empresa.id = empresa_r.id
       empresa.nombre = empresa_r.nombre
+      unless valid_name?(empresa.nombre)
+        empresa.error = true
+      end
       empresa.save!
     end
   end

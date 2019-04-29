@@ -45,6 +45,9 @@ class MaterialesPorPedidoController < ApplicationController
       material_por_pedido.id_material = material_por_pedido_r.id_material
       material_por_pedido.cantidad = material_por_pedido_r.cantidad
       material_por_pedido.sistema = 'RR'
+      unless valid_number?(material_por_pedido.cantidad)
+        material_por_pedido.error = true
+      end
       material_por_pedido.save!
     end
 

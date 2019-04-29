@@ -48,6 +48,18 @@ class MaterialesPorReciboController < ApplicationController
       material_por_recibo.f_caducidad = material_por_recibo_r.f_caducidad
       material_por_recibo.tipo_paquete = material_por_recibo_r.tipo_paquete
       material_por_recibo.sistema = 'RR'
+      unless valid_number?(material_por_recibo.cantidad)
+        material_por_recibo.error = true
+      end
+
+      unless valid_date?(material_por_recibo.f_caducidad)
+        material_por_recibo.error = true
+      end
+
+      unless valid_name?(material_por_recibo.tipo_paquete)
+        material_por_recibo.error = true
+      end
+
       material_por_recibo.save!
     end
 

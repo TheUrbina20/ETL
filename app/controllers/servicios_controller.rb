@@ -35,6 +35,9 @@ class ServiciosController < ApplicationController
           servicio_t = Servicio.using(:dwh_t).new
           servicio_t.id = s.idServicio
           servicio_t.nombre = s.Nombre
+          unless valid_name?(servicio_t.nombre)
+            servicio_t.error = true
+          end
           servicio_t.save!
         end
       end

@@ -46,6 +46,7 @@ class OrdenesDeMantenimientoController < ApplicationController
       mantenimiento.tipo_mantenimiento = mantenimiento_r.tipo_mantenimiento
       mantenimiento.id_empleado = mantenimiento_r.idEmpleado
       mantenimiento.sistema = 'H'
+      mantenimiento.error = true
       mantenimiento.save!
     end
 
@@ -61,6 +62,15 @@ class OrdenesDeMantenimientoController < ApplicationController
       mantenimiento.tipo_mantenimiento = mantenimiento_r.tipo
       mantenimiento.id_empleado = mantenimiento_r.id_empleado
       mantenimiento.sistema = 'RR'
+      unless valid_date?(mantenimiento.f_inicio)
+        mantenimiento.error = true
+      end
+      unless valid_date?(mantenimiento.f_termino)
+        mantenimiento.error = true
+      end
+      unless valid_name?(mantenimiento.tipo_mantenimiento)
+        mantenimiento.error = true
+      end
       mantenimiento.save!
     end
 
@@ -73,6 +83,7 @@ class OrdenesDeMantenimientoController < ApplicationController
       mantenimiento.id_equipo = mantenimiento_r[:id_equipo_c]
       mantenimiento.tipo_mantenimiento = mantenimiento_r[:Id_cor_mant]
       mantenimiento.sistema = 'R'
+      mantenimiento.error = true
       mantenimiento.save!
     end
 

@@ -45,10 +45,17 @@ class EquiposController < ApplicationController
       equipo.id_sistema = equipo_r.id
       equipo.nombre = equipo_r.nombre
       equipo.modelo = equipo_r.modelo
+      unless valid_name?(equipo.nombre)
+        equipo.error = true
+      end
+
+      unless valid_name?(equipo.nombre)
+        equipo.error = true
+      end
+
       equipo.sistema = 'RH'
       equipo.save!
     end
-
 
     equipos = Mdb.open(Rails.root.join('db', 'access_db.accdb'))['Equipo']
 
@@ -58,6 +65,7 @@ class EquiposController < ApplicationController
       equipo.id_sistema = equipo_r[:Id]
       equipo.nombre = equipo_r[:nombre]
       equipo.sistema = 'R'
+      equipo.error = true
       equipo.save!
     end
 
@@ -68,6 +76,7 @@ class EquiposController < ApplicationController
 
       equipo.id_sistema = equipo_r.idEquipo
       equipo.nombre = equipo_r.Nombre
+      equipo.error = true
       equipo.sistema = 'H'
       equipo.save!
     end
