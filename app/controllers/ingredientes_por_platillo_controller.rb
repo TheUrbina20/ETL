@@ -8,6 +8,16 @@ class IngredientesPorPlatilloController < ApplicationController
     @ingrediente_por_platillo = IngredientePorPlatillo.using(:dwh_t).find(params[:id])
   end
 
+  def destroy
+    @ingrediente_por_platillo = IngredientePorPlatillo.using(:dwh_t).find(params[:id])
+    if @ingrediente_por_platillo.destroy
+      flash[:notice] = 'Eliminado'
+    else
+      flash[:alert] = 'Error eliminando'
+    end
+    redirect_to ingredientes_por_platillo_index_path
+  end
+
   def update
     @ingrediente_por_platillo = IngredientePorPlatillo.using(:dwh_t).find(params[:id])
     if @ingrediente_por_platillo.update(ingrediente_por_platillo_param)

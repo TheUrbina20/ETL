@@ -15,6 +15,16 @@ class EmpleadosController < ApplicationController
     @empleado = Empleado.using(:dwh_t).find(params[:id])
   end
 
+  def destroy
+    @empleado = Empleado.using(:dwh_t).find(params[:id])
+    if @empleado.destroy
+      flash[:notice] = 'Eliminado'
+    else
+      flash[:alert] = 'Error eliminando'
+    end
+    redirect_to empleados_path
+  end
+
   def update
     @empleado = Empleado.using(:dwh_t).find(params[:id])
     if @empleado.update(empleado_params)

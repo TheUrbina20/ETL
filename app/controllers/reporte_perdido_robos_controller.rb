@@ -8,6 +8,16 @@ class ReportePerdidoRobosController < ApplicationController
       @reporte = ReportePerdidaRobo.using(:dwh_t).find(params[:id])
     end
 
+    def destroy
+      @reporte = ReportePerdidaRobo.using(:dwh_t).find(params[:id])
+      if @reporte.destroy
+        flash[:notice] = 'Eliminado'
+      else
+        flash[:alert] = 'Error eliminando'
+      end
+      redirect_to reporte_perdido_robos_path
+    end
+
     def update
       @reporte = ReportePerdidaRobo.using(:dwh_t).find(params[:id])
 

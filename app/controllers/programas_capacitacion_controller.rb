@@ -8,6 +8,16 @@ class ProgramasCapacitacionController < ApplicationController
     @programas = ProgramaCapacitacion.using(:dwh_t).find(params[:id])
   end
 
+  def destroy
+    @programas = ProgramaCapacitacion.using(:dwh_t).find(params[:id])
+    if @programas.destroy
+      flash[:notice] = 'Eliminado'
+    else
+      flash[:alert] = 'Error eliminando'
+    end
+    redirect_to programas_capacitacion_index_path
+  end
+
   def update
     @programas = ProgramaCapacitacion.using(:dwh_t).find(params[:id])
 

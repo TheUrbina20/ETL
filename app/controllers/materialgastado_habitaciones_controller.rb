@@ -8,6 +8,16 @@ class MaterialgastadoHabitacionesController < ApplicationController
       @materialgh = MgHabitacion.using(:dwh_t).find(params[:id])
     end
 
+    def destroy
+      @materialgh = MgHabitacion.using(:dwh_t).find(params[:id])
+      if @materialgh.destroy
+        flash[:notice] = 'Eliminado'
+      else
+        flash[:alert] = 'Error eliminando'
+      end
+      redirect_to materialgastado_habitaciones_path
+    end
+
     def update
       @materialgh = MgHabitacion.using(:dwh_t).find(params[:id])
 

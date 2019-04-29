@@ -8,6 +8,16 @@ class PostulantesController < ApplicationController
     @postulantes = Postulante.using(:dwh_t).find(params[:id])
   end
 
+  def destroy
+    @postulantes = Postulante.using(:dwh_t).find(params[:id])
+    if @postulantes.destroy
+      flash[:notice] = 'Eliminado'
+    else
+      flash[:alert] = 'Error eliminando'
+    end
+    redirect_to postulantes_path
+  end
+
   def update
     @postulantes = Postulante.using(:dwh_t).find(params[:id])
 

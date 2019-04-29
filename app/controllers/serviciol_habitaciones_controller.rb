@@ -1,10 +1,19 @@
 class ServiciolHabitacionesController < ApplicationController
     def index
-
         @serviciolh = ServiciolHabitacion.using(:dwh_t).where(error: true)
     end
     def edit
       @serviciolh = ServiciolHabitacion.using(:dwh_t).find(params[:id])
+    end
+
+    def destroy
+      @serviciolh = ServiciolHabitacion.using(:dwh_t).find(params[:id])
+      if @serviciolh.destroy
+        flash[:notice] = 'Eliminado'
+      else
+        flash[:alert] = 'Error eliminando'
+      end
+      redirect_to serviciol_habitaciones_path
     end
 
     def update

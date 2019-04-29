@@ -7,6 +7,17 @@ class BebidasController < ApplicationController
     @bebida = Bebida.using(:dwh_t).find(params[:id])
   end
 
+  def destroy
+    @bebida = Bebida.using(:dwh_t).find(params[:id])
+    if @bebida.destroy
+      flash[:notice] = 'Eliminado'
+    else
+      flash[:alert] = 'Error eliminando'
+    end
+    redirect_to bebidas_path
+  end
+
+
   def update
     @bebida = Bebida.using(:dwh_t).find(params[:id])
     if @bebida.update(bebida_params)

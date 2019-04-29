@@ -8,6 +8,16 @@ class AsistenciasController < ApplicationController
     @asistencias = Asistencia.using(:dwh_t).find(params[:id])
   end
 
+  def destroy
+    @asistencias = Asistencia.using(:dwh_t).find(params[:id])
+    if @asistencias.destroy
+      flash[:notice] = 'Eliminado'
+    else
+      flash[:alert] = 'Error eliminando'
+    end
+    redirect_to asistencias_path
+  end
+
   def update
     @asistencias = Asistencia.using(:dwh_t).find(params[:id])
 

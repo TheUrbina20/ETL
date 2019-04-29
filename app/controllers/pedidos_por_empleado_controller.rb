@@ -11,6 +11,16 @@ class PedidosPorEmpleadoController < ApplicationController
     end
   end
 
+  def destroy
+    @pedido_empleado = PedidoPorEmpleado.using(:dwh_t).find(params[:id])
+    if @pedido_empleado.destroy
+      flash[:notice] = 'Eliminado'
+    else
+      flash[:alert] = 'Error eliminando'
+    end
+    redirect_to pedidos_por_empleado_index_path
+  end
+
   def edit
     @pedido_empleado = PedidoPorEmpleado.using(:dwh_t).find(params[:id])
   end

@@ -2,6 +2,7 @@
   width: 100%;
   border: 0;
   border-radius: 0;
+  margin-bottom: 0px;
   text-align: center;
   color: $white;
   height: auto;
@@ -14,7 +15,7 @@
       }
     }
   }
-  
+
   &.alert-info {
     background: $info;
     span {
@@ -23,7 +24,7 @@
       }
     }
   }
-  
+
   &.alert-success {
     background: $success;
     span {
@@ -32,25 +33,25 @@
       }
     }
   }
-  
+
   &.alert-warning {
     background: $warning;
     span {
       &:before {
-        background-image: image-url('ic-cancel.svg');       
+        background-image: image-url('ic-cancel.svg');
       }
     }
   }
-  
+
   &.alert-danger {
     background: $danger;
     span {
       &:before {
-        background-image: image-url('ic-cancel.svg');       
+        background-image: image-url('ic-cancel.svg');
       }
     }
   }
-  
+
   span {
     position: relative;
     padding-left: 35px;

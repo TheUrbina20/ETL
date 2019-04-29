@@ -7,6 +7,16 @@ class AreasPorEmpleadoController < ApplicationController
     @areas_por_empleado = AreasPorEmpleado.using(:dwh_t).find(params[:id])
   end
 
+  def destroy
+    @areas_por_empleado = AreasPorEmpleado.using(:dwh_t).find(params[:id])
+    if @areas_por_empleado.destroy
+      flash[:notice] = 'Elminado'
+    else
+      flash[:alert] = 'Error eliminando'
+    end
+    redirect_to areas_path
+  end
+
   def update
     @areas_por_empleado = AreasPorEmpleado.using(:dwh_t).find(params[:id])
 

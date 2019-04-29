@@ -8,6 +8,16 @@ class BajasEmpleadoController < ApplicationController
     @baja_empleado =  BajaEmpleado.using(:dwh_t).find(params[:id])
   end
 
+  def destroy
+    @baja_empleado =  BajaEmpleado.using(:dwh_t).find(params[:id])
+    if @baja_empleado.destroy
+      flash[:notice] = 'Eliminado'
+    else
+      flash[:alert] = 'Error eliminando'
+    end
+    redirect_to asistencias_path
+  end
+
   def update
     @baja_empleado =  BajaEmpleado.using(:dwh_t).find(params[:id])
     if @baja_empleado.update(baja_empleado_params)

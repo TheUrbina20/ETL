@@ -1,10 +1,20 @@
 class ServiciosController < ApplicationController
     def index
-
         @servicio = Servicio.using(:dwh_t).where(error: true)
     end
+
     def edit
       @servicio = Servicio.using(:dwh_t).find(params[:id])
+    end
+
+    def destroy
+      @servicio = Servicio.using(:dwh_t).find(params[:id])
+      if @servicio.destroy
+        flash[:notice] = 'Eliminado'
+      else
+        flash[:alert] = 'Error eliminando'
+      end
+      redirect_to servicios_path
     end
 
     def update

@@ -7,6 +7,16 @@ class DetallesDeFacturaHotelController < ApplicationController
     @detalle_de_factura_hotel = DetalleDeFacturaHotel.using(:dwh_t).find(params[:id])
   end
 
+  def destroy
+    @detalle_de_factura_hotel = DetalleDeFacturaHotel.using(:dwh_t).find(params[:id])
+    if @asistencias.destroy
+      flash[:notice] = 'Eliminado'
+    else
+      flash[:alert] = 'Error eliminando'
+    end
+    redirect_to detalles_de_factura_hotel_index_path
+  end
+
   def update
     @detalle_de_factura_hotel = DetalleDeFacturaHotel.using(:dwh_t).find(params[:id])
     if @detalle_de_factura_hotel.update(detalle_de_factura_hotel_params)

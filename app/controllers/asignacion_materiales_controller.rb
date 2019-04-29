@@ -8,6 +8,16 @@ class AsignacionMaterialesController < ApplicationController
       @asignacionm = AsignacionMaterial.using(:dwh_t).find(params[:id])
     end
 
+    def destroy
+      @asignacionm = AsignacionMaterial.using(:dwh_t).find(params[:id])
+      if @asignacionm.destroy
+        flash[:notice] = 'Eliminado'
+      else
+        flash[:alert] = 'Error eliminando'
+      end
+      redirect_to asignacion_materiales_path
+    end
+
     def update
       @asignacionm = AsignacionMaterial.using(:dwh_t).find(params[:id])
 

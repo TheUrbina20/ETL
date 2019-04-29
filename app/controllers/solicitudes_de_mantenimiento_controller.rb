@@ -8,6 +8,16 @@ class SolicitudesDeMantenimientoController < ApplicationController
     @solicitud_mantenimiento = SolicitudMantenimiento.using(:dwh_t).find(params[:id])
   end
 
+  def destroy
+    @solicitud_mantenimiento = SolicitudMantenimiento.using(:dwh_t).find(params[:id])
+    if @solicitud_mantenimiento.destroy
+      flash[:notice] = 'Eliminado'
+    else
+      flash[:alert] = 'Error eliminando'
+    end
+    redirect_to solicitudes_de_mantenimiento_index_path
+  end
+
   def update
     @solicitud_mantenimiento = SolicitudMantenimiento.using(:dwh_t).find(params[:id])
     if @solicitud_mantenimiento.update(solicitud_mantenimiento_params)

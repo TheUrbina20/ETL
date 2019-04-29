@@ -8,6 +8,16 @@ class BajasController < ApplicationController
     @baja = Baja.using(:dwh_t).find(params[:id])
   end
 
+  def destroy
+    @baja = Baja.using(:dwh_t).find(params[:id])
+    if @baja.destroy
+      flash[:notice] = 'Eliminado'
+    else
+      flash[:alert] = 'Error eliminando'
+    end
+    redirect_to bajas_path
+  end
+
   def update
     @baja = Baja.using(:dwh_t).find(params[:id])
     if @baja.update(baja_params)

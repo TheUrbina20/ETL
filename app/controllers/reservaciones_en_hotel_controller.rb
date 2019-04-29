@@ -8,6 +8,16 @@ class ReservacionesEnHotelController < ApplicationController
     @reservacion = ReservacionEnHotel.using(:dwh_t).find(params[:id])
   end
 
+  def destroy
+    @reservacion = ReservacionEnHotel.using(:dwh_t).find(params[:id])
+    if @reservacion.destroy
+      flash[:notice] = 'Eliminado'
+    else
+      flash[:alert] = 'Error eliminando'
+    end
+    redirect_to reservaciones_en_hotel_index_path
+  end
+
   def update
     @reservacion = ReservacionEnHotel.using(:dwh_t).find(params[:id])
     if @reservacion.update(reservacion_params)

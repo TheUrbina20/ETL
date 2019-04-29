@@ -8,6 +8,16 @@ class PlatillosPorComandaController < ApplicationController
     @platillo_por_comanda = PlatilloPorComanda.using(:dwh_t).find(params[:id])
   end
 
+  def destroy
+    @platillo_por_comanda = PlatilloPorComanda.using(:dwh_t).find(params[:id])
+    if @platillo_por_comanda.destroy
+      flash[:notice] = 'Eliminado'
+    else
+      flash[:alert] = 'Error eliminando'
+    end
+    redirect_to platillos_por_comanda_index_path
+  end
+
   def update
     @platillo_por_comanda = PlatilloPorComanda.using(:dwh_t).find(params[:id])
     if @platillo_por_comanda.update(platillo_por_comanda_params)

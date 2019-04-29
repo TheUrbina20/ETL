@@ -8,6 +8,16 @@ class IngredientesPorBebidaController < ApplicationController
     @ingrediente_por_bebida = IngredientePorBebida.using(:dwh_t).find(params[:id])
   end
 
+  def destroy
+    @ingrediente_por_bebida = IngredientePorBebida.using(:dwh_t).find(params[:id])
+    if @ingrediente_por_bebida.destroy
+      flash[:notice] = 'Eliminado'
+    else
+      flash[:alert] = 'Error eliminando'
+    end
+    redirect_to ingredientes_por_bebida_index_path
+  end
+
   def update
     @ingrediente_por_bebida = IngredientePorBebida.using(:dwh_t).find(params[:id])
     if @ingrediente_por_bebida.update(ingrediente_por_bebida_params)

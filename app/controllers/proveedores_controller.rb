@@ -8,6 +8,16 @@ class ProveedoresController < ApplicationController
     @proveedor = Proveedor.using(:dwh_t).find(params[:id])
   end
 
+  def destroy
+    @proveedor = Proveedor.using(:dwh_t).find(params[:id])
+    if @proveedor.destroy
+      flash[:notice] = 'Eliminado'
+    else
+      flash[:alert] = 'Error eliminando'
+    end
+    redirect_to proveedores_path
+  end
+
   def update
     @proveedor = Proveedor.using(:dwh_t).find(params[:id])
     if @proveedor.update(proveedor_params)

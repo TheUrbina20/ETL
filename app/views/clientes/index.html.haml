@@ -19,7 +19,7 @@
         %td
           = link_to edit_cliente_path(cliente) do
             = fa_icon 'pencil'
-          = link_to clientes_path(cliente), method: :delete, data: {confirm: '¿Estás seguro?'} do
+          = link_to cliente_path(cliente), method: :delete, data: {confirm: '¿Estás seguro?'} do
             = fa_icon 'trash'
 
     %tr='Total'

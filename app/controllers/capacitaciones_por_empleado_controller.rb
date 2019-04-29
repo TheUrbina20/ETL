@@ -7,6 +7,17 @@ class CapacitacionesPorEmpleadoController < ApplicationController
     @capacitaciones = CapacitacionPorEmpleado.using(:dwh_t).find(params[:id])
   end
 
+  def destroy
+    @capacitaciones = CapacitacionPorEmpleado.using(:dwh_t).find(params[:id])
+    if @capacitaciones.destroy
+      flash[:notice] = 'Eliminado'
+    else
+      flash[:alert] = 'Error eliminando'
+    end
+    redirect_to capacitaciones_por_empleado_index_path
+  end
+
+
   def update
     @capacitaciones = CapacitacionPorEmpleado.using(:dwh_t).find(params[:id])
 

@@ -7,6 +7,16 @@ class PlatillosController < ApplicationController
     @platillo =Platillo.using(:dwh_t).find(params[:id])
   end
 
+  def destroy
+    @platillo =Platillo.using(:dwh_t).find(params[:id])
+    if @platillo.destroy
+      flash[:notice] = 'Eliminado'
+    else
+      flash[:alert] = 'Error eliminando'
+    end
+    redirect_to platillos_path
+  end
+
   def update
     @platillo =Platillo.using(:dwh_t).find(params[:id])
     if @platillo.update(platillo_params)

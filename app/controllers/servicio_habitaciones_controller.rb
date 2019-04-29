@@ -8,6 +8,16 @@ class ServicioHabitacionesController < ApplicationController
     @servicio_habitacion = ServicioHabitacion.using(:dwh_t).find(params[:id])
   end
 
+  def destroy
+    @servicio_habitacion = ServicioHabitacion.using(:dwh_t).find(params[:id])
+    if @servicio_habitacion.destroy
+      flash[:notice] = 'Eliminado'
+    else
+      flash[:alert] = 'Error eliminando'
+    end
+    redirect_to servicio_habitaciones_path
+  end
+
   def update
     @servicio_habitacion = ServicioHabitacion.using(:dwh_t).find(params[:id])
     if @servicio_habitacion.update(servicio_habitacion_params)

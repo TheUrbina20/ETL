@@ -7,6 +7,16 @@ class AreasController < ApplicationController
     @areas = Area.using(:dwh_t).find(params[:id])
   end
 
+  def destroy
+    @areas = Area.using(:dwh_t).find(params[:id])
+    if @areas.destroy
+      flash[:notice] = 'Eliminado'
+    else
+      flash[:alert] = 'Error eliminando'
+    end
+    redirect_to areas_path
+  end
+
   def update
     @areas = Area.using(:dwh_t).find(params[:id])
 

@@ -15,6 +15,16 @@ class EquiposPorReciboController < ApplicationController
     @equipo_por_recibo = EquipoPorRecibo.using(:dwh_t).find(params[:id])
   end
 
+  def destroy
+    @equipo_por_recibo = EquipoPorRecibo.using(:dwh_t).find(params[:id])
+    if @equipo_por_recibo.destroy
+      flash[:notice] = 'Eliminado'
+    else
+      flash[:alert] = 'Error eliminando'
+    end
+    redirect_to equipos_por_recibo_index_path
+  end
+
   def update
     @equipo_por_recibo = EquipoPorRecibo.using(:dwh_t).find(params[:id])
     if @equipo_por_recibo.update(equipo_por_recibo_params)

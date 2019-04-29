@@ -15,6 +15,16 @@ class MaterialesPorPedidoController < ApplicationController
     @material_por_pedido = MaterialPorPedido.using(:dwh_t).find(params[:id])
   end
 
+  def destroy
+    @material_por_pedido = MaterialPorPedido.using(:dwh_t).find(params[:id])
+    if @material_por_pedido.destroy
+      flash[:notice] = 'Eliminado'
+    else
+      flash[:alert] = 'Error eliminando'
+    end
+    redirect_to materiales_por_pedido_index_path
+  end
+
   def update
     @material_por_pedido = MaterialPorPedido.using(:dwh_t).find(params[:id])
     if @material_por_pedido.update(material_por_pedido_params)

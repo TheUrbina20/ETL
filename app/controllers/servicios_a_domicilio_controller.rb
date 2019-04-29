@@ -1,11 +1,20 @@
 class ServiciosADomicilioController < ApplicationController
   def index
-
     @servicios = ServicioADomicilio.using(:dwh_t).where(error: true)
   end
 
   def edit
     @servicio_a_domicilio = ServicioADomicilio.using(:dwh_t).find(params[:id])
+  end
+
+  def destroy
+    @servicio_a_domicilio = ServicioADomicilio.using(:dwh_t).find(params[:id])
+    if @servicio_a_domicilio.destroy
+      flash[:notice] = 'Eliminado'
+    else
+      flash[:alert] = 'Error eliminando'
+    end
+    redirect_to servicios_a_domicilio_index_path
   end
 
   def update
