@@ -1,12 +1,13 @@
-%table
+<h1>Material gastado por habitacion</h1>
+%table.table.table-striped
   %thead
     %tr
-      %td='id'
-      %td='idMaterialH'
+      %td='ID'
+      %td='Num de material por habitación'
       %td='Cantidad'
-      %td='idMaterial'
-      %td='idServicioLH'
-      %td='Acción'
+      %td='Num de material'
+      %td='Num de Servicio de limpieza por habitación'
+      %td='Acciones'
 
   %tbody
     - @materialgh.each do |ma|

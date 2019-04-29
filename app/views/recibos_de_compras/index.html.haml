@@ -1,11 +1,11 @@
-<h1>Recibos de compra</h1>
+<h1>Recibos de compras</h1>
 %table.table.table-striped
   %thead
     %tr
-      %td='id'
-      %td='id_pedido_compra'
-      %td='f_generacion'
-      %td='f_entrega'
+      %td='ID'
+      %td='Num pedido de compra'
+      %td='Fecha de generación'
+      %td='Fecha entrega'
   %tbody
     - @recibos.each do |recibo|
       %tr

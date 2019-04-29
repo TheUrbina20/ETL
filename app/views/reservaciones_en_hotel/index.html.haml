@@ -2,13 +2,13 @@
 %table.table.table-striped
   %thead
     %tr
-      %td='id'
-      %td='FechaIn'
-      %td='FechaOut'
-      %td= 'Fecha Reservacion'
+      %td='ID'
+      %td='Fecha de ingreso'
+      %td='Fecha de salida'
+      %td= 'Fechade reservación'
       %td= 'Estado'
-      %td= 'idCliente'
-      %td= 'idEmpleado'
+      %td= 'Num de Cliente'
+      %td= 'Num de Empleado'
       %td='Acciones'
   %tbody
     - @reservaciones.each do |reservacion|
