@@ -1,7 +1,7 @@
 class HistoricoServiciosController < ApplicationController
     def index
         initialize_servicios
-        @historicos = HistoricoServicio.using(:dwh_t).all
+        @historicos = HistoricoServicio.using(:dwh_t).where(error: true)
     end
 
     def edit
@@ -40,6 +40,12 @@ class HistoricoServiciosController < ApplicationController
       historico.f_inicio = se.FechaInicio
       historico.f_termino = se.FechaTermino
       historico.id_servicio = se.idServicio
+      unless valid_date?(historico.f_inicio)
+        historico.error
+      end
+      unless valid_date?(historico.f_termino)
+        historico.error
+      end
       historico.save!
     end
   end

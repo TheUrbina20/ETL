@@ -1,7 +1,7 @@
 class ReservacionesEnRestauranteController < ApplicationController
   def index
     initialize_reservaciones_en_restaurante
-    @reservaciones_en_restaurante = ReservacionEnRestaurante.using(:dwh_t).all
+    @reservaciones_en_restaurante = ReservacionEnRestaurante.using(:dwh_t).where(error: true)
   end
 
   def edit
@@ -36,6 +36,9 @@ class ReservacionesEnRestauranteController < ApplicationController
       reservacion_en_restaurante.hora = reservacion_en_restaurante_r[:hora]
       reservacion_en_restaurante.id_cliente = reservacion_en_restaurante_r[:id_cliente]
       reservacion_en_restaurante.id_empleado = reservacion_en_restaurante_r[:id_empleado]
+      unless valid_date?(reservacion_en_restaurante.f_reservacion)
+        reservacion_en_restaurante.error = true
+      end
       reservacion_en_restaurante.save!
     end
   end

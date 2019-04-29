@@ -1,12 +1,13 @@
-%table
+<h1>Detalles de factura del restaurante</h1>
+%table.table.table-striped
   %thead
     %tr
-      %td='id'
-      %td='id factura'
-      %td='id comanda'
-      %td='fecha emision'
-      %td='total'
-      %td='Acción'
+      %td='ID'
+      %td='Num de factura'
+      %td='Num de comanda'
+      %td='Fecha de emision'
+      %td='Total'
+      %td='Acciones'
 
   %tbody
     - @detalles_de_factura_restaurante.each do |detalle_factura|

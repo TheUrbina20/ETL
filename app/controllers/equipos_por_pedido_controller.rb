@@ -1,8 +1,17 @@
 class EquiposPorPedidoController < ApplicationController
   def index
     initialize_equipos_por_pedido
-    @equipos_por_pedido = EquipoPorPedido.using(:dwh_t).all
+    if current_user.admin?
+      @equipos_por_pedido = EquipoPorPedido.using(:dwh_t).all
+    elsif current_user.hotel?
+      @equipos_por_pedido = EquipoPorPedido.using(:dwh_t).where(sistema: 'H')
+    elsif current_user.rrhh?
+      @equipos_por_pedido = EquipoPorPedido.using(:dwh_t).where(sistema: 'RR')
+    else
+      @equipos_por_pedido = EquipoPorPedido.using(:dwh_t).where(sistema: 'R')
+    end
   end
+
 
   private
 
@@ -12,7 +21,7 @@ class EquiposPorPedidoController < ApplicationController
     equipo = EquipoPorPedido.using(:dwh_t).new
 
     equipos_por_pedido.each do |equipo_r|
-      equipo = EquipoPorPedido.using(:dwh_t).new()
+      equipo = EquipoPorPedido.using(:dwh_t).new
 
       equipo.id_sistema = equipo_r.id
       equipo.id_pedido = equipo_r.id_pedido
@@ -22,6 +31,7 @@ class EquiposPorPedidoController < ApplicationController
     end
 
     equipos_por_pedido = Mdb.open(Rails.root.join('db', 'access_db.accdb'))['D_equipo_pedido']
+    equipo = EquipoPorPedido.using(:dwh_t).new
 
     equipos_por_pedido.each do |equipo_r|
       equipo = EquipoPorPedido.using(:dwh_t).new

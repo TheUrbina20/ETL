@@ -1,10 +1,12 @@
-%table
+%h1
+  Ingredientes por proveedor
+%table.table.table-striped
   %thead
     %tr
-      %td='id'
-      %td='id ingredietne'
-      %td='id proveedor'
-      %td='precio'
+      %td='ID'
+      %td='Num ingrediente'
+      %td='Num proveedor'
+      %td='Precio'
       %td='Acciones'
   %tbody
     - @ingredientes_por_proveedor.each do |ingrediente_por_proveedor|

@@ -1,7 +1,7 @@
 class EquipoHabitacionesController < ApplicationController
     def index
       initialice_equiposh
-      @equiposh = EquipoHabitacion.using(:dwh_t).all
+      @equiposh = EquipoHabitacion.using(:dwh_t).where(error: true)
     end
 
     private

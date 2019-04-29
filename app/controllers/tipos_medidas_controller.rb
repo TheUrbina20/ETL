@@ -1,7 +1,7 @@
 class TiposMedidasController < ApplicationController
   def index
     initialize_tipos_medidas
-    @tipos_medidas = TipoMedida.using(:dwh_t).all
+    @tipos_medidas = TipoMedida.using(:dwh_t).where(error: true)
   end
 
   def edit
@@ -33,6 +33,9 @@ class TiposMedidasController < ApplicationController
       tipo_medida = TipoMedida.using(:dwh_t).new
       tipo_medida.id = tipo_medida_r[:Id]
       tipo_medida.nombre = tipo_medida_r[:nombre]
+      unless valid_name?(tipo_medida.nombre)
+        tipo_medida.error = true
+      end
       tipo_medida.save!
     end
   end

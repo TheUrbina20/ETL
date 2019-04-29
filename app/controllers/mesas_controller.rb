@@ -1,7 +1,7 @@
 class MesasController < ApplicationController
   def index
     initialize_mesas
-    @mesas = Mesa.using(:dwh_t).all
+    @mesas = Mesa.using(:dwh_t).where(error: true)
   end
 
   def edit
@@ -34,6 +34,9 @@ class MesasController < ApplicationController
       mesa.id = mesa_r[:id]
       mesa.numero = mesa_r[:numero]
       mesa.capacidad = mesa_r[:capacidad]
+      unless valid_number?(mesa.capacidad)
+        mesa.error = true
+      end
       mesa.save!
     end
   end

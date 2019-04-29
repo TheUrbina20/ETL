@@ -1,11 +1,12 @@
-%table
+<h1>Servicio de limpieza por habitacion</h1>
+%table.table.table-striped
   %thead
     %tr
-      %td='id'
+      %td='ID'
       %td='Fecha'
-      %td='idServicioL'
-      %td='idHabitacion'
-      %td='idEmpleado'
+      %td='Num de servicio de limpieza'
+      %td='Num de habitación'
+      %td='Num de empleado'
       %td='Acciones'
   %tbody
     - @serviciolh.each do |s|
@@ -13,7 +14,7 @@
         %td=s.id
         - if valid_date?(s.fecha)
           %td=s.fecha
-        - else 
+        - else
           %td.text-danger=s.fecha
         %td=s.id_servicio_limpieza
         %td=s.id_habitacion

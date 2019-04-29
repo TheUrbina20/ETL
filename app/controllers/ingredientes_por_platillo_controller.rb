@@ -1,7 +1,7 @@
 class IngredientesPorPlatilloController < ApplicationController
   def index
     initialize_ingredientes_por_platillo
-    @ingredientes_por_platillo = IngredientePorPlatillo.using(:dwh_t).all
+    @ingredientes_por_platillo = IngredientePorPlatillo.using(:dwh_t).where(error: true)
   end
 
   def edit
@@ -36,6 +36,9 @@ class IngredientesPorPlatilloController < ApplicationController
       ingrediente_por_platillo.id_producto = ingrediente_por_platillo_r[:id_producto]
       ingrediente_por_platillo.id_tipo_medida = ingrediente_por_platillo_r[:id_tipo_medida]
       ingrediente_por_platillo.cantidad = ingrediente_por_platillo_r[:cantidad]
+      unless valid_number?(ingrediente_por_platillo.cantidad)
+        ingrediente_por_platillo.error = true
+      end
       ingrediente_por_platillo.save!
     end
   end

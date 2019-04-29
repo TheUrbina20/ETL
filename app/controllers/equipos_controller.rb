@@ -1,7 +1,15 @@
 class EquiposController < ApplicationController
   def index
     initialize_equipos
-    @equipos = Equipo.using(:dwh_t).all
+    if current_user.admin?
+      @equipos = Equipo.using(:dwh_t).where(error: true)
+    elsif current_user.hotel?
+      @equipos = Equipo.using(:dwh_t).where(sistema: 'H', error: true)
+    elsif current_user.rrhh?
+      @equipos = Equipo.using(:dwh_t).where(sistema: 'RR', error: true)
+    else
+      @equipos = Equipo.using(:dwh_t).where(sistema: 'R', error: true)
+    end
   end
 
   def edit
@@ -37,10 +45,17 @@ class EquiposController < ApplicationController
       equipo.id_sistema = equipo_r.id
       equipo.nombre = equipo_r.nombre
       equipo.modelo = equipo_r.modelo
+      unless valid_name?(equipo.nombre)
+        equipo.error = true
+      end
+
+      unless valid_name?(equipo.nombre)
+        equipo.error = true
+      end
+
       equipo.sistema = 'RH'
       equipo.save!
     end
-
 
     equipos = Mdb.open(Rails.root.join('db', 'access_db.accdb'))['Equipo']
 
@@ -50,16 +65,19 @@ class EquiposController < ApplicationController
       equipo.id_sistema = equipo_r[:Id]
       equipo.nombre = equipo_r[:nombre]
       equipo.sistema = 'R'
+      equipo.error = true
       equipo.save!
     end
 
     equipos = Equipo.using(:restaurant).all
+    equipo = Equipo.using(:dwh_t).new
 
     equipos.each do |equipo_r|
-      equipo = Equipo.using(:dwh_t).new()
+      equipo = Equipo.using(:dwh_t).new
 
       equipo.id_sistema = equipo_r.idEquipo
       equipo.nombre = equipo_r.Nombre
+      equipo.error = true
       equipo.sistema = 'H'
       equipo.save!
     end

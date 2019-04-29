@@ -1,7 +1,7 @@
 class HabitacionesController < ApplicationController
     def index
-        #initialize_habitaciones
-        @habitaciones = Habitacion.using(:dwh_t).all
+        initialize_habitaciones
+        @habitaciones = Habitacion.using(:dwh_t).where(error: true)
     end
 
     def edit
@@ -38,6 +38,9 @@ class HabitacionesController < ApplicationController
       habitacion.id = ha.idHabitacion
       habitacion.tipo_habitacion = ha.idTipo
       habitacion.estado = ha.Estado
+      unless valid_name?(habitacion.estado)
+        habitacion.error = true
+      end
       habitacion.save!
     end
   end

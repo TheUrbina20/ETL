@@ -1,7 +1,7 @@
 class FacturasRestauranteController < ApplicationController
   def index
     initialize_facturas
-    @facturas = FacturaRestaurante.using(:dwh_t).all
+    @facturas = FacturaRestaurante.using(:dwh_t).where(error: true)
   end
 
   def edit
@@ -22,6 +22,7 @@ class FacturasRestauranteController < ApplicationController
   def factura_restaurante_params
     params.require(:factura_restaurante).permit(:id_sistema, :id_cliente, :fecha_emision, :tipo_pago, :sistema)
   end
+
   def initialize_facturas
     FacturaRestaurante.using(:dwh_t).delete_all
 
@@ -38,6 +39,9 @@ class FacturasRestauranteController < ApplicationController
       factura.fecha_emision = factura_r[:fecha_factura]
       factura.tipo_pago = factura_r[:id_tipo_pago]
       factura.sistema = 'R'
+      unless valid_date?(factura.fecha_emision)
+        factura.error = true
+      end
       factura.save!
     end
 

@@ -1,14 +1,15 @@
-%table
+<h1>Ordenes de mantenimiento</h1>
+%table.table.table-striped
   %thead
     %tr
-      %td='id'
-      %td='id sistema'
-      %td='sistema'
-      %td='f_inicio'
-      %td='f_termino'
-      %td='id_equipo'
-      %td='tipo_mantenimiento'
-      %td='id_empleado'
+      %td='ID'
+      %td='Num sistema'
+      %td='Sistema'
+      %td='Fecha de inicio'
+      %td='Fecha de termino'
+      %td='Num de equipo'
+      %td='Tipo de mantenimiento'
+      %td='Num de empleado'
       %td='Acciones'
   %tbody
     - @mantenimientos_por_equipo.each do |mantenimiento_por_equipo|

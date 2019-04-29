@@ -1,7 +1,9 @@
-%table
+%h1
+  Servicios
+%table.table.table-striped
   %thead
     %tr
-      %td='id'
+      %td='ID'
       %td='Nombre'
       %td='Acciones'
   %tbody
@@ -10,7 +12,7 @@
         %td=s.id
         - if valid_nombre_servicio? (s.nombre)
           %td=s.nombre
-        - else 
+        - else
           %td.text-danger=s.nombre
         %td
           = link_to edit_servicio_path(s) do
