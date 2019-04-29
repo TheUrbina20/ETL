@@ -11,7 +11,10 @@
       %tr
         %td=servicio.id
         %td=servicio.id_habitacion
-        %td=servicio.fecha
+        -if valid_date?(servicio.fecha)
+          %td=servicio.fecha
+        -else
+          %td.text-danger=servicio.fecha
         %td
           = link_to edit_servicios_a_domicilio_path(servicio) do
             = fa_icon 'pencil'

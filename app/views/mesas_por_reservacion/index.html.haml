@@ -12,4 +12,7 @@
         %td=mesa_por_reservacion.id
         %td=mesa_por_reservacion.id_reservacion
         %td=mesa_por_reservacion.id_mesa
-        %td=mesa_por_reservacion.estado
+        -if valid_words?(mesa_por_reservacion.estado)
+          %td=mesa_por_reservacion.estado
+        -else
+          %td.text-danger=mesa_por_reservacion.estado

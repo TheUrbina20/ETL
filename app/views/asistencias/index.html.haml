@@ -14,7 +14,10 @@
       %tr
         %td=asistencia.id
         %td=asistencia.id_empleado
-        %td=asistencia.fecha
+        - if valid_date?(asistencia.fecha)
+          %td=asistencia.fecha
+        -else
+          %td.text-danger=asistencia.fecha
         %td=asistencia.hora_entrada
         %td=asistencia.hora_salida
         %td

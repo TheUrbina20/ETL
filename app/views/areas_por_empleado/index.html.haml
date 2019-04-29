@@ -14,7 +14,10 @@
         %td=area.id
         %td=area.id_empleado
         %td=area.id_area
-        %td=area.f_asignacion
+        - if valid_date?(area.f_asignacion)
+          %td=area.f_asignacion
+        -else
+        %td.text-danger=area.f_asignacion
         %td
           = link_to  edit_areas_por_empleado_path(area) do
             = fa_icon 'pencil'

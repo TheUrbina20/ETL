@@ -5,8 +5,8 @@
       %td='ID'
       %td='Postulante'
       %td='Vacante'
-      %td='Fecha aplicacion'
       %td='Empleado'
+      %td='Fecha aplicacion'
   %tbody
     - @aplicaciones.each do |aplicacion|
       %tr
@@ -14,7 +14,10 @@
         %td=aplicacion.id_postulante
         %td=aplicacion.id_vacante
         %td=aplicacion.id_empleado
-        %td=aplicacion.f_aplicacion
+        - if valid_date?(aplicacion.f_aplicacion)
+          %td=aplicacion.f_aplicacion
+        - else
+          %td.text-danger=aplicacion.f_aplicacion
         %td
           = link_to edit_aplicaciones_a_vacante_path(aplicacion) do
             = fa_icon 'pencil'

@@ -14,7 +14,10 @@
         %td=platillo_por_comanda.id
         %td=platillo_por_comanda.id_comanda
         %td=platillo_por_comanda.id_platillo
-        %td=platillo_por_comanda.cantidad
+        -if valid_cantidad?(platillo_por_comanda.cantidad)
+          %td=platillo_por_comanda.cantidad
+        -else
+          %td.text-danger=platillo_por_comanda.cantidad
         %td
           = link_to edit_platillos_por_comanda_path(platillo_por_comanda) do
             = fa_icon 'pencil'

@@ -10,8 +10,14 @@
     - @postulantes.each do |postulante|
       %tr
         %td=postulante.id
-        %td=postulante.nombre
-        %td=postulante.estado
+        - if valid_name?(postulante.nombre)
+          %td=postulante.nombre
+        -else
+          %td.text-danger=postulante.nombre
+        -if valid_estado?(postulante.estado)
+          %td=postulante.estado
+        -else
+          %td.text-danger=postulante.estado
         %td
           = link_to edit_postulante_path(postulante) do
             = fa_icon 'pencil'

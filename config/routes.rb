@@ -69,5 +69,7 @@ Rails.application.routes.draw do
   resources :tipos_medidas
   resources :tipos_de_productos
   resources :vacantes
+
+  resources :exporter, only: [:new]
 end
 

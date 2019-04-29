@@ -20,7 +20,10 @@
         %td=equipo_por_recibo.id_recibo_compra
         %td=equipo_por_recibo.n_serie
         %td=equipo_por_recibo.id_equipo
-        %td=equipo_por_recibo.f_finalizacion_garantia
+        -if valid_date?(equipo_por_recibo.f_finalizacion_garantia)
+          %td=equipo_por_recibo.f_finalizacion_garantia
+        -else
+          %td.text-danger=equipo_por_recibo.f_finalizacion_garantia
         %td
           = link_to edit_equipos_por_recibo_path(equipo_por_recibo) do
             = fa_icon 'pencil'

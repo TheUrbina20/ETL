@@ -12,8 +12,14 @@
     - @bebidas.each do |bebida|
       %tr
         %td=bebida.id
-        %td=bebida.nombre
-        %td=bebida.precio
+        -if valid_words?(bebida.nombre)
+          %td=bebida.nombre
+        -else
+          %td.text-danger=bebida.nombre
+        -if valid_priece?(bebida.precio)
+          %td=bebida.precio
+        -else
+          %td.text-danger=bebida.precio
         %td=bebida.descripcion
         %td
           = link_to edit_bebida_path(bebida) do

@@ -15,7 +15,10 @@
         %td=ingrediente_por_platillo.id_platillo
         %td=ingrediente_por_platillo.id_producto
         %td=ingrediente_por_platillo.id_tipo_medida
-        %td=ingrediente_por_platillo.cantidad
+        -if valid_cantidad?(ingrediente_por_platillo.cantidad)
+          %td=ingrediente_por_platillo.cantidad
+        -else
+          %td.text-danger=ingrediente_por_platillo.cantidad
         %td
           = link_to edit_ingredientes_por_platillo_path(ingrediente_por_platillo) do
             = fa_icon 'pencil'

@@ -10,7 +10,8 @@ module ApplicationHelper
     end
 
     def valid_name?(name)
-      reg = /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/
+      # reg = /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/
+      reg = /\A(?:[-a-z']+|[-a-z']+\s[-a-z']*\s?[-a-z']+)\z/i
       regex_validator(reg, name)
     end
 
@@ -39,6 +40,7 @@ module ApplicationHelper
       regex_validator(reg, cantidad )
     end
 
+
     def valid_precio? (precio)
       reg = /^\d+.\d+$/
       regex_validator(reg, precio )
@@ -49,6 +51,10 @@ module ApplicationHelper
       regex_validator(reg, status)
     end
 
+    def valid_estado?(status)
+      reg = /^Activo$|Inactivo$/
+      regex_validator(reg, status)
+    end
     def valid_tipomantenimietno (tipo)
       reg = /^Preventivo$|Correctivo$/
       regex_validator(reg, tipo)
@@ -57,6 +63,21 @@ module ApplicationHelper
     def valid_date?(date)
       reg = /^[0-3][0-9]\/(0?[1-9]|1[012])\/[0-1][0-9]$/
       regex_validator(reg, date)
+    end
+
+    def valid_word?(word)
+      reg = /[a-zA-Z]*$/
+      regex_validator(reg, word)
+    end
+
+    def valid_words?(words)
+      reg = /[a-zA-Z ]*$/
+      regex_validator(reg, words)
+    end
+
+    def valid_rfc?(rfc)
+      reg = /[A-Z][A-Z][A-Z][A-Z][0-9][0-9][0-9][0-9][0-9][0-9][A-Z0-9][A-Z0-9][A-Z0-9]/
+      regex_validator(reg, rfc)
     end
 
     def regex_validator(reg, word)

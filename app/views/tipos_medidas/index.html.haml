@@ -9,7 +9,10 @@
     - @tipos_medidas.each do |tipo_medida|
       %tr
         %td=tipo_medida.id
-        %td=tipo_medida.nombre
+        -if valid_word?(tipo_medida.nombre)
+          %td=tipo_medida.nombre
+        -else
+          %td.text-danger=tipo_medida.nombre
         %td
           = link_to edit_tipos_medida_path(tipo_medida) do
             = fa_icon 'pencil'

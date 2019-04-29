@@ -17,10 +17,19 @@
         %td=mantenimiento_por_equipo.id
         %td=mantenimiento_por_equipo.id_sistema
         %td=mantenimiento_por_equipo.sistema
-        %td=mantenimiento_por_equipo.f_inicio
-        %td=mantenimiento_por_equipo.f_termino
+        -if valid_date?(mantenimiento_por_equipo.f_inicio)
+          %td=mantenimiento_por_equipo.f_inicio
+        -else
+          %td.text-danger=mantenimiento_por_equipo.f_inicio
+        -if calid_date?(mantenimiento_por_equipo.f_termino)
+          %td=mantenimiento_por_equipo.f_termino
+        -else
+          %td.text-danger=mantenimiento_por_equipo.f_termino
         %td=mantenimiento_por_equipo.id_equipo
-        %td=mantenimiento_por_equipo.tipo_mantenimiento
+        -if valid_words?(mantenimiento_por_equipo.tipo_mantenimiento)
+          %td=mantenimiento_por_equipo.tipo_mantenimiento
+        -else
+          %td.text-danger=mantenimiento_por_equipo.tipo_mantenimiento
         %td=mantenimiento_por_equipo.id_empleado
         %td
           = link_to edit_ordenes_de_mantenimiento_path(mantenimiento_por_equipo) do

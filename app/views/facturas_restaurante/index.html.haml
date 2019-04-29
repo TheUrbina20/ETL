@@ -15,7 +15,10 @@
         %td=factura.id
         %td=factura.id_sistema
         %td=factura.id_cliente
-        %td=factura.fecha_emision
+        -if valid_date?(factura.fecha_emision)
+          %td=factura.fecha_emision
+        -else
+          %td.text-danger=factura.fecha_emision
         %td=factura.tipo_pago
         %td=factura.sistema
         %td

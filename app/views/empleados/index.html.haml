@@ -1,15 +1,14 @@
-
 <h1>Empleados</h1>
 %table.table.table-striped
   %thead
     %tr
       %td='ID'
       %td='Nombre'
-      %td='Fecha de nacimiento'
+      %td='Fecha nacimiento'
       %td='Correo electronico'
-      %td='Num de telefono'
-      %td='Fecha de Entrada'
-      %td='Genero'
+      %td='# telefono'
+      %td='Fecha entrada'
+      %td='Género'
       %td='RFC'
       %td='Baja'
       %td='Sistema'
@@ -24,10 +23,22 @@
           %td=empleado.c_electronico
         -else
           %td.text-danger=empleado.c_electronico
-        %td=empleado.n_telefono
-        %td=empleado.f_entrada
-        %td=empleado.genero
-        %td=empleado.rfc
+        - if valid_telefono?(empleado.n_telefono)
+          %td=empleado.n_telefono
+        -else
+          %td.txt-danger=empleado.n_telefono
+        -if valid_date?(empleado.f_entrada)
+          %td=empleado.f_entrada
+        -else
+          %td.text-danger=empleado.f_entrada
+        -if valid_words?(empleado.genero)
+          %td=empleado.genero
+        -else
+          %td.text-danger=empleado.genero
+        -if valid_rfc?(empleado.rfc)
+          %td=empleado.rfc
+        -else
+          %td.text-danger=empleado.rfc
         %td=empleado.baja
         %td=empleado.sistema
         %td

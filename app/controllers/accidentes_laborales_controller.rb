@@ -30,7 +30,7 @@ class AccidentesLaboralesController < ApplicationController
   end
 
   def accidentes_params
-    params.require(:accidente_laboral).permit(:id, :id_empleado, :f_accidente, :Descripcion)
+    params.require(:accidente_laboral).permit(:id, :id_empleado, :f_accidente)
   end
 
   private

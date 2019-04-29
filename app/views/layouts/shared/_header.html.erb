@@ -61,7 +61,7 @@
                   <%= link_to('Pedidos por empleado', pedidos_por_empleado_index_path)%>
                   <%= link_to('Paquetes', paquetes_path) if current_user&.can_manage_hotel? %>
                   <%= link_to('Paquetes vendidos', paquetes_vendidos_rentas_path) if current_user&.can_manage_hotel? %>
-                  <%= link_to('Platillo', platillos_path) if current_user&.can_manage_restaurant? %>
+                  <%= link_to('Platillos', platillos_path) if current_user&.can_manage_restaurant? %>
                   <%= link_to('Platillos por comanda', platillos_por_comanda_index_path) if current_user&.can_manage_restaurant? %>
                   <%= link_to('Postulantes', postulantes_path) if current_user&.can_manage_rrhh? %>
                   <%= link_to('Programas de capacitacion', programas_capacitacion_index_path) if current_user&.can_manage_rrhh? %>

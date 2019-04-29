@@ -17,7 +17,10 @@
         %td=material_por_pedido.id_sistema
         %td=material_por_pedido.sistema
         %td=material_por_pedido.id_material
-        %td=material_por_pedido.cantidad
+        -if valid_canitdad?(material_por_pedido.cantidad)
+          %td=material_por_pedido.cantidad
+        -else
+          %td.text-danger=material_por_pedido.cantidad
         %td
           = link_to edit_materiales_por_pedido_path(material_por_pedido) do
             = fa_icon 'pencil'

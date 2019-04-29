@@ -18,8 +18,14 @@
         %td=ma.id
         %td=ma.idDetalle
         %td=ma.Descripcion
-        %td=ma.FechaInicio
-        %td=ma.FechaTermino
+        -if valid_date?(ma.FechaInicio)
+          %td=ma.FechaInicio
+        -else
+          %td.text-danger=ma.FechaInicio
+        -if valid_date?(ma.FechaTermino)
+          %td=ma.FechaTermino
+        -else
+          %td.text-danger=ma.FechaTermino
         %td=ma.idHabitacion
         %td=ma.idMantenimientoH
         %td=ma.idEmpleado

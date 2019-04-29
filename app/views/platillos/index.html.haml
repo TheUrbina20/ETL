@@ -12,8 +12,14 @@
     - @platillos.each do |platillo|
       %tr
         %td=platillo.id
-        %td=platillo.nombre
-        %td=platillo.precio
+        - if valid_words?(platillo.nombre)
+          %td=platillo.nombre
+        -else
+          %td.text-danger=platillo.nombre
+        -if valid_precio?(platillo.precio)
+          %td=platillo.precio
+        -else
+          %td.text-danger=platillo.precio
         %td=platillo.descripcion
         %td
           = link_to edit_platillo_path(platillo) do

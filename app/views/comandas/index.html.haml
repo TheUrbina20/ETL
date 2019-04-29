@@ -15,7 +15,10 @@
         %td=comanda.id
         %td=comanda.id_reservacion
         %td=comanda.id_empleado
-        %td=comanda.fecha
+        - if valid_date?(comanda.fecha)
+          %td=comanda.fecha
+        -else
+          %td.text-danger=comanda.fecha
         %td=comanda.hora_reservacion
         %td
           = link_to edit_comanda_path(comanda) do

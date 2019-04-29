@@ -15,7 +15,10 @@
         %td=recibo.id_sistema
         %td=recibo.sistema
         %td=recibo.id_pedido_compra
-        %td=recibo.f_entrega
+        -if valid_date?(recibo.f_entrega)
+          %td=recibo.f_entrega
+        -else
+          %td.text-danger=recibo.f_entrega
         %td
           = link_to edit_recibos_de_compra_path(recibo) do
             = fa_icon 'pencil'

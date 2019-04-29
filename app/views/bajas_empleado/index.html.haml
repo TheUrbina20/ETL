@@ -12,7 +12,10 @@
       %tr
         %td=baja_empleado.id
         %td=baja_empleado.id_empleado
-        %td=baja_empleado.motivo
+        -if valid_words?(baja_empleado.motivo)
+          %td=baja_empleado.motivo
+        -else
+          %td.text-danger=baja_empleado.motivo
         %td
           = link_to edit_bajas_empleado_path(baja_empleado) do
             = fa_icon 'pencil'

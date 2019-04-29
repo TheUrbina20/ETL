@@ -15,8 +15,14 @@
         %td=detalle_factura.id
         %td=detalle_factura.id_factura
         %td=detalle_factura.id_comanda
-        %td=detalle_factura.fecha_emision
-        %td=detalle_factura.total
+        -if valid_date?(detalle_factura.fecha_emision)
+          %td=detalle_factura.fecha_emision
+        -else
+          %td.text-danger=detalle_factura.fecha_emision
+        -if valid_precio?(detalle_factura.total)
+          %td=detalle_factura.total
+        -else
+          %td.text-danger=detalle_factura.total
         %td
           = link_to edit_detalles_de_factura_restaurante_path(detalle_factura) do
             = fa_icon 'pencil'

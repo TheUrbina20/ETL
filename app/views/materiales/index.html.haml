@@ -17,10 +17,22 @@
         %td=material.id
         %td=material.id_sistema
         %td=material.sistema
-        %td=material.nombre
-        %td=material.stock_min
-        %td=material.stock_max
-        %td=material.cantidad_stock
+        -if valid_words?(material.nombre)
+          %td=material.nombre
+        -else
+          %td.text-danger=material.nombre
+        -if valid_cantidad?(material.stock_min)
+          %td=material.stock_min
+        -else
+          %td.text-danger=material.stock_min
+        - if valid_cantidad?(material.stock_max)
+          %td=material.stock_max
+        -else
+          %td.text-danger=material.stock_max
+        -if valid_cantidad?(material.cantidad_stock)
+          %td=material.cantidad_stock
+        -else
+          %td.text-danger=material.cantidad_stock
         %td
           = link_to edit_materiale_path(material) do
             = fa_icon 'pencil'

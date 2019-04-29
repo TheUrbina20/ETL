@@ -18,9 +18,18 @@
         %td=solicitud.id
         %td=solicitud.id_empleado
         %td=solicitud.id_equipo_por_recibo
-        %td=solicitud.f_solicitud
-        %td=solicitud.f_recibo
-        %td=solicitud.estado
+        -if valid_date?(solicitud.f_solicitud)
+          %td=solicitud.f_solicitud
+        - else
+          %td.text-danger=solicitud.f_solicitud
+        -if valid_date?(solicitud.f_recibo)
+          %td=solicitud.f_recibo
+        -else
+          %td.text-danger=solicitud.f_recibo
+        - if valid_activah?(solicitud.estado)
+          %td=solicitud.estado
+        -else
+          %td.text-danger=solicitud.estado
         %td=solicitud.motivo
         %td=solicitud.tipo
         %td
