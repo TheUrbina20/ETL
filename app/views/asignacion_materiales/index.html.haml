@@ -2,7 +2,6 @@
   %thead
     %tr
       %td='id'
-      %td='idAsignacion'
       %td='Cantidad'
       %td='idHabitacion'
       %td='idMaterial'
@@ -12,7 +11,10 @@
     - @asignacionm.each do |ma|
       %tr
         %td=ma.id
-        %td=ma.cantidad
+        - if valid_cantidad? (ma.cantidad)
+          %td=ma.cantidad
+        - else 
+          %td.text-danger=ma.cantidad
         %td=ma.id_habitacion
         %td=ma.id_material
         %td

@@ -11,8 +11,14 @@
     - @dhabitaciones.each do |ha|
       %tr
         %td=ha.id
-        %td=ha.nombre
-        %td=ha.precio
+        - if valid_name? (ha.nombre)
+          %td=ha.nombre
+        - else 
+          %td.text-danger=ha.nombre
+        - if valid_precio? (ha.precio)
+          %td=ha.precio
+        - else 
+          %td.text-danger=ha.precio
         %td
           = link_to edit_dhabitacione_path(ha) do
             = fa_icon 'pencil'

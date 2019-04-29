@@ -8,7 +8,10 @@
     - @servicio.each do |s|
       %tr
         %td=s.id
-        %td=s.nombre
+        - if valid_nombre_servicio? (s.nombre)
+          %td=s.nombre
+        - else 
+          %td.text-danger=s.nombre
         %td
           = link_to edit_servicio_path(s) do
             = fa_icon 'pencil'

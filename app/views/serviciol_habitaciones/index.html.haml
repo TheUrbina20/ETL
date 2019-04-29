@@ -11,7 +11,10 @@
     - @serviciolh.each do |s|
       %tr
         %td=s.id
-        %td=s.fecha
+        - if valid_date?(s.fecha)
+          %td=s.fecha
+        - else 
+          %td.text-danger=s.fecha
         %td=s.id_servicio_limpieza
         %td=s.id_habitacion
         %td=s.id_empleado

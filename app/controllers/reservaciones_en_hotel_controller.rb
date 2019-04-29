@@ -1,6 +1,6 @@
 class ReservacionesEnHotelController < ApplicationController
   def index
-      initialize_reservaciones
+      #initialize_reservaciones
       @reservaciones = ReservacionEnHotel.using(:dwh_t).all
   end
 

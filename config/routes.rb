@@ -39,6 +39,7 @@ Rails.application.routes.draw do
   resources :landing_page, only: [:index]
   resources :mantenimientos
   resources :materiales
+  #resources :materiales_por_habitaciones
   resources :materiales_por_pedido
   resources :materiales_por_recibo
   resources :materialgastado_habitaciones

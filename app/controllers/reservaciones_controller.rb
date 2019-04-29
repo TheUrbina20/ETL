@@ -1,6 +1,6 @@
 class ReservacionesController < ApplicationController
     def index
-        initialize_reservaciones
+        #initialize_reservaciones
         @reservaciones = Reservacion.using(:dwh_t).all
     end
     def edit
@@ -20,7 +20,7 @@ class ReservacionesController < ApplicationController
     end
 
     def reservaciones_params
-      params.require(:reservacion).permit(:id, :idReservacion, :FechaIn, :FechaOut, :FechaReserv, :Estado, :idCliente, :idEmpleado)
+      params.require(:reservacion).permit(:id, :f_entrada, :f_falida, :f_reservacion, :estado, :id_cliente, :id_empleado)
     end
 
   private

@@ -21,7 +21,7 @@ class DhabitacionesController < ApplicationController
     end
 
     def dhabitaciones_params
-      params.require(:dhabitacion).permit(:id, :idTipo, :Nombre, :Precio)
+      params.require(:dhabitacion).permit(:id, :nombre, :precio)
     end
 
     def initialize_dhabitaciones
