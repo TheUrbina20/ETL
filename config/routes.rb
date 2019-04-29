@@ -36,7 +36,7 @@ Rails.application.routes.draw do
   resources :ingredientes_por_proveedor
   resources :ingredientes_por_bebida
   resources :ingredientes_por_platillo
-  resources :landing_page, only: [:index]
+  resources :landing_page, only: [:index, :new]
   resources :mantenimientos
   resources :materiales
   #resources :materiales_por_habitaciones

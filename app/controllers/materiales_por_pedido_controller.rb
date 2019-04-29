@@ -1,6 +1,5 @@
 class MaterialesPorPedidoController < ApplicationController
   def index
-    initialize_materiales_por_pedido
     if current_user.admin?
       @materiales_por_pedido = MaterialPorPedido.using(:dwh_t).where(error: true)
     elsif current_user.hotel?
@@ -29,40 +28,5 @@ class MaterialesPorPedidoController < ApplicationController
 
   def material_por_pedido_params
     params.require(:material_por_pedido).permit(:id_sistema, :sistema, :id_material, :id_pedido, :cantidad)
-  end
-
-  def initialize_materiales_por_pedido
-    MaterialPorPedido.using(:dwh_t).delete_all
-
-    materiales_por_pedido = MaterialPorPedido.using(:rrhh).all
-    material_por_pedido = MaterialPorPedido.using(:dwh_t).new
-
-    materiales_por_pedido.each do |material_por_pedido_r|
-      material_por_pedido = MaterialPorPedido.using(:dwh_t).new
-
-      material_por_pedido.id_sistema = material_por_pedido_r.id
-      material_por_pedido.id_pedido = material_por_pedido_r.id_pedido_empleado
-      material_por_pedido.id_material = material_por_pedido_r.id_material
-      material_por_pedido.cantidad = material_por_pedido_r.cantidad
-      material_por_pedido.sistema = 'RR'
-      unless valid_number?(material_por_pedido.cantidad)
-        material_por_pedido.error = true
-      end
-      material_por_pedido.save!
-    end
-
-    materiales_por_pedido = Mdb.open(Rails.root.join('db', 'access_db.accdb'))['D_materiales_pedido']
-
-    materiales_por_pedido.each do |material_por_pedido_r|
-      material_por_pedido = MaterialPorPedido.using(:dwh_t).new
-
-      material_por_pedido.id_sistema = material_por_pedido_r[:id]
-      material_por_pedido.id_pedido = material_por_pedido_r[:id_pedido]
-      material_por_pedido.id_material = material_por_pedido_r[:id_material]
-      material_por_pedido.cantidad = material_por_pedido_r[:cantidad]
-      material_por_pedido.sistema = 'R'
-      material_por_pedido.save!
-    end
-
   end
 end

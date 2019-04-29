@@ -1,6 +1,5 @@
 class AreasPorEmpleadoController < ApplicationController
   def index
-    initialize_areas_por_empleado
     @areas_por_empleado = AreasPorEmpleado.using(:dwh_t).where(error: true)
   end
 
@@ -22,26 +21,5 @@ class AreasPorEmpleadoController < ApplicationController
 
   def areas_params
     params.require(:areas_por_empleado).permit(:id, :nombre, :clave)
-  end
-
-  private
-
-  def initialize_areas_por_empleado
-    area=AreasPorEmpleado.using(:dwh_t).delete_all
-
-    areas = AreasPorEmpleado.using(:rrhh).all
-    area = AreasPorEmpleado.using(:dwh_t).new
-
-    areas.each do |area_r|
-      area = AreasPorEmpleado.using(:dwh_t).new
-
-      area.id_area = area_r.id_area
-      area.id_empleado = area_r.id_empleado
-      area.f_asignacion = area_r.f_asignacion
-      unless valid_date?(area.f_asignacion)
-        area.error = true
-      end
-      area.save!
-    end
   end
 end

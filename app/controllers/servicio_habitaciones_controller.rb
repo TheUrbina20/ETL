@@ -1,6 +1,6 @@
 class ServicioHabitacionesController < ApplicationController
   def index
-      initialize_serviciosh
+
       @servicioh = ServicioHabitacion.using(:dwh_t).where(error: true)
   end
 
@@ -25,21 +25,4 @@ class ServicioHabitacionesController < ApplicationController
 
   private
 
-  def initialize_serviciosh
-    ServicioHabitacion.using(:dwh_t).delete_all
-
-    servicios_h = ServicioHabitacion.using(:restaurant).all
-    servicio_t = ServicioHabitacion.using(:dwh_t).new()
-
-
-    servicios_h.each do |s|
-      servicio_t = ServicioHabitacion.using(:dwh_t).new()
-      servicio_t.id = s.idServicioH
-      servicio_t.id_habitacion_rentada = s.idHabitacionR
-      servicio_t.id_renta = s.idRenta
-      servicio_t.id_historico_servicio = s.idHistoricoS
-      servicio_t.id_empleado = s.idEmpleado
-      servicio_t.save!
-    end
-  end
 end

@@ -1,6 +1,6 @@
 class ProveedoresController < ApplicationController
   def index
-    initialize_proveedores
+
     @proveedores = Proveedor.using(:dwh_t).where(error: true)
   end
 
@@ -26,33 +26,4 @@ class ProveedoresController < ApplicationController
   private
 
 
-  def initialize_proveedores
-    Proveedor.using(:dwh_t).destroy_all
-    proveedores = Proveedor.using(:rrhh).all
-    proveedor = Proveedor.using(:dwh_t).new
-
-    proveedores.each do |proveedor_r|
-      proveedor = Proveedor.using(:dwh_t).new
-      proveedor.id_sistema = proveedor_r.id
-      proveedor.nombre = proveedor_r.nombre
-      proveedor.id_empresa = proveedor_r.id_empresa
-      proveedor.sistema = 'RR'
-      unless valid_name?(proveedor.nombre)
-        proveedor.error = true
-      end
-      proveedor.save!
-    end
-
-    proveedores = Mdb.open(Rails.root.join('db', 'access_db.accdb'))['Proveedores']
-
-    proveedores.each do |proveedor_r|
-      proveedor = Proveedor.using(:dwh_t).new
-
-      proveedor.id_sistema = proveedor_r[:Id]
-      proveedor.nombre = proveedor_r[:razon_social]
-      proveedor.sistema = 'R'
-      proveedor.save!
-    end
-
-  end
 end

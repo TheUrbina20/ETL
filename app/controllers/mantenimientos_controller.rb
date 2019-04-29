@@ -1,6 +1,6 @@
 class MantenimientosController < ApplicationController
     def index
-        initialize_mantenimientos
+
         @mantenimientoe = Mantenimiento.using(:dwh_t).where(error: true)
     end
 
@@ -26,21 +26,4 @@ class MantenimientosController < ApplicationController
 
   private
 
-  def initialize_mantenimientos
-    Mantenimiento.using(:dwh_t).delete_all
-
-    mantenimientos = Mantenimiento.using(:restaurant).all
-    mantenimiento = Mantenimiento.using(:dwh_t).new()
-
-
-    mantenimientos.each do |ma|
-      mantenimiento = Mantenimiento.using(:dwh_t).new()
-      mantenimiento.id = ma.id
-      mantenimiento.tipo = ma.tipo
-      unless valid_word?(mantenimiento.tipo)
-        mantenimiento.error = true
-      end
-      mantenimiento.save!
-    end
-  end
 end
