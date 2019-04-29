@@ -1,11 +1,12 @@
-%table
+<h1>Platillos</h1>
+%table.table.table-striped
   %thead
     %tr
-      %td='id'
-      %td='nombre'
-      %td='precio'
-      %td='descripcion'
-      %td='acciones'
+      %td='ID'
+      %td='Nombre'
+      %td='Precio'
+      %td='Descripción'
+      %td='Acciones'
 
   %tbody
     - @platillos.each do |platillo|

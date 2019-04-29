@@ -1,12 +1,13 @@
-%table
+<h1>Recibos de compras</h1>
+%table.table.table-striped
   %thead
     %tr
-      %td='id'
-      %td='id sistema'
-      %td='sistema'
-      %td='id_pedido_compra'
-      %td='f_generacion'
-      %td='f_entrega'
+      %td='ID'
+      %td='Num de sistema'
+      %td='Sistema'
+      %td='Num pedido de compra'
+      %td='Fecha entrega'
+      %td='Acciones'
   %tbody
     - @recibos.each do |recibo|
       %tr
@@ -22,5 +23,4 @@
             = fa_icon 'trash'
     %tr='Total'
     %tr=@recibos.count
-
 

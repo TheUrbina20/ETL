@@ -1,12 +1,13 @@
-%table
+<h1>Equipos</h1>
+%table.table.table-striped
   %thead
     %tr
-      %td='id'
-      %td='id sistems'
-      %td='sistema'
-      %td='nombre'
-      %td='modelo'
-      %td='acciones'
+      %td='ID'
+      %td='Num de sistema'
+      %td='Sistema'
+      %td='Nombre'
+      %td='Modelo'
+      %td='Acciones'
   %tbody
     - @equipos.each do |equipo|
       %tr

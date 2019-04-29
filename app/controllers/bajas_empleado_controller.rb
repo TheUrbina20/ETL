@@ -1,7 +1,7 @@
 class BajasEmpleadoController < ApplicationController
   def index
     initiallize_bajas_empleados
-    @bajas_por_empleado = BajaEmpleado.using(:dwh_t).all
+    @bajas_por_empleado = BajaEmpleado.using(:dwh_t).where(error: true)
   end
 
   def edit

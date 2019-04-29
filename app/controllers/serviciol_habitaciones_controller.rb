@@ -1,7 +1,7 @@
 class ServiciolHabitacionesController < ApplicationController
     def index
         initialize_servicioslh
-        @serviciolh = ServiciolHabitacion.using(:dwh_t).all
+        @serviciolh = ServiciolHabitacion.using(:dwh_t).where(error: true)
     end
     def edit
       @serviciolh = ServiciolHabitacion.using(:dwh_t).find(params[:id])
@@ -36,6 +36,9 @@ class ServiciolHabitacionesController < ApplicationController
           servicio_t.id_servicio_limpieza = s.idServicioL
           servicio_t.id_habitacion = s.idHabitacion
           servicio_t.id_empleado = s.idEmpleado
+          unless valid_date?(servicio_t.fecha)
+            servicio_t.error = true
+          end
           servicio_t.save!
         end
       end

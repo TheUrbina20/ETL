@@ -1,13 +1,14 @@
-%table
+<h1>Ingredientes</h1>
+%table.table.table-striped
   %thead
     %tr
-      %td='id'
-      %td='nombre'
-      %td='stock minimo'
-      %td='stock maixmo'
-      %td='cantidad'
-      %td='id tipo'
-      %td='id tipo cantidad'
+      %td='ID'
+      %td='Nombre'
+      %td='Stock minimo'
+      %td='Stock maixmo'
+      %td='Cantidad'
+      %td='Num tipo'
+      %td='Num tipo cantidad'
       %td='Acciones'
   %tbody
     - @ingredientes.each do |ingrediente|

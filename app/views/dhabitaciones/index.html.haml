@@ -1,23 +1,23 @@
-%table
+<h1>Detalles de habitaciones</h1>
+%table.table.table-striped
   %thead
     %tr
-      %td='id'
-      %td='idTipo'
+      %td='ID'
+      %td='Num de Tipo'
       %td='Nombre'
       %td='Precio'
       %td='Acciones'
-
   %tbody
     - @dhabitaciones.each do |ha|
       %tr
         %td=ha.id
         - if valid_name? (ha.nombre)
           %td=ha.nombre
-        - else 
+        - else
           %td.text-danger=ha.nombre
         - if valid_precio? (ha.precio)
           %td=ha.precio
-        - else 
+        - else
           %td.text-danger=ha.precio
         %td
           = link_to edit_dhabitacione_path(ha) do

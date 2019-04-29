@@ -1,7 +1,15 @@
 class PedidosPorEmpleadoController < ApplicationController
   def index
     initialize_pedidos_por_empleados
-    @ordenes_por_empleados = PedidoPorEmpleado.using(:dwh_t).all
+    if current_user.admin?
+      @ordenes_por_empleados = PedidoPorEmpleado.using(:dwh_t).where(error: true)
+    elsif current_user.hotel?
+      @ordenes_por_empleados = PedidoPorEmpleado.using(:dwh_t).where(sistema: 'H', error: true)
+    elsif current_user.rrhh?
+      @ordenes_por_empleados = PedidoPorEmpleado.using(:dwh_t).where(sistema: 'RR', error: true)
+    else
+      @ordenes_por_empleados = PedidoPorEmpleado.using(:dwh_t).where(sistema: 'R', error: true)
+    end
   end
 
   def edit
@@ -61,6 +69,9 @@ class PedidosPorEmpleadoController < ApplicationController
       pedido.id_empleado = pedido_r.id_empleado
       pedido.f_peticion = pedido_r.Fecha
       pedido.sistema = 'H'
+      unless valid_date?(pedido.f_peticion)
+        pedido.error = true
+      end
       pedido.save!
     end
 

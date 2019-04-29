@@ -1,9 +1,10 @@
-%table
+<h1>Mantenimientos</h1>
+%table.table.table-striped
   %thead
     %tr
-      %td='id'
+      %td='ID'
       %td='Tipo'
-      %td='Acción'
+      %td='Acciones'
 
   %tbody
     - @mantenimientoe.each do |ma|
@@ -11,7 +12,7 @@
         %td=ma.id
         - if valid_tipomantenimietno (ma.tipo)
           %td=ma.tipo
-        - else 
+        - else
           %td.text-danger=ma.tipo
         %td
           = link_to edit_mantenimiento_path(ma) do

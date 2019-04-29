@@ -1,10 +1,11 @@
-%table
+<h1>Mesas por reservación</h1>
+%table.table.table-striped
   %thead
     %tr
-      %td='id'
-      %td='id reservacion'
-      %td='id mesa'
-      %td='estado'
+      %td='ID'
+      %td='Num de reservación'
+      %td='Num de mesa'
+      %td='Estado'
   %tbody
     - @mesas_por_reservacion.each do |mesa_por_reservacion|
       %tr

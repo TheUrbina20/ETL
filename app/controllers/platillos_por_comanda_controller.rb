@@ -1,7 +1,7 @@
 class PlatillosPorComandaController < ApplicationController
   def index
     initialize_platillos_por_comanda
-    @platillos_por_comanda = PlatilloPorComanda.using(:dwh_t).all
+    @platillos_por_comanda = PlatilloPorComanda.using(:dwh_t).where(error: true)
   end
 
   def edit
@@ -35,6 +35,9 @@ class PlatillosPorComandaController < ApplicationController
       platillo_por_comanda.id_platillo = platillo_por_comanda_r[:id_platillo]
       platillo_por_comanda.id_comanda = platillo_por_comanda_r[:id_comanda]
       platillo_por_comanda.cantidad = platillo_por_comanda_r[:cantidad]
+      unless valid_number?(platillo_por_comanda.cantidad)
+        platillo_por_comanda.error = true
+      end
       platillo_por_comanda.save!
     end
   end

@@ -2,7 +2,7 @@ class ServiciosADomicilioController < ApplicationController
   def index
     initialize_servicios
     initialize_mesas_por_reservacion
-    @servicios = ServicioADomicilio.using(:dwh_t).all
+    @servicios = ServicioADomicilio.using(:dwh_t).where(error: true)
   end
 
   def edit
@@ -36,6 +36,9 @@ class ServiciosADomicilioController < ApplicationController
       servicio.id = servicio_r[:id]
       servicio.id_habitacion = servicio_r[:id_habitacion]
       servicio.fecha = servicio_r[:fecha]
+      unless valid_date?(servicio.fecha)
+        servicio.error = true
+      end
       servicio.save!
     end
   end

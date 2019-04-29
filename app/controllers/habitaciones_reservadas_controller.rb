@@ -1,7 +1,7 @@
 class HabitacionesReservadasController < ApplicationController
   def index
       initialize_hreservadas
-      @habitacionesreservadas = HabitacionReservada.using(:dwh_t).all
+      @habitacionesreservadas = HabitacionReservada.using(:dwh_t).where(error: true)
   end
 
   private

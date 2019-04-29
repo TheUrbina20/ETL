@@ -1,7 +1,7 @@
 class BebidasController < ApplicationController
   def index
     initialize_bebidas
-    @bebidas = Bebida.using(:dwh_t).all
+    @bebidas = Bebida.using(:dwh_t).where(error: true)
   end
 
   def edit
@@ -36,6 +36,9 @@ class BebidasController < ApplicationController
       bebida.nombre = bebida_r[:nombre]
       bebida.precio = bebida_r[:precio]
       bebida.descripcion = bebida_r[:descripcion]
+      unless valid_name?(bebida.nombre)
+        bebida.error = true
+      end
       bebida.save!
     end
   end

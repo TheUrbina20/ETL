@@ -1,7 +1,7 @@
 class ComandasController < ApplicationController
   def index
     initialize_comandas
-    @comandas = Comanda.using(:dwh_t).all
+    @comandas = Comanda.using(:dwh_t).where(error: true)
   end
 
   def edit
@@ -34,6 +34,9 @@ class ComandasController < ApplicationController
       comanda.id_empleado = comanda_r[:id_empleado]
       comanda.fecha = comanda_r[:fecha]
       comanda.hora_reservacion = comanda_r[:hora]
+      unless valid_date?(comanda.fecha)
+        comanda.error = true
+      end
       comanda.save!
     end
   end

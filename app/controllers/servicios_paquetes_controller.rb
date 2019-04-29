@@ -1,7 +1,7 @@
 class ServiciosPaquetesController < ApplicationController
   def index
     initialize_serviciosp
-    @serviciop = ServicioPaquete.using(:dwh_t).all
+    @serviciop = ServicioPaquete.using(:dwh_t).where(error: true)
   end
 
   private

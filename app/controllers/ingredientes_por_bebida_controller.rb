@@ -1,7 +1,7 @@
 class IngredientesPorBebidaController < ApplicationController
   def index
     initialize_ingredientes_por_bebida
-    @ingredientes_por_bebida = IngredientePorBebida.using(:dwh_t).all
+    @ingredientes_por_bebida = IngredientePorBebida.using(:dwh_t).where(error: true)
   end
 
   def edit
@@ -38,6 +38,9 @@ class IngredientesPorBebidaController < ApplicationController
       ingrediente.id_producto = ingrediente_r[:id_producto]
       ingrediente.id_tipo_medida = ingrediente_r[:id_tipo_med]
       ingrediente.cantidad = ingrediente_r[:cantidad]
+      unless valid_number?(ingrediente.cantidad)
+        ingrediente.error = true
+      end
       ingrediente.save!
 
     end

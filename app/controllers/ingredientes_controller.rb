@@ -1,7 +1,7 @@
 class IngredientesController < ApplicationController
   def index
     initialize_ingredientes
-    @ingredientes = Ingrediente.using(:dwh_t).all
+    @ingredientes = Ingrediente.using(:dwh_t).where(error: true)
   end
 
   def edit
@@ -25,7 +25,7 @@ class IngredientesController < ApplicationController
 
   def initialize_ingredientes
     Ingrediente.using(:dwh_t).delete_all
-
+    ingrediente = Ingrediente.using(:dwh_t).new
     ingredientes = Mdb.open(Rails.root.join('db', 'access_db.accdb'))['Productos']
 
     ingredientes.each do |ingrediente_r|
@@ -38,6 +38,18 @@ class IngredientesController < ApplicationController
       ingrediente.stock_minimo = ingrediente_r[:stock_min]
       ingrediente.stock_maximo = ingrediente_r[:stock_max]
       ingrediente.cantidad_stock = ingrediente_r[:cantidad]
+      unless valid_words?(ingrediente.nombre)
+        ingrediente.error = true
+      end
+      unless valid_number?(ingrediente.stock_maximo)
+        ingrediente.error = true
+      end
+      unless valid_number?(ingrediente.stock_minimo)
+        ingrediente.error = true
+      end
+      unless valid_number?(ingrediente.cantidad_stock)
+        ingrediente.error = true
+      end
       ingrediente.save!
 
     end

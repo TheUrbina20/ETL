@@ -1,11 +1,12 @@
-%table
+<h1>Servicio de habitaciones</h1>
+%table.table.table-striped
   %thead
     %tr
-      %td='id'
-      %td='id habitacion rentada'
-      %td='id renta'
-      %td='id historico servicio'
-      %td='id empleado'
+      %td='ID'
+      %td='Num de habitación rentada'
+      %td='Num de renta'
+      %td='Num de historico por servicio'
+      %td='Num de empleado'
       %td='Acciones'
   %tbody
     - @servicioh.each do |s|

@@ -1,13 +1,14 @@
-%table
+<h1>Reportes de perdida de robo</h1>
+%table.table.table-striped
   %thead
     %tr
-      %td='id'
+      %td='ID'
       %td='Cantidad'
       %td='Fecha'
-      %td='idServicioLH'
-      %td='idHabitacion'
-      %td='idEmpleado'
-      %td='idMaterial'
+      %td='Servicio de limpieza/habitación'
+      %td='# habitación'
+      %td='# Empleado'
+      %td='# Material'
       %td='Acciones'
   %tbody
     - @reporte.each do |s|
@@ -15,11 +16,11 @@
         %td=s.id
         - if valid_cantidad? (s.cantidad)
           %td=s.cantidad
-        - else 
+        - else
           %td.text-danger=s.cantidad
         - if valid_date?(s.fecha)
           %td=s.fecha
-        - else 
+        - else
           %td.text-danger=s.fecha
         %td=s.id_servicio_limpieza
         %td=s.id_habitacion

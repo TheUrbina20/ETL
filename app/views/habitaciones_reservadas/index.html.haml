@@ -1,10 +1,11 @@
-%table
+<h1>Habitaciones reservadas</h1>
+%table.table.table-striped
   %thead
     %tr
-      %td='id'
-      %td='id habitacion'
-      %td='id reservacion'
-
+      %td='ID'
+      %td='Num de reservación'
+      %td='Num de habitación'
+     
   %tbody
     - @habitacionesreservadas.each do |habitacion|
       %tr

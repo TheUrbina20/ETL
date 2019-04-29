@@ -1,12 +1,14 @@
-%table
+
+<h1>Detalles de factura del hotel</h1>
+%table.table.table-striped
   %thead
     %tr
-      %td='id'
-      %td='cantidad'
-      %td='total'
-      %td='id_factura'
-      %td='id servicio a hotel'
-      %td='Acción'
+      %td='ID'
+      %td='Cantidad'
+      %td='Total'
+      %td='Num de factura'
+      %td='Num de servicio a hotel'
+      %td='Acciones'
 
   %tbody
     - @detalles_de_factura_hotel.each do |detalle_factura|

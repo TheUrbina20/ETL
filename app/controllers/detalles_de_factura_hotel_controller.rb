@@ -1,7 +1,7 @@
 class DetallesDeFacturaHotelController < ApplicationController
   def index
     initialize_detalle_factura_restaurante
-    @detalles_de_factura_hotel = DetalleDeFacturaHotel.using(:dwh_t).all
+    @detalles_de_factura_hotel = DetalleDeFacturaHotel.using(:dwh_t).where(error: true)
   end
 
   def edit
@@ -37,6 +37,12 @@ class DetallesDeFacturaHotelController < ApplicationController
       detalles_de_factura.total = detalles_de_factura_r.Total
       detalles_de_factura.id_factura = detalles_de_factura_r.idFactura
       detalles_de_factura.id_servicio_hotel = detalles_de_factura_r.idServicioH
+      unless valid_number?(detalles_de_factura.cantidad)
+        detalles_de_factura.error = true
+      end
+      unless valid_price?(detalles_de_factura.total)
+        detalle_de_factura.error = true
+      end
       detalles_de_factura.save!
     end
   end

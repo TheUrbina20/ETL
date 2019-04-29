@@ -1,15 +1,16 @@
-%table
+<h1>Materiales por recibo</h1>
+%table.table.table-striped
   %thead
     %tr
-      %td='id'
-      %td='id sistema'
-      %td='sistema'
-      %td='id material'
-      %td='id recibo'
-      %td='cantidad'
-      %td='tipo paquete'
-      %td='fecha caducidad'
-      %td='Acción'
+      %td='ID'
+      %td='Num sistema'
+      %td='Sistema'
+      %td='Num de material'
+      %td='Num de recibo'
+      %td='Cantidad'
+      %td='Tipo de paquete'
+      %td='Fecha caducidad'
+      %td='Acciones'
 
   %tbody
     - @materiales_por_recibo.each do |material_por_recibo|

@@ -1,8 +1,9 @@
-%table
+<h1>Habitaciones</h1>
+%table.table.table-striped
   %thead
     %tr
-      %td='id'
-      %td='Tipo'
+      %td='ID'
+      %td='Tipo de habitación'
       %td='Estado'
       %td='Acciones'
   %tbody
@@ -12,7 +13,7 @@
         %td=habitacion.tipo_habitacion
         - if valid_activah?(habitacion.estado)
           %td=habitacion.estado
-        - else 
+        - else
           %td.text-danger=habitacion.estado
         %td
           = link_to edit_habitacione_path(habitacion) do
@@ -21,3 +22,4 @@
             = fa_icon 'trash'
     %tr='Total'
     %tr=@habitaciones.count
+

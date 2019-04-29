@@ -1,17 +1,14 @@
-%h1 Bienvenido
-%a
-  = link_to 'Cerrar sesión', destroy_user_session_path, method: :delete
-
-%table
+<h1>Facturas del hotel</h1>
+%table.table.table-striped
   %thead
     %tr
-      %td='id'
-      %td='id sistema'
-      %td='id cliente'
-      %td='total'
-      %td='fecha de emision'
-      %td='tipo pago'
-      %td='id renta'
+      %td='ID'
+      %td='Num de sistema'
+      %td='Num de cliente'
+      %td='Total'
+      %td='Fecha de emisión'
+      %td='Tipo de pago'
+      %td='Num de renta'
       %td='Sistema'
       %td='Acciones'
   %tbody
