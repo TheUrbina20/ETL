@@ -2,7 +2,7 @@
   color: $red;
 }
 
-.barranav .navbar-brand {
+barranav .navbar-brand {
   padding: 0px;
   margin-left: -10px;
 }
@@ -10,7 +10,7 @@
   height: auto;
   width: 86px;
   margin-top: -19px;
-  
+
 } 
 
 .barranav .nav >li >a {
@@ -27,4 +27,4 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-}
+} 

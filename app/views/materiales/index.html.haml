@@ -1,15 +1,16 @@
 
-%table
+<h1>Materiales</h1>
+%table.table.table-striped
   %thead
     %tr
-      %td='id'
-      %td='id sistems'
-      %td='sistema'
-      %td='nombre'
-      %td='stock minimo'
-      %td='stock maximo'
-      %td='cantidad en stock'
-      %td='acciones'
+      %td='ID'
+      %td='Num sistema'
+      %td='Sistema'
+      %td='Nombre'
+      %td='Stock minimo'
+      %td='Stock maximo'
+      %td='Cantidad en stock'
+      %td='Acciones'
   %tbody
     - @materiales.each do |material|
       %tr

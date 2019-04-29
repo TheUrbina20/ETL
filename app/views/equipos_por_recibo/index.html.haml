@@ -1,14 +1,15 @@
-%table
+<h1>Equipos por recibo</h1>
+%table.table.table-striped
   %thead
     %tr
-      %td='id'
-      %td='id sistema'
+      %td='ID'
+      %td='Num de sistema'
       %td='sistema'
-      %td='id recibo'
-      %td='n serie'
-      %td='id equipo'
-      %td='garantia'
-      %td='Acción'
+      %td='Num de recibo'
+      %td='Num de serie'
+      %td='Num de equipo'
+      %td='Garantia'
+      %td='Acciones'
 
   %tbody
     - @equipos_por_recibo.each do |equipo_por_recibo|

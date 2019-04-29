@@ -1,16 +1,17 @@
-%table
+
+<h1>Solicitudes de mantenimiento</h1>
+%table.table.table-striped
   %thead
     %tr
-      %td='id'
-      %td='id_empleado'
-      %td='id_equipo_por_recibo'
-      %td='f_solicitud'
-      %td='f_recibo'
-      %td='estado'
-      %td='motivo'
-      %td='tipo'
+      %td='ID'
+      %td='Num de empleado'
+      %td='Num equipo por recibo'
+      %td='Fecha de solicitud'
+      %td='Fecha de recibo'
+      %td='Estado'
+      %td='Motivo'
+      %td='Tipo'
       %td='Acciones'
-
   %tbody
     - @solicitudes.each do |solicitud|
       %tr
@@ -30,5 +31,6 @@
 
     %tr='Total'
     %tr=@solicitudes.count
+
 
 

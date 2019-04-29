@@ -1,11 +1,12 @@
-%table
+<h1>Proveedores</h1>
+%table.table.table-striped
   %thead
     %tr
-      %td='id'
-      %td='id sistema'
-      %td='sistema'
+      %td='ID'
+      %td='Num de sistema'
+      %td='Sistema'
       %td='Nombre'
-      %td='id_empresa'
+      %td='Num de empresa'
       %td='Acciones'
   %tbody
     - @proveedores.each do |proveedor|

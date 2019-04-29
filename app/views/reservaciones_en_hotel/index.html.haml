@@ -1,13 +1,14 @@
-%table
+<h1>Reservaciones en hotel</h1>
+%table.table.table-striped
   %thead
     %tr
-      %td='id'
-      %td='f_entrada'
-      %td='f_salida'
-      %td= 'Fecha Reservacion'
-      %td= 'Estado'
-      %td= 'id cliente'
-      %td= 'id empleado'
+      %td='ID'
+      %td='Fecha de entrada'
+      %td='Fecha de salida'
+      %td='Fecha de reservación'
+      %td='Estado'
+      %td='Num de Cliente'
+      %td='Num de Empleado'
       %td='Acciones'
   %tbody
     - @reservaciones.each do |reservacion|

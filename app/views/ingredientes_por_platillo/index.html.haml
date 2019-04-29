@@ -1,11 +1,12 @@
-%table
+<h1>Ingredientes por platillo</h1>
+%table.table.table-striped
   %thead
     %tr
-      %td='id'
-      %td='id_bebida'
-      %td='id_producto'
-      %td='id_tipo_medida'
-      %td='cantidad'
+      %td='ID'
+      %td='Num de platillo'
+      %td='Num de producto'
+      %td='Num tipo de medida'
+      %td='Cantidad'
       %td='Acciones'
   %tbody
     - @ingredientes_por_platillo.each do |ingrediente_por_platillo|

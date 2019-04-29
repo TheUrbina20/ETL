@@ -1,16 +1,14 @@
-%h1 Bienvenido
-%a
-  = link_to 'Cerrar sesión', destroy_user_session_path, method: :delete
 
-%table
+<h1>Empleados</h1>
+%table.table.table-striped
   %thead
     %tr
-      %td='id'
+      %td='ID'
       %td='Nombre'
-      %td='F.nacimiento'
-      %td='C.electronico'
-      %td='N.telefono'
-      %td='F.Entrada'
+      %td='Fecha de nacimiento'
+      %td='Correo electronico'
+      %td='Num de telefono'
+      %td='Fecha de Entrada'
       %td='Genero'
       %td='RFC'
       %td='Baja'

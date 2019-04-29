@@ -1,10 +1,11 @@
-%table
+<h1>Servicios a domicilio</h1>
+%table.table.table-striped
   %thead
     %tr
-      %td='id'
-      %td='id_habitación'
-      %td='fecha'
-      %td='acciones'
+      %td='ID'
+      %td='Num de habitación'
+      %td='Fecha'
+      %td='Acciones'
   %tbody
     - @servicios.each do |servicio|
       %tr
