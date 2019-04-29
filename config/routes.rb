@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :user, controllers: { registrations: "registrations" }
+  devise_for :users, controllers: { registrations: "registrations" }
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'landing_page#index'
   resources :accidentes_laborales
@@ -18,8 +18,8 @@ Rails.application.routes.draw do
   resources :detalles_de_factura_restaurante
   resources :detalles_de_factura_hotel
   resources :dhabitaciones
-  resources :dmantenimiento_equipos
-  resources :dmantenimiento_habitaciones
+  #resources :dmantenimiento_equipos
+  #resources :dmantenimiento_habitaciones
   resources :equipos
   resources :equipo_habitaciones
   resources :equipos_por_pedido
@@ -53,7 +53,6 @@ Rails.application.routes.draw do
   resources :postulantes
   resources :programas_capacitacion
   resources :proveedores
-  resources :postulantes
   resources :recibos_de_compras
   resources :rentas
   resources :reservaciones_en_hotel

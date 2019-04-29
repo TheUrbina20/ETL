@@ -3,16 +3,24 @@
   %thead
     %tr
       %td='ID'
+      %td='Num de sistema'
+      %td='Sistema'
       %td='Num pedido de compra'
-      %td='Fecha de generación'
       %td='Fecha entrega'
+      %td='Acciones'
   %tbody
     - @recibos.each do |recibo|
       %tr
         %td=recibo.id
+        %td=recibo.id_sistema
+        %td=recibo.sistema
         %td=recibo.id_pedido_compra
-        %td=recibo.f_generacion
         %td=recibo.f_entrega
+        %td
+          = link_to edit_recibos_de_compra_path(recibo) do
+            = fa_icon 'pencil'
+          = link_to recibos_de_compras_path(recibo), method: :delete, data: {confirm: '¿Estás seguro?'} do
+            = fa_icon 'trash'
     %tr='Total'
     %tr=@recibos.count
 

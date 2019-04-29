@@ -1,7 +1,34 @@
 class EquiposController < ApplicationController
   def index
     initialize_equipos
-    @equipos = Equipo.using(:dwh_t).all
+    if current_user.admin?
+      @equipos = Equipo.using(:dwh_t).all
+    elsif current_user.hotel?
+      @equipos = Equipo.using(:dwh_t).where(sistema: 'H')
+    elsif current_user.rrhh?
+      @equipos = Equipo.using(:dwh_t).where(sistema: 'RR')
+    else
+      @equipos = Equipo.using(:dwh_t).where(sistema: 'R')
+    end
+  end
+
+  def edit
+    @equipo = Equipo.using(:dwh_t).find(params[:id])
+  end
+
+  def update
+    @equipo = Equipo.using(:dwh_t).find(params[:id])
+    if @equipo.update(equipo_params)
+      flash[:notice] = 'Actualizado'
+      redirect_to equipos_path
+    else
+      flash.now[:alert] = 'Error actualizando'
+      render 'edit'
+    end
+  end
+
+  def equipo_params
+    params.require(:equipo).permit(:id_sistema, :sistema, :nombre, :modelo)
   end
 
   private

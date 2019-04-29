@@ -1,7 +1,15 @@
 class PedidosPorEmpleadoController < ApplicationController
   def index
     initialize_pedidos_por_empleados
-    @ordenes_por_empleados = PedidoPorEmpleado.using(:dwh_t).all
+    if current_user.admin?
+      @ordenes_por_empleados = PedidoPorEmpleado.using(:dwh_t).all
+    elsif current_user.hotel?
+      @ordenes_por_empleados = PedidoPorEmpleado.using(:dwh_t).where(sistema: 'H')
+    elsif current_user.rrhh?
+      @ordenes_por_empleados = PedidoPorEmpleado.using(:dwh_t).where(sistema: 'RR')
+    else
+      @ordenes_por_empleados = PedidoPorEmpleado.using(:dwh_t).where(sistema: 'R')
+    end
   end
 
   def edit

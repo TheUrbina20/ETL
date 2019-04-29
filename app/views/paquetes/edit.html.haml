@@ -1,7 +1,6 @@
 = simple_form_for @paquete, url: paquete_path, method: :put do |f|
     = f.input :id
-    = f.input :idPaquete
-    = f.input :Nombre
-    = f.input :Descripcion
-    = f.input :PrecioDia
+    = f.input :nombre
+    = f.input :descripcion
+    = f.input :precio_por_dia
     = f.button :submit, class: 'btn btn-primary'

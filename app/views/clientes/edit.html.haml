@@ -1,0 +1,6 @@
+= simple_form_for @cliente, url:  cliente_path, method: :put do |f|
+    = f.input :id
+    = f.input :nombre
+    = f.input :correo
+    = f.input :telefono
+    = f.button :submit, class: 'btn btn-primary'

@@ -3,8 +3,7 @@
   %thead
     %tr
       %td='ID'
-      %td='Num de Servicio por habitación'
-      %td='Num de habitación reservada'
+      %td='Num de habitación rentada'
       %td='Num de renta'
       %td='Num de historico por servicio'
       %td='Num de empleado'
@@ -13,11 +12,10 @@
     - @servicioh.each do |s|
       %tr
         %td=s.id
-        %td=s.idServicioH
-        %td=s.idHabitacionR
-        %td=s.idRenta
-        %td=s.idHistoricoS
-        %td=s.idEmpleado
+        %td=s.id_habitacion_rentada
+        %td=s.id_renta
+        %td=s.id_historico_servicio
+        %td=s.id_empleado
         %td
           = link_to edit_servicio_habitacione_path(s) do
             = fa_icon 'pencil'

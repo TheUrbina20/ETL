@@ -1,7 +1,15 @@
 class MaterialesPorPedidoController < ApplicationController
   def index
     initialize_materiales_por_pedido
-    @materiales_por_pedido = MaterialPorPedido.using(:dwh_t).all
+    if current_user.admin?
+      @materiales_por_pedido = MaterialPorPedido.using(:dwh_t).all
+    elsif current_user.hotel?
+      @materiales_por_pedido = MaterialPorPedido.using(:dwh_t).where(sistema: 'H')
+    elsif current_user.rrhh?
+      @materiales_por_pedido = MaterialPorPedido.using(:dwh_t).where(sistema: 'RR')
+    else
+      @materiales_por_pedido = MaterialPorPedido.using(:dwh_t).where(sistema: 'R')
+    end
   end
 
   def edit

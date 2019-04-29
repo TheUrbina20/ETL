@@ -6,7 +6,6 @@
       %td='Num de reservación'
       %td='Num de mesa'
       %td='Estado'
-      %td='Acciones'
   %tbody
     - @mesas_por_reservacion.each do |mesa_por_reservacion|
       %tr
@@ -14,8 +13,3 @@
         %td=mesa_por_reservacion.id_reservacion
         %td=mesa_por_reservacion.id_mesa
         %td=mesa_por_reservacion.estado
-        %td
-          = link_to edit_mesas_por_reservacion_path(mesa_por_reservacion) do
-            = fa_icon 'pencil'
-          = link_to mesas_por_reservacion_path(mesa_por_reservacion), method: :delete, data: {confirm: '¿Estás seguro?'} do
-            = fa_icon 'trash'

@@ -1,6 +1,5 @@
 = simple_form_for @dhabitaciones, url: dhabitacione_path, method: :put do |f|
     = f.input :id
-    = f.input :idTipo
-    = f.input :Nombre
-    = f.input :Precio
+    = f.input :nombre
+    = f.input :precio
     = f.button :submit, class: 'btn btn-primary'

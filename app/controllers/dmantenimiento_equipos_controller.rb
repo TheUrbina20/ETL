@@ -1,11 +1,11 @@
 class DmantenimientoEquiposController < ApplicationController
     def index
-        #initialize_mantenimientoe
+        initialize_mantenimiento
         @mantenimientoe = DmantenimientoEquipo.using(:dwh_t).all
     end
 
     def edit
-      @mantenimientoe = DmantenimientoEquipo.using(:dwh_t).find(params[:id]) 
+      @mantenimientoe = DmantenimientoEquipo.using(:dwh_t).find(params[:id])
     end
 
     def update
@@ -14,7 +14,7 @@ class DmantenimientoEquiposController < ApplicationController
       if @mantenimientoe.update(mantenimientos_params)
         flash[:notice] = 'Actualizado Correctamente'
         redirect_to dmantenimiento_equipos_path
-      else 
+      else
         flash.now[:alert] = 'Error actualizando'
         render 'edit'
       end
@@ -26,7 +26,7 @@ class DmantenimientoEquiposController < ApplicationController
 
   private
 
-  def initialize_mantenimientoe
+  def initialize_mantenimiento
     DmantenimientoEquipo.using(:dwh_t).delete_all
 
     mantenimientos = DmantenimientoEquipo.using(:restaurant).all
@@ -35,8 +35,8 @@ class DmantenimientoEquiposController < ApplicationController
 
     mantenimientos.each do |ma|
       mantenimiento = DmantenimientoEquipo.using(:dwh_t).new()
-      mantenimiento.idDetalle = ma.idDetalle	
-      mantenimiento.FechaInicio = ma.FechaInicio	
+      mantenimiento.idDetalle = ma.idDetalle
+      mantenimiento.FechaInicio = ma.FechaInicio
       mantenimiento.FechaTermino = ma.FechaTermino
       mantenimiento.idEquipoH = ma.idEquipoH
       mantenimiento.idMantenimientoE = ma.idMantenimientoE

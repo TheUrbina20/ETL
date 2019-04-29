@@ -5,13 +5,19 @@
       %td='ID'
       %td='Num de Empleado'
       %td='Motivo'
+      %td='Acciones'
 
   %tbody
-    - @bajas_por_empleado.each do |area|
+    - @bajas_por_empleado.each do |baja_empleado|
       %tr
-        %td=area.id
-        %td=area.id_empleado
-        %td=area.motivo
+        %td=baja_empleado.id
+        %td=baja_empleado.id_empleado
+        %td=baja_empleado.motivo
+        %td
+          = link_to edit_bajas_empleado_path(baja_empleado) do
+            = fa_icon 'pencil'
+          = link_to bajas_empleado_path(baja_empleado), method: :delete, data: {confirm: '¿Estás seguro?'} do
+            = fa_icon 'trash'
 
     %tr='Total'
     %tr=@bajas_por_empleado.count

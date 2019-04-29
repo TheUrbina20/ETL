@@ -5,7 +5,7 @@ class HistoricoServiciosController < ApplicationController
     end
 
     def edit
-      @historicos = HistoricoServicio.using(:dwh_t).find(params[:id]) 
+      @historicos = HistoricoServicio.using(:dwh_t).find(params[:id])
     end
 
     def update
@@ -14,14 +14,14 @@ class HistoricoServiciosController < ApplicationController
       if @historicos.update(hservicios_params)
         flash[:notice] = 'Actualizado Correctamente'
         redirect_to historico_servicios_path
-      else 
+      else
         flash.now[:alert] = 'Error actualizando'
         render 'edit'
       end
     end
 
     def hservicios_params
-      params.require(:historico_servicio).permit(:id, :idHistorico, :Precio, :FechaInicio, :FechaTermino, :idServicio)
+      params.require(:historico_servicio).permit(:id,:precio, :f_inicio, :f_termino, :id_servicio)
     end
 
   private
@@ -35,11 +35,11 @@ class HistoricoServiciosController < ApplicationController
 
     historicos.each do |se|
       historico = HistoricoServicio.using(:dwh_t).new()
-      historico.idHistorico = se.idHistorico	
-      historico.Precio = se.Precio	
-      historico.FechaInicio = se.FechaInicio
-      historico.FechaTermino = se.FechaTermino
-      historico.idServicio = se.idServicio
+      historico.id = se.idHistorico
+      historico.precio = se.Precio
+      historico.f_inicio = se.FechaInicio
+      historico.f_termino = se.FechaTermino
+      historico.id_servicio = se.idServicio
       historico.save!
     end
   end

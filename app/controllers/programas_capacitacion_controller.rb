@@ -5,7 +5,7 @@ class ProgramasCapacitacionController < ApplicationController
   end
 
   def edit
-    @programas = ProgramaCapacitacion.using(:dwh_t).find(params[:id]) 
+    @programas = ProgramaCapacitacion.using(:dwh_t).find(params[:id])
   end
 
   def update
@@ -14,7 +14,7 @@ class ProgramasCapacitacionController < ApplicationController
     if @programas.update(programas_params)
       flash[:notice] = 'Actualizado Correctamente'
       redirect_to programas_capacitacion_index_path
-    else 
+    else
       flash.now[:alert] = 'Error actualizando'
       render 'edit'
     end
@@ -31,7 +31,7 @@ class ProgramasCapacitacionController < ApplicationController
     programas = ProgramaCapacitacion.using(:rrhh).all
 
     programas.each do |programa_r|
-      programa = ProgramaCapacitacion.using(:dwh_t).new()
+      programa = ProgramaCapacitacion.using(:dwh_t).new
 
       programa.id = programa_r.id
       programa.id_empresa = programa_r.id_empresa
@@ -40,6 +40,5 @@ class ProgramasCapacitacionController < ApplicationController
       programa.duracion = programa_r.duracion
       programa.save!
     end
-
   end
 end

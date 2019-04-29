@@ -1,6 +1,6 @@
 class TiposMedidasController < ApplicationController
   def index
-    #initialize_tipos_medidas
+    initialize_tipos_medidas
     @tipos_medidas = TipoMedida.using(:dwh_t).all
   end
 
@@ -15,7 +15,7 @@ class TiposMedidasController < ApplicationController
       flash[:notice] = 'Actualizado correctamente'
       redirect_to tipos_medidas_path
     else
-      flash[:alert] = 'Error actualizando'
+      flash.now[:alert] = 'Error actualizando'
       render 'edit'
     end
   end

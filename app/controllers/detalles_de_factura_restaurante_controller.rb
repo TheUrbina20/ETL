@@ -4,6 +4,25 @@ class DetallesDeFacturaRestauranteController < ApplicationController
     @detalles_de_factura_restaurante = DetalleDeFacturaRestaurante.using(:dwh_t).all
   end
 
+  def edit
+    @detalle_de_factura_restaurante = DetalleDeFacturaRestaurante.using(:dwh_t).find(params[:id])
+  end
+
+  def update
+    @detalle_de_factura_restaurante = DetalleDeFacturaRestaurante.using(:dwh_t).find(params[:id])
+    if @detalle_de_factura_restaurante.update(detalle_de_factura_params)
+      flash[:notice] = 'Actualizado'
+      redirect_to detalles_de_factura_restaurante_index_path
+    else
+      flash.now[:alert] = 'Error actualizando'
+      render 'edit'
+    end
+  end
+
+  def detalle_de_factura_params
+    params.require(:detalle_de_factura_restaurante).permit(:id_factura, :id_comanda, :fecha_emision, :total)
+  end
+
   def initialize_detalle_factura_restaurante
     DetalleDeFacturaRestaurante.using(:dwh_t).delete_all
 

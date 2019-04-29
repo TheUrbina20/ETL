@@ -3,21 +3,13 @@
   %thead
     %tr
       %td='ID'
-      %td='Num de paquete vendido por renta'
       %td='Num de paquete'
       %td='Num de renta'
       %td='Num de empleado'
-      %td='Acciones'
   %tbody
     - @paquetevr.each do |pvr|
       %tr
         %td=pvr.id
-        %td=pvr.idpvr
-        %td=pvr.idPaquete
-        %td=pvr.idRenta
-        %td=pvr.idEmpleado
-        %td
-          = link_to edit_paquetes_vendidos_renta_path(pvr) do
-            = fa_icon 'pencil'
-          = link_to paquetes_vendidos_renta_path(pvr), method: :delete, data: {confirm: '¿Estás seguro?'} do
-            = fa_icon 'trash'
+        %td=pvr.id_paquete
+        %td=pvr.id_renta
+        %td=pvr.id_empleado

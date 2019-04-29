@@ -7,6 +7,7 @@
       %td='Tipo'
       %td='Fecha'
       %td='Motivo'
+      %td='Acciones'
 
   %tbody
     - @bajas.each do |baja|
@@ -16,6 +17,13 @@
         %td=baja.tipo
         %td=baja.fecha
         %td=baja.motivo
+        %td
+          = link_to edit_baja_path(baja) do
+            = fa_icon 'pencil'
+          = link_to bajas_path(baja), method: :delete, data: {confirm: '¿Estás seguro?'} do
+            = fa_icon 'trash'
+
+
 
     %tr='Total'
     %tr=@bajas.count

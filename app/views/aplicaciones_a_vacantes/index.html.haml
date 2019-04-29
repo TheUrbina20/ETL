@@ -2,15 +2,29 @@
 %table.table.table-striped
   %thead
     %tr
+<<<<<<< HEAD
       %td='ID'
       %td='Empleado'
       %td='Vacante'
+=======
+      %td='id'
+      %td='id_empleado'
+      %td='id_vacante'
+      %td='fecha aplicacion'
+>>>>>>> 12cfce316e042f292b4e0680c3fcb32c3d4aa82a
   %tbody
     - @aplicaciones.each do |aplicacion|
       %tr
         %td=aplicacion.id
         %td=aplicacion.id_postulante
         %td=aplicacion.id_vacante
+        %td=aplicacion.id_empleado
+        %td=aplicacion.f_aplicacion
+        %td
+          = link_to edit_aplicaciones_a_vacante_path(aplicacion) do
+            = fa_icon 'pencil'
+          = link_to aplicaciones_a_vacantes_path(aplicacion), method: :delete, data: {confirm: '¿Estás seguro?'} do
+            = fa_icon 'trash'
 
     %tr='Total'
     %tr=@aplicaciones.count

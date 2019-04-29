@@ -3,23 +3,23 @@
   %thead
     %tr
       %td='ID'
-      %td='Fecha de ingreso'
+      %td='Fecha de entrada'
       %td='Fecha de salida'
-      %td= 'Fechade reservación'
-      %td= 'Estado'
-      %td= 'Num de Cliente'
-      %td= 'Num de Empleado'
+      %td='Fecha de reservación'
+      %td='Estado'
+      %td='Num de Cliente'
+      %td='Num de Empleado'
       %td='Acciones'
   %tbody
     - @reservaciones.each do |reservacion|
       %tr
         %td=reservacion.id
-        %td=reservacion.FechaIn
-        %td=reservacion.FechaOut
-        %td=reservacion.FechaReserv
-        %td=reservacion.Estado
-        %td=reservacion.idCliente
-        %td=reservacion.idEmpleado
+        %td=reservacion.f_entrada
+        %td=reservacion.f_salida
+        %td=reservacion.f_reservacion
+        %td=reservacion.estado
+        %td=reservacion.id_cliente
+        %td=reservacion.id_empleado
         %td
           = link_to edit_reservaciones_en_hotel_path(reservacion) do
             = fa_icon 'pencil'

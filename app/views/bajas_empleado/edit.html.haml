@@ -1,0 +1,5 @@
+= simple_form_for @baja_empleado, url:  bajas_empleado_path, method: :put do |f|
+    = f.input :id
+    = f.input :id_empleado
+    = f.input :motivo
+    = f.button :submit, class: 'btn btn-primary'
