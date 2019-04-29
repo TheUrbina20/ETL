@@ -16,8 +16,14 @@
         %td=renta.id_cliente
         %td=renta.id_reservacion
         %td=renta.id_empleado
-        %td=renta.f_entrada
-        %td=renta.f_salida
+        - if valid_date?(renta.f_entrada)
+          %td=renta.f_entrada
+        - else 
+          %td.text-danger=renta.f_entrada 
+        - if valid_date?(renta.f_salida)
+          %td=renta.f_salida
+        - else 
+          %td.text-danger=renta.f_salida
         %td
           = link_to edit_renta_path(renta) do
             = fa_icon 'pencil'

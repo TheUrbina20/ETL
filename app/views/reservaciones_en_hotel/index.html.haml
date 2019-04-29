@@ -14,10 +14,22 @@
     - @reservaciones.each do |reservacion|
       %tr
         %td=reservacion.id
-        %td=reservacion.f_entrada
-        %td=reservacion.f_salida
-        %td=reservacion.f_reservacion
-        %td=reservacion.estado
+        - if valid_date?(reservacion.f_entrada.to_s)
+          %td=reservacion.f_entrada
+        - else
+          %td.text-danger=reservacion.f_entrada
+        - if valid_date?(reservacion.f_salida)
+          %td=reservacion.f_salida
+        - else
+          %td.text-danger=reservacion.f_salida
+        - if valid_date?(reservacion.f_reservacion)
+          %td=reservacion.f_reservacion
+        - else
+          %td.text-danger=reservacion.f_reservacion
+        - if valid_status? (reservacion.estado)
+          %td=reservacion.estado
+        - else
+          %td.text-danger=reservacion.estado
         %td=reservacion.id_cliente
         %td=reservacion.id_empleado
         %td

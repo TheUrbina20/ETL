@@ -10,7 +10,10 @@
     - @mantenimientoe.each do |ma|
       %tr
         %td=ma.id
-        %td=ma.tipo
+        - if valid_tipomantenimietno (ma.tipo)
+          %td=ma.tipo
+        - else
+          %td.text-danger=ma.tipo
         %td
           = link_to edit_mantenimiento_path(ma) do
             = fa_icon 'pencil'

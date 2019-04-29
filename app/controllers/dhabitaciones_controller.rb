@@ -21,7 +21,7 @@ class DhabitacionesController < ApplicationController
     end
 
     def dhabitaciones_params
-      params.require(:dhabitacion).permit(:id, :idTipo, :Nombre, :Precio)
+      params.require(:dhabitacion).permit(:id, :nombre, :precio)
     end
 
     def initialize_dhabitaciones
@@ -36,7 +36,7 @@ class DhabitacionesController < ApplicationController
           habitacion_t.id = pa.idTipo
           habitacion_t.nombre = pa.Nombre
           habitacion_t.precio = pa.Precio
-          unless valid_name?(habitacion_t.nombre)
+          unless valid_words?(habitacion_t.nombre)
             habitacion_t.error = true
           end
           unless valid_price?(habitacion_t.precio)

@@ -12,7 +12,10 @@
     - @materialgh.each do |ma|
       %tr
         %td=ma.id
-        %td=ma.cantidad
+        - if valid_cantidad? (ma.cantidad)
+          %td=ma.cantidad
+        - else
+          %td.text-danger=ma.cantidad
         %td=ma.id_material_por_recibo
         %td=ma.id_servicio_limpieza
         %td

@@ -5,17 +5,23 @@
       %td='ID'
       %td='Cantidad'
       %td='Fecha'
-      %td='Num Servicio de limpieza por habitación'
-      %td='Num de habitación'
-      %td='Num de Empleado'
-      %td='Num de Material'
+      %td='Servicio de limpieza/habitación'
+      %td='# habitación'
+      %td='# Empleado'
+      %td='# Material'
       %td='Acciones'
   %tbody
     - @reporte.each do |s|
       %tr
         %td=s.id
-        %td=s.cantidad
-        %td=s.fecha
+        - if valid_cantidad? (s.cantidad)
+          %td=s.cantidad
+        - else
+          %td.text-danger=s.cantidad
+        - if valid_date?(s.fecha)
+          %td=s.fecha
+        - else
+          %td.text-danger=s.fecha
         %td=s.id_servicio_limpieza
         %td=s.id_habitacion
         %td=s.id_empleado

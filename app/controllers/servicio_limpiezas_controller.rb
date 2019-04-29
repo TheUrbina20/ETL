@@ -21,7 +21,7 @@ class ServicioLimpiezasController < ApplicationController
     end
 
     def serviciosl_params
-      params.require(:servicio_limpieza).permit(:id, :idServicioL, :Nombre)
+      params.require(:servicio_limpieza).permit(:id, :nombre)
     end
  private
     def initialize_serviciosl

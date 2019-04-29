@@ -45,12 +45,12 @@ class EquiposPorReciboController < ApplicationController
       equipo_por_recibo.id_recibo_compra = equipo_por_recibio_r.id_recibo_compra
       equipo_por_recibo.n_serie = equipo_por_recibio_r.n_serie
       equipo_por_recibo.f_finalizacion_garantia = equipo_por_recibio_r.f_finalizacion_garantia
-      unless valid_name?(equipo_por_recibio.n_serie)
-        equipo_por_recibio.error = true
+      unless valid_name?(equipo_por_recibo.n_serie)
+        equipo_por_recibo.error = true
       end
 
-      unless valid_date?(equipo_por_recibio.f_finalizacion_garantia)
-        equipo_por_recibio.error = true
+      unless valid_date?(equipo_por_recibo.f_finalizacion_garantia)
+        equipo_por_recibo.error = true
       end
       equipo_por_recibo.sistema = 'RR'
       equipo_por_recibo.save!
@@ -65,7 +65,7 @@ class EquiposPorReciboController < ApplicationController
       equipo_por_recibo.id_equipo = equipo_por_recibo_r[:id_equipo_c]
       equipo_por_recibo.id_recibo_compra = equipo_por_recibo_r[:id_rec_rm]
       equipo_por_recibo.sistema = 'R'
-      equipo_por_recibio.error = true
+      equipo_por_recibo.error = true
       equipo_por_recibo.save!
     end
 

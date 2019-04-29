@@ -1,5 +1,5 @@
 <h1>Asignación de materiales</h1>
-  %table.table.table-striped
+%table.table.table-striped
   %thead
     %tr
       %td='ID'
@@ -13,7 +13,10 @@
     - @asignacionm.each do |ma|
       %tr
         %td=ma.id
-        %td=ma.cantidad
+        - if valid_cantidad? (ma.cantidad)
+          %td=ma.cantidad
+        - else
+          %td.text-danger=ma.cantidad
         %td=ma.id_habitacion
         %td=ma.id_material
         %td

@@ -21,7 +21,7 @@ class PaquetesController < ApplicationController
     end
 
     def paquetes_params
-      params.require(:paquete).permit(:id, :idPaquete, :Nombre, :Descripcion, :PrecioDia)
+      params.require(:paquete).permit(:id, :nombre, :descripcion, :precio_por_dia)
     end
 
     def initialize_paquetes

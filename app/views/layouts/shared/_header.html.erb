@@ -42,7 +42,7 @@
                 <%= link_to('Facturas restaurante', facturas_restaurante_index_path) if current_user&.can_manage_restaurant? %>
                 <%= link_to('Facturas Hotel', facturas_hotel_index_path) if current_user&.can_manage_hotel? %>
                 <%= link_to('Habitaciones', habitaciones_path) if current_user&.can_manage_hotel? %>
-                <%= link_to('Habitaciones_rentadas', habitaciones_rentadas_path) if current_user&.can_manage_hotel? %>
+                <%= link_to('Habitaciones rentadas', habitaciones_rentadas_path) if current_user&.can_manage_hotel? %>
                 <%= link_to('Habitaciones reservadas', habitaciones_reservadas_path) if current_user&.can_manage_hotel? %>
                 <%= link_to('Historial de servicios', historico_servicios_path) if current_user&.can_manage_hotel? %>
                 <%= link_to('Ingredientes', ingredientes_path) if current_user&.can_manage_restaurant? %>

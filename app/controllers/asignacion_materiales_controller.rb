@@ -21,7 +21,7 @@ class AsignacionMaterialesController < ApplicationController
     end
 
     def asignacion_params
-      params.require(:asignacion_material).permit(:id, :idAsignacion, :Cantidad, :idHabitacion, :idMaterial)
+      params.require(:asignacion_material).permit(:id, :cantidad, :id_habitacion, :id_material)
     end
 
   private

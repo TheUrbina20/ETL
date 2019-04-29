@@ -36,7 +36,7 @@ class ReservacionesEnRestauranteController < ApplicationController
       reservacion_en_restaurante.hora = reservacion_en_restaurante_r[:hora]
       reservacion_en_restaurante.id_cliente = reservacion_en_restaurante_r[:id_cliente]
       reservacion_en_restaurante.id_empleado = reservacion_en_restaurante_r[:id_empleado]
-      unless valid_date(reservacion_en_restaurante.f_reservacion)
+      unless valid_date?(reservacion_en_restaurante.f_reservacion)
         reservacion_en_restaurante.error = true
       end
       reservacion_en_restaurante.save!
