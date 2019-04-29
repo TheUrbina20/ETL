@@ -1,7 +1,7 @@
 class EmpresasController < ApplicationController
   def index
     initialice_empresas
-    @empresas = Empresa.using(:dwh_t).all
+    @empresas = Empresa.using(:dwh_t).where(error: true)
   end
 
   def edit
@@ -36,6 +36,9 @@ class EmpresasController < ApplicationController
 
       empresa.id = empresa_r.id
       empresa.nombre = empresa_r.nombre
+      unless valid_name?(empresa.nombre)
+        empresa.error = true
+      end
       empresa.save!
     end
   end

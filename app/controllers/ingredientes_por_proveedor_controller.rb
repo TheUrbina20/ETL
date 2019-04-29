@@ -1,7 +1,7 @@
 class IngredientesPorProveedorController < ApplicationController
   def index
     initialize_ingredientes_por_proveedor
-    @ingredientes_por_proveedor = IngredientePorProveedor.using(:dwh_t).all
+    @ingredientes_por_proveedor = IngredientePorProveedor.using(:dwh_t).where(error: true)
   end
 
   def edit
@@ -35,6 +35,9 @@ class IngredientesPorProveedorController < ApplicationController
       ingrediente_por_proveedor.id_ingrediente = ingrediente_por_proveedor_r[:id_producto]
       ingrediente_por_proveedor.id_proveedor = ingrediente_por_proveedor_r[:id_proveedor]
       ingrediente_por_proveedor.precio = ingrediente_por_proveedor_r[:precio]
+      unless valid_price?(ingrediente_por_proveedor.precio)
+        ingrediente_por_proveedor.error = true
+      end
       ingrediente_por_proveedor.save!
     end
   end

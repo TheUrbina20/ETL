@@ -1,7 +1,7 @@
 class DhabitacionesController < ApplicationController
     def index
         initialize_dhabitaciones
-        @dhabitaciones = Dhabitacion.using(:dwh_t).all
+        @dhabitaciones = Dhabitacion.using(:dwh_t).where(error: true)
     end
 
     def edit
@@ -36,6 +36,12 @@ class DhabitacionesController < ApplicationController
           habitacion_t.id = pa.idTipo
           habitacion_t.nombre = pa.Nombre
           habitacion_t.precio = pa.Precio
+          unless valid_name?(habitacion_t.nombre)
+            habitacion_t.error = true
+          end
+          unless valid_price?(habitacion_t.precio)
+            habitacion_t.error = true
+          end
           habitacion_t.save!
         end
       end

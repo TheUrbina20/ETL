@@ -1,11 +1,11 @@
 class DmantenimientoHabitacionesController < ApplicationController
     def index
         initialize_mantenimientoh
-        @mantenimientoh = DmantenimientoHabitacion.using(:dwh_t).all
+        @mantenimientoh = DmantenimientoHabitacion.using(:dwh_t).where(error: true)
     end
 
     def edit
-      @mantenimientoh = DmantenimientoHabitacion.using(:dwh_t).find(params[:id]) 
+      @mantenimientoh = DmantenimientoHabitacion.using(:dwh_t).find(params[:id])
     end
 
     def update
@@ -14,7 +14,7 @@ class DmantenimientoHabitacionesController < ApplicationController
       if @mantenimientoh.update(mantenimientos_params)
         flash[:notice] = 'Actualizado Correctamente'
         redirect_to dmantenimiento_habitaciones_path
-      else 
+      else
         flash.now[:alert] = 'Error actualizando'
         render 'edit'
       end
@@ -35,13 +35,19 @@ class DmantenimientoHabitacionesController < ApplicationController
 
     mantenimientos.each do |ma|
       mantenimiento = DmantenimientoHabitacion.using(:dwh_t).new()
-      mantenimiento.idDetalle = ma.idDetalle	
-      mantenimiento.Descripcion = ma.Descripcion	
+      mantenimiento.idDetalle = ma.idDetalle
+      mantenimiento.Descripcion = ma.Descripcion
       mantenimiento.FechaInicio = ma.FechaInicio
       mantenimiento.FechaTermino = ma.FechaTermino
       mantenimiento.idHabitacion = ma.idHabitacion
       mantenimiento.idMantenimientoH = ma.idMatenimientoH
       mantenimiento.idEmpleado = ma.idEmpleado
+      unless valid_date?(mantenimiento.FechaInicio)
+        mantenimiento.error = true
+      end
+      unless valid_date?(mantenimiento.FechaTermino)
+        mantenimiento.error = true
+      end
       mantenimiento.save!
     end
   end

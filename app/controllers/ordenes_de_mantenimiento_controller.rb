@@ -2,13 +2,13 @@ class OrdenesDeMantenimientoController < ApplicationController
   def index
     initialize_mantenimientos_por_equipo
     if current_user.admin?
-      @mantenimientos_por_equipo = MantenimientoPorEquipo.using(:dwh_t).all
+      @mantenimientos_por_equipo = MantenimientoPorEquipo.using(:dwh_t).where(error: true)
     elsif current_user.hotel?
-      @mantenimientos_por_equipo = MantenimientoPorEquipo.using(:dwh_t).where(sistema: 'H')
+      @mantenimientos_por_equipo = MantenimientoPorEquipo.using(:dwh_t).where(sistema: 'H', error: true)
     elsif current_user.rrhh?
-      @mantenimientos_por_equipo = MantenimientoPorEquipo.using(:dwh_t).where(sistema: 'RR')
+      @mantenimientos_por_equipo = MantenimientoPorEquipo.using(:dwh_t).where(sistema: 'RR', error: true)
     else
-      @mantenimientos_por_equipo = MantenimientoPorEquipo.using(:dwh_t).where(sistema: 'R')
+      @mantenimientos_por_equipo = MantenimientoPorEquipo.using(:dwh_t).where(sistema: 'R', error: true)
     end
   end
 
@@ -46,6 +46,7 @@ class OrdenesDeMantenimientoController < ApplicationController
       mantenimiento.tipo_mantenimiento = mantenimiento_r.tipo_mantenimiento
       mantenimiento.id_empleado = mantenimiento_r.idEmpleado
       mantenimiento.sistema = 'H'
+      mantenimiento.error = true
       mantenimiento.save!
     end
 
@@ -61,6 +62,15 @@ class OrdenesDeMantenimientoController < ApplicationController
       mantenimiento.tipo_mantenimiento = mantenimiento_r.tipo
       mantenimiento.id_empleado = mantenimiento_r.id_empleado
       mantenimiento.sistema = 'RR'
+      unless valid_date?(mantenimiento.f_inicio)
+        mantenimiento.error = true
+      end
+      unless valid_date?(mantenimiento.f_termino)
+        mantenimiento.error = true
+      end
+      unless valid_name?(mantenimiento.tipo_mantenimiento)
+        mantenimiento.error = true
+      end
       mantenimiento.save!
     end
 
@@ -73,6 +83,7 @@ class OrdenesDeMantenimientoController < ApplicationController
       mantenimiento.id_equipo = mantenimiento_r[:id_equipo_c]
       mantenimiento.tipo_mantenimiento = mantenimiento_r[:Id_cor_mant]
       mantenimiento.sistema = 'R'
+      mantenimiento.error = true
       mantenimiento.save!
     end
 

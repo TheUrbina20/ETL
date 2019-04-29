@@ -2,13 +2,13 @@ class MaterialesPorPedidoController < ApplicationController
   def index
     initialize_materiales_por_pedido
     if current_user.admin?
-      @materiales_por_pedido = MaterialPorPedido.using(:dwh_t).all
+      @materiales_por_pedido = MaterialPorPedido.using(:dwh_t).where(error: true)
     elsif current_user.hotel?
-      @materiales_por_pedido = MaterialPorPedido.using(:dwh_t).where(sistema: 'H')
+      @materiales_por_pedido = MaterialPorPedido.using(:dwh_t).where(sistema: 'H', error: true)
     elsif current_user.rrhh?
-      @materiales_por_pedido = MaterialPorPedido.using(:dwh_t).where(sistema: 'RR')
+      @materiales_por_pedido = MaterialPorPedido.using(:dwh_t).where(sistema: 'RR', error: true)
     else
-      @materiales_por_pedido = MaterialPorPedido.using(:dwh_t).where(sistema: 'R')
+      @materiales_por_pedido = MaterialPorPedido.using(:dwh_t).where(sistema: 'R', error: true)
     end
   end
 
@@ -45,6 +45,9 @@ class MaterialesPorPedidoController < ApplicationController
       material_por_pedido.id_material = material_por_pedido_r.id_material
       material_por_pedido.cantidad = material_por_pedido_r.cantidad
       material_por_pedido.sistema = 'RR'
+      unless valid_number?(material_por_pedido.cantidad)
+        material_por_pedido.error = true
+      end
       material_por_pedido.save!
     end
 

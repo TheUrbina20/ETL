@@ -2,13 +2,13 @@ class MaterialesPorReciboController < ApplicationController
   def index
     initialize_materiales_por_recibo
     if current_user.admin?
-      @materiales_por_recibo = MaterialPorRecibo.using(:dwh_t).all
+      @materiales_por_recibo = MaterialPorRecibo.using(:dwh_t).where(error: true)
     elsif current_user.hotel?
-      @materiales_por_recibo = MaterialPorRecibo.using(:dwh_t).where(sistema: 'H')
+      @materiales_por_recibo = MaterialPorRecibo.using(:dwh_t).where(sistema: 'H', error: true)
     elsif current_user.rrhh?
-      @materiales_por_recibo = MaterialPorRecibo.using(:dwh_t).where(sistema: 'RR')
+      @materiales_por_recibo = MaterialPorRecibo.using(:dwh_t).where(sistema: 'RR', error: true)
     else
-      @materiales_por_recibo = MaterialPorRecibo.using(:dwh_t).where(sistema: 'R')
+      @materiales_por_recibo = MaterialPorRecibo.using(:dwh_t).where(sistema: 'R', error: true)
     end
 
   end
@@ -48,6 +48,18 @@ class MaterialesPorReciboController < ApplicationController
       material_por_recibo.f_caducidad = material_por_recibo_r.f_caducidad
       material_por_recibo.tipo_paquete = material_por_recibo_r.tipo_paquete
       material_por_recibo.sistema = 'RR'
+      unless valid_number?(material_por_recibo.cantidad)
+        material_por_recibo.error = true
+      end
+
+      unless valid_date?(material_por_recibo.f_caducidad)
+        material_por_recibo.error = true
+      end
+
+      unless valid_name?(material_por_recibo.tipo_paquete)
+        material_por_recibo.error = true
+      end
+
       material_por_recibo.save!
     end
 

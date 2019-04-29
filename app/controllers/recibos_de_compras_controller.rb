@@ -2,13 +2,13 @@ class RecibosDeComprasController < ApplicationController
   def index
     initialize_recibos
     if current_user.admin?
-      @recibos = ReciboDeCompra.using(:dwh_t).all
+      @recibos = ReciboDeCompra.using(:dwh_t).where(error: true)
     elsif current_user.hotel?
-      @recibos = ReciboDeCompra.using(:dwh_t).where(sistema: 'H')
+      @recibos = ReciboDeCompra.using(:dwh_t).where(sistema: 'H', error: true)
     elsif current_user.rrhh?
-      @recibos = ReciboDeCompra.using(:dwh_t).where(sistema: 'RR')
+      @recibos = ReciboDeCompra.using(:dwh_t).where(sistema: 'RR', error: true)
     else
-      @recibos = ReciboDeCompra.using(:dwh_t).where(sistema: 'R')
+      @recibos = ReciboDeCompra.using(:dwh_t).where(sistema: 'R', error: true)
     end
   end
 
@@ -42,6 +42,9 @@ class RecibosDeComprasController < ApplicationController
       recibo.sistema = 'RR'
       recibo.id_pedido_compra = recibo_r.id_pedido_compra
       recibo.f_entrega = recibo_r.f_entrega
+      unless valid_date?(recibo.f_entrega)
+        recibo.error = true
+      end
       recibo.save!
     end
 

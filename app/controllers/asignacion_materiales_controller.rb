@@ -1,7 +1,7 @@
 class AsignacionMaterialesController < ApplicationController
     def index
         initialize_mgh
-        @asignacionm = AsignacionMaterial.using(:dwh_t).all
+        @asignacionm = AsignacionMaterial.using(:dwh_t).where(error: true)
     end
 
     def edit
@@ -38,6 +38,9 @@ class AsignacionMaterialesController < ApplicationController
 
       material.id = se.idAsignacion
       material.cantidad = se.Cantidad
+      unless valid_number?(material.cantidad)
+        material.error = true
+      end
       material.id_habitacion = se.idHabitacion
       material.id_material = se.idMaterial
       material.save!

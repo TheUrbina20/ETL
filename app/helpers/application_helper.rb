@@ -19,6 +19,11 @@ module ApplicationHelper
       regex_validator(reg, email)
     end
 
+    def valid_date?(date)
+      reg = /[0-3][0-9]\/[0-1][0-9]\/[0-9][0-9]/
+      regex_validator(reg, date)
+    end
+
     def regex_validator(reg, word)
       reg.match(word) ? true : false
     end

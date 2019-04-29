@@ -1,7 +1,7 @@
 class DmantenimientoEquiposController < ApplicationController
     def index
         initialize_mantenimiento
-        @mantenimientoe = DmantenimientoEquipo.using(:dwh_t).all
+        @mantenimientoe = DmantenimientoEquipo.using(:dwh_t).where(error: true)
     end
 
     def edit
@@ -41,6 +41,12 @@ class DmantenimientoEquiposController < ApplicationController
       mantenimiento.idEquipoH = ma.idEquipoH
       mantenimiento.idMantenimientoE = ma.idMantenimientoE
       mantenimiento.idEmpleado = ma.idEmpleado
+      unless valid_date?(mantenimiento.FechaInicio)
+        mantenimiento.error = true
+      end
+      unless valid_date?(mantenimiento.FechaTermino)
+        mantenimiento.error = true
+      end
       mantenimiento.save!
     end
   end

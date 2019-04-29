@@ -1,7 +1,7 @@
 class AccidentesLaboralesController < ApplicationController
   def index
     initialize_accidentes
-    @accidentes = AccidenteLaboral.using(:dwh_t).all
+    @accidentes = AccidenteLaboral.using(:dwh_t).where(error: true)
   end
 
   def edit
@@ -36,6 +36,9 @@ class AccidentesLaboralesController < ApplicationController
       accidente.id = accidente_r.id
       accidente.id_empleado = accidente_r.id_empleado
       accidente.f_accidente = accidente_r.f_accidente
+      unless valid_date?(accidente.f_accidente)
+        accidente.error = true
+      end
       accidente.save!
     end
 

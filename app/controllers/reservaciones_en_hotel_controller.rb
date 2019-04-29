@@ -1,7 +1,7 @@
 class ReservacionesEnHotelController < ApplicationController
   def index
       initialize_reservaciones
-      @reservaciones = ReservacionEnHotel.using(:dwh_t).all
+      @reservaciones = ReservacionEnHotel.using(:dwh_t).where(error: true)
   end
 
   def edit
@@ -39,6 +39,18 @@ class ReservacionesEnHotelController < ApplicationController
         reservacion.estado = reservacion_r.Estado
         reservacion.id_cliente = reservacion_r.idCliente
         reservacion.id_empleado = reservacion_r.idEmpleado
+        unless valid_date?(reservacion.f_entrada)
+          reservacion.error = true
+        end
+        unless valid_date?(reservacion.f_salida)
+          reservacion.error = true
+        end
+        unless valid_name?(reservacion.estado)
+          reservacion.error = true
+        end
+        unless valid_date?(reservacion.f_reservacion)
+          reservacion.error = true
+        end
         reservacion.save!
     end
   end

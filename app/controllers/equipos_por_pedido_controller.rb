@@ -17,7 +17,7 @@ class EquiposPorPedidoController < ApplicationController
 
   def initialize_equipos_por_pedido
     EquipoPorPedido.using(:dwh_t).delete_all
-    equipos_por_pedido = EquipoPorPedido.using(:rrhh).all
+    equipos_por_pedido = EquipoPorPedido.using(:rrhh).where(error: true)
     equipo = EquipoPorPedido.using(:dwh_t).new
 
     equipos_por_pedido.each do |equipo_r|

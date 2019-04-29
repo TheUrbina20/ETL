@@ -1,11 +1,11 @@
 class VacantesController < ApplicationController
   def index
     initialize_vacantes
-    @vacantes = Vacante.using(:dwh_t).all
+    @vacantes = Vacante.using(:dwh_t).where(error: true)
   end
 
   def edit
-    @vacantes = Vacante.using(:dwh_t).find(params[:id]) 
+    @vacantes = Vacante.using(:dwh_t).find(params[:id])
   end
 
   def update
@@ -14,7 +14,7 @@ class VacantesController < ApplicationController
     if @vacantes.update(vacantes_params)
       flash[:notice] = 'Actualizado Correctamente'
       redirect_to vacantes_path
-    else 
+    else
       flash.now[:alert] = 'Error actualizando'
       render 'edit'
     end
@@ -35,6 +35,12 @@ class VacantesController < ApplicationController
       vacante.id = vacante_r.id
       vacante.nombre = vacante_r.nombre
       vacante.estado = vacante_r.estado
+      unless valid_words?(vacante.nombre)
+        solicitud.error = true
+      end
+      unless valid_name?(vacante.estado.to_s)
+        solicitud.error = true
+      end
       vacante.save!
     end
   end
