@@ -1,7 +1,7 @@
 class VacantesController < ApplicationController
   def index
     initialize_vacantes
-    @vacantes = Vacante.using(:dwh_t).all
+    @vacantes = Vacante.using(:dwh_t).where(error: true)
   end
 
   def edit

@@ -1,7 +1,7 @@
 class AsignacionMaterialesController < ApplicationController
     def index
         initialize_mgh
-        @asignacionm = AsignacionMaterial.using(:dwh_t).all
+        @asignacionm = AsignacionMaterial.using(:dwh_t).where(error: true)
     end
 
     def edit

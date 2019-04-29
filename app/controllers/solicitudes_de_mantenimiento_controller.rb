@@ -1,7 +1,7 @@
 class SolicitudesDeMantenimientoController < ApplicationController
   def index
     initialice_solicitudes
-    @solicitudes = SolicitudMantenimiento.using(:dwh_t).all
+    @solicitudes = SolicitudMantenimiento.using(:dwh_t).where(error: true)
   end
 
   def edit

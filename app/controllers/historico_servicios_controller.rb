@@ -1,7 +1,7 @@
 class HistoricoServiciosController < ApplicationController
     def index
         initialize_servicios
-        @historicos = HistoricoServicio.using(:dwh_t).all
+        @historicos = HistoricoServicio.using(:dwh_t).where(error: true)
     end
 
     def edit

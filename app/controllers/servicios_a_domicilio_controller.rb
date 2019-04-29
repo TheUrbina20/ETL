@@ -2,7 +2,7 @@ class ServiciosADomicilioController < ApplicationController
   def index
     initialize_servicios
     initialize_mesas_por_reservacion
-    @servicios = ServicioADomicilio.using(:dwh_t).all
+    @servicios = ServicioADomicilio.using(:dwh_t).where(error: true)
   end
 
   def edit

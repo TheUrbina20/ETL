@@ -1,7 +1,7 @@
 class EmpresasController < ApplicationController
   def index
     initialice_empresas
-    @empresas = Empresa.using(:dwh_t).all
+    @empresas = Empresa.using(:dwh_t).where(error: true)
   end
 
   def edit

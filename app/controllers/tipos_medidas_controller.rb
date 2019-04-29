@@ -1,7 +1,7 @@
 class TiposMedidasController < ApplicationController
   def index
     initialize_tipos_medidas
-    @tipos_medidas = TipoMedida.using(:dwh_t).all
+    @tipos_medidas = TipoMedida.using(:dwh_t).where(error: true)
   end
 
   def edit

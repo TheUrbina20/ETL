@@ -1,7 +1,7 @@
 class ReservacionesEnRestauranteController < ApplicationController
   def index
     initialize_reservaciones_en_restaurante
-    @reservaciones_en_restaurante = ReservacionEnRestaurante.using(:dwh_t).all
+    @reservaciones_en_restaurante = ReservacionEnRestaurante.using(:dwh_t).where(error: true)
   end
 
   def edit

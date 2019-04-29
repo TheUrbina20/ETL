@@ -1,7 +1,7 @@
 class FacturasRestauranteController < ApplicationController
   def index
     initialize_facturas
-    @facturas = FacturaRestaurante.using(:dwh_t).all
+    @facturas = FacturaRestaurante.using(:dwh_t).where(error: true)
   end
 
   def edit

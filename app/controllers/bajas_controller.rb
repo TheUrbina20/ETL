@@ -1,7 +1,7 @@
 class BajasController < ApplicationController
   def index
     initialize_bajas
-    @bajas = Baja.using(:dwh_t).all
+    @bajas = Baja.using(:dwh_t).where(error: true)
   end
 
   def edit

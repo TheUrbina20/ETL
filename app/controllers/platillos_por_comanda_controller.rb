@@ -1,7 +1,7 @@
 class PlatillosPorComandaController < ApplicationController
   def index
     initialize_platillos_por_comanda
-    @platillos_por_comanda = PlatilloPorComanda.using(:dwh_t).all
+    @platillos_por_comanda = PlatilloPorComanda.using(:dwh_t).where(error: true)
   end
 
   def edit

@@ -1,7 +1,7 @@
 class IngredientesController < ApplicationController
   def index
     initialize_ingredientes
-    @ingredientes = Ingrediente.using(:dwh_t).all
+    @ingredientes = Ingrediente.using(:dwh_t).where(error: true)
   end
 
   def edit
@@ -38,7 +38,7 @@ class IngredientesController < ApplicationController
       ingrediente.stock_minimo = ingrediente_r[:stock_min]
       ingrediente.stock_maximo = ingrediente_r[:stock_max]
       ingrediente.cantidad_stock = ingrediente_r[:cantidad]
-      unless valid_name?(ingrediente.nombre)
+      unless valid_words?(ingrediente.nombre)
         ingrediente.error = true
       end
       unless valid_number?(ingrediente.stock_maximo)

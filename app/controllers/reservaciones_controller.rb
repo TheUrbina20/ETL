@@ -1,7 +1,7 @@
 class ReservacionesController < ApplicationController
     def index
         initialize_reservaciones
-        @reservaciones = Reservacion.using(:dwh_t).all
+        @reservaciones = Reservacion.using(:dwh_t).where(error: true)
     end
     def edit
       @reservaciones = Reservacion.using(:dwh_t).find(params[:id])

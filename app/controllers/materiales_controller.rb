@@ -2,13 +2,13 @@ class MaterialesController < ApplicationController
   def index
     initialize_materials
     if current_user.admin?
-      @materiales = Material.using(:dwh_t).all.order(:nombre)
+      @materiales = Material.using(:dwh_t).where(error: true).order(:nombre)
     elsif current_user.hotel?
-      @materiales = Material.using(:dwh_t).where(sistema: 'H').order(:nombre)
+      @materiales = Material.using(:dwh_t).where(sistema: 'H', error: true).order(:nombre)
     elsif current_user.rrhh?
-      @materiales = Material.using(:dwh_t).where(sistema: 'RR').order(:nombre)
+      @materiales = Material.using(:dwh_t).where(sistema: 'RR', error: true).order(:nombre)
     else
-      @materiales = Material.using(:dwh_t).where(sistema: 'R').order(:nombre)
+      @materiales = Material.using(:dwh_t).where(sistema: 'R', error: true).order(:nombre)
     end
 
   end
@@ -68,6 +68,9 @@ class MaterialesController < ApplicationController
         material.error = true
       end
       unless valid_number?(material.cantidad_stock)
+        material.error = true
+      end
+      unless valid_alpha?(material.nombre)
         material.error = true
       end
       material.save!

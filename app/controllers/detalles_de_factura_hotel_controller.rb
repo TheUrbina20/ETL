@@ -1,7 +1,7 @@
 class DetallesDeFacturaHotelController < ApplicationController
   def index
     initialize_detalle_factura_restaurante
-    @detalles_de_factura_hotel = DetalleDeFacturaHotel.using(:dwh_t).all
+    @detalles_de_factura_hotel = DetalleDeFacturaHotel.using(:dwh_t).where(error: true)
   end
 
   def edit

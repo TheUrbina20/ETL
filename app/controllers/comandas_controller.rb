@@ -1,7 +1,7 @@
 class ComandasController < ApplicationController
   def index
     initialize_comandas
-    @comandas = Comanda.using(:dwh_t).all
+    @comandas = Comanda.using(:dwh_t).where(error: true)
   end
 
   def edit

@@ -1,7 +1,7 @@
 class ServicioLimpiezasController < ApplicationController
     def index
         initialize_serviciosl
-        @serviciol = ServicioLimpieza.using(:dwh_t).all
+        @serviciol = ServicioLimpieza.using(:dwh_t).where(error: true)
     end
 
     def edit

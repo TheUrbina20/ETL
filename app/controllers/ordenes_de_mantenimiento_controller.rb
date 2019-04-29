@@ -2,13 +2,13 @@ class OrdenesDeMantenimientoController < ApplicationController
   def index
     initialize_mantenimientos_por_equipo
     if current_user.admin?
-      @mantenimientos_por_equipo = MantenimientoPorEquipo.using(:dwh_t).all
+      @mantenimientos_por_equipo = MantenimientoPorEquipo.using(:dwh_t).where(error: true)
     elsif current_user.hotel?
-      @mantenimientos_por_equipo = MantenimientoPorEquipo.using(:dwh_t).where(sistema: 'H')
+      @mantenimientos_por_equipo = MantenimientoPorEquipo.using(:dwh_t).where(sistema: 'H', error: true)
     elsif current_user.rrhh?
-      @mantenimientos_por_equipo = MantenimientoPorEquipo.using(:dwh_t).where(sistema: 'RR')
+      @mantenimientos_por_equipo = MantenimientoPorEquipo.using(:dwh_t).where(sistema: 'RR', error: true)
     else
-      @mantenimientos_por_equipo = MantenimientoPorEquipo.using(:dwh_t).where(sistema: 'R')
+      @mantenimientos_por_equipo = MantenimientoPorEquipo.using(:dwh_t).where(sistema: 'R', error: true)
     end
   end
 

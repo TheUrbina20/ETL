@@ -1,7 +1,7 @@
 class PaquetesController < ApplicationController
     def index
         initialize_paquetes
-        @paquete = Paquete.using(:dwh_t).all
+        @paquete = Paquete.using(:dwh_t).where(error: true)
     end
 
     def edit

@@ -1,7 +1,7 @@
 class FacturasHotelController < ApplicationController
   def index
     initialize_facturas_hotel
-    @facturas = FacturaHotel.using(:dwh_t).all
+    @facturas = FacturaHotel.using(:dwh_t).where(error: true)
   end
 
   def edit
@@ -41,6 +41,10 @@ class FacturasHotelController < ApplicationController
       unless valid_price?(factura.total)
         factura.error = true
       end
+      unless valid_price?(factura&.fecha)
+        factura.error = true
+      end
+
       factura.save!
     end
 

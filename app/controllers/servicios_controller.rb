@@ -1,7 +1,7 @@
 class ServiciosController < ApplicationController
     def index
         initialize_servicios
-        @servicio = Servicio.using(:dwh_t).all
+        @servicio = Servicio.using(:dwh_t).where(error: true)
     end
     def edit
       @servicio = Servicio.using(:dwh_t).find(params[:id])

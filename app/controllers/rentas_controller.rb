@@ -1,7 +1,7 @@
 class RentasController < ApplicationController
   def index
     initialize_rentas
-    @rentas = Renta.using(:dwh_t).all
+    @rentas = Renta.using(:dwh_t).where(error: true)
   end
 
   def edit

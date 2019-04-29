@@ -1,7 +1,7 @@
 class PostulantesController < ApplicationController
   def index
     initialice_postulantes
-    @postulantes = Postulante.using(:dwh_t).all
+    @postulantes = Postulante.using(:dwh_t).where(error: true)
   end
 
   def edit

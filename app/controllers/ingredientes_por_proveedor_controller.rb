@@ -1,7 +1,7 @@
 class IngredientesPorProveedorController < ApplicationController
   def index
     initialize_ingredientes_por_proveedor
-    @ingredientes_por_proveedor = IngredientePorProveedor.using(:dwh_t).all
+    @ingredientes_por_proveedor = IngredientePorProveedor.using(:dwh_t).where(error: true)
   end
 
   def edit

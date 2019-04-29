@@ -1,7 +1,7 @@
 class BebidasController < ApplicationController
   def index
     initialize_bebidas
-    @bebidas = Bebida.using(:dwh_t).all
+    @bebidas = Bebida.using(:dwh_t).where(error: true)
   end
 
   def edit

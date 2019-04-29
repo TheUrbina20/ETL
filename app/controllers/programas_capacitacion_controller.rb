@@ -1,7 +1,7 @@
 class ProgramasCapacitacionController < ApplicationController
   def index
     initialice_programas
-    @programas = ProgramaCapacitacion.using(:dwh_t).all
+    @programas = ProgramaCapacitacion.using(:dwh_t).where(error: true)
   end
 
   def edit

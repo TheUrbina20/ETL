@@ -1,7 +1,7 @@
 class AplicacionesAVacantesController < ApplicationController
   def index
     initialice_aplicaciones
-    @aplicaciones = AplicacionAVacante.using(:dwh_t).all
+    @aplicaciones = AplicacionAVacante.using(:dwh_t).where(error: true)
   end
 
   def edit

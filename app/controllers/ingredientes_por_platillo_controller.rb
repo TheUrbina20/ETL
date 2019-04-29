@@ -1,7 +1,7 @@
 class IngredientesPorPlatilloController < ApplicationController
   def index
     initialize_ingredientes_por_platillo
-    @ingredientes_por_platillo = IngredientePorPlatillo.using(:dwh_t).all
+    @ingredientes_por_platillo = IngredientePorPlatillo.using(:dwh_t).where(error: true)
   end
 
   def edit

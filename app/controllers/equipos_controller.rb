@@ -2,13 +2,13 @@ class EquiposController < ApplicationController
   def index
     initialize_equipos
     if current_user.admin?
-      @equipos = Equipo.using(:dwh_t).all
+      @equipos = Equipo.using(:dwh_t).where(error: true)
     elsif current_user.hotel?
-      @equipos = Equipo.using(:dwh_t).where(sistema: 'H')
+      @equipos = Equipo.using(:dwh_t).where(sistema: 'H', error: true)
     elsif current_user.rrhh?
-      @equipos = Equipo.using(:dwh_t).where(sistema: 'RR')
+      @equipos = Equipo.using(:dwh_t).where(sistema: 'RR', error: true)
     else
-      @equipos = Equipo.using(:dwh_t).where(sistema: 'R')
+      @equipos = Equipo.using(:dwh_t).where(sistema: 'R', error: true)
     end
   end
 
@@ -70,9 +70,10 @@ class EquiposController < ApplicationController
     end
 
     equipos = Equipo.using(:restaurant).all
+    equipo = Equipo.using(:dwh_t).new
 
     equipos.each do |equipo_r|
-      equipo = Equipo.using(:dwh_t).new()
+      equipo = Equipo.using(:dwh_t).new
 
       equipo.id_sistema = equipo_r.idEquipo
       equipo.nombre = equipo_r.Nombre

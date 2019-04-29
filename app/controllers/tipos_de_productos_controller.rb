@@ -1,7 +1,7 @@
 class TiposDeProductosController < ApplicationController
   def index
     initialize_tipos_productos
-    @tipos_de_productos = TipoDeProducto.using(:dwh_t).all
+    @tipos_de_productos = TipoDeProducto.using(:dwh_t).where(error: true)
   end
 
   def edit

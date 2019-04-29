@@ -3,12 +3,17 @@ class ApplicationController < ActionController::Base
 
 
   def valid_word?(word)
-    reg = /[a-zA-Z]*/
+    reg = /[a-zA-Z ]*/
     regex_validator(reg, word)
   end
 
+  def valid_alpha?(words)
+    reg = /[a-zA-Z0-9 ]*/
+  end
+
   def valid_name?(name)
-    reg = /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/
+    #reg = /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/
+    reg = /\A(?:[-a-z']+|[-a-z']+\s[-a-z']*\s?[-a-z']+)\z/i
     regex_validator(reg, name)
   end
 

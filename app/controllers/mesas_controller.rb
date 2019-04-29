@@ -1,7 +1,7 @@
 class MesasController < ApplicationController
   def index
     initialize_mesas
-    @mesas = Mesa.using(:dwh_t).all
+    @mesas = Mesa.using(:dwh_t).where(error: true)
   end
 
   def edit

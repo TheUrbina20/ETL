@@ -1,7 +1,7 @@
 class DhabitacionesController < ApplicationController
     def index
         initialize_dhabitaciones
-        @dhabitaciones = Dhabitacion.using(:dwh_t).all
+        @dhabitaciones = Dhabitacion.using(:dwh_t).where(error: true)
     end
 
     def edit

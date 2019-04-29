@@ -1,7 +1,7 @@
 class CapacitacionesPorEmpleadoController < ApplicationController
   def index
     initialice_capacitaciones
-    @capacitaciones = CapacitacionPorEmpleado.using(:dwh_t).all
+    @capacitaciones = CapacitacionPorEmpleado.using(:dwh_t).where(error: true)
   end
 
   def edit

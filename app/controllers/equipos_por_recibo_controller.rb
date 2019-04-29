@@ -2,13 +2,13 @@ class EquiposPorReciboController < ApplicationController
   def index
     initialize_equipos_por_recibo
     if current_user.admin?
-      @equipos_por_recibo = EquipoPorRecibo.using(:dwh_t).all
+      @equipos_por_recibo = EquipoPorRecibo.using(:dwh_t).where(error: true)
     elsif current_user.hotel?
-      @equipos_por_recibo = EquipoPorRecibo.using(:dwh_t).where(sistema: 'H')
+      @equipos_por_recibo = EquipoPorRecibo.using(:dwh_t).where(sistema: 'H', error: true)
     elsif current_user.rrhh?
-      @equipos_por_recibo = EquipoPorRecibo.using(:dwh_t).where(sistema: 'RR')
+      @equipos_por_recibo = EquipoPorRecibo.using(:dwh_t).where(sistema: 'RR', error: true)
     else
-      @equipos_por_recibo = EquipoPorRecibo.using(:dwh_t).where(sistema: 'R')
+      @equipos_por_recibo = EquipoPorRecibo.using(:dwh_t).where(sistema: 'R', error: true)
     end
   end
 

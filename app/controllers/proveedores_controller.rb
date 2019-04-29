@@ -1,7 +1,7 @@
 class ProveedoresController < ApplicationController
   def index
     initialize_proveedores
-    @proveedores = Proveedor.using(:dwh_t).all
+    @proveedores = Proveedor.using(:dwh_t).where(error: true)
   end
 
   def edit

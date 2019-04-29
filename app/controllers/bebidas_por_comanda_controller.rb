@@ -1,7 +1,7 @@
 class BebidasPorComandaController < ApplicationController
   def index
     initialize_bebidas
-    @bebidas = BebidaPorComanda.using(:dwh_t).all
+    @bebidas = BebidaPorComanda.using(:dwh_t).where(error: true)
   end
 
   def edit
@@ -22,6 +22,7 @@ class BebidasPorComandaController < ApplicationController
   def bebida_por_comanda_params
     params.require(:bebida_por_comanda).permit(:id_comanda, :id_bebida, :cantidad)
   end
+
   private
 
   def initialize_bebidas
@@ -35,7 +36,7 @@ class BebidasPorComandaController < ApplicationController
       bebida.id = bebida_r[:Id]
       bebida.id_comanda = bebida_r[:id_comanda]
       bebida.id_bebida = bebida_r[:id_bebida]
-      bebida.cantidad = bebida_r[:cliente]
+      bebida.cantidad = bebida_r[:cantidad]
       unless valid_number?(bebida.cantidad)
         bebida.error = true
       end

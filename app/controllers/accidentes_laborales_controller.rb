@@ -1,7 +1,7 @@
 class AccidentesLaboralesController < ApplicationController
   def index
     initialize_accidentes
-    @accidentes = AccidenteLaboral.using(:dwh_t).all
+    @accidentes = AccidenteLaboral.using(:dwh_t).where(error: true)
   end
 
   def edit

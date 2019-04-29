@@ -1,7 +1,7 @@
 class AreasPorEmpleadoController < ApplicationController
   def index
     initialize_areas_por_empleado
-    @areas_por_empleado = AreasPorEmpleado.using(:dwh_t).all
+    @areas_por_empleado = AreasPorEmpleado.using(:dwh_t).where(error: true)
   end
 
   def edit

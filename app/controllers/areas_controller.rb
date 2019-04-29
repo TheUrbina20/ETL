@@ -1,7 +1,7 @@
 class AreasController < ApplicationController
   def index
     initialize_areas
-    @areas = Area.using(:dwh_t).all
+    @areas = Area.using(:dwh_t).where(error: true)
   end
 
   def edit

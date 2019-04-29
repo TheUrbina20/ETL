@@ -1,7 +1,7 @@
 class DmantenimientoHabitacionesController < ApplicationController
     def index
         initialize_mantenimientoh
-        @mantenimientoh = DmantenimientoHabitacion.using(:dwh_t).all
+        @mantenimientoh = DmantenimientoHabitacion.using(:dwh_t).where(error: true)
     end
 
     def edit

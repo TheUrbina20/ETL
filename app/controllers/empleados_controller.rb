@@ -2,13 +2,13 @@ class EmpleadosController < ApplicationController
   def index
     initialize_empleados
     if current_user.admin?
-      @empleados = Empleado.using(:dwh_t).all.order(:nombre)
+      @empleados = Empleado.using(:dwh_t).where(error: true).order(:nombre)
     elsif current_user.hotel?
-      @empleados = Empleado.using(:dwh_t).where(sistema: 'H').order(:nombre)
+      @empleados = Empleado.using(:dwh_t).where(sistema: 'H', error: true).order(:nombre)
     elsif current_user.rrhh?
-      @empleados = Empleado.using(:dwh_t).where(sistema: 'RR').order(:nombre)
+      @empleados = Empleado.using(:dwh_t).where(sistema: 'RR', error: true).order(:nombre)
     else
-      @empleados = Empleado.using(:dwh_t).where(sistema: 'R').order(:nombre)
+      @empleados = Empleado.using(:dwh_t).where(sistema: 'R', error: true).order(:nombre)
     end
   end
 

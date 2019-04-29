@@ -2,13 +2,13 @@ class PedidosPorEmpleadoController < ApplicationController
   def index
     initialize_pedidos_por_empleados
     if current_user.admin?
-      @ordenes_por_empleados = PedidoPorEmpleado.using(:dwh_t).all
+      @ordenes_por_empleados = PedidoPorEmpleado.using(:dwh_t).where(error: true)
     elsif current_user.hotel?
-      @ordenes_por_empleados = PedidoPorEmpleado.using(:dwh_t).where(sistema: 'H')
+      @ordenes_por_empleados = PedidoPorEmpleado.using(:dwh_t).where(sistema: 'H', error: true)
     elsif current_user.rrhh?
-      @ordenes_por_empleados = PedidoPorEmpleado.using(:dwh_t).where(sistema: 'RR')
+      @ordenes_por_empleados = PedidoPorEmpleado.using(:dwh_t).where(sistema: 'RR', error: true)
     else
-      @ordenes_por_empleados = PedidoPorEmpleado.using(:dwh_t).where(sistema: 'R')
+      @ordenes_por_empleados = PedidoPorEmpleado.using(:dwh_t).where(sistema: 'R', error: true)
     end
   end
 

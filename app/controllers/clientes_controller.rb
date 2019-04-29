@@ -1,7 +1,7 @@
 class ClientesController < ApplicationController
   def index
     initialize_clientes
-    @clientes = Cliente.using(:dwh_t).all
+    @clientes = Cliente.using(:dwh_t).where(error: true)
   end
 
   def edit

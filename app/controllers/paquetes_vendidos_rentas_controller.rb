@@ -1,7 +1,7 @@
 class PaquetesVendidosRentasController < ApplicationController
     def index
         initialize_paquetesvr
-        @paquetevr = PaqueteVendidoRenta.using(:dwh_t).all
+        @paquetevr = PaqueteVendidoRenta.using(:dwh_t).where(error: true)
     end
  private
     def initialize_paquetesvr
