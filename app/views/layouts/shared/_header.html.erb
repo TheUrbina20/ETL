@@ -13,81 +13,83 @@
       </div>
       <div id="navbar3" class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Registros <span class="caret"></span></a>
-            <ul class="dropdown-menu scrollable-menu" role="menu">
-              <li>
-                <%= link_to('Accidentes laborales', accidentes_laborales_path) if current_user&.can_manage_rrhh? %>
-                <%= link_to('Asignacion de materiales', asignacion_materiales_path) if current_user&.can_manage_hotel?%>
-                <%= link_to('Aplicaciones a vacantes', aplicaciones_a_vacantes_path) if current_user&.can_manage_rrhh? %>
-                <%= link_to('Areas', areas_path) if current_user&.can_manage_rrhh? %>
-                <%= link_to('Areas por empleado', areas_por_empleado_index_path) if current_user&.can_manage_rrhh? %>
-                <%= link_to('Asistencias', asistencias_path) if current_user&.can_manage_rrhh? %>
-                <%= link_to('Bajas de materiales', bajas_path) if current_user&.can_manage_rrhh? %>
-                <%= link_to('Bajas de empleados', bajas_empleado_index_path) if current_user&.can_manage_rrhh? %>
-                <%= link_to('Bebidas', bebidas_path) if current_user&.can_manage_restaurant? %>
-                <%= link_to('Bebidas por comanda', bebidas_por_comanda_index_path) if current_user&.can_manage_restaurant? %>
-                <%= link_to('Capacitaciones empleado', capacitaciones_por_empleado_index_path) if current_user&.can_manage_rrhh? %>
-                <%= link_to('Clientes', clientes_path) if current_user&.can_manage_restaurant? || current_user&.can_manage_hotel? %>
-                <%= link_to('Comandas', comandas_path) if current_user&.can_manage_restaurant? %>
-                <%= link_to('Detalle factura restaurante', detalles_de_factura_restaurante_index_path) if current_user&.can_manage_restaurant? %>
-                <%= link_to('Detalle de factura hotel', detalles_de_factura_hotel_index_path) if current_user&.can_manage_hotel?%>
-                <%= link_to('Tipos de habitaciones', dhabitaciones_path) if current_user&.can_manage_hotel? %>
-                <%= link_to('Equipos', equipos_path)%>
-                <%= link_to('Equipos por habitacion', equipo_habitaciones_path) if current_user&.can_manage_hotel? %>
-                <%= link_to('Equipos por pedido', equipos_por_pedido_index_path)%>
-                <%= link_to('Equipos por recibo', equipos_por_recibo_index_path)%>
-                <%= link_to('Empleados', empleados_path)%>
-                <%= link_to('Empresas', empresas_path) if current_user&.can_manage_rrhh? %>
-                <%= link_to('Facturas restaurante', facturas_restaurante_index_path) if current_user&.can_manage_restaurant? %>
-                <%= link_to('Facturas Hotel', facturas_hotel_index_path) if current_user&.can_manage_hotel? %>
-                <%= link_to('Habitaciones', habitaciones_path) if current_user&.can_manage_hotel? %>
-                <%= link_to('Habitaciones rentadas', habitaciones_rentadas_path) if current_user&.can_manage_hotel? %>
-                <%= link_to('Habitaciones reservadas', habitaciones_reservadas_path) if current_user&.can_manage_hotel? %>
-                <%= link_to('Historial de servicios', historico_servicios_path) if current_user&.can_manage_hotel? %>
-                <%= link_to('Ingredientes', ingredientes_path) if current_user&.can_manage_restaurant? %>
-                <%= link_to('Ingredientes por proveedror', ingredientes_por_proveedor_index_path) if current_user&.can_manage_restaurant? %>
-                <%= link_to('Ingredientes por bebida', ingredientes_por_bebida_index_path) if current_user&.can_manage_restaurant? %>
-                <%= link_to('Ingreidentes por platillo', ingredientes_por_platillo_index_path) if current_user&.can_manage_restaurant? %>
-                <%= link_to('Mantenimientos', mantenimientos_path) if current_user&.can_manage_rrhh? || current_user&.can_manage_hotel?%>
-                <%= link_to('Materiales', materiales_path)%>
-                <%= link_to('Materiales por pedido', materiales_por_pedido_index_path)%>
-                <%= link_to('Materiales por recibo', materiales_por_recibo_index_path)%>
-                <%= link_to('Materiales por habitación', materialgastado_habitaciones_path) if current_user&.can_manage_hotel? %>
-                <%= link_to('Mesas', mesas_path) if current_user&.can_manage_restaurant? %>
-                <%= link_to('Mesas por reservacion', mesas_por_reservacion_index_path) if current_user&.can_manage_restaurant? %>
-                <%= link_to('Ordenes de mantenimiento', ordenes_de_mantenimiento_index_path)%>
-                <%= link_to('Pedidos por empleado', pedidos_por_empleado_index_path)%>
-                <%= link_to('Paquetes', paquetes_path) if current_user&.can_manage_hotel? %>
-                <%= link_to('Paquetes vendidos', paquetes_vendidos_rentas_path) if current_user&.can_manage_hotel? %>
-                <%= link_to('Platillo', platillos_path) if current_user&.can_manage_restaurant? %>
-                <%= link_to('Platillos por comanda', platillos_por_comanda_index_path) if current_user&.can_manage_restaurant? %>
-                <%= link_to('Postulantes', postulantes_path) if current_user&.can_manage_rrhh? %>
-                <%= link_to('Programas de capacitacion', programas_capacitacion_index_path) if current_user&.can_manage_rrhh? %>
-                <%= link_to('Proveedores', proveedores_path) if current_user&.can_manage_rrhh? || current_user&.can_manage_restaurant?  %>
-                <%= link_to('Recibos de compras', recibos_de_compras_path)%>
-                <%= link_to('Rentas', rentas_path) if current_user&.can_manage_hotel? %>
-                <%= link_to('Reservaciones en hotel', reservaciones_en_hotel_index_path) if current_user&.can_manage_hotel? %>
-                <%= link_to('Reservaciones en restaurante', reservaciones_en_restaurante_index_path) if current_user&.can_manage_restaurant? %>
-                <%= link_to('Reportes de perdidas o robo', reporte_perdido_robos_path) if current_user&.can_manage_hotel? %>
-                <%= link_to('Servicios', servicios_path) if current_user&.can_manage_hotel? %>
-                <%= link_to('Servicios limpieza en habitación', serviciol_habitaciones_path) if current_user&.can_manage_hotel? %>
-                <%= link_to('Servicios de limpieza', servicio_limpiezas_path) if current_user&.can_manage_hotel? %>
-                <%= link_to('Servicios por habitación', servicio_habitaciones_path) if current_user&.can_manage_hotel? %>
-                <%= link_to('Servicios por paquete', servicios_paquetes_path) if current_user&.can_manage_hotel? %>
-                <%= link_to('Servicios a domicilio', servicios_a_domicilio_index_path) if current_user&.can_manage_restaurant? %>
-                <%# <%= link_to('Solicitudes de mantenimiento', solicitudes_de_mantenimiento_index_path)%>
-                <%= link_to('Tipos de medidas', tipos_medidas_path) if current_user&.can_manage_restaurant? %>
-                <%= link_to('Tipos de productos', tipos_de_productos_path) if current_user&.can_manage_restaurant? %>
-                <%= link_to('Vacantes', vacantes_path) if current_user&.can_manage_rrhh? %>
-              </li>
-            </ul>
-          </li>
-          <li class='active'>
-            <%= link_to destroy_user_session_path, method: :delete do%>
-              <%= 'Cerrar sesión' %>
-            <%- end%>
-          </li>
+          <%- if current_user %>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Registros <span class="caret"></span></a>
+              <ul class="dropdown-menu scrollable-menu" role="menu">
+                <li>
+                  <%= link_to('Accidentes laborales', accidentes_laborales_path) if current_user&.can_manage_rrhh? %>
+                  <%= link_to('Asignacion de materiales', asignacion_materiales_path) if current_user&.can_manage_hotel?%>
+                  <%= link_to('Aplicaciones a vacantes', aplicaciones_a_vacantes_path) if current_user&.can_manage_rrhh? %>
+                  <%= link_to('Areas', areas_path) if current_user&.can_manage_rrhh? %>
+                  <%= link_to('Areas por empleado', areas_por_empleado_index_path) if current_user&.can_manage_rrhh? %>
+                  <%= link_to('Asistencias', asistencias_path) if current_user&.can_manage_rrhh? %>
+                  <%= link_to('Bajas de materiales', bajas_path) if current_user&.can_manage_rrhh? %>
+                  <%= link_to('Bajas de empleados', bajas_empleado_index_path) if current_user&.can_manage_rrhh? %>
+                  <%= link_to('Bebidas', bebidas_path) if current_user&.can_manage_restaurant? %>
+                  <%= link_to('Bebidas por comanda', bebidas_por_comanda_index_path) if current_user&.can_manage_restaurant? %>
+                  <%= link_to('Capacitaciones empleado', capacitaciones_por_empleado_index_path) if current_user&.can_manage_rrhh? %>
+                  <%= link_to('Clientes', clientes_path) if current_user&.can_manage_restaurant? || current_user&.can_manage_hotel? %>
+                  <%= link_to('Comandas', comandas_path) if current_user&.can_manage_restaurant? %>
+                  <%= link_to('Detalle factura restaurante', detalles_de_factura_restaurante_index_path) if current_user&.can_manage_restaurant? %>
+                  <%= link_to('Detalle de factura hotel', detalles_de_factura_hotel_index_path) if current_user&.can_manage_hotel?%>
+                  <%= link_to('Tipos de habitaciones', dhabitaciones_path) if current_user&.can_manage_hotel? %>
+                  <%= link_to('Equipos', equipos_path)%>
+                  <%= link_to('Equipos por habitacion', equipo_habitaciones_path) if current_user&.can_manage_hotel? %>
+                  <%= link_to('Equipos por pedido', equipos_por_pedido_index_path)%>
+                  <%= link_to('Equipos por recibo', equipos_por_recibo_index_path)%>
+                  <%= link_to('Empleados', empleados_path)%>
+                  <%= link_to('Empresas', empresas_path) if current_user&.can_manage_rrhh? %>
+                  <%= link_to('Facturas restaurante', facturas_restaurante_index_path) if current_user&.can_manage_restaurant? %>
+                  <%= link_to('Facturas Hotel', facturas_hotel_index_path) if current_user&.can_manage_hotel? %>
+                  <%= link_to('Habitaciones', habitaciones_path) if current_user&.can_manage_hotel? %>
+                  <%= link_to('Habitaciones rentadas', habitaciones_rentadas_path) if current_user&.can_manage_hotel? %>
+                  <%= link_to('Habitaciones reservadas', habitaciones_reservadas_path) if current_user&.can_manage_hotel? %>
+                  <%= link_to('Historial de servicios', historico_servicios_path) if current_user&.can_manage_hotel? %>
+                  <%= link_to('Ingredientes', ingredientes_path) if current_user&.can_manage_restaurant? %>
+                  <%= link_to('Ingredientes por proveedror', ingredientes_por_proveedor_index_path) if current_user&.can_manage_restaurant? %>
+                  <%= link_to('Ingredientes por bebida', ingredientes_por_bebida_index_path) if current_user&.can_manage_restaurant? %>
+                  <%= link_to('Ingreidentes por platillo', ingredientes_por_platillo_index_path) if current_user&.can_manage_restaurant? %>
+                  <%= link_to('Mantenimientos', mantenimientos_path) if current_user&.can_manage_rrhh? || current_user&.can_manage_hotel?%>
+                  <%= link_to('Materiales', materiales_path)%>
+                  <%= link_to('Materiales por pedido', materiales_por_pedido_index_path)%>
+                  <%= link_to('Materiales por recibo', materiales_por_recibo_index_path)%>
+                  <%= link_to('Materiales por habitación', materialgastado_habitaciones_path) if current_user&.can_manage_hotel? %>
+                  <%= link_to('Mesas', mesas_path) if current_user&.can_manage_restaurant? %>
+                  <%= link_to('Mesas por reservacion', mesas_por_reservacion_index_path) if current_user&.can_manage_restaurant? %>
+                  <%= link_to('Ordenes de mantenimiento', ordenes_de_mantenimiento_index_path)%>
+                  <%= link_to('Pedidos por empleado', pedidos_por_empleado_index_path)%>
+                  <%= link_to('Paquetes', paquetes_path) if current_user&.can_manage_hotel? %>
+                  <%= link_to('Paquetes vendidos', paquetes_vendidos_rentas_path) if current_user&.can_manage_hotel? %>
+                  <%= link_to('Platillo', platillos_path) if current_user&.can_manage_restaurant? %>
+                  <%= link_to('Platillos por comanda', platillos_por_comanda_index_path) if current_user&.can_manage_restaurant? %>
+                  <%= link_to('Postulantes', postulantes_path) if current_user&.can_manage_rrhh? %>
+                  <%= link_to('Programas de capacitacion', programas_capacitacion_index_path) if current_user&.can_manage_rrhh? %>
+                  <%= link_to('Proveedores', proveedores_path) if current_user&.can_manage_rrhh? || current_user&.can_manage_restaurant?  %>
+                  <%= link_to('Recibos de compras', recibos_de_compras_path)%>
+                  <%= link_to('Rentas', rentas_path) if current_user&.can_manage_hotel? %>
+                  <%= link_to('Reservaciones en hotel', reservaciones_en_hotel_index_path) if current_user&.can_manage_hotel? %>
+                  <%= link_to('Reservaciones en restaurante', reservaciones_en_restaurante_index_path) if current_user&.can_manage_restaurant? %>
+                  <%= link_to('Reportes de perdidas o robo', reporte_perdido_robos_path) if current_user&.can_manage_hotel? %>
+                  <%= link_to('Servicios', servicios_path) if current_user&.can_manage_hotel? %>
+                  <%= link_to('Servicios limpieza en habitación', serviciol_habitaciones_path) if current_user&.can_manage_hotel? %>
+                  <%= link_to('Servicios de limpieza', servicio_limpiezas_path) if current_user&.can_manage_hotel? %>
+                  <%= link_to('Servicios por habitación', servicio_habitaciones_path) if current_user&.can_manage_hotel? %>
+                  <%= link_to('Servicios por paquete', servicios_paquetes_path) if current_user&.can_manage_hotel? %>
+                  <%= link_to('Servicios a domicilio', servicios_a_domicilio_index_path) if current_user&.can_manage_restaurant? %>
+                  <%# <%= link_to('Solicitudes de mantenimiento', solicitudes_de_mantenimiento_index_path)%>
+                  <%= link_to('Tipos de medidas', tipos_medidas_path) if current_user&.can_manage_restaurant? %>
+                  <%= link_to('Tipos de productos', tipos_de_productos_path) if current_user&.can_manage_restaurant? %>
+                  <%= link_to('Vacantes', vacantes_path) if current_user&.can_manage_rrhh? %>
+                </li>
+              </ul>
+            </li>
+            <li class='active'>
+              <%= link_to destroy_user_session_path, method: :delete do%>
+                <%= 'Cerrar sesión' %>
+              <%- end%>
+            </li>
+          <%- end%>
         </ul>
       </div>
     </div>

@@ -1,6 +1,5 @@
 class BebidasController < ApplicationController
   def index
-    initialize_bebidas
     @bebidas = Bebida.using(:dwh_t).where(error: true)
   end
 
@@ -21,25 +20,5 @@ class BebidasController < ApplicationController
 
   def bebida_params
     params.require(:bebida).permit(:nombre, :precio, :descripcion)
-  end
-
-  private
-
-  def initialize_bebidas
-    Bebida.using(:dwh_t).delete_all
-    bebidas = Mdb.open(Rails.root.join('db', 'access_db.accdb'))['Bebidas']
-
-    bebidas.each do |bebida_r|
-      bebida = Bebida.using(:dwh_t).new
-
-      bebida.id = bebida_r[:Id]
-      bebida.nombre = bebida_r[:nombre]
-      bebida.precio = bebida_r[:precio]
-      bebida.descripcion = bebida_r[:descripcion]
-      unless valid_name?(bebida.nombre)
-        bebida.error = true
-      end
-      bebida.save!
-    end
   end
 end
