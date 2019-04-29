@@ -36,6 +36,9 @@ class BebidasController < ApplicationController
       bebida.nombre = bebida_r[:nombre]
       bebida.precio = bebida_r[:precio]
       bebida.descripcion = bebida_r[:descripcion]
+      unless valid_name?(bebida.nombre)
+        bebida.error = true
+      end
       bebida.save!
     end
   end

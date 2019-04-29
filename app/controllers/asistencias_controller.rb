@@ -5,7 +5,7 @@ class AsistenciasController < ApplicationController
   end
 
   def edit
-    @asistencias = Asistencia.using(:dwh_t).find(params[:id]) 
+    @asistencias = Asistencia.using(:dwh_t).find(params[:id])
   end
 
   def update
@@ -14,7 +14,7 @@ class AsistenciasController < ApplicationController
     if @asistencias.update(areas_params)
       flash[:notice] = 'Actualizado Correctamente'
       redirect_to asistencias_path
-    else 
+    else
       flash.now[:alert] = 'Error actualizando'
       render 'edit'
     end
@@ -30,13 +30,17 @@ class AsistenciasController < ApplicationController
     asistencia = Asistencia.using(:dwh_t).destroy_all
 
     asistencias = Asistencia.using(:rrhh).all
+    asistencia = Asistencia.using(:dwh_t).new
 
     asistencias.each do |asistencia_r|
-      asistencia = Asistencia.using(:dwh_t).new()
+      asistencia = Asistencia.using(:dwh_t).new
 
       asistencia.id = asistencia_r.id
       asistencia.id_empleado = asistencia_r.id_empleado
       asistencia.fecha = asistencia_r.fecha
+      unless valid_date?(asistencia.fecha)
+        asistencia.error = true
+      end
       asistencia.hora_entrada = asistencia_r.h_entrada
       asistencia.hora_salida = asistencia_r.h_salida
       asistencia.save!

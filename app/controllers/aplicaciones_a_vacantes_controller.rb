@@ -26,14 +26,19 @@ class AplicacionesAVacantesController < ApplicationController
   def initialice_aplicaciones
     AplicacionAVacante.using(:dwh_t).delete_all
     aplicaciones = AplicacionAVacante.using(:rrhh).all
+    aplicacion = AplicacionAVacante.using(:dwh_t).new
 
     aplicaciones.each do |aplicacion_r|
-      aplicacion = AplicacionAVacante.using(:dwh_t).new()
+      aplicacion = AplicacionAVacante.using(:dwh_t).new
+
       aplicacion.id = aplicacion_r.id
       aplicacion.id_postulante = aplicacion_r.id_postulante
       aplicacion.id_vacante = aplicacion_r.id_vacante
       aplicacion.id_empleado = aplicacion_r.id_empleado
-      aplicacion.f_aplicacion = aplicacion_r.f_aplicacion
+      aplicacion.f_aplicacion = aplicacion_r.f_aplicacion.to_s
+      unless valid_date?(aplicacion.f_aplicacion)
+        aplicacion.error = true
+      end
       aplicacion.save!
     end
   end

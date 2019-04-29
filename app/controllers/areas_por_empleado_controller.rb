@@ -30,13 +30,17 @@ class AreasPorEmpleadoController < ApplicationController
     area=AreasPorEmpleado.using(:dwh_t).delete_all
 
     areas = AreasPorEmpleado.using(:rrhh).all
+    area = AreasPorEmpleado.using(:dwh_t).new
 
     areas.each do |area_r|
-      area = AreasPorEmpleado.using(:dwh_t).new()
+      area = AreasPorEmpleado.using(:dwh_t).new
 
       area.id_area = area_r.id_area
       area.id_empleado = area_r.id_empleado
       area.f_asignacion = area_r.f_asignacion
+      unless valid_date?(area.f_asignacion)
+        area.error = true
+      end
       area.save!
     end
   end

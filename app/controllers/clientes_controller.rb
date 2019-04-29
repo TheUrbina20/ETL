@@ -29,15 +29,24 @@ class ClientesController < ApplicationController
     Cliente.using(:dwh_t).delete_all
 
     clientes = Cliente.using(:restaurant).all
-    cliente = Cliente.using(:dwh_t).new()
+    cliente = Cliente.using(:dwh_t).new
 
 
     clientes.each do |cliente_r|
-      cliente = Cliente.using(:dwh_t).new()
+      cliente = Cliente.using(:dwh_t).new
 
       cliente.nombre = cliente_r.Nombres + ' ' + cliente_r.ApellidoP + ' ' + cliente_r.ApellidoM
       cliente.estado = cliente_r.EntidadFederativa
       cliente.correo = cliente_r.Correo
+      unless valid_name?(cliente.nombre)
+        cliente.error = true
+      end
+      unless valid_email?(cliente.correo)
+        cliente.error = true
+      end
+      unless valid_name?(cliente.estado)
+        cliente.error = true
+      end
       # cliente.telefono = cliente_r.Telefono
       cliente.save!
     end
@@ -45,11 +54,14 @@ class ClientesController < ApplicationController
     clientes = Mdb.open(Rails.root.join('db', 'access_db.accdb'))['Clientes']
 
     clientes.each do |cliente_r|
-      cliente = Cliente.using(:dwh_t).new()
+      cliente = Cliente.using(:dwh_t).new
       cliente.nombre = cliente_r[:nombre] + ' ' + cliente_r[:apellido_p] + ' ' + cliente_r[:apellido_m]
       # cliente.estado = cliente_r.EntidadFederativa
       # cliente.correo = cliente_r.Correo
       cliente.telefono = cliente_r[:telefono]
+      unless valid_name?(cliente.nombre)
+        cliente.error = true
+      end
       cliente.save!
     end
 

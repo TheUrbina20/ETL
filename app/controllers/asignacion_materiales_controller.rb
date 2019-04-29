@@ -38,6 +38,9 @@ class AsignacionMaterialesController < ApplicationController
 
       material.id = se.idAsignacion
       material.cantidad = se.Cantidad
+      unless valid_number?(material.cantidad)
+        material.error = true
+      end
       material.id_habitacion = se.idHabitacion
       material.id_material = se.idMaterial
       material.save!

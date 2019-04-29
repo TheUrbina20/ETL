@@ -36,6 +36,9 @@ class BebidasPorComandaController < ApplicationController
       bebida.id_comanda = bebida_r[:id_comanda]
       bebida.id_bebida = bebida_r[:id_bebida]
       bebida.cantidad = bebida_r[:cliente]
+      unless valid_number?(bebida.cantidad)
+        bebida.error = true
+      end
       bebida.save!
     end
 
