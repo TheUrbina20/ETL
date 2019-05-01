@@ -1,5 +1,8 @@
 = simple_form_for @accidentes, url:  accidentes_laborale_path, method: :put do |f|
-    = f.input :id
-    = f.input :id_empleado
-    = f.input :f_accidente
+    = f.input :id, readonly: true
+    = f.input :id_empleado, readonly: true
+    - if valid_date?(@accidentes.f_accidente)
+        = f.input :f_accidente, readonly: true 
+    - else 
+        = f.input :f_accidente, disabled: false
     = f.button :submit, class: 'btn btn-primary'

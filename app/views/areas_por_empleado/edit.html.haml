@@ -1,6 +1,9 @@
 = simple_form_for @areas_por_empleado, url:  areas_por_empleado_path, method: :put do |f|
-    = f.input :id
-    = f.input :id_empleado
-    = f.input :id_area
-    = f.input :f_asignacion
+    = f.input :id, readonly: true
+    = f.input :id_empleado, readonly: true
+    = f.input :id_area, readonly: true
+    - if valid_date?(@areas_por_empleado.f_asignacion)
+        = f.input :f_asignacion, readonly: true
+    - else 
+        = f.input :f_asignacion, disabled: false
     = f.button :submit, class: 'btn btn-primary'

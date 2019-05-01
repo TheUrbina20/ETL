@@ -10,7 +10,7 @@
     - @mantenimientoe.each do |ma|
       %tr
         %td=ma.id
-        - if valid_tipomantenimietno (ma.tipo)
+        - if valid_tipomantenimietno(ma.tipo)
           %td=ma.tipo
         - else
           %td.text-danger=ma.tipo

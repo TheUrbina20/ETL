@@ -1,6 +1,6 @@
 = simple_form_for @historicos, url: historico_servicio_path, method: :put do |f|
  = f.input :id, readonly: true
- - if valid_precio?(@historicos.precio)
+ - if valid_price?(@historicos.precio)
   = f.input :precio, readonly: true
  - else 
   = f.input :precio, disabled: false

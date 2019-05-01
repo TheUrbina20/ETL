@@ -1,7 +1,10 @@
 = simple_form_for @pedido_empleado, url: pedidos_por_empleado_path, method: :put do |f|
-    = f.input :id
-    = f.input :id_sistema
-    = f.input :sistema
-    = f.input :f_peticion
-    = f.input :id_empleado
+    = f.input :id, readonly: true
+    = f.input :id_sistema, readonly: true
+    = f.input :sistema, readonly: true
+    - if valid_date?(@pedido_empleado.f_peticion)
+        = f.input :f_peticion, readonly: true 
+    - else 
+        = f.input :f_peticion, disabled: false
+    = f.input :id_empleado, readonly: true
     = f.button :submit, class: 'btn btn-primary'

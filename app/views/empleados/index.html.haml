@@ -17,23 +17,29 @@
     - @empleados.each do |empleado|
       %tr
         %td=empleado.id
-        %td=empleado.nombre
-        %td=empleado.f_nacimiento
+        - if valid_name?(empleado.nombre)
+          %td=empleado.nombre
+        - else 
+          %td.text-danger=empleado.nombre
+        - if valid_date?(empleado.f_nacimiento)
+          %td=empleado.f_nacimiento
+        - else 
+          %td.text-danger=empleado.f_nacimiento
         - if valid_email?(empleado.c_electronico)
           %td=empleado.c_electronico
         -else
           %td.text-danger=empleado.c_electronico
         - if valid_telefono?(empleado.n_telefono)
           %td=empleado.n_telefono
-        -else
-          %td.txt-danger=empleado.n_telefono
+        - else
+          %td.text-danger=empleado.n_telefono
         -if valid_date?(empleado.f_entrada)
           %td=empleado.f_entrada
-        -else
+        - else
           %td.text-danger=empleado.f_entrada
-        -if valid_words?(empleado.genero)
+        - if valid_genero?(empleado.genero)
           %td=empleado.genero
-        -else
+        - else
           %td.text-danger=empleado.genero
         -if valid_rfc?(empleado.rfc)
           %td=empleado.rfc

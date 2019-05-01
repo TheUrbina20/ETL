@@ -9,7 +9,7 @@
     - @empresas.each do |empresa|
       %tr
         %td=empresa.id
-        - if valid_name?(empresa.nombre)
+        - if valid_nombrecosas?(empresa.nombre)
           %td=empresa.nombre
         - else
           %td.text-danger=empresa.nombre

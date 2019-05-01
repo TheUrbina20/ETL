@@ -11,12 +11,12 @@
     - @paquete.each do |pa|
       %tr
         %td=pa.id
-        - if valid_name? (pa.nombre)
+        - if valid_nombrecosas?(pa.nombre)
           %td=pa.nombre
         - else
           %td.text-danger=pa.nombre
         %td=pa.descripcion
-        - if valid_precio? (pa.precio_por_dia)
+        - if valid_price?(pa.precio_por_dia)
           %td=pa.precio_por_dia
         - else
           %td.text-danger=pa.precio_por_dia

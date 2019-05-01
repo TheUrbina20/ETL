@@ -16,7 +16,7 @@
           %td=cliente.nombre
         -else
           %td.text-danger=cliente.nombre
-        -if valid_words?(cliente.estado)
+        -if valid_estadoc?(cliente.estado)
           %td=cliente.estado
         -else
           %td.text-danger=cliente.estado

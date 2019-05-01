@@ -20,7 +20,9 @@ class RentasController < ApplicationController
 
   def update
     @renta = Renta.using(:dwh_t).find(params[:id])
-    if @renta.update(renta_params)
+    @renta.update(renta_params)
+    if validate_attributes 
+      @renta.update_attributes(error: false)
       flash[:notice] = 'Actualizado'
       redirect_to rentas_path
     else
@@ -31,6 +33,10 @@ class RentasController < ApplicationController
 
   def renta_params
     params.require(:renta).permit(:id_cliente, :id_empleado, :f_entrada, :f_salida)
+  end
+
+  def validate_attributes 
+    valid_date?(@renta.f_entrada) && valid_date?(@renta.f_salida)
   end
 
 end

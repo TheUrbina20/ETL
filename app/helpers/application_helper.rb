@@ -11,7 +11,8 @@ module ApplicationHelper
 
     def valid_name?(name)
       # reg = /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/
-      reg = /\A(?:[-a-z']+|[-a-z']+\s[-a-z']*\s?[-a-z']+)\z/i
+      # reg = /\A(?:[-a-z']+|[-a-z']+\s[-a-z']*\s?[-a-z']+)\z/i
+      reg = /^([A-Za-zÁÉÍÓÚñáéíóúÑ]{0}?[A-Za-zÁÉÍÓÚñáéíóúÑ\']+[\s])+([A-Za-zÁÉÍÓÚñáéíóúÑ]{0}?[A-Za-zÁÉÍÓÚñáéíóúÑ\'])+[\s]?([A-Za-zÁÉÍÓÚñáéíóúÑ]{0}?[A-Za-zÁÉÍÓÚñáéíóúÑ\'])?$/
       regex_validator(reg, name)
     end
 
@@ -40,10 +41,15 @@ module ApplicationHelper
       regex_validator(reg, cantidad )
     end
 
+    def valid_genero?(genero)
+      reg = /^M$|F$/
+      regex_validator(reg, genero)
+    end
 
-    def valid_precio? (precio)
-      reg = /^\d+.\d+$/
-      regex_validator(reg, precio )
+
+    def valid_price?(number)
+      reg = /^[0-9]*\.[0-9]$/
+      regex_validator(reg, number)
     end
 
     def valid_status? (status)
@@ -55,6 +61,7 @@ module ApplicationHelper
       reg = /^Activo$|Inactivo$/
       regex_validator(reg, status)
     end
+
     def valid_tipomantenimietno (tipo)
       reg = /^Preventivo$|Correctivo$/
       regex_validator(reg, tipo)
@@ -76,8 +83,47 @@ module ApplicationHelper
     end
 
     def valid_rfc?(rfc)
-      reg = /[A-Z][A-Z][A-Z][A-Z][0-9][0-9][0-9][0-9][0-9][0-9][A-Z0-9][A-Z0-9][A-Z0-9]/
+      reg = /^[A-Z][A-Z][A-Z][A-Z][0-9][0-9][0-9][0-9][0-9][0-9][A-Z0-9][A-Z0-9][A-Z0-9]$/
       regex_validator(reg, rfc)
+    end
+
+    def valid_number?(number)
+      reg = /^[0-9]*$/
+      regex_validator(reg, number)
+    end
+
+    def valid_estado_capacitacion?(estado)
+      reg = /^Cancelado$|^Finalizado$|^Pendiente$|^Programado$/
+      regex_validator(reg, estado)
+    end
+
+    def valid_estadoc?(estado)
+      reg = /^[A-Za-zÁÉÍÓÚñáéíóúÑ]*$|^[A-Za-zÁÉÍÓÚñáéíóúÑ]*\s[A-Za-zÁÉÍÓÚñáéíóúÑ]*$/
+      regex_validator(reg, estado)
+    end
+
+    def valid_nombrecosas?(nombre)
+      reg = /^[A-Za-zÁÉÍÓÚñáéíóúÑ]*$|^[A-Za-zÁÉÍÓÚñáéíóúÑ]*\s{1}[A-Za-zÁÉÍÓÚñáéíóúÑ]*$|^[A-Za-zÁÉÍÓÚñáéíóúÑ]*\s{1}[A-Za-zÁÉÍÓÚñáéíóúÑ]*\s{1}[A-Za-zÁÉÍÓÚñáéíóúÑ]*$/
+      regex_validator(reg, nombre)
+    end
+
+    def valid_numserie?(serie)
+      reg = /^[A-Z][0-9][0-9][A-Z][A-Z][0-9][A-Z][A-Z][A-Z][A-Z][A-Z][0-9]$/
+      regex_validator(reg, serie)
+    end
+
+    def valid_tipopago?(tipo)
+      reg = /^Contado$|^Credito$/
+      regex_validator(reg, tipo)
+    end
+
+    def valid_alpha?(words)
+      reg = /[a-zA-Z0-9 ]*/
+    end
+
+    def valid_estadopostulante?(estado)
+      reg = /^En proceso$|^Rechazado$|^Contratado$/
+      regex_validator(reg, estado)
     end
 
     def regex_validator(reg, word)

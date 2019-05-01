@@ -29,7 +29,9 @@ class EquiposController < ApplicationController
 
   def update
     @equipo = Equipo.using(:dwh_t).find(params[:id])
-    if @equipo.update(equipo_params)
+    @equipo.update(equipo_params)
+    if validate_attributes 
+      @equipo.update_attributes(error: false)
       flash[:notice] = 'Actualizado'
       redirect_to equipos_path
     else
@@ -40,6 +42,10 @@ class EquiposController < ApplicationController
 
   def equipo_params
     params.require(:equipo).permit(:id_sistema, :sistema, :nombre, :modelo)
+  end
+
+  def validate_attributes 
+    valid_nombrecosas?(@equipo.nombre)
   end
 
   private

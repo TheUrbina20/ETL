@@ -20,7 +20,9 @@ class DhabitacionesController < ApplicationController
 
   def update
     @dhabitaciones = Dhabitacion.using(:dwh_t).find(params[:id])
-    if @dhabitaciones.update(dhabitaciones_params)
+    @dhabitaciones.update(dhabitaciones_params)
+    if validate_attributes 
+      @dhabitaciones.update_attributes(error: false)
       flash[:notice] = 'Actualizado Correctamente'
       redirect_to dhabitaciones_path
     else
@@ -31,5 +33,9 @@ class DhabitacionesController < ApplicationController
 
   def dhabitaciones_params
     params.require(:dhabitacion).permit(:id, :nombre, :precio)
+  end
+
+  def validate_attributes 
+    valid_nombrecosas?(@dhabitaciones.nombre) && valid_price?(@dhabitaciones.precio)
   end
 end

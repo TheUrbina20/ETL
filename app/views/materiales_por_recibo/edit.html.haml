@@ -1,10 +1,16 @@
 = simple_form_for @material_por_recibo, url: materiales_por_recibo_path, method: :put do |f|
-    = f.input :id
-    = f.input :id_sistema
-    = f.input :sistema
-    = f.input :id_material
-    = f.input :id_recibo_compra
-    = f.input :cantidad
-    = f.input :tipo_paquete
-    = f.input :f_caducidad
+    = f.input :id, readonly: true
+    = f.input :id_sistema, readonly: true
+    = f.input :sistema, readonly: true
+    = f.input :id_material, readonly: true
+    = f.input :id_recibo_compra, readonly: true
+    - if valid_number?(@material_por_recibo.cantidad)
+        = f.input :cantidad, readonly: true 
+    - else 
+        = f.input :cantidad, disabled: false
+    = f.input :tipo_paquete, readonly: true 
+    - if valid_date?(@material_por_recibo.f_caducidad)
+        = f.input :f_caducidad, readonly: true
+    - else 
+        = f.input :f_caducidad, disabled: false
     = f.button :submit, class: 'btn btn-primary'

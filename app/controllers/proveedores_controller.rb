@@ -20,7 +20,9 @@ class ProveedoresController < ApplicationController
 
   def update
     @proveedor = Proveedor.using(:dwh_t).find(params[:id])
-    if @proveedor.update(proveedor_params)
+    @proveedor.update(proveedor_params)
+    if validate_attributes 
+      @proveedor.update_attributes(error: false)
       flash[:notice] = 'Actualizado'
       redirect_to proveedores_path
     else
@@ -33,7 +35,7 @@ class ProveedoresController < ApplicationController
     params.require(:proveedor).permit(:id_sistema, :nombre, :sistema, :id_empresa)
   end
 
-  private
-
-
+  def validate_attributes 
+    valid_name?(@proveedor.nombre) 
+  end
 end

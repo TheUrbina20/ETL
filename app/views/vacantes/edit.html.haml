@@ -1,5 +1,11 @@
 = simple_form_for @vacantes, url: vacante_path, method: :put do |f|
-    = f.input :id
-    = f.input :nombre
-    = f.input :estado
+    = f.input :id, readonly: true 
+    - if valid_nombrecosas?(@vacantes.nombre)
+        = f.input :nombre, readonly: true 
+    - else 
+        = f.input :nombre, disabled: false 
+    - if valid_estado?(@vacantes.estado)
+        = f.input :estado, readonly: true 
+    - else 
+        = f.input :estado, disabled: false
     = f.button :submit, class: 'btn btn-primary'

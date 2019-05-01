@@ -20,8 +20,9 @@ class AsistenciasController < ApplicationController
 
   def update
     @asistencias = Asistencia.using(:dwh_t).find(params[:id])
-
-    if @asistencias.update(areas_params)
+    @asistencias.update(areas_params)
+    if validate_attributes 
+      @asistencias.update_attributes(error: false)
       flash[:notice] = 'Actualizado Correctamente'
       redirect_to asistencias_path
     else
@@ -34,6 +35,8 @@ class AsistenciasController < ApplicationController
     params.require(:asistencia).permit(:id, :id_empleado, :fecha, :hora_entrada, :hora_salida)
   end
 
-  private
+  def validate_attributes 
+    valid_date?(@asistencias.fecha)
+  end
 
 end

@@ -19,7 +19,7 @@
           %td=detalle_factura.fecha_emision
         -else
           %td.text-danger=detalle_factura.fecha_emision
-        -if valid_precio?(detalle_factura.total)
+        -if valid_price?(detalle_factura.total)
           %td=detalle_factura.total
         -else
           %td.text-danger=detalle_factura.total

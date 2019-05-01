@@ -1,9 +1,21 @@
 = simple_form_for @ingrediente, url: ingrediente_path, method: :put do |f|
-    = f.input :id
-    = f.input :nombre
-    = f.input :stock_minimo
-    = f.input :stock_maximo
-    = f.input :cantidad_stock
-    = f.input :id_tipo
-    = f.input :id_tipo_cantidad
+    = f.input :id, readonly: true
+    - if valid_nombrecosas?(@ingrediente.nombre)
+        = f.input :nombre, readonly: true 
+    - else 
+        = f.input :nombre, disabled: false 
+    - if valid_cantidad?(@ingrediente.stock_minimo)
+        = f.input :stock_minimo, readonly: true
+    - else 
+        = f.input :stock_minimo, disabled: false 
+    - if valid_cantidad?(@ingrediente.stock_maximo)
+        = f.input :stock_maximo, readonly: true 
+    - else 
+        = f.input :stock_maximo, disabled: false 
+    - if valid_cantidad?(@ingrediente.cantidad_stock)
+        = f.input :cantidad_stock, readonly: true
+    - else 
+        = f.input :cantidad_stock, disabled: false 
+    = f.input :id_tipo, readonly: true
+    = f.input :id_tipo_cantidad, readonly: true
     = f.button :submit, class: 'btn btn-primary'

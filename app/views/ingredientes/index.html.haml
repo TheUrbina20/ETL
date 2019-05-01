@@ -14,7 +14,7 @@
     - @ingredientes.each do |ingrediente|
       %tr
         %td=ingrediente.id
-        - if valid_words?(ingrediente.nombre)
+        - if valid_nombrecosas?(ingrediente.nombre)
           %td=ingrediente.nombre
         -else
           %td.text-danger=ingrediente.nombre

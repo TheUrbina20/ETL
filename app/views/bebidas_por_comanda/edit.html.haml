@@ -1,6 +1,9 @@
 = simple_form_for @bebida_por_comanda, url:  bebidas_por_comanda_path, method: :put do |f|
-    = f.input :id
-    = f.input :id_comanda
-    = f.input :id_bebida
-    = f.input :cantidad
+    = f.input :id, readonly: true
+    = f.input :id_comanda, readonly: true
+    = f.input :id_bebida, readonly: true
+    - if valid_cantidad?(@bebida_por_comanda.cantidad)
+        = f.input :cantidad, readonly: true
+    - else 
+        = f.input :cantidad, disabled: false
     = f.button :submit, class: 'btn btn-primary'

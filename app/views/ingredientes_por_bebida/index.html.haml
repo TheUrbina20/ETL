@@ -15,7 +15,7 @@
         %td=ingrediente_por_bebida.id_bebida
         %td=ingrediente_por_bebida.id_producto
         %td=ingrediente_por_bebida.id_tipo_medida
-        -if vaid_cantidad?(ingrediente_por_bebida.cantidad)
+        -if valid_cantidad?(ingrediente_por_bebida.cantidad)
           %td=ingrediente_por_bebida.cantidad
         -else
           %td.text-danger=ingrediente_por_bebida.cantidad

@@ -1,8 +1,20 @@
 = simple_form_for @material, url: materiale_path, method: :put do |f|
-    = f.input :id
-    = f.input :id_sistema
-    = f.input :nombre
-    = f.input :stock_min
-    = f.input :stock_max
-    = f.input :cantidad_stock
+    = f.input :id, readonly: true
+    = f.input :id_sistema, readonly: true 
+    - if valid_alpha?(@material.nombre)
+        = f.input :nombre, readonly: true 
+    - else 
+        = f.input :nombre, disabled: false 
+    - if valid_number?(@material.stock_min)
+        = f.input :stock_min, readonly: true 
+    - else 
+        = f.input :stock_min, disabled: false 
+    - if valid_number?(@material.stock_max)
+        = f.input :stock_max, readonly: true 
+    - else 
+        = f.input :stock_max, disabled: false 
+    - if valid_number?(@material.cantidad_stock)
+        = f.input :cantidad_stock, readonly: true 
+    - else 
+        = f.input :cantidad_stock, disabled: false
     = f.button :submit, class: 'btn btn-primary'

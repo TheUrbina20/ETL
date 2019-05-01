@@ -1,7 +1,16 @@
 = simple_form_for @programas, url:  programas_capacitacion_path, method: :put do |f|
-    = f.input :id
-    = f.input :id_empresa
-    = f.input :nombre
-    = f.input :costo
-    = f.input :duracion
+    = f.input :id, readonly: true
+    = f.input :id_empresa, readonly: true
+    - if valid_nombrecosas?(@programas.nombre)
+        = f.input :nombre, readonly: true 
+    - else 
+        = f.input :nombre, disabled: false 
+    - if valid_price?(@programas.costo)
+        = f.input :costo, readonly: true 
+    - else  
+        = f.input :costo, disabled: false 
+    - if valid_number?(@programas.duracion)
+        = f.input :duracion, readonly: true 
+    - else  
+        = f.input :duracion, disabled: false
     = f.button :submit, class: 'btn btn-primary'

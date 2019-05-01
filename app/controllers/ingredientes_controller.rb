@@ -20,7 +20,9 @@ class IngredientesController < ApplicationController
 
   def update
     @ingrediente = Ingrediente.using(:dwh_t).find(params[:id])
-    if @ingrediente.update(ingrediente_params)
+    @ingrediente.update(ingrediente_params)
+    if validate_attributes 
+      @ingrediente.update_attributes(error: false)
       flash[:notice] = 'Actualizado'
       redirect_to ingredientes_path
     else
@@ -31,5 +33,9 @@ class IngredientesController < ApplicationController
 
   def ingrediente_params
     params.require(:ingrediente).permit(:nombre, :stock_minimo, :stock_maximo, :cantidad_stock, :id_tipo, :id_tipo_cantidad)
+  end
+
+  def validate_attributes 
+    valid_nombrecosas?(@ingrediente.nombre) && valid_number?(@ingrediente.stock_minimo) && valid_number?(@ingrediente.stock_maximo) && valid_number?(@ingrediente.cantidad_stock)
   end
 end

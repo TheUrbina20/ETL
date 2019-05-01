@@ -13,7 +13,7 @@
     - @historicos.each do |ma|
       %tr
         %td=ma.id
-        - if valid_precio?(ma.precio)
+        - if valid_price?(ma.precio)
           %td=ma.precio
         - else
           %td.text-danger=ma.precio

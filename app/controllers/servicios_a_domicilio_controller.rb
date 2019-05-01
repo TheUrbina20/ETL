@@ -19,7 +19,9 @@ class ServiciosADomicilioController < ApplicationController
 
   def update
     @servicio_a_domicilio = ServicioADomicilio.using(:dwh_t).find(params[:id])
-    if @servicio_a_domicilio.update(servicio_a_domicilio_params)
+    @servicio_a_domicilio.update(servicio_a_domicilio_params)
+    if validate_attributes 
+      @servicio_a_domicilio.update_attributes(error: false)
       flash[:notice] = 'Actualizado'
       redirect_to servicios_a_domicilio_index_path
     else
@@ -31,7 +33,7 @@ class ServiciosADomicilioController < ApplicationController
   def servicio_a_domicilio_params
     params.require(:servicio_a_domicilio).permit(:id_habitacion, :fecha)
   end
-
-  private
-
+  def validate_attributes 
+    valid_date?(@servicio_a_domicilio.fecha)
+  end
 end

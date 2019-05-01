@@ -20,8 +20,9 @@ class PostulantesController < ApplicationController
 
   def update
     @postulantes = Postulante.using(:dwh_t).find(params[:id])
-
-    if @postulantes.update(postulantes_params)
+    @postulantes.update(postulantes_params)
+    if validate_attributes 
+      @postulantes.update_attributes(error: false)
       flash[:notice] = 'Actualizado Correctamente'
       redirect_to postulantes_path
     else
@@ -34,6 +35,8 @@ class PostulantesController < ApplicationController
     params.require(:postulante).permit(:id, :nombre, :estado)
   end
 
-  private
+  def validate_attributes 
+    valid_estadopostulante?(@postulantes.estado) && valid_name?(@postulantes.nombre)
+  end
 
 end

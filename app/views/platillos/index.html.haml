@@ -12,11 +12,11 @@
     - @platillos.each do |platillo|
       %tr
         %td=platillo.id
-        - if valid_words?(platillo.nombre)
+        - if valid_nombrecosas?(platillo.nombre)
           %td=platillo.nombre
         -else
           %td.text-danger=platillo.nombre
-        -if valid_precio?(platillo.precio)
+        -if valid_price?(platillo.precio)
           %td=platillo.precio
         -else
           %td.text-danger=platillo.precio

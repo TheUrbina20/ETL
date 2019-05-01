@@ -1,8 +1,17 @@
 = simple_form_for @factura_hotel, url: facturas_hotel_path, method: :put do |f|
-    = f.input :id
-    = f.input :id_cliente
-    = f.input :total
-    = f.input :fecha_emision
-    = f.input :tipo_pago
-    = f.input :id_renta
+    = f.input :id, readonly: true
+    = f.input :id_cliente, readonly: true 
+    - if valid_price?(@factura_hotel.total)
+        = f.input :total, readonly: true 
+    - else 
+        = f.input :total, disabled: false 
+    - if valid_date?(@factura_hotel.fecha_emision)
+        = f.input :fecha_emision, readonly: true 
+    - else
+        = f.input :fecha_emision, disabled: false 
+    - if valid_tipopago?(@factura_hotel.tipo_pago)
+        = f.input :tipo_pago, readonly: true 
+    - else 
+        = f.input :tipo_pago, disabled: false 
+    = f.input :id_renta, readonly: true
     = f.button :submit, class: 'btn btn-primary'

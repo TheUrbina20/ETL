@@ -20,7 +20,9 @@ class ReservacionesEnHotelController < ApplicationController
 
   def update
     @reservacion = ReservacionEnHotel.using(:dwh_t).find(params[:id])
-    if @reservacion.update(reservacion_params)
+    @reservacion.update(reservacion_params)
+    if validate_attributes 
+      @reservacion.update_attributes(error: false)
       flash[:notice] = 'Actualizado'
       redirect_to reservaciones_en_hotel_index_path
     else
@@ -32,6 +34,9 @@ class ReservacionesEnHotelController < ApplicationController
   def reservacion_params
     params.require(:reservacion_en_hotel).permit(:f_entrada, :f_salida, :f_reservacion, :estado, :id_cliente, :id_empleado)
   end
-  private
+
+  def validate_attributes 
+    valid_date?(@reservacion.f_entrada) && valid_date?(@reservacion.f_salida) && valid_date?(@reservacion.f_reservacion) && valid_status?(@reservacion.estado)
+  end
 
 end

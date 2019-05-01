@@ -1,10 +1,10 @@
 = simple_form_for @dhabitaciones, url: dhabitacione_path, method: :put do |f|
  = f.input :id, readonly:true
- - if valid_name?(@dhabitaciones.nombre)
+ - if valid_nombrecosas?(@dhabitaciones.nombre)
   = f.input :nombre, readonly: true 
  - else 
   = f.input :nombre, disabled: false
- - if valid_precio?(@dhabitaciones.precio)
+ - if valid_price?(@dhabitaciones.precio)
   = f.input :precio, readonly: true 
  - else 
   =f.input :precio, disabled: false

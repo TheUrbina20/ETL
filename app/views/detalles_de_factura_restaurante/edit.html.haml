@@ -1,7 +1,13 @@
 = simple_form_for @detalle_de_factura_restaurante, url:  detalles_de_factura_restaurante_path, method: :put do |f|
-    = f.input :id
-    = f.input :id_factura
-    = f.input :id_comanda
-    = f.input :fecha_emision
-    = f.input :total
+    = f.input :id, readonly: true
+    = f.input :id_factura, readonly: true
+    = f.input :id_comanda, readonly: true
+    - if valid_date?(@detalle_de_factura_restaurante.fecha_emision)
+        = f.input :fecha_emision, readonly: true 
+    - else 
+        = f.input :fecha_emision, disabled: false 
+    - if valid_price?(@detalle_de_factura_restaurante.total)
+        = f.input :total, readonly: true 
+    - else 
+        = f.input :total, disabled: false
     = f.button :submit, class: 'btn btn-primary'

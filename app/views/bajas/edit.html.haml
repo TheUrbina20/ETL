@@ -1,7 +1,13 @@
 = simple_form_for @baja, url:  baja_path, method: :put do |f|
-    = f.input :id
-    = f.input :id_articulo
-    = f.input :fecha
-    = f.input :tipo
-    = f.input :motivo
+    = f.input :id, readonly: true
+    = f.input :id_articulo, readonly: true
+    - if valid_date?(@baja.fecha)
+        = f.input :fecha, readonly: true 
+    - else 
+        = f.input :fecha, disabled: false
+    - if valid_word?(@baja.tipo)
+        = f.input :tipo, readonly: true 
+    - else 
+        = f.inpuit :tipo, disabled: false
+    = f.input :motivo, readonly: true
     = f.button :submit, class: 'btn btn-primary'

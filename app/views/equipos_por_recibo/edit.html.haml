@@ -1,9 +1,15 @@
 = simple_form_for @equipo_por_recibo, url: equipos_por_recibo_path, method: :put do |f|
-    = f.input :id
-    = f.input :id_sistema
-    = f.input :sistema
-    = f.input :id_equipo
-    = f.input :n_serie
-    = f.input :id_recibo_compra
-    = f.input :f_finalizacion_garantia
+    = f.input :id, readonly: true
+    = f.input :id_sistema, readonly: true
+    = f.input :sistema, readonly: true
+    = f.input :id_equipo, readonly: true
+    - if valid_numserie?(@equipo_por_recibo.n_serie)
+        = f.input :n_serie, readonly: true 
+    - else 
+        = f.input :n_serie, disabled: false 
+    = f.input :id_recibo_compra, readonly: true
+    - if valid_date?(@equipo_por_recibo.f_finalizacion_garantia)
+        = f.input :f_finalizacion_garantia, readonly: true 
+    - else 
+        = f.input :f_finalizacion_garantia, disabled: false
     = f.button :submit, class: 'btn btn-primary'

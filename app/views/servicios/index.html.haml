@@ -10,7 +10,7 @@
     - @servicio.each do |s|
       %tr
         %td=s.id
-        - if valid_nombre_servicio? (s.nombre)
+        - if valid_nombrecosas?(s.nombre)
           %td=s.nombre
         - else
           %td.text-danger=s.nombre

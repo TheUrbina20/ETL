@@ -20,8 +20,9 @@ class CapacitacionesPorEmpleadoController < ApplicationController
 
   def update
     @capacitaciones = CapacitacionPorEmpleado.using(:dwh_t).find(params[:id])
-
-    if @capacitaciones.update(capacitacion_params)
+    @capacitaciones.update(capacitacion_params)
+    if validate_attributes 
+      @capacitaciones.update_attributes(error: false)
       flash[:notice] = 'Actualizado Correctamente'
       redirect_to capacitaciones_por_empleado_index_path
     else
@@ -34,6 +35,8 @@ class CapacitacionesPorEmpleadoController < ApplicationController
     params.require(:capacitacion_por_empleado).permit(:id, :id_empleado, :id_capacitacion, :f_inicio, :f_fin, :estado)
   end
 
-  private
+  def validate_attributes 
+    valid_date?(@capacitaciones.f_fin) && valid_date?(@capacitaciones.f_fin) && valid_estado_capacitacion?(@capacitaciones.estado)
+  end
 
 end

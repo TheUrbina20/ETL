@@ -1,7 +1,10 @@
 = simple_form_for @aplicacion_a_vacante, url:  aplicaciones_a_vacante_path, method: :put do |f|
-    = f.input :id
-    = f.input :id_postulante
-    = f.input :id_empleado
-    = f.input :id_vacante
-    = f.input :f_aplicacion
+    = f.input :id, readonly: true
+    = f.input :id_postulante, readonly: true
+    = f.input :id_empleado, readonly: true
+    = f.input :id_vacante, readonly: true
+    - if valid_date?(@aplicacion_a_vacante.f_aplicacion)
+        = f.input :f_aplicacion, readonly: true 
+    - else 
+        = f.input :f_aplicacion, disabled: false
     = f.button :submit, class: 'btn btn-primary'

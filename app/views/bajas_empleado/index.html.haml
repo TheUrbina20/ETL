@@ -5,6 +5,7 @@
       %td='ID'
       %td='Num de Empleado'
       %td='Motivo'
+      %td='Fecha'
       %td='Acciones'
 
   %tbody
@@ -12,10 +13,11 @@
       %tr
         %td=baja_empleado.id
         %td=baja_empleado.id_empleado
-        -if valid_words?(baja_empleado.motivo)
-          %td=baja_empleado.motivo
-        -else
-          %td.text-danger=baja_empleado.motivo
+        %td=baja_empleado.motivo
+        - if valid_date?(baja_empleado.fecha)
+          %td=baja_empleado.fecha
+        - else 
+          %td.text-danger=baja_empleado.fecha
         %td
           = link_to edit_bajas_empleado_path(baja_empleado) do
             = fa_icon 'pencil'

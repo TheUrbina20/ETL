@@ -1,8 +1,11 @@
 = simple_form_for @factura_restaurante, url: facturas_restaurante_path, method: :put do |f|
-    = f.input :id
-    = f.input :id_sistema
-    = f.input :id_cliente
-    = f.input :fecha_emision
-    = f.input :tipo_pago
-    = f.input :sistema
+    = f.input :id, readonly: true
+    = f.input :id_sistema, readonly: true
+    = f.input :id_cliente, readonly: true
+    - if valid_date?(@factura_restaurante.fecha_emision)
+        = f.input :fecha_emision, readonly: true 
+    - else 
+        = f.input :fecha_emision, disabled: false
+    = f.input :tipo_pago, readonly: true
+    = f.input :sistema, readonly: true 
     = f.button :submit, class: 'btn btn-primary'

@@ -1,12 +1,33 @@
 = simple_form_for @empleado, url: empleado_path, method: :put do |f|
-    = f.input :id
-    = f.input :nombre
-    = f.input :f_nacimiento
-    = f.input :c_electronico
-    = f.input :n_telefono
-    = f.input :genero
-    = f.input :rfc
-    = f.input :baja
-    = f.input :sistema
-    = f.input :f_entrada
+    = f.input :id, readonly: true
+    - if valid_name?(@empleado.nombre)
+        = f.input :nombre, readonly: true
+    - else 
+        = f.input :nombre, disabled: false
+    - if valid_date?(@empleado.f_nacimiento)
+        = f.input :f_nacimiento, readonly: true 
+    - else 
+        = f.input :f_nacimiento, disabled: false
+    - if valid_email?(@empleado.c_electronico)
+        = f.input :c_electronico, readonly: true 
+    - else 
+        = f.input :c_electronico, disabled: false
+    - if valid_telefono?(@empleado.n_telefono)
+        = f.input :n_telefono, readonly: true 
+    - else 
+        = f.input :n_telefono, disabled: false
+    - if valid_genero?(@empleado.genero)
+        = f.input :genero, readonly: true 
+    - else 
+        = f.input :genero, disabled: false
+    - if valid_rfc?(@empleado.rfc)
+        = f.input :rfc, readonly: true 
+    - else 
+        = f.input :rfc, disabled: false
+    = f.input :baja, readonly: true
+    = f.input :sistema, readonly: true
+    - if valid_date?(@empleado.f_entrada)
+        = f.input :f_entrada, readonly: true 
+    - else 
+        = f.input :f_entrada, disabled: false
     = f.button :submit, class: 'btn btn-primary'

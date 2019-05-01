@@ -27,7 +27,9 @@ class MaterialesController < ApplicationController
 
   def update
     @material = Material.using(:dwh_t).find(params[:id])
-    if @material.update(material_params)
+    @material.update(material_params)
+    if validate_attributes 
+      @material.update_attributes(error: false)
       flash[:notice] = 'Material actualizado'
       redirect_to materiales_path
     else
@@ -39,4 +41,9 @@ class MaterialesController < ApplicationController
   def material_params
     params.require(:material).permit(:id, :nombre, :stock_min, :stock_max, :cantidad_stock, :id_sistema)
   end
+
+  def validate_attributes 
+    valid_number?(@material.cantidad_stock) && valid_number?(@material.stock_max) && valid_number?(@material.stock_min) && valid_alpha?(@material.nombre)
+  end
+  
 end
