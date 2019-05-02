@@ -3,22 +3,27 @@ class ApplicationController < ActionController::Base
 
 
   def valid_word?(word)
-    reg = /[a-zA-Z ]*/
+    reg = /^[a-zA-Z ]*/
     regex_validator(reg, word)
   end
 
   def valid_alpha?(words)
-    reg = /[a-zA-Z0-9 ]*/
+    reg = /^[a-zA-Z0-9 ]*/
+  end
+
+  def valid_alpha?(words)
+    reg = /^[a-zA-Z0-9 -]*/
   end
 
   def valid_name?(name)
+    puts 'VALIDANDON NOMBRES DE PERSONAS'
     #reg = /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/
     reg = /^([A-Za-zÁÉÍÓÚñáéíóúÑ]{0}?[A-Za-zÁÉÍÓÚñáéíóúÑ\']+[\s])+([A-Za-zÁÉÍÓÚñáéíóúÑ]{0}?[A-Za-zÁÉÍÓÚñáéíóúÑ\'])+[\s]?([A-Za-zÁÉÍÓÚñáéíóúÑ]{0}?[A-Za-zÁÉÍÓÚñáéíóúÑ\'])?$/
     regex_validator(reg, name)
   end
 
   def valid_words?(words)
-    reg = /[a-zA-Z ]*/
+    reg = /^[a-zA-Z ]*/
     regex_validator(reg, words)
   end
 
@@ -48,7 +53,7 @@ class ApplicationController < ActionController::Base
   end
 
   def valid_rfc?(rfc)
-    reg = /[A-Z][A-Z][A-Z][A-Z][0-9][0-9][0-9][0-9][0-9][0-9][A-Z0-9][A-Z0-9][A-Z0-9]/
+    reg = /^[A-Z][A-Z][A-Z][A-Z][0-9][0-9][0-9][0-9][0-9][0-9][A-Z0-9][A-Z0-9][A-Z0-9]/
     regex_validator(reg, rfc)
   end
 
@@ -73,6 +78,7 @@ class ApplicationController < ActionController::Base
   end
 
   def valid_nombrecosas?(nombre)
+    puts 'VALIDANDO EL NOMBRE DE LAS COSAS'
     reg = /^[A-Za-zÁÉÍÓÚñáéíóúÑ]*$|^[A-Za-zÁÉÍÓÚñáéíóúÑ]*\s{1}[A-Za-zÁÉÍÓÚñáéíóúÑ]*$|^[A-Za-zÁÉÍÓÚñáéíóúÑ]*\s{1}[A-Za-zÁÉÍÓÚñáéíóúÑ]*\s{1}[A-Za-zÁÉÍÓÚñáéíóúÑ]*$/
     regex_validator(reg, nombre)
   end
@@ -111,9 +117,9 @@ class ApplicationController < ActionController::Base
     reg = /^Activa$|Cancelada$/
     regex_validator(reg, status)
   end
-  
+
   def regex_validator(reg, word)
     reg.match(word) ? true : false
   end
-  
+
 end

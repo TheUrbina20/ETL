@@ -19,15 +19,15 @@
         -if valid_date?(capacitacion.f_inicio)
           %td=capacitacion.f_inicio
         -else
-          %td.text-danger=capacitacion.f_inicio
+          %td.text.danger=capacitacion.f_inicio
         -if valid_date?(capacitacion.f_fin)
           %td=capacitacion.f_fin
         -else
-          %td.text-danger=capacitacion.f_fin
+          %td.text.danger=capacitacion.f_fin
         -if valid_estado_capacitacion?(capacitacion.estado)
           %td=capacitacion.estado
         - else
-          %td.text-danger=capacitacion.estado
+          %td.text.danger=capacitacion.estado
         %td
           = link_to edit_capacitaciones_por_empleado_path(capacitacion) do
             = fa_icon 'pencil'

@@ -4,8 +4,8 @@
     %tr
       %td='ID'
       %td='Nombre/Correo electronico'
-      %td='# telefono'
       %td='Fecha nacimiento/ Entrada'
+      %td='# telefono'
       %td='Género'
       %td='RFC'
       %td='Baja'
@@ -15,34 +15,36 @@
     - @empleados.each do |empleado|
       %tr
         %td=empleado.id
-        - if valid_name?(empleado.nombre)
-          %td=empleado.nombre
-        - else
-          %td.text-danger=empleado.nombre
-        - if valid_date?(empleado.f_nacimiento)
-          %td=empleado.f_nacimiento
-        - else
-          %td.text-danger=empleado.f_nacimiento
-        - if valid_email?(empleado.c_electronico)
-          %td=empleado.c_electronico
-        -else
-          %td.text-danger=empleado.c_electronico
+        %td
+          - if valid_name?(empleado.nombre)
+            =empleado.nombre
+          - else
+            .text.danger=empleado.nombre
+          - if valid_email?(empleado.c_electronico)
+            =empleado.c_electronico
+          -else
+            .text.danger=empleado.c_electronico
+        %td
+          - if valid_date?(empleado.f_nacimiento)
+            =empleado.f_nacimiento
+          - else
+            .text.danger=empleado.f_nacimiento
+          -if valid_date?(empleado.f_entrada)
+            =empleado.f_entrada
+          - else
+            .text.danger=empleado.f_entrada
         - if valid_telefono?(empleado.n_telefono)
           %td=empleado.n_telefono
         - else
-          %td.text-danger=empleado.n_telefono
-        -if valid_date?(empleado.f_entrada)
-          %td=empleado.f_entrada
-        - else
-          %td.text-danger=empleado.f_entrada
+          %td.text.danger=empleado.n_telefono
         - if valid_genero?(empleado.genero)
           %td=empleado.genero
         - else
-          %td.text-danger=empleado.genero
+          %td.text.danger=empleado.genero
         -if valid_rfc?(empleado.rfc)
           %td=empleado.rfc
         -else
-          %td.text-danger=empleado.rfc
+          %td.text.danger=empleado.rfc
         %td=empleado.baja
         %td=empleado.sistema
         %td

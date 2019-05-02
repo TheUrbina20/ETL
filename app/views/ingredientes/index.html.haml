@@ -17,19 +17,19 @@
         - if valid_nombrecosas?(ingrediente.nombre)
           %td=ingrediente.nombre
         -else
-          %td.text-danger=ingrediente.nombre
+          %td.text.danger=ingrediente.nombre
         -if valid_cantidad?(ingrediente.stock_minimo)
           %td=ingrediente.stock_minimo
         -else
-          %td.text-danger=ingrediente.stock_minimo
+          %td.text.danger=ingrediente.stock_minimo
         -if valid_cantidad?(ingrediente.stock_maximo)
           %td=ingrediente.stock_maximo
         -else
-          %td.text-danger=ingrediente.stock_maximo
+          %td.text.danger=ingrediente.stock_maximo
         -if valid_cantidad?(ingrediente.cantidad_stock)
           %td=ingrediente.cantidad_stock
         -else
-          %td.text-danger=ingrediente.cantidad_stock
+          %td.text.danger=ingrediente.cantidad_stock
         %td=ingrediente.id_tipo
         %td=ingrediente.id_tipo_cantidad
         %td

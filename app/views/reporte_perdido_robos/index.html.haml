@@ -17,11 +17,11 @@
         - if valid_cantidad? (s.cantidad)
           %td=s.cantidad
         - else
-          %td.text-danger=s.cantidad
+          %td.text.danger=s.cantidad
         - if valid_date?(s.fecha)
           %td=s.fecha
         - else
-          %td.text-danger=s.fecha
+          %td.text.danger=s.fecha
         %td=s.id_servicio_limpieza
         %td=s.id_habitacion
         %td=s.id_empleado

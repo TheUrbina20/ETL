@@ -13,7 +13,7 @@
         -if valid_nombrecosas?(area.nombre)
           %td=area.nombre
         -else
-          %td.text-danger=area.nombre
+          %td.text.danger=area.nombre
         %td=area.clave
         %td
           = link_to edit_area_path(area) do

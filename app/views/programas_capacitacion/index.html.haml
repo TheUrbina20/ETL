@@ -18,15 +18,15 @@
         -if valid_nombrecosas?(programa.nombre)
           %td=programa.nombre
         -else
-          %td.text-danger=programa.nombre
+          %td.text.danger=programa.nombre
         -if valid_price?(programa.costo)
           %td=programa.costo
         -else
-          %td.text-danger=programa.costo
+          %td.text.danger=programa.costo
         -if valid_cantidad?(programa.duracion)
           %td=programa.duracion
         -else
-          %td.text-danger=programa.duracion
+          %td.text.danger=programa.duracion
         %td
           = link_to edit_programas_capacitacion_path(programa) do
             = fa_icon 'pencil'

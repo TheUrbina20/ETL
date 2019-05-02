@@ -12,7 +12,7 @@
         - if valid_name? (s.nombre)
           %td=s.nombre
         - else
-          %td.text-danger=s.nombre
+          %td.text.danger=s.nombre
         %td
           = link_to edit_servicio_limpieza_path(s) do
             = fa_icon 'pencil'

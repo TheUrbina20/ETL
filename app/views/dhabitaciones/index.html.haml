@@ -13,11 +13,11 @@
         - if valid_nombrecosas?(ha.nombre)
           %td=ha.nombre
         - else
-          %td.text-danger=ha.nombre
+          %td.text.danger=ha.nombre
         - if valid_price?(ha.precio)
           %td=ha.precio
         - else
-          %td.text-danger=ha.precio
+          %td.text.danger=ha.precio
         %td
           = link_to edit_dhabitacione_path(ha) do
             = fa_icon 'pencil'

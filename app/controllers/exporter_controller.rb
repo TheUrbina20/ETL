@@ -11,7 +11,7 @@ class ExporterController < ApplicationController
       #obtener los registros
       sheet.add_row ['id', 'id sistema', 'Sistema', 'Nombre', 'Stock maximo', 'Stock mínimo', 'Cantidad en stock']
 
-      materiales = Material.using(:dwh).all
+      materiales = Material.using(:dwh_t).all
       materiales.each do |material|
         sheet.add_row [ material.id, material.id_sistema, material.sistema, material.nombre, material.stock_max, material.stock_min, material.cantidad_stock ]
       end

@@ -17,7 +17,7 @@
         -if valid_date?(orden_por_empleado.f_peticion)
           %td=orden_por_empleado.f_peticion
         -else
-          %td.text-danger=orden_por_empleado.f_peticion
+          %td.text.danger=orden_por_empleado.f_peticion
         %td=orden_por_empleado.id_empleado
         %td
           = link_to edit_pedidos_por_empleado_path(orden_por_empleado) do

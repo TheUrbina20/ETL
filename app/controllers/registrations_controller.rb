@@ -13,7 +13,7 @@ class RegistrationsController < Devise::RegistrationsController
   def create
     super
     resource.role = params[:user][:role]
-    resource.save!
+    resource.save! if resource.valid?
   end
 
   # GET /resource/edit

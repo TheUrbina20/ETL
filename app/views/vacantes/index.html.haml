@@ -13,11 +13,11 @@
         -if valid_nombrecosas?(vacante.nombre)
           %td=vacante.nombre
         -else
-          %td.text-danger=vacante.nombre
+          %td.text.danger=vacante.nombre
         -if valid_estado?(vacante.estado)
           %td=vacante.estado
         -else
-          %td.text-danger=vacante.estado
+          %td.text.danger=vacante.estado
         %td
           = link_to edit_vacante_path(vacante) do
             = fa_icon 'pencil'

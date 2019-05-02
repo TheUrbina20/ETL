@@ -19,7 +19,7 @@ class LandingPageController < ApplicationController
     initialize_detalle_factura_restaurante
     initialize_detalle_factura_hotel
     initialize_dhabitaciones
-    initialize_mantenimiento
+    initialize_mantenimientos
     initialize_mantenimientoh
     initialize_empleados
     initialice_empresas
@@ -44,7 +44,7 @@ class LandingPageController < ApplicationController
     initialize_materiales_por_recibo
     initialize_mesas
     initialize_mesas_por_reservacion
-    initialize_mantenimientos_por_equipo
+    # initialize_mantenimientos_por_equipo
     initialize_paquetes
     initialize_paquetesvr
     initialize_pedidos_por_empleados
@@ -124,7 +124,7 @@ class LandingPageController < ApplicationController
       unless valid_nombrecosas?(area.nombre)
         area.error = true
       end
-      unless area.clave == area.clave.upcase
+      unless valid_nombrecosas?(area.clave)
         area.error = true
       end
       area.save!
@@ -400,10 +400,10 @@ class LandingPageController < ApplicationController
       detalles_de_factura.id_comanda = detalles_de_factura_r[:id_comanda]
       detalles_de_factura.fecha_emision = detalles_de_factura_r[:fecha]
       detalles_de_factura.total = detalles_de_factura_r[:total]
-      unless valid_date?(detalles_de_factura.fecha_emision)
+      unless valid_date?(detalles_de_factura.fecha_emision.to_s)
         detalles_de_factura.error = true
       end
-      unless valid_price?(detalles_de_factura)
+      unless valid_price?(detalles_de_factura.to_s)
         detalles_de_factura.error = true
       end
       detalles_de_factura.save!
@@ -453,29 +453,29 @@ class LandingPageController < ApplicationController
   #   end
   # end
 
-  # def initialize_mantenimientoh
-  #   DmantenimientoHabitacion.using(:dwh_t).delete_all
-  #   mantenimientos = DmantenimientoHabitacion.using(:restaurant).all
-  #   mantenimiento = DmantenimientoHabitacion.using(:dwh_t).new()
+  def initialize_mantenimientoh
+    DmantenimientoHabitacion.using(:dwh_t).delete_all
+    mantenimientos = DmantenimientoHabitacion.using(:restaurant).all
+    mantenimiento = DmantenimientoHabitacion.using(:dwh_t).new()
 
-  #   mantenimientos.each do |ma|
-  #     mantenimiento = DmantenimientoHabitacion.using(:dwh_t).new()
-  #     mantenimiento.idDetalle = ma.idDetalle
-  #     mantenimiento.Descripcion = ma.Descripcion
-  #     mantenimiento.FechaInicio = ma.FechaInicio
-  #     mantenimiento.FechaTermino = ma.FechaTermino
-  #     mantenimiento.idHabitacion = ma.idHabitacion
-  #     mantenimiento.idMantenimientoH = ma.idMatenimientoH
-  #     mantenimiento.idEmpleado = ma.idEmpleado
-  #     unless valid_date?(mantenimiento.FechaInicio)
-  #       mantenimiento.error = true
-  #     end
-  #     unless valid_date?(mantenimiento.FechaTermino)
-  #       mantenimiento.error = true
-  #     end
-  #     mantenimiento.save!
-  #   end
-  # end
+    mantenimientos.each do |ma|
+      mantenimiento = DmantenimientoHabitacion.using(:dwh_t).new()
+      mantenimiento.id = ma.idDetalle
+      mantenimiento.Descripcion = ma.Descripcion
+      mantenimiento.FechaInicio = ma.FechaInicio
+      mantenimiento.FechaTermino = ma.FechaTermino
+      mantenimiento.idHabitacion = ma.idHabitacion
+      mantenimiento.idMantenimientoH = ma.idMatenimientoH
+      mantenimiento.idEmpleado = ma.idEmpleado
+      unless valid_date?(mantenimiento.FechaInicio)
+        mantenimiento.error = true
+      end
+      unless valid_date?(mantenimiento.FechaTermino)
+        mantenimiento.error = true
+      end
+      mantenimiento.save!
+    end
+  end
 
   def initialize_empleados
     Empleado.using(:dwh_t).delete_all
@@ -509,7 +509,7 @@ class LandingPageController < ApplicationController
       unless valid_date?(empleado.f_entrada)
         empleado.error = true
       end
-      unless valid_date?(empleado.f_entrada)
+      unless valid_date?(empleado.f_nacimiento)
         empleado.error = true
       end
       unless valid_email?(empleado.c_electronico)
@@ -525,6 +525,9 @@ class LandingPageController < ApplicationController
         empleado.error = true
       end
 
+      unless valid_genero?(empleado.genero)
+        empleado.error = true
+      end
       empleado.save!
     end
 
@@ -908,7 +911,7 @@ class LandingPageController < ApplicationController
       material.stock_min = material_r.Min
       material.sistema = 'H'
 
-      unless valid_number?(material.cantidad)
+      unless valid_number?(material.cantidad_stock)
         material.error = true
       end
 
@@ -963,7 +966,7 @@ class LandingPageController < ApplicationController
       material.stock_min = material_r[:stock_min]
       material.sistema = 'R'
 
-      unless valid_number?(material.cantidad)
+      unless valid_number?(material.cantidad_stock)
         material.error = true
       end
 

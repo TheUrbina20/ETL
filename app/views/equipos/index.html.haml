@@ -17,7 +17,7 @@
         - if valid_nombrecosas?(equipo.nombre)
           %td=equipo.nombre
         -else
-          %td.text-danger=equipo.nombre
+          %td.text.danger=equipo.nombre
         %td=equipo.modelo
         %td
           = link_to edit_equipo_path(equipo) do

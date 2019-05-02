@@ -16,16 +16,16 @@
         %td=factura.id_cliente
         - if valid_price?(factura.total)
           %td=factura.total
-        - else 
-          %td.text-danger=factura.total
+        - else
+          %td.text.danger=factura.total
         -if valid_date?(factura.fecha_emision)
           %td=factura.fecha_emision
         -else
           %td.alert-danger=factura.fecha_emision
         - if valid_tipopago?(factura.tipo_pago)
           %td=factura.tipo_pago
-        - else 
-          %td.text-danger=factura.tipo_pago
+        - else
+          %td.text.danger=factura.tipo_pago
         %td=factura.id_renta
         %td
           = link_to edit_facturas_hotel_path(factura) do

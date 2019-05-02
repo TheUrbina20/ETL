@@ -15,19 +15,19 @@
         -if valid_name?(cliente.nombre)
           %td=cliente.nombre
         -else
-          %td.text-danger=cliente.nombre
+          %td.text.danger=cliente.nombre
         -if valid_estadoc?(cliente.estado)
           %td=cliente.estado
         -else
-          %td.text-danger=cliente.estado
+          %td.text.danger=cliente.estado
         -if valid_email?(cliente.correo)
           %td=cliente.correo
         -else
-          %td.text-danger=cliente.correo
+          %td.text.danger=cliente.correo
         -if valid_telefono?(cliente.telefono)
           %td=cliente.telefono
         -else
-          %td.text-danger=cliente.telefono
+          %td.text.danger=cliente.telefono
         %td
           = link_to edit_cliente_path(cliente) do
             = fa_icon 'pencil'

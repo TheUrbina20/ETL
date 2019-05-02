@@ -15,11 +15,11 @@
         - if valid_nombrecosas?(platillo.nombre)
           %td=platillo.nombre
         -else
-          %td.text-danger=platillo.nombre
+          %td.text.danger=platillo.nombre
         -if valid_price?(platillo.precio)
           %td=platillo.precio
         -else
-          %td.text-danger=platillo.precio
+          %td.text.danger=platillo.precio
         %td=platillo.descripcion
         %td
           = link_to edit_platillo_path(platillo) do

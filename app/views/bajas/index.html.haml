@@ -17,15 +17,15 @@
         - if valid_word?(baja.tipo)
           %td=baja.tipo
         - else
-          %td.text-danger=baja.tipo
+          %td.text.danger=baja.tipo
         -if valid_date?(baja.fecha)
           %td=baja.fecha
         -else
-          %td.text-danger=baja.fecha
+          %td.text.danger=baja.fecha
         -if valid_words?(baja.motivo)
           %td=baja.motivo
         -else
-          %td.text-danger=baja.motivo
+          %td.text.danger=baja.motivo
         %td
           = link_to edit_baja_path(baja) do
             = fa_icon 'pencil'

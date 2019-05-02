@@ -23,12 +23,12 @@
         -if valid_cantidad?(material_por_recibo.cantidad)
           %td=material_por_recibo.cantidad
         -else
-          %td.text-danger=material_por_recibo.cantidad
+          %td.text.danger=material_por_recibo.cantidad
         %td=material_por_recibo.tipo_paquete
         -if valid_date?(material_por_recibo.f_caducidad)
           %td=material_por_recibo.f_caducidad
         -else
-          %td.text-danger=material_por_recibo.f_caducidad
+          %td.text.danger=material_por_recibo.f_caducidad
         %td
           = link_to edit_materiales_por_recibo_path(material_por_recibo) do
             = fa_icon 'pencil'

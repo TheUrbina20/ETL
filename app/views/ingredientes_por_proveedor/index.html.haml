@@ -17,7 +17,7 @@
         - if valid_price?(ingrediente_por_proveedor.precio)
           %td=ingrediente_por_proveedor.precio
         -else
-          %td.text-danger=ingrediente_por_proveedor.precio
+          %td.text.danger=ingrediente_por_proveedor.precio
         %td
           = link_to edit_ingredientes_por_proveedor_path(ingrediente_por_proveedor) do
             = fa_icon 'pencil'

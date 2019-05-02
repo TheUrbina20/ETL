@@ -15,11 +15,11 @@
         -if valid_nombrecosas?(bebida.nombre)
           %td=bebida.nombre
         -else
-          %td.text-danger=bebida.nombre
+          %td.text.danger=bebida.nombre
         -if valid_price?(bebida.precio)
           %td=bebida.precio
         -else
-          %td.text-danger=bebida.precio
+          %td.text.danger=bebida.precio
         %td=bebida.descripcion
         %td
           = link_to edit_bebida_path(bebida) do

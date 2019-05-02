@@ -17,7 +17,7 @@
         -if valid_name?(proveedor.nombre)
           %td=proveedor.nombre
         - else
-          %td.text-danger=proveedor.nombre
+          %td.text.danger=proveedor.nombre
         %td=proveedor.id_empresa
         %td
           = link_to edit_proveedore_path(proveedor) do

@@ -16,8 +16,8 @@
         %td=baja_empleado.motivo
         - if valid_date?(baja_empleado.fecha)
           %td=baja_empleado.fecha
-        - else 
-          %td.text-danger=baja_empleado.fecha
+        - else
+          %td.text.danger=baja_empleado.fecha
         %td
           = link_to edit_bajas_empleado_path(baja_empleado) do
             = fa_icon 'pencil'

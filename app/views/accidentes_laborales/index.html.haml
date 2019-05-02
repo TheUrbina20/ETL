@@ -15,7 +15,7 @@
         - if valid_date?(accidente.f_accidente)
           %td=accidente.f_accidente
         - else
-          %td.text-danger=accidente.f_accidente
+          %td.text.danger=accidente.f_accidente
         %td
           = link_to edit_accidentes_laborale_path(accidente) do
             = fa_icon 'pencil'
