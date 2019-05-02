@@ -29,6 +29,8 @@
             <br>
             <%= link_to 'Iniciar ETL', new_landing_page_path, class: 'btn btn-primary' if current_user.admin? %>
             <%= link_to 'Exportar xlsx', new_exporter_path, class: 'btn btn-success' if current_user.admin? %>
+            <%= link_to 'Exportar a SQL SERVER', new_sql_server_exporter_path, class: 'btn btn-success' if current_user.admin? %>
+
 
             <p></p>
           </div>

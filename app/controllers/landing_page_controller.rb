@@ -6,12 +6,13 @@ class LandingPageController < ApplicationController
     initialice_aplicaciones
     initialize_areas
     initialize_areas_por_empleado
-    initialize_mgh
+    initialize_asignacion_de_materiales
+    initialize_material_gastado_por_habitacion
     initialize_asistencias
     initialize_bajas
     initiallize_bajas_empleados
     initialize_bebidas
-    initialize_bebidas
+    initialize_bebidas_por_comanda
     initialice_capacitaciones
     initialize_clientes
     initialize_comandas
@@ -32,6 +33,7 @@ class LandingPageController < ApplicationController
     initialize_hrentadas
     initialize_hreservadas
     initialize_servicios
+    initialize_servicios_a_domicilio
     initialize_ingredientes
     initialize_ingredientes_por_bebida
     initialize_ingredientes_por_platillo
@@ -40,7 +42,6 @@ class LandingPageController < ApplicationController
     initialize_materials
     initialize_materiales_por_pedido
     initialize_materiales_por_recibo
-    initialize_mgh
     initialize_mesas
     initialize_mesas_por_reservacion
     # initialize_mantenimientos_por_equipo
@@ -62,8 +63,7 @@ class LandingPageController < ApplicationController
     initialize_serviciosl
     initialize_servicioslh
     initialize_servicios
-    initialize_mesas_por_reservacion
-    initialize_servicios
+    # initialize_mesas_por_reservacion
     initialize_serviciosp
     initialice_solicitudes
     initialize_tipos_productos
@@ -148,7 +148,7 @@ class LandingPageController < ApplicationController
     end
   end
 
-  def initialize_mgh
+  def initialize_asignacion_de_materiales
     AsignacionMaterial.using(:dwh_t).delete_all
     materiales = AsignacionMaterial.using(:restaurant).all
     material = AsignacionMaterial.using(:dwh_t).new
@@ -157,6 +157,7 @@ class LandingPageController < ApplicationController
       material = AsignacionMaterial.using(:dwh_t).new
       material.id = se.idAsignacion
       material.cantidad = se.Cantidad
+      material.error = false
       unless valid_number?(material.cantidad)
         material.error = true
       end
@@ -233,6 +234,7 @@ class LandingPageController < ApplicationController
       bebida.nombre = bebida_r[:nombre]
       bebida.precio = bebida_r[:precio]
       bebida.descripcion = bebida_r[:descripcion]
+      bebida.error = false
       unless valid_name?(bebida.nombre)
         bebida.error = true
       end
@@ -240,7 +242,7 @@ class LandingPageController < ApplicationController
     end
   end
 
-  def initialize_bebidas
+  def initialize_bebidas_por_comanda
     BebidaPorComanda.using(:dwh_t).delete_all
     bebidas = Mdb.open(Rails.root.join('db', 'access_db.accdb'))['Bebida_comanda']
     bebida = BebidaPorComanda.using(:dwh_t).new
@@ -335,7 +337,7 @@ class LandingPageController < ApplicationController
   end
 
 
-  def initialize_detalle_factura_restaurante
+  def initialize_detalle_factura_hotel
     DetalleDeFacturaHotel.using(:dwh_t).delete_all
     detalles_de_factura_hotel = DetalleDeFacturaHotel.using(:restaurant).all
     detalles_de_factura = DetalleDeFacturaHotel.using(:dwh_t).new
@@ -608,7 +610,7 @@ class LandingPageController < ApplicationController
       equipo = EquipoPorPedido.using(:dwh_t).new
       equipo.id_sistema = equipo_r[:Id]
       equipo.id_pedido = equipo_r[:id_pedido]
-      equipo.id_equipo = equipo_r[:id_equipo]
+      equipo.id_equipo = equipo_r[:id_equipo_c]
       equipo.sistema = 'R'
       equipo.save!
     end
@@ -978,7 +980,7 @@ class LandingPageController < ApplicationController
     end
   end
 
-  def initialize_mgh
+  def initialize_material_gastado_por_habitacion
     MgHabitacion.using(:dwh_t).delete_all
     materiales = MgHabitacion.using(:restaurant).all
     material = MgHabitacion.using(:dwh_t).new()
@@ -1495,7 +1497,7 @@ class LandingPageController < ApplicationController
   end
 
 
-  def initialize_servicios
+  def initialize_servicios_a_domicilio
     ServicioADomicilio.using(:dwh_t).delete_all
     servicio = ServicioADomicilio.using(:dwh_t).new()
     servicios = Mdb.open(Rails.root.join('db', 'access_db.accdb'))['Servicio_hotel']
@@ -1512,20 +1514,20 @@ class LandingPageController < ApplicationController
     end
   end
 
-  def initialize_mesas_por_reservacion
-    ReservacionPorMesa.using(:dwh_t).delete_all
-    servicio = ReservacionPorMesa.using(:dwh_t).new()
-    mesas_por_reservacion = Mdb.open(Rails.root.join('db', 'access_db.accdb'))['Reservacion_mesa']
+  # def initialize_mesas_por_reservacion
+  #   ReservacionPorMesa.using(:dwh_t).delete_all
+  #   servicio = ReservacionPorMesa.using(:dwh_t).new()
+  #   mesas_por_reservacion = Mdb.open(Rails.root.join('db', 'access_db.accdb'))['Reservacion_mesa']
 
-    mesas_por_reservacion.each do |servicio_r|
-      servicio = ReservacionPorMesa.using(:dwh_t).new()
-      servicio.id = servicio_r[:Id]
-      servicio.id_reservacion = servicio_r[:id_reservac]
-      servicio.id_mesa = servicio_r[:id_mesa]
-      servicio.estado = servicio_r[:estado]
-      servicio.save!
-    end
-  end
+  #   mesas_por_reservacion.each do |servicio_r|
+  #     servicio = ReservacionPorMesa.using(:dwh_t).new()
+  #     servicio.id = servicio_r[:Id]
+  #     servicio.id_reservacion = servicio_r[:id_reservac]
+  #     servicio.id_mesa = servicio_r[:id_mesa]
+  #     servicio.estado = servicio_r[:estado]
+  #     servicio.save!
+  #   end
+  # end
 
   def initialize_servicios
     Servicio.using(:dwh_t).delete_all
