@@ -1,7 +1,7 @@
 = simple_form_for @recibo_compra, url:  recibos_de_compra_path, method: :put do |f|
-    = f.input :id
-    = f.input :id_sistema
-    = f.input :sistema
-    = f.input :id_pedido_compra
-    = f.input :f_entrega
+    = f.input :id , label: 'ID:'
+    = f.input :id_sistema , label: 'Num de sistema:'
+    = f.input :sistema , label: 'Sistema:'
+    = f.input :id_pedido_compra , label: 'Num pedido de compra:'
+    = f.input :f_entrega , label: 'Fecha de entrega:'
     = f.button :submit, class: 'btn btn-primary'

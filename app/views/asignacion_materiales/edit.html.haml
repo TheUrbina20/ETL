@@ -1,6 +1,6 @@
 = simple_form_for @asignacionm, url: asignacion_materiale_path, method: :put do |f|
-    = f.input :id
-    = f.input :cantidad
-    = f.input :id_habitacion
-    = f.input :id_material
+    = f.input :id , label: 'ID:'
+    = f.input :cantidad , label: 'Cantidad:'
+    = f.input :id_habitacion , label: 'Num de habitación:'
+    = f.input :id_material , label: 'Num de material:'
     = f.button :submit, class: 'btn btn-primary'

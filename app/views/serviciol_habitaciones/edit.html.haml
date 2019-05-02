@@ -1,10 +1,10 @@
 = simple_form_for @serviciolh, url:  serviciol_habitacione_path, method: :put do |f|
- = f.input :id, readonly: true
+ = f.input :id, readonly: true , label: 'ID:'
  - if valid_date?(@serviciolh.fecha)
-  = f.input :fecha, readonly: true 
+  = f.input :fecha, readonly: true , label: 'Fecha:'
  - else 
-  = f.input :fecha, disabled: false
- = f.input :id_servicio_limpieza, readonly: true
- = f.input :id_habitacion, readonly: true
- = f.input :id_empleado, readonly: true
+  = f.input :fecha, disabled: false , label: 'Fecha:'
+ = f.input :id_servicio_limpieza, readonly: true , label: 'Num servicio de limpieza:'
+ = f.input :id_habitacion, readonly: true , label: 'Num de habitación:'
+ = f.input :id_empleado, readonly: true , label: 'Num de empleado:'
  = f.button :submit, class: 'btn btn-primary'

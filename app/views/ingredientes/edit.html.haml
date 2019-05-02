@@ -1,9 +1,9 @@
 = simple_form_for @ingrediente, url: ingrediente_path, method: :put do |f|
-    = f.input :id
-    = f.input :nombre
-    = f.input :stock_minimo
-    = f.input :stock_maximo
-    = f.input :cantidad_stock
-    = f.input :id_tipo
-    = f.input :id_tipo_cantidad
+    = f.input :id , label: 'ID:'
+    = f.input :nombre , label: 'Nombre:'
+    = f.input :stock_minimo , label: 'Stock minimo:'
+    = f.input :stock_maximo , label: 'Stock maximo:'
+    = f.input :cantidad_stock , label: 'Cantidad stock:'
+    = f.input :id_tipo , label: 'Num de tipo:'
+    = f.input :id_tipo_cantidad , label: 'Num tipo de cantidad:'
     = f.button :submit, class: 'btn btn-primary'

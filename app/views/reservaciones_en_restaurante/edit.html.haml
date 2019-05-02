@@ -1,7 +1,7 @@
 = simple_form_for @reservacion_en_restaurante, url:  reservaciones_en_restaurante_path, method: :put do |f|
-    = f.input :id
-    = f.input :f_reservacion
-    = f.input :hora
-    = f.input :id_cliente
-    = f.input :id_empleado
+    = f.input :id , label: 'ID:'
+    = f.input :f_reservacion , label: 'Fecha de reservación:'
+    = f.input :hora , label: 'Hora:'
+    = f.input :id_cliente , label: 'Num de cliente:'
+    = f.input :id_empleado , label: 'Num de empleado:'
     = f.button :submit, class: 'btn btn-primary'

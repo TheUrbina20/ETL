@@ -1,8 +1,8 @@
 = simple_form_for @material, url: materiale_path, method: :put do |f|
-    = f.input :id
-    = f.input :id_sistema
-    = f.input :nombre
-    = f.input :stock_min
-    = f.input :stock_max
-    = f.input :cantidad_stock
+    = f.input :id , label: 'ID:'
+    = f.input :id_sistema , label: 'Num de sistema:'
+    = f.input :nombre , label: 'Nombre:'
+    = f.input :stock_min , label: 'Stock minimo:'
+    = f.input :stock_max , label: 'Stock maximo:'
+    = f.input :cantidad_stock , label: 'Cantidad stock:'
     = f.button :submit, class: 'btn btn-primary'

@@ -1,7 +1,7 @@
 = simple_form_for @equipo, url: equipo_path, method: :put do |f|
-    = f.input :id
-    = f.input :id_sistema
-    = f.input :sistema
-    = f.input :nombre
-    = f.input :modelo
+    = f.input :id , label: 'Equipos:'
+    = f.input :id_sistema , label: 'Num de sistema:'
+    = f.input :sistema , label: 'Sistema:'
+    = f.input :nombre , label: 'Nombre:'
+    = f.input :modelo , label: 'Modelo:'
     = f.button :submit, class: 'btn btn-primary'

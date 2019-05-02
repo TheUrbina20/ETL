@@ -1,5 +1,5 @@
 <h1>Ordenes de mantenimiento</h1>
-%table.table.table-striped
+%table.table.table-bordered
   %thead
     %tr
       %td='ID'
@@ -21,7 +21,7 @@
           %td=mantenimiento_por_equipo.f_inicio
         -else
           %td.text-danger=mantenimiento_por_equipo.f_inicio
-        -if calid_date?(mantenimiento_por_equipo.f_termino)
+        -if valid_date?(mantenimiento_por_equipo.f_termino)
           %td=mantenimiento_por_equipo.f_termino
         -else
           %td.text-danger=mantenimiento_por_equipo.f_termino

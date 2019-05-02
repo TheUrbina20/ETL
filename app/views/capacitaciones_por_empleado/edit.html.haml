@@ -1,8 +1,8 @@
 = simple_form_for @capacitaciones, url:  capacitaciones_por_empleado_path, method: :put do |f|
-    = f.input :id
-    = f.input :id_empleado
-    = f.input :id_programa
-    = f.input :f_inicio
-    = f.input :f_fin
-    = f.input :estado
+    = f.input :id , label: 'ID:'
+    = f.input :id_empleado , label: 'Num de empleado:'
+    = f.input :id_programa , label: 'Num de programa:'
+    = f.input :f_inicio , label: 'Fecha de inicio:'
+    = f.input :f_fin , label: 'Fecha de fin:'
+    = f.input :estado , label: 'Estado:'
     = f.button :submit, class: 'btn btn-primary'

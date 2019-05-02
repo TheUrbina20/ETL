@@ -1,36 +1,41 @@
-<div id="wrapper">
-    <!-- Main jumbotron for a primary marketing message or call to action -->
-    <div class="jumbotron" align="center">
-      <h2>BIENVENIDO AL PROCESO ETL</h2>
+<!-- About -->
+  <section id="about" class="home-section bg-white">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-offset-2 col-md-8">
+          <div class="section-heading">
+            <h2>BIENVENIDO AL PROCESO ETL</h2>
+            <div class="heading-line"></div>
+            <p>El etl está íntimamente relacionado con varias funciones, procesos y técnicas de integración de datos.</p>
+          </div>
+        </div>
+      </div>
+      <div class="row wow fadeInUp">
+        <div class="col-md-6 about-img">
+        <%= link_to image_tag("etlpr.png", alt: "img"), root_path %>
+        </div>
 
+        <div class="col-md-6 content">
+          <h2>¿Qué es un ETL?</h2>
+          <h3>Extracción - Transformación - Carga.</h3>
+          <h3>La palabra ETL corresponde a las siglas y fases en inglés de:</h3>
+          <h4 class="pservices text-justify">Extraer(extract): Extracción de los datos desde uno o varios sistemas fuente.</h4>
+          <h4 class="pservices text-justify">Transformar(transform): Posibilidad de reformatear y limpiar estos datos cuando sea necesario.</h4>
+          <h4 class="pservices text-justify">Cargar(load): Carga de datos en otro lugar o base de datos, un data mart o un data warehouse, con el objeto de analizarlos o apoyar un proceso de negocio.</h4>
+          <h4>Los procesos ETL son un término estándar que se utiliza para referirse al movimiento y transformación de datos. Se trata del proceso que permite a las organizaciones mover datos desde múltiples fuentes, reformatearlos y cargarlos en otra base de datos (denominada data mart o data warehouse) con el objeto de analizarlos. 
+          También pueden ser enviados a otro sistema operacional para apoyar un proceso de negocio.</h4>
+          <br>
+          <%= link_to 'Iniciar ETL', new_landing_page_path, class: 'btn btn-primary' if current_user.admin? %>
+          <%= link_to 'Exportar xlsx', new_exporter_path, class: 'btn btn-success' if current_user.admin? %>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <div align="center" >
-    <%= link_to image_tag("procetl.png", alt: "img"), root_path %>
-    </div>
-      <!-- /parte blanca -->
-      <div class="jumbotron" align="center">
-      <div id="content-wrapper">
-          <div class="container-fluid">
-          <div class="card-header mb-3">
-            <h2>¿Qué es un ETL?</h2>
-          </div>
-          <div class="card-body">
-            <h4 class="card-title">Extraccion - Transformacion - Carga</h4>
-            <h4 class="pservices text-justify" class="card-text">La palabra ETL corresponde a las siglas y fases en inglés de:</h4>
+  
 
-                <h4 class="pservices text-justify">Extraer(extract): Extracción de los datos desde uno o varios sistemas fuente.</h4>
-                <h4 class="pservices text-justify">Transformar(transform): Posibilidad de reformatear y limpiar estos datos cuando sea necesario.</h4>
-                <h4 class="pservices text-justify">Cargar(load): Carga de datos en otro lugar o base de datos, un data mart o un data warehouse, con el objeto de analizarlos o apoyar un proceso de negocio.</h4>
+   
+  
 
-            <h4 class="pservices text-justify">Los procesos ETL son un término estándar que se utiliza para referirse al movimiento y transformación de datos. Se trata del proceso que permite a las organizaciones mover datos desde múltiples fuentes, reformatearlos y cargarlos en otra base de datos (denominada data mart o data warehouse) con el objeto de analizarlos. También pueden ser enviados a otro sistema operacional para apoyar un proceso de negocio.</h4>
 
-            <br>
-            <br>
-            <%= link_to 'Iniciar ETL', new_landing_page_path, class: 'btn btn-primary' if current_user.admin? %>
-            <%= link_to 'Exportar xlsx', new_exporter_path, class: 'btn btn-success' if current_user.admin? %>
-
-            <p></p>
-          </div>
-          </div>
-
+  

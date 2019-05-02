@@ -1,13 +1,13 @@
 = simple_form_for @renta, url:  renta_path, method: :put do |f|
- = f.input :id, readonly: true
- = f.input :id_cliente, readonly: true
- = f.input :id_empleado, readonly: true
- - if valid_date?(@renta.f_entrada)
-  = f.input :f_entrada, readonly: true 
+ = f.input :id, readonly: true , label: 'ID:'
+ = f.input :id_cliente, readonly: true , label: 'Num de cliente:'
+ = f.input :id_empleado, readonly: true , label: 'Num de empleado:'
+ - if valid_date?(@renta.f_entrada) 
+  = f.input :f_entrada, readonly: true  , label: 'Fecha de entrada:'
  - else 
-  = f.input :f_entrada, disabled: false 
+  = f.input :f_entrada, disabled: false , label: 'Fecha de entrada:'
  - if valid_date?(@renta.f_salida)
-  = f.input :f_salida, readonly: true
+  = f.input :f_salida, readonly: true , label: 'Fecha de salida:'
  - else 
-  = f.input :f_salida, disabled: false
+  = f.input :f_salida, disabled: false , label: 'Fecha de salida:'
  = f.button :submit, class: 'btn btn-primary'

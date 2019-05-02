@@ -1,7 +1,7 @@
 = simple_form_for @comanda, url:  comanda_path, method: :put do |f|
-    = f.input :id
-    = f.input :id_reservacion
-    = f.input :id_empleado
-    = f.input :fecha
-    = f.input :hora_reservacion
+    = f.input :id , label: 'ID:'
+    = f.input :id_reservacion , label: 'Num de reservación:'
+    = f.input :id_empleado , label: 'Num de empleado:'
+    = f.input :fecha , label: 'Fecha:'
+    = f.input :hora_reservacion , label: 'Hora de reservación:'
     = f.button :submit, class: 'btn btn-primary'
