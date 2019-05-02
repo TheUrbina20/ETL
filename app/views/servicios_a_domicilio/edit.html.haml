@@ -1,5 +1,5 @@
 = simple_form_for @servicio_a_domicilio, url: servicios_a_domicilio_path, method: :put do |f|
-    = f.input :id
-    = f.input :id_habitacion
-    = f.input :fecha
+    = f.input :id , label: 'ID:'
+    = f.input :id_habitacion , label: 'Num de habitación:'
+    = f.input :fecha , label: 'Fecha:'
     = f.button :submit, class: 'btn btn-primary'

@@ -1,5 +1,5 @@
 <h1>Aplicaciones a vacantes</h1>
-%table.table.table-striped
+%table.table.table-bordered
   %thead
     %tr
       %td='ID'
@@ -7,6 +7,7 @@
       %td='Vacante'
       %td='Empleado'
       %td='Fecha aplicacion'
+      %td='Acciones'
   %tbody
     - @aplicaciones.each do |aplicacion|
       %tr

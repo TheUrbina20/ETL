@@ -1,6 +1,6 @@
 = simple_form_for @areas_por_empleado, url:  areas_por_empleado_path, method: :put do |f|
-    = f.input :id
-    = f.input :id_empleado
-    = f.input :id_area
-    = f.input :f_asignacion
+    = f.input :id , label: 'ID:'
+    = f.input :id_empleado , label: 'Num de empleado:'
+    = f.input :id_area , label: 'Num de area:'
+    = f.input :f_asignacion , label: 'Fecha de asignación:'
     = f.button :submit, class: 'btn btn-primary'

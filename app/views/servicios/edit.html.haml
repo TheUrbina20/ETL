@@ -1,7 +1,7 @@
 = simple_form_for @servicio, url: servicio_path, method: :put do |f|
- = f.input :id, readonly: true
+ = f.input :id, readonly: true , label: 'ID:'
  - if valid_nombre_servicio?(@servicio.nombre)
-  = f.input :nombre, readonly: true 
+  = f.input :nombre, readonly: true , label: 'Nombre:'
  - else 
-  = f.input :nombre, disables: false
+  = f.input :nombre, disables: false , label: 'Nombre:'
  = f.button :submit, class: 'btn btn-primary'

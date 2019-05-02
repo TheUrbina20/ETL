@@ -1,6 +1,6 @@
 = simple_form_for @platillo, url: platillo_path, method: :put do |f|
-    = f.input :id
-    = f.input :nombre
-    = f.input :precio
-    = f.input :descripcion
+    = f.input :id , label: 'ID:'
+    = f.input :nombre , label: 'Nombre:'
+    = f.input :precio , label: 'Precio:'
+    = f.input :descripcion , label: 'Descripción:'
     = f.button :submit, class: 'btn btn-primary'

@@ -1,7 +1,7 @@
 = simple_form_for @servicio_habitacion, url:  servicio_habitacione_path, method: :put do |f|
-    = f.input :id
-    = f.input :id_habitacion_rentada
-    = f.input :id_renta
-    = f.input :id_historico_servicio
-    = f.input :id_empleado
+    = f.input :id , label: 'ID:'
+    = f.input :id_habitacion_rentada , label: 'Num de habitación rentada:'
+    = f.input :id_renta , label: 'Num de renta:'
+    = f.input :id_historico_servicio , label: 'Num historico de servicio:'
+    = f.input :id_empleado , label: 'Num de empleado:'
     = f.button :submit, class: 'btn btn-primary'

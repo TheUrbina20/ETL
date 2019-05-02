@@ -1,8 +1,8 @@
 = simple_form_for @material_por_pedido, url: materiales_por_pedido_path, method: :put do |f|
-    = f.input :id
-    = f.input :id_sistema
-    = f.input :sistema
-    = f.input :id_material
-    = f.input :id_pedido
-    = f.input :cantidad
+    = f.input :id , label: 'ID:'
+    = f.input :id_sistema , label: 'Num de sistema:'
+    = f.input :sistema , label: 'Sistema:'
+    = f.input :id_material , label: 'Num de material:'
+    = f.input :id_pedido , label: 'Num de pedido:'
+    = f.input :cantidad , label: 'Cantidad:'
     = f.button :submit, class: 'btn btn-primary'

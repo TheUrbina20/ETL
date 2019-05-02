@@ -1,7 +1,7 @@
 = simple_form_for @pedido_empleado, url: pedidos_por_empleado_path, method: :put do |f|
-    = f.input :id
-    = f.input :id_sistema
-    = f.input :sistema
-    = f.input :f_peticion
-    = f.input :id_empleado
+    = f.input :id , label: 'ID:'
+    = f.input :id_sistema , label: 'Num de sistema:'
+    = f.input :sistema , label: 'Sistema:'
+    = f.input :f_peticion , label: 'Fecha de petición:'
+    = f.input :id_empleado , label: 'Num de empleado:'
     = f.button :submit, class: 'btn btn-primary'

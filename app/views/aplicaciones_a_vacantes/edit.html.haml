@@ -1,7 +1,7 @@
 = simple_form_for @aplicacion_a_vacante, url:  aplicaciones_a_vacante_path, method: :put do |f|
-    = f.input :id
-    = f.input :id_postulante
-    = f.input :id_empleado
-    = f.input :id_vacante
-    = f.input :f_aplicacion
+    = f.input :id , label: 'ID:'
+    = f.input :id_postulante , label: 'Num de postulante:'
+    = f.input :id_empleado , label: 'Num de empleado:'
+    = f.input :id_vacante , label: 'Num de vacante:'
+    = f.input :f_aplicacion , label: 'Fecha de aplicación:'
     = f.button :submit, class: 'btn btn-primary'

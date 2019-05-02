@@ -1,7 +1,7 @@
 = simple_form_for @detalle_de_factura_restaurante, url:  detalles_de_factura_restaurante_path, method: :put do |f|
-    = f.input :id
-    = f.input :id_factura
-    = f.input :id_comanda
-    = f.input :fecha_emision
-    = f.input :total
-    = f.button :submit, class: 'btn btn-primary'
+    = f.input :id , label: 'ID:'
+    = f.input :id_factura , label: 'Num de factura:'
+    = f.input :id_comanda , label: 'Num de comanda:'
+    = f.input :fecha_emision , label: 'Fecha de emisión:'
+    = f.input :total , label: 'Total:'
+    = f.button :submit, class: 'btn btn-primary' 

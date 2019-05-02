@@ -1,9 +1,9 @@
 = simple_form_for @mantenimientoe, url: dmantenimiento_equipo_path, method: :put do |f|
-    = f.input :id
-    = f.input :idDetalle
-    = f.input :FechaInicio
-    = f.input :FechaTermino
-    = f.input :idEquipoH
-    = f.input :idMantenimientoE
-    = f.input :idEmpleado
+    = f.input :id , label: 'ID:'
+    = f.input :idDetalle , label: 'Num de detalle:'
+    = f.input :FechaInicio , label: 'Fecha de inicio:'
+    = f.input :FechaTermino , label: 'Fecha de termino:'
+    = f.input :idEquipoH , label: 'Num de equipo hotel:'
+    = f.input :idMantenimientoE , label: 'Num de mantenimiento:'
+    = f.input :idEmpleado , label: 'Num de empleado:'
     = f.button :submit, class: 'btn btn-primary'
