@@ -32,7 +32,4 @@ class AreasController < ApplicationController
   def areas_params
     params.require(:area).permit(:id, :nombre, :clave)
   end
-
-  private
-
 end

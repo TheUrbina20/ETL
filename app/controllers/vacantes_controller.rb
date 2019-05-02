@@ -1,6 +1,5 @@
 class VacantesController < ApplicationController
   def index
-
     @vacantes = Vacante.using(:dwh_t).where(error: true)
   end
 

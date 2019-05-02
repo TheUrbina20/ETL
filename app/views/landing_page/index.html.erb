@@ -22,20 +22,17 @@
           <h4 class="pservices text-justify">Extraer(extract): Extracción de los datos desde uno o varios sistemas fuente.</h4>
           <h4 class="pservices text-justify">Transformar(transform): Posibilidad de reformatear y limpiar estos datos cuando sea necesario.</h4>
           <h4 class="pservices text-justify">Cargar(load): Carga de datos en otro lugar o base de datos, un data mart o un data warehouse, con el objeto de analizarlos o apoyar un proceso de negocio.</h4>
-          <h4>Los procesos ETL son un término estándar que se utiliza para referirse al movimiento y transformación de datos. Se trata del proceso que permite a las organizaciones mover datos desde múltiples fuentes, reformatearlos y cargarlos en otra base de datos (denominada data mart o data warehouse) con el objeto de analizarlos. 
+          <h4>Los procesos ETL son un término estándar que se utiliza para referirse al movimiento y transformación de datos. Se trata del proceso que permite a las organizaciones mover datos desde múltiples fuentes, reformatearlos y cargarlos en otra base de datos (denominada data mart o data warehouse) con el objeto de analizarlos.
           También pueden ser enviados a otro sistema operacional para apoyar un proceso de negocio.</h4>
           <br>
           <%= link_to 'Iniciar ETL', new_landing_page_path, class: 'btn btn-primary' if current_user.admin? %>
           <%= link_to 'Exportar xlsx', new_exporter_path, class: 'btn btn-success' if current_user.admin? %>
+          <%= link_to 'Exportar a SQL SERVER', new_sql_server_exporter_path, class: 'btn btn-primary' if current_user.admin? %>
         </div>
       </div>
     </div>
   </section>
 
-  
-
-   
-  
 
 
-  
+
