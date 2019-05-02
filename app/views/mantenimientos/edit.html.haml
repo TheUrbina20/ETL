@@ -1,7 +1,7 @@
 = simple_form_for @mantenimientoe, url: mantenimiento_path, method: :put do |f|
- = f.input :id, readonly: true
+ = f.input :id, readonly: true , label: 'ID:'
  - if valid_tipomantenimietno(@mantenimientoe.tipo)
-  = f.input :tipo, readonly: true
+  = f.input :tipo, readonly: true , label: 'Tipo:'
  - else 
-  = f.input :tipo, disabled: false
+  = f.input :tipo, disabled: false , label: 'Tipo:'
  = f.button :submit, class: 'btn btn-primary'

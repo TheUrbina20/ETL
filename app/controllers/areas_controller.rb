@@ -33,6 +33,7 @@ class AreasController < ApplicationController
   def areas_params
     params.require(:area).permit(:id, :nombre, :clave)
   end
+<<<<<<< HEAD
 
   def validate_attributes 
     valid_nombrecosas?(@areas.nombre)
@@ -40,4 +41,6 @@ class AreasController < ApplicationController
 
   private
 
+=======
+>>>>>>> development
 end

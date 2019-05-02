@@ -1,8 +1,8 @@
 = simple_form_for @habitaciones, url: habitacione_path, method: :put do |f|
- = f.input :id, readonly: true
- = f.input :tipo_habitacion, readonly: true
+ = f.input :id, readonly: true , label: 'ID:'
+ = f.input :tipo_habitacion, readonly: true , label: 'Tipo de habitación:'
  - if valid_activah?(@habitaciones.estado)
-  = f.input :estado, readonly: true 
+  = f.input :estado, readonly: true , label: 'Estado:'
  - else 
-  = f.input :estado, disabled: false
+  = f.input :estado, disabled: false , label: 'Estado:'
  = f.button :submit, class: 'btn btn-primary'

@@ -1,33 +1,33 @@
 = simple_form_for @empleado, url: empleado_path, method: :put do |f|
-    = f.input :id, readonly: true
+    = f.input :id, readonly: true, label: 'ID:'
     - if valid_name?(@empleado.nombre)
-        = f.input :nombre, readonly: true
-    - else 
-        = f.input :nombre, disabled: false
+        = f.input :nombre, readonly: true, label: 'Nombre:'
+    - else
+        = f.input :nombre, disabled: false, label: 'Nombre:'
     - if valid_date?(@empleado.f_nacimiento)
-        = f.input :f_nacimiento, readonly: true 
-    - else 
-        = f.input :f_nacimiento, disabled: false
+        = f.input :f_nacimiento, readonly: true , label: 'Fecha de nacimiento:'
+    - else
+        = f.input :f_nacimiento, disabled: false, label: 'Fecha de nacimiento:'
     - if valid_email?(@empleado.c_electronico)
-        = f.input :c_electronico, readonly: true 
-    - else 
-        = f.input :c_electronico, disabled: false
+        = f.input :c_electronico, readonly: true , label: 'Correo electronico:'
+    - else
+        = f.input :c_electronico, disabled: false, label: 'Correo electronico:'
     - if valid_telefono?(@empleado.n_telefono)
-        = f.input :n_telefono, readonly: true 
-    - else 
-        = f.input :n_telefono, disabled: false
+        = f.input :n_telefono, readonly: true , label: 'Num de telefono:'
+    - else
+        = f.input :n_telefono, disabled: false, label: 'Num de telefono:'
     - if valid_genero?(@empleado.genero)
-        = f.input :genero, readonly: true 
-    - else 
-        = f.input :genero, disabled: false
+        = f.input :genero, readonly: true , label: 'Genero:'
+    - else
+        = f.input :genero, disabled: false, label: 'Genero:'
     - if valid_rfc?(@empleado.rfc)
-        = f.input :rfc, readonly: true 
-    - else 
-        = f.input :rfc, disabled: false
-    = f.input :baja, readonly: true
-    = f.input :sistema, readonly: true
+        = f.input :rfc, readonly: true , label: 'RFC:'
+    - else
+        = f.input :rfc, disabled: false, label: 'RFC:'
+    = f.input :baja, readonly: true, label: 'Baja:'
+    = f.input :sistema, readonly: true, label: 'Sistema:'
     - if valid_date?(@empleado.f_entrada)
-        = f.input :f_entrada, readonly: true 
-    - else 
-        = f.input :f_entrada, disabled: false
+        = f.input :f_entrada, readonly: true , label: 'Fecha de entrada:'
+    - else
+        = f.input :f_entrada, disabled: false, label: 'Fecha de entrada:'
     = f.button :submit, class: 'btn btn-primary'

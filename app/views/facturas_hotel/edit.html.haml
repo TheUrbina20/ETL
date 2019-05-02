@@ -1,17 +1,17 @@
 = simple_form_for @factura_hotel, url: facturas_hotel_path, method: :put do |f|
-    = f.input :id, readonly: true
-    = f.input :id_cliente, readonly: true 
+    = f.input :id, readonly: true, label: 'ID:'
+    = f.input :id_cliente, readonly: true, label: 'Num de cliente:'
     - if valid_price?(@factura_hotel.total)
-        = f.input :total, readonly: true 
-    - else 
-        = f.input :total, disabled: false 
-    - if valid_date?(@factura_hotel.fecha_emision)
-        = f.input :fecha_emision, readonly: true 
+        = f.input :total, readonly: true, label: 'Total:'
     - else
-        = f.input :fecha_emision, disabled: false 
+        = f.input :total, disabled: false, label: 'Total:'
+    - if valid_date?(@factura_hotel.fecha_emision)
+        = f.input :fecha_emision, readonly: true, label: 'Fecha de emisión:'
+    - else
+        = f.input :fecha_emision, disabled: false, label: 'Fecha de emisión:'
     - if valid_tipopago?(@factura_hotel.tipo_pago)
-        = f.input :tipo_pago, readonly: true 
-    - else 
-        = f.input :tipo_pago, disabled: false 
-    = f.input :id_renta, readonly: true
+        = f.input :tipo_pago, readonly: true, label: 'Tipo de pago:'
+    - else
+        = f.input :tipo_pago, disabled: false, label: 'Tipo de pago:'
+    = f.input :id_renta, readonly: true, label: 'Num de renta:'
     = f.button :submit, class: 'btn btn-primary'

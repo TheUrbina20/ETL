@@ -1,8 +1,8 @@
 = simple_form_for @servicio_a_domicilio, url: servicios_a_domicilio_path, method: :put do |f|
-    = f.input :id, readonly: true
-    = f.input :id_habitacion, readonly: true 
+    = f.input :id, readonly: true, label: 'ID:'
+    = f.input :id_habitacion, readonly: true, label: 'Num de habitación:'
     - if valid_date?(@servicio_a_domicilio.fecha)
-        = f.input :fecha, readonly: true 
-    - else 
-        = f.input :fecha, disabled: false
+        = f.input :fecha, readonly: true, label: 'Fecha:'
+    - else
+        = f.input :fecha, disabled: false, label: 'Fecha:'
     = f.button :submit, class: 'btn btn-primary'

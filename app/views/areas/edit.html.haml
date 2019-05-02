@@ -1,8 +1,8 @@
 = simple_form_for @areas, url:  area_path, method: :put do |f|
-    = f.input :id, readonly: true 
+    = f.input :id, readonly: true , label: 'ID:'
     - if valid_nombrecosas?(@areas.nombre)
-        = f.input :nombre, readonly: true 
-    - else 
-        = f.input :nombre, disabled: false
-    = f.input :clave, readonly: true
+        = f.input :nombre, readonly: true , label: 'Nombre:'
+    - else
+        = f.input :nombre, disabled: false, label: 'Nombre:'
+    = f.input :clave, readonly: true, label: 'Clave:'
     = f.button :submit, class: 'btn btn-primary'

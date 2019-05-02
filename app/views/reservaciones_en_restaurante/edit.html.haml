@@ -1,10 +1,13 @@
 = simple_form_for @reservacion_en_restaurante, url:  reservaciones_en_restaurante_path, method: :put do |f|
-    = f.input :id, readonly: true 
+    = f.input :id, readonly: true, label: 'ID:'
     - if valid_date?(@reservacion_en_restaurante.f_reservacion)
-        = f.input :f_reservacion, readonly: true 
-    - else 
-        = f.input :f_reservacion, disabled: false
+        = f.input :f_reservacion, readonly: true, label: 'Fecha de reservación:'
+    - else
+        = f.input :f_reservacion, disabled: false, label: 'Fecha de reservación:'
     = f.input :hora, readonly: true
-    = f.input :id_cliente, readonly: true
-    = f.input :id_empleado, readonly: true
+    = f.input :id_cliente, readonly: true, label: 'Cliente'
+    = f.input :id_empleado, readonly: true, label: 'Empleado'
+    = f.input :hora , label: 'Hora:'
+    = f.input :id_cliente , label: 'Num de cliente:'
+    = f.input :id_empleado , label: 'Num de empleado:'
     = f.button :submit, class: 'btn btn-primary'

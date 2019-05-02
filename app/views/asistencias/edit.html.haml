@@ -1,10 +1,10 @@
 = simple_form_for @asistencias, url:  asistencia_path, method: :put do |f|
-    = f.input :id, readonly: true 
-    = f.input :id_empleado, readonly: true
-    - if valid_date?(@asistencias.fecha) 
-        = f.input :fecha, readonly: true 
-    - else 
-        = f.input :fecha, disabled: false
-    = f.input :hora_entrada, readonly: true 
-    = f.input :hora_salida, readonly: true
+    = f.input :id, readonly: true , label: 'ID:'
+    = f.input :id_empleado, readonly: true, label: 'Num de empleado:'
+    - if valid_date?(@asistencias.fecha)
+        = f.input :fecha, readonly: true  , label: 'Fecha:'
+    - else
+        = f.input :fecha, disabled: false , label: 'Fecha:'
+    = f.input :hora_entrada, readonly: true , label: 'Hora de entrada:'
+    = f.input :hora_salida, readonly: true, label: 'Hora de salida:'
     = f.button :submit, class: 'btn btn-primary'

@@ -6,68 +6,68 @@ class LandingPageController < ApplicationController
     initialice_aplicaciones
     initialize_areas
     initialize_areas_por_empleado
-    initialize_mgh
+    initialize_asignacion_de_materiales
+    initialize_material_gastado_por_habitacion
     initialize_asistencias
     initialize_bajas
     initiallize_bajas_empleados
-    #initialize_bebidas
-    #initialize_bebidas_por_Comanda
+    initialize_bebidas
+    initialize_bebidas_por_comanda
     initialice_capacitaciones
-    #initialize_clientes
-    #initialize_comandas
-    #initialize_detalle_factura_restaurante
+    initialize_clientes
+    initialize_comandas
+    initialize_detalle_factura_restaurante
     initialize_detalle_factura_hotel
     initialize_dhabitaciones
-    #initialize_mantenimiento
-    #initialize_mantenimientoh
-    #initialize_empleados
+    initialize_mantenimiento
+    initialize_mantenimientoh
+    initialize_empleados
     initialice_empresas
     initialice_equiposh
-    #initialize_equipos
-    #initialize_equipos_por_pedido
-    #initialize_equipos_por_recibo
+    initialize_equipos
+    initialize_equipos_por_pedido
+    initialize_equipos_por_recibo
     initialize_facturas_hotel
-    #initialize_facturas
+    initialize_facturas
     initialize_habitaciones
     initialize_hrentadas
     initialize_hreservadas
     initialize_servicios
-    #initialize_ingredientes
-    #initialize_ingredientes_por_bebida
-    #initialize_ingredientes_por_platillo
-    #initialize_ingredientes_por_proveedor
+    initialize_servicios_a_domicilio
+    initialize_ingredientes
+    initialize_ingredientes_por_bebida
+    initialize_ingredientes_por_platillo
+    initialize_ingredientes_por_proveedor
     initialize_mantenimientos
-    #initialize_materials
-    #initialize_materiales_por_pedido
-    #initialize_materiales_por_recibo
-    initialize_asignacionmaterialhabitacion
-    #initialize_mesas
-    #initialize_mesas_por_reservacion
-    # initialize_mantenimientos_por_equipo
+    initialize_materials
+    initialize_materiales_por_pedido
+    initialize_materiales_por_recibo
+    initialize_mesas
+    initialize_mesas_por_reservacion
+    initialize_mantenimientos_por_equipo
     initialize_paquetes
     initialize_paquetesvr
-    #initialize_pedidos_por_empleados
-    #initialize_platillo
-    #initialize_platillos_por_comanda
+    initialize_pedidos_por_empleados
+    initialize_platillo
+    initialize_platillos_por_comanda
     initialice_postulantes
     initialice_programas
-    #initialize_proveedores
-    #initialize_recibos
+    initialize_proveedores
+    initialize_recibos
     initialize_rentas
     initialize_reporte
     initialize_reservaciones
-    #initialize_reservaciones
-    #initialize_reservaciones_en_restaurante
+    initialize_reservaciones
+    initialize_reservaciones_en_restaurante
     initialize_serviciosh
     initialize_serviciosl
     initialize_servicioslh
-    initialize_historicoservicios
-    #initialize_mesas_por_reservacion
-    #itialize_serviciosrestaurante
+    initialize_servicios
+    initialize_mesas_por_reservacion
     initialize_serviciosp
     initialice_solicitudes
-    #initialize_tipos_productos
-    #initialize_tipos_medidas
+    initialize_tipos_productos
+    initialize_tipos_medidas
     initialize_vacantes
     redirect_to empleados_path
   end
@@ -148,7 +148,7 @@ class LandingPageController < ApplicationController
     end
   end
 
-  def initialize_asignacionmaterialhabitacion
+  def initialize_asignacion_de_materiales
     AsignacionMaterial.using(:dwh_t).delete_all
     materiales = AsignacionMaterial.using(:restaurant).all
     material = AsignacionMaterial.using(:dwh_t).new
@@ -249,7 +249,7 @@ class LandingPageController < ApplicationController
     end
   end
 
-  def initialize_bebidas_por_Comanda
+  def initialize_bebidas_por_comanda
     BebidaPorComanda.using(:dwh_t).delete_all
     bebidas = Mdb.open(Rails.root.join('db', 'access_db.accdb'))['Bebida_comanda']
     bebida = BebidaPorComanda.using(:dwh_t).new
@@ -305,18 +305,18 @@ class LandingPageController < ApplicationController
       cliente.nombre = cliente_r.Nombres + ' ' + cliente_r.ApellidoP + ' ' + cliente_r.ApellidoM
       cliente.estado = cliente_r.EntidadFederativa
       cliente.correo = cliente_r.Correo
-      
+
       unless valid_estadoc?(cliente.estado)
-        cliente.error = true 
-      end 
+        cliente.error = true
+      end
 
       unless valid_name?(cliente.nombre)
-        cliente.error = true 
+        cliente.error = true
       end
 
       unless valid_email?(cliente.correo)
-        cliente.error = true 
-      end 
+        cliente.error = true
+      end
 
       cliente.save!
     end
@@ -327,14 +327,14 @@ class LandingPageController < ApplicationController
       cliente = Cliente.using(:dwh_t).new
       cliente.nombre = cliente_r[:nombre] + ' ' + cliente_r[:apellido_p] + ' ' + cliente_r[:apellido_m]
       cliente.telefono = cliente_r[:telefono]
-      
+
       unless valid_name?(cliente.nombre)
-        cliente.error = true 
+        cliente.error = true
       end
 
       unless valid_telefono?(cliente.telefono)
-        cliente.error = true 
-      end 
+        cliente.error = true
+      end
 
       cliente.save!
     end
@@ -535,17 +535,17 @@ class LandingPageController < ApplicationController
       empleado.f_nacimiento = empleado_r.FechaNa
       empleado.n_telefono = empleado_r.Telefono
       empleado.sistema = 'R'
-      
+
       unless valid_name?(empleado.nombre)
         empleado.error = true
       end
 
       unless valid_date?(empleado.f_nacimiento)
-        empleado.error = true 
-      end 
+        empleado.error = true
+      end
 
       unless valid_telefono?(empleado.n_telefono)
-        empleado.error = true 
+        empleado.error = true
       end
       empleado.save!
     end
@@ -621,7 +621,7 @@ class LandingPageController < ApplicationController
       equipo = Equipo.using(:dwh_t).new
       equipo.id_sistema = equipo_r.idEquipo
       equipo.nombre = equipo_r.Nombre
-      
+
       unless valid_nombrecosas?(equipo.nombre)
         equipo.error = true
       end
@@ -651,7 +651,7 @@ class LandingPageController < ApplicationController
       equipo = EquipoPorPedido.using(:dwh_t).new
       equipo.id_sistema = equipo_r[:Id]
       equipo.id_pedido = equipo_r[:id_pedido]
-      equipo.id_equipo = equipo_r[:id_equipo]
+      equipo.id_equipo = equipo_r[:id_equipo_c]
       equipo.sistema = 'R'
       equipo.save!
     end
@@ -779,8 +779,8 @@ class LandingPageController < ApplicationController
         historico.error = true
       end
       unless valid_price?(historico.precio)
-        historico.error = true 
-      end 
+        historico.error = true
+      end
       historico.save!
     end
   end
@@ -909,19 +909,19 @@ class LandingPageController < ApplicationController
       material.sistema = 'H'
 
       unless valid_number?(material.cantidad)
-        material.error = true 
+        material.error = true
       end
 
       unless valid_number?(material.stock_max)
-        material.error = true 
+        material.error = true
       end
 
       unless valid_number?(material.stock_min)
-        material.error = true 
-      end 
+        material.error = true
+      end
 
       unless valid_alpha?(material.nombre)
-        material.error = true 
+        material.error = true
       end
 
       material.save!
@@ -964,19 +964,19 @@ class LandingPageController < ApplicationController
       material.sistema = 'R'
 
       unless valid_number?(material.cantidad)
-        material.error = true 
+        material.error = true
       end
 
       unless valid_number?(material.stock_max)
-        material.error = true 
+        material.error = true
       end
 
       unless valid_number?(material.stock_min)
-        material.error = true 
-      end 
+        material.error = true
+      end
 
       unless valid_alpha?(material.nombre)
-        material.error = true 
+        material.error = true
       end
 
       material.save!
@@ -1073,7 +1073,7 @@ class LandingPageController < ApplicationController
     end
   end
 
-  def initialize_mgh
+  def initialize_material_gastado_por_habitacion
     MgHabitacion.using(:dwh_t).delete_all
     materiales = MgHabitacion.using(:restaurant).all
     material = MgHabitacion.using(:dwh_t).new()
@@ -1466,8 +1466,8 @@ class LandingPageController < ApplicationController
         servicio_t.error = true
       end
       unless valid_date?(servicio_t.fecha)
-        servicio_t.error = true 
-      end 
+        servicio_t.error = true
+      end
       servicio_t.save!
     end
   end
@@ -1609,7 +1609,7 @@ class LandingPageController < ApplicationController
   end
 
 
-  def initialize_serviciosrestaurante
+  def initialize_servicios_a_domicilio
     ServicioADomicilio.using(:dwh_t).delete_all
     servicio = ServicioADomicilio.using(:dwh_t).new()
     servicios = Mdb.open(Rails.root.join('db', 'access_db.accdb'))['Servicio_hotel']
@@ -1626,20 +1626,20 @@ class LandingPageController < ApplicationController
     end
   end
 
-  def initialize_mesas_por_reservacion
-    ReservacionPorMesa.using(:dwh_t).delete_all
-    servicio = ReservacionPorMesa.using(:dwh_t).new()
-    mesas_por_reservacion = Mdb.open(Rails.root.join('db', 'access_db.accdb'))['Reservacion_mesa']
+  # def initialize_mesas_por_reservacion
+  #   ReservacionPorMesa.using(:dwh_t).delete_all
+  #   servicio = ReservacionPorMesa.using(:dwh_t).new()
+  #   mesas_por_reservacion = Mdb.open(Rails.root.join('db', 'access_db.accdb'))['Reservacion_mesa']
 
-    mesas_por_reservacion.each do |servicio_r|
-      servicio = ReservacionPorMesa.using(:dwh_t).new()
-      servicio.id = servicio_r[:Id]
-      servicio.id_reservacion = servicio_r[:id_reservac]
-      servicio.id_mesa = servicio_r[:id_mesa]
-      servicio.estado = servicio_r[:estado]
-      servicio.save!
-    end
-  end
+  #   mesas_por_reservacion.each do |servicio_r|
+  #     servicio = ReservacionPorMesa.using(:dwh_t).new()
+  #     servicio.id = servicio_r[:Id]
+  #     servicio.id_reservacion = servicio_r[:id_reservac]
+  #     servicio.id_mesa = servicio_r[:id_mesa]
+  #     servicio.estado = servicio_r[:estado]
+  #     servicio.save!
+  #   end
+  # end
 
   def initialize_servicios
     Servicio.using(:dwh_t).delete_all
@@ -1775,7 +1775,7 @@ class LandingPageController < ApplicationController
         factura.error = true
       end
       unless valid_tipopago?(factura.tipo_pago)
-        factura.error = true 
+        factura.error = true
       end
 
       factura.save!

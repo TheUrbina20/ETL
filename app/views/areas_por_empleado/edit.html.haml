@@ -1,9 +1,9 @@
 = simple_form_for @areas_por_empleado, url:  areas_por_empleado_path, method: :put do |f|
-    = f.input :id, readonly: true
-    = f.input :id_empleado, readonly: true
-    = f.input :id_area, readonly: true
+    = f.input :id, readonly: true, label: 'ID:'
+    = f.input :id_empleado, readonly: true, label: 'Num de empleado:'
+    = f.input :id_area, readonly: true, label: 'Num de area:'
     - if valid_date?(@areas_por_empleado.f_asignacion)
-        = f.input :f_asignacion, readonly: true
-    - else 
-        = f.input :f_asignacion, disabled: false
+        = f.input :f_asignacion, readonly: true, label: 'Fecha de asignación:'
+    - else
+        = f.input :f_asignacion, disabled: false, label: 'Fecha de asignación:'
     = f.button :submit, class: 'btn btn-primary'

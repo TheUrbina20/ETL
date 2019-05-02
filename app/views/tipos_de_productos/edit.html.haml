@@ -1,8 +1,8 @@
 = simple_form_for @tipo_de_producto, url: tipos_de_producto_path, method: :put do |f|
-  = f.input :id, readonly: true 
+  = f.input :id, readonly: true, label: 'ID:'
   - if valid_nombrecosas?(@tipo_de_producto.tipo)
-    = f.input :tipo, readonly: true 
-  - else 
-    = f.input :tipo, disabled: false
+    = f.input :tipo, readonly: true, label: 'Tipo:'
+  - else
+    = f.input :tipo, disabled: false, label: 'Tipo:'
   = f.button :submit, class: 'btn btn-primary'
 

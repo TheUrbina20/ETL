@@ -1,8 +1,8 @@
 = simple_form_for @mesa, url: mesa_path, method: :put do |f|
-    = f.input :id, readonly: true
-    = f.input :numero, readonly: true
+    = f.input :id, readonly: true, label: 'ID:'
+    = f.input :numero, readonly: true, label: 'Numero:'
     - if valid_cantidad?(@mesa.capacidad)
-        = f.input :capacidad, readonly: true 
-    - else 
-        = f.input :capacidad, disabled: false
+        = f.input :capacidad, readonly: true, label: 'Capacidad:'
+    - else
+        = f.input :capacidad, disabled: false, label: 'Capacidad:'
     = f.button :submit, class: 'btn btn-primary'

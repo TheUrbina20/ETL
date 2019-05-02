@@ -1,9 +1,9 @@
 = simple_form_for @ingrediente_por_proveedor, url: ingredientes_por_proveedor_path, method: :put do |f|
-    = f.input :id, readonly: true
-    = f.input :id_proveedor, readonly: true
-    = f.input :id_ingrediente, readonly: true
+    = f.input :id, readonly: true, label: 'ID:'
+    = f.input :id_proveedor, readonly: true, label: 'Num de proveedor:'
+    = f.input :id_ingrediente, readonly: true, label: 'Num de ingrediente:'
     - if valid_price?(@ingrediente_por_proveedor.precio)
-        = f.input :precio, readonly: true
-    - else 
-        = f.input :precio, disabled: false
+        = f.input :precio, readonly: true, label: 'Precio:'
+    - else
+        = f.input :precio, disabled: false, label: 'Precio:'
     = f.button :submit, class: 'btn btn-primary'

@@ -1,6 +1,5 @@
 class AplicacionesAVacantesController < ApplicationController
   def index
-
     @aplicaciones = AplicacionAVacante.using(:dwh_t).where(error: true)
   end
 

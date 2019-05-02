@@ -1,9 +1,9 @@
 = simple_form_for @asignacionm, url: asignacion_materiale_path, method: :put do |f|
-    = f.input :id, readonly: true
+    = f.input :id, readonly: true, label: 'ID:'
     - if valid_cantidad?(@asignacionm.cantidad)
-        = f.input :cantidad, readonly: true 
-    - else 
-        = f.input :cantidad, disabled: false 
-    = f.input :id_habitacion, readonly: true
-    = f.input :id_material, readonly: true
+        = f.input :cantidad, readonly: true , label: 'Cantidad:'
+    - else
+        = f.input :cantidad, disabled: false , label: 'Cantidad:'
+    = f.input :id_habitacion, readonly: true, label: 'Num de habitación:'
+    = f.input :id_material, readonly: true , label: 'Num de material:'
     = f.button :submit, class: 'btn btn-primary'

@@ -18,8 +18,8 @@ Rails.application.routes.draw do
   resources :detalles_de_factura_restaurante
   resources :detalles_de_factura_hotel
   resources :dhabitaciones
-  #resources :dmantenimiento_equipos
-  #resources :dmantenimiento_habitaciones
+  resources :dmantenimiento_equipos ##REMOVED
+  resources :dmantenimiento_habitaciones ## REMOVED
   resources :equipos
   resources :equipo_habitaciones
   resources :equipos_por_pedido
@@ -71,5 +71,6 @@ Rails.application.routes.draw do
   resources :vacantes
 
   resources :exporter, only: [:new]
+  resources :sql_server_exporter, only: [:new]
 end
 

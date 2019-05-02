@@ -1,10 +1,10 @@
 = simple_form_for @recibo_compra, url:  recibos_de_compra_path, method: :put do |f|
-    = f.input :id, readonly: true 
-    = f.input :id_sistema, readonly: true 
-    = f.input :sistema, readonly: true 
-    = f.input :id_pedido_compra, readonly: true 
+    = f.input :id, readonly: true, label: 'ID:'
+    = f.input :id_sistema, readonly: true, label: 'Num de sistema:'
+    = f.input :sistema, readonly: true, label: 'Sistema:'
+    = f.input :id_pedido_compra, readonly: true, label: 'Num pedido de compra:'
     - if valid_date?(@recibo_compra.f_entrega)
-        = f.input :f_entrega, readonly: true 
-    - else 
-        = f.input :f_entrega, disabled: false
+        = f.input :f_entrega, readonly: true, label: 'Fecha de entrega:'
+    - else
+        = f.input :f_entrega, disabled: false, label: 'Fecha de entrega:'
     = f.button :submit, class: 'btn btn-primary'

@@ -1,10 +1,10 @@
 = simple_form_for @ingrediente_por_bebida, url: ingredientes_por_bebida_path, method: :put do |f|
-    = f.input :id, readonly: true
-    = f.input :id_bebida, readonly: true
-    = f.input :id_producto, readonly: true
-    = f.input :id_tipo_medida, readonly: true
+    = f.input :id, readonly: true, label: 'ID:'
+    = f.input :id_bebida, readonly: true, label: 'Num de bebida:'
+    = f.input :id_producto, readonly: true, label: 'Num de producto:'
+    = f.input :id_tipo_medida, readonly: true, label: 'Num tipo de medida:'
     - if valid_number?(@ingrediente_por_bebida.cantidad)
-        = f.input :cantidad, readonly: true 
-    - else 
-        = f.input :cantidad, disabled: false
+        = f.input :cantidad, readonly: true, label: 'Cantidad:'
+    - else
+        = f.input :cantidad, disabled: false, label: 'Cantidad:'
     = f.button :submit, class: 'btn btn-primary'

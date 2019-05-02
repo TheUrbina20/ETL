@@ -1,12 +1,12 @@
 = simple_form_for @platillo, url: platillo_path, method: :put do |f|
-    = f.input :id, readonly: true 
+    = f.input :id, readonly: true, label: 'ID:'
     - if valid_nombrecosas?(@platillo.nombre)
-        = f.input :nombre, readonly: true 
-    - else 
-        = f.input :nombre, disabled: false 
+        = f.input :nombre, readonly: true, label: 'Nombre:'
+    - else
+        = f.input :nombre, disabled: false, label: 'Nombre:'
     - if valid_price?(@platillo.precio)
-        = f.input :precio, readonly: true 
-    - else 
-        = f.input :precio, disabled: false
-    = f.input :descripcion, readonly: true
+        = f.input :precio, readonly: true, label: 'Precio:'
+    - else
+        = f.input :precio, disabled: false, label: 'Precio:'
+    = f.input :descripcion, readonly: true, label: 'Descripción:'
     = f.button :submit, class: 'btn btn-primary'
