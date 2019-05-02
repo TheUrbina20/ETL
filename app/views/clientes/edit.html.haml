@@ -9,9 +9,9 @@
     - else
         = f.input :correo, disabled: false , label: 'Correo:'
     - if valid_estadoc?(@cliente.estado)
-        = f.input :estado, readonly: true, label: 'Cliente'
+        = f.input :estado, readonly: true, label: 'Estado'
     - else
-        = f.input :estado, disabled: false,  label: 'Cliente'
+        = f.input :estado, disabled: false,  label: 'Estado'
     - if valid_telefono?(@cliente.telefono)
         = f.input :telefono, readonly: true, label: 'Telefono:'
     - else
