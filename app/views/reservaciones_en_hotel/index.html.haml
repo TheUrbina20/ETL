@@ -26,7 +26,7 @@
           %td=reservacion.f_reservacion
         - else
           %td.text-danger=reservacion.f_reservacion
-        - if valid_status? (reservacion.estado)
+        - if valid_status?(reservacion.estado)
           %td=reservacion.estado
         - else
           %td.text-danger=reservacion.estado

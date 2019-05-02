@@ -14,11 +14,12 @@
     - @programas.each do |programa|
       %tr
         %td=programa.id
-        -if valid_words?(programa.nombre)
+        %td=programa.id_empresa
+        -if valid_nombrecosas?(programa.nombre)
           %td=programa.nombre
         -else
           %td.text-danger=programa.nombre
-        -if valid_precio?(programa.costo)
+        -if valid_price?(programa.costo)
           %td=programa.costo
         -else
           %td.text-danger=programa.costo

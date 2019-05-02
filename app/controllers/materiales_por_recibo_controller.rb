@@ -29,7 +29,9 @@ class MaterialesPorReciboController < ApplicationController
 
   def update
     @material_por_recibo = MaterialPorRecibo.using(:dwh_t).find(params[:id])
-    if @material_por_recibo.update(material_por_recibo_params)
+    @material_por_recibo.update(material_por_recibo_params)
+    if validate_attributes 
+      @material_por_recibo.update_attributes(error: false)
       flash[:notice] = 'Actualizado'
       redirect_to materiales_por_recibo_index_path
     else
@@ -40,6 +42,10 @@ class MaterialesPorReciboController < ApplicationController
 
   def material_por_recibo_params
     params.require(:material_por_recibo).permit(:id_sistema, :sistema, :id_material, :id_recibo, :cantidad, :tipo_paquete, :f_caducidad)
+  end
+
+  def validate_attributes 
+    valid_number?(@material_por_recibo.cantidad) && valid_date?(@material_por_recibo.f_caducidad)
   end
 
 

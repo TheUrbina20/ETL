@@ -24,7 +24,7 @@
           %td=capacitacion.f_fin
         -else
           %td.text-danger=capacitacion.f_fin
-        -if valid_words?(capacitacion.estado)
+        -if valid_estado_capacitacion?(capacitacion.estado)
           %td=capacitacion.estado
         - else
           %td.text-danger=capacitacion.estado

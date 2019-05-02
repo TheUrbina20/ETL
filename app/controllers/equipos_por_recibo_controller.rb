@@ -27,7 +27,9 @@ class EquiposPorReciboController < ApplicationController
 
   def update
     @equipo_por_recibo = EquipoPorRecibo.using(:dwh_t).find(params[:id])
-    if @equipo_por_recibo.update(equipo_por_recibo_params)
+    @equipo_por_recibo.update(equipo_por_recibo_params)
+    if validate_attributes 
+      @equipo_por_recibo.update_attributes(error: false)
       flash[:notice] = 'Actualizado'
       redirect_to equipos_por_recibo_index_path
     else
@@ -40,4 +42,7 @@ class EquiposPorReciboController < ApplicationController
     params.require(:equipo_por_recibo).permit(:id_sistema, :sistema, :id_equipo, :n_serie, :id_recibo_compra, :f_finalizacion_garantia)
   end
 
+  def validate_attributes 
+    valid_numserie?(@equipo_por_recibo.n_serie) && valid_date?(@equipo_por_recibo.f_finalizacion_garantia)
+  end
 end

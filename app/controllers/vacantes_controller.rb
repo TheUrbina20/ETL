@@ -19,8 +19,9 @@ class VacantesController < ApplicationController
 
   def update
     @vacantes = Vacante.using(:dwh_t).find(params[:id])
-
-    if @vacantes.update(vacantes_params)
+    @vacantes.update(vacantes_params)
+    if validate_attributes 
+      @vacantes.update_attributes(error: false)
       flash[:notice] = 'Actualizado Correctamente'
       redirect_to vacantes_path
     else
@@ -32,6 +33,9 @@ class VacantesController < ApplicationController
   def vacantes_params
     params.require(:vacante).permit(:id, :nombre, :estado)
   end
-  private
+  
 
+  def validate_attributes  
+    valid_nombrecosas?(@vacantes.nombre) && valid_estado?(@vacantes.estado)
+  end
 end

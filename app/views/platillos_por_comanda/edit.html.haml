@@ -1,6 +1,9 @@
 = simple_form_for @platillo_por_comanda, url: platillos_por_comanda_path, method: :put do |f|
-    = f.input :id , label: 'ID:'
-    = f.input :id_comanda , label: 'Num de comanda:'
-    = f.input :id_platillo , label: 'Num de platillo:'
-    = f.input :cantidad , label: 'Cantidad:'
+    = f.input :id, readonly: true, label: 'ID:'
+    = f.input :id_comanda, readonly: true, label: 'Num de comanda:'
+    = f.input :id_platillo, readonly: true, label: 'Num de platillo:'
+    - if valid_number?(@platillo_por_comanda.cantidad)
+        = f.input :cantidad, readonly: true, label: 'Cantidad:'
+    - else
+        = f.input :cantidad, disabled: false, label: 'Cantidad:'
     = f.button :submit, class: 'btn btn-primary'

@@ -20,7 +20,9 @@ class ClientesController < ApplicationController
 
   def update
     @cliente = Cliente.using(:dwh_t).find(params[:id])
-    if @cliente.update(cliente_params)
+    @cliente.update(cliente_params)
+    if validate_attributes 
+      @cliente.update_attributes(error: false)
       flash[:notice] = 'Actualizado'
       redirect_to clientes_path
     else
@@ -30,9 +32,11 @@ class ClientesController < ApplicationController
   end
 
   def cliente_params
-    params.require(:cliente).permit(:nombre, :correo, :telefono)
+    params.require(:cliente).permit(:id, :nombre, :correo, :telefono, :estado)
   end
 
-  private
+  def validate_attributes 
+    valid_name?(@cliente.nombre) && valid_email?(@cliente.correo) && valid_telefono?(@cliente.telefono) && valid_estadoc?(@cliente.estado)
+  end
 
 end

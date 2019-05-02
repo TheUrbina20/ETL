@@ -14,7 +14,7 @@
           %td=postulante.nombre
         -else
           %td.text-danger=postulante.nombre
-        -if valid_estado?(postulante.estado)
+        -if valid_estadopostulante?(postulante.estado)
           %td=postulante.estado
         -else
           %td.text-danger=postulante.estado

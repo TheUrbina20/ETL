@@ -20,8 +20,9 @@ class ReportePerdidoRobosController < ApplicationController
 
     def update
       @reporte = ReportePerdidaRobo.using(:dwh_t).find(params[:id])
-
-      if @reporte.update(serviciosl_params)
+      @reporte.update(serviciosl_params)
+      if validate_attributes
+        @reporte.update_attributes(error: false)
         flash[:notice] = 'Actualizado Correctamente'
         redirect_to reporte_perdido_robos_path
       else
@@ -32,6 +33,10 @@ class ReportePerdidoRobosController < ApplicationController
 
     def serviciosl_params
       params.require(:reporte_perdida_robo).permit(:id, :cantidad, :fecha, :id_servicio_limpieza, :id_habitacion, :id_empleado, :id_material)
+    end
+
+    def validate_attributes 
+      valid_number?(@reporte.cantidad) && valid_date?(@reporte.fecha)
     end
 
 end

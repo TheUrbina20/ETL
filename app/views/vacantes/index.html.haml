@@ -10,7 +10,7 @@
     - @vacantes.each do |vacante|
       %tr
         %td=vacante.id
-        -if valid_words?(vacante.nombre)
+        -if valid_nombrecosas?(vacante.nombre)
           %td=vacante.nombre
         -else
           %td.text-danger=vacante.nombre

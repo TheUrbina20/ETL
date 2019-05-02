@@ -19,8 +19,9 @@ class MantenimientosController < ApplicationController
 
     def update
       @mantenimientoe = Mantenimiento.using(:dwh_t).find(params[:id])
-
-      if @mantenimientoe.update(mantenimientos_params)
+      @mantenimientoe.update(mantenimientos_params)
+      if validate_attributes 
+        @mantenimientoe.update_attributes(error: false)
         flash[:notice] = 'Actualizado Correctamente'
         redirect_to mantenimientos_path
       else
@@ -33,6 +34,8 @@ class MantenimientosController < ApplicationController
       params.require(:mantenimiento).permit(:id, :tipo)
     end
 
-  private
+    def validate_attributes 
+      valid_tipomantenimietno(@mantenimientoe.tipo)
+    end
 
 end

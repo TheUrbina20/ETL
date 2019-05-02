@@ -1,9 +1,21 @@
 = simple_form_for @ingrediente, url: ingrediente_path, method: :put do |f|
-    = f.input :id , label: 'ID:'
-    = f.input :nombre , label: 'Nombre:'
-    = f.input :stock_minimo , label: 'Stock minimo:'
-    = f.input :stock_maximo , label: 'Stock maximo:'
-    = f.input :cantidad_stock , label: 'Cantidad stock:'
-    = f.input :id_tipo , label: 'Num de tipo:'
-    = f.input :id_tipo_cantidad , label: 'Num tipo de cantidad:'
+    = f.input :id, readonly: true, label: 'ID:'
+    - if valid_nombrecosas?(@ingrediente.nombre)
+        = f.input :nombre, readonly: true, label: 'Nombre:'
+    - else
+        = f.input :nombre, disabled: false, label: 'Nombre:'
+    - if valid_cantidad?(@ingrediente.stock_minimo)
+        = f.input :stock_minimo, readonly: true, label: 'Stock minimo:'
+    - else
+        = f.input :stock_minimo, disabled: false, label: 'Stock minimo:'
+    - if valid_cantidad?(@ingrediente.stock_maximo)
+        = f.input :stock_maximo, readonly: true, label: 'Stock maximo:'
+    - else
+        = f.input :stock_maximo, disabled: false, label: 'Stock maximo:'
+    - if valid_cantidad?(@ingrediente.cantidad_stock)
+        = f.input :cantidad_stock, readonly: true, label: 'Cantidad stock:'
+    - else
+        = f.input :cantidad_stock, disabled: false, label: 'Cantidad stock:'
+    = f.input :id_tipo, readonly: true, label: 'Num de tipo:'
+    = f.input :id_tipo_cantidad, readonly: true, label: 'Num tipo de cantidad:'
     = f.button :submit, class: 'btn btn-primary'

@@ -20,7 +20,9 @@ class FacturasHotelController < ApplicationController
 
   def update
     @factura_hotel = FacturaHotel.using(:dwh_t).find(params[:id])
-    if @factura_hotel.update(factura_hotel_params)
+    @factura_hotel.update(factura_hotel_params)
+    if validate_attributes 
+      @factura_hotel.update_attributes(error: false)
       flash[:notice] = 'Actualizado'
       redirect_to facturas_hotel_index_path
     else
@@ -31,5 +33,9 @@ class FacturasHotelController < ApplicationController
 
   def factura_hotel_params
     params.require(:factura_hotel).permit(:id_sistema, :id_cliente, :total, :fecha_emision, :tipo_pago, :id_renta)
+  end
+
+  def validate_attributes 
+    valid_tipopago?(@factura_hotel.tipo_pago) && valid_date?(@factura_hotel.fecha_emision) && valid_price?(@factura_hotel.total)
   end
 end

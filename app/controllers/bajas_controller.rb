@@ -20,7 +20,10 @@ class BajasController < ApplicationController
 
   def update
     @baja = Baja.using(:dwh_t).find(params[:id])
-    if @baja.update(baja_params)
+    @baja.update(baja_params)
+    
+    if validate_attributes 
+      @baja.update_attributes(error: false)
       flash[:notice] = 'Actualizado'
       redirect_to bajas_path
     else
@@ -31,5 +34,9 @@ class BajasController < ApplicationController
 
   def baja_params
     params.require(:baja).permit(:id_artiuclo, :fecha, :tipo, :motivo)
+  end
+
+  def validate_attributes 
+    valid_date?(@baja.fecha)
   end
 end

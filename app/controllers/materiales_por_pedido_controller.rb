@@ -27,7 +27,9 @@ class MaterialesPorPedidoController < ApplicationController
 
   def update
     @material_por_pedido = MaterialPorPedido.using(:dwh_t).find(params[:id])
-    if @material_por_pedido.update(material_por_pedido_params)
+    @material_por_pedido.update(material_por_pedido_params)
+    if validate_attributes 
+      @material_por_pedido.update_attributes(error: false)
       flash[:notice] = 'Actuaizado'
       redirect_to materiales_por_pedido_index_path
     else
@@ -39,4 +41,9 @@ class MaterialesPorPedidoController < ApplicationController
   def material_por_pedido_params
     params.require(:material_por_pedido).permit(:id_sistema, :sistema, :id_material, :id_pedido, :cantidad)
   end
+
+  def validate_attributes 
+    valid_number?(@material_por_pedido.cantidad)
+  end
+
 end

@@ -1,8 +1,11 @@
 = simple_form_for @material_por_pedido, url: materiales_por_pedido_path, method: :put do |f|
-    = f.input :id , label: 'ID:'
-    = f.input :id_sistema , label: 'Num de sistema:'
-    = f.input :sistema , label: 'Sistema:'
-    = f.input :id_material , label: 'Num de material:'
-    = f.input :id_pedido , label: 'Num de pedido:'
-    = f.input :cantidad , label: 'Cantidad:'
+    = f.input :id, readonly: true, label: 'ID:'
+    = f.input :id_sistema, readonly: true, label: 'Num de sistema:'
+    = f.input :sistema, readonly: true, label: 'Sistema:'
+    = f.input :id_material, readonly: true, label: 'Num de material:'
+    = f.input :id_pedido, readonly: true, label: 'Num de pedido:'
+    - if valid_number?(@material_por_pedido.cantidad)
+        = f.input :cantidad, readonly: true, label: 'Cantidad:'
+    - else
+        = f.input :cantidad, disabled: false, label: 'Cantidad:'
     = f.button :submit, class: 'btn btn-primary'

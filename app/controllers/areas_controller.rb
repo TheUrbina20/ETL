@@ -19,8 +19,9 @@ class AreasController < ApplicationController
 
   def update
     @areas = Area.using(:dwh_t).find(params[:id])
-
-    if @areas.update(areas_params)
+    @areas.update(areas_params)
+    if validate_attributes
+      @areas.update_attributes(error: false)
       flash[:notice] = 'Actualizado Correctamente'
       redirect_to areas_path
     else
@@ -32,4 +33,14 @@ class AreasController < ApplicationController
   def areas_params
     params.require(:area).permit(:id, :nombre, :clave)
   end
+<<<<<<< HEAD
+
+  def validate_attributes 
+    valid_nombrecosas?(@areas.nombre)
+  end
+
+  private
+
+=======
+>>>>>>> development
 end

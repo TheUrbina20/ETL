@@ -9,7 +9,7 @@
     - @tipos_medidas.each do |tipo_medida|
       %tr
         %td=tipo_medida.id
-        -if valid_word?(tipo_medida.nombre)
+        -if valid_nombrecosas?(tipo_medida.nombre)
           %td=tipo_medida.nombre
         -else
           %td.text-danger=tipo_medida.nombre

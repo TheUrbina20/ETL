@@ -19,7 +19,9 @@ class ReservacionesEnRestauranteController < ApplicationController
 
   def update
     @reservacion_en_restaurante = ReservacionEnRestaurante.using(:dwh_t).find(params[:id])
-    if @reservacion_en_restaurante.update(reservacion_restaurante_params)
+    @reservacion_en_restaurante.update(reservacion_restaurante_params)
+    if validate_attributes 
+      @reservacion_en_restaurante.update_attributes(error: false)
       flash[:notice] = 'Actualizado'
       redirect_to reservaciones_en_restaurante_index_path
     else
@@ -30,6 +32,10 @@ class ReservacionesEnRestauranteController < ApplicationController
 
   def reservacion_restaurante_params
     params.require(:reservacion_en_restaurante).permit(:f_reservacion, :hora, :idcliente, :id_empleado)
+  end
+
+  def validate_attributes 
+    valid_date?(@reservacion_en_restaurante.f_reservacion)
   end
 
 end

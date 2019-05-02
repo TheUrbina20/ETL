@@ -1,7 +1,13 @@
 = simple_form_for @baja, url:  baja_path, method: :put do |f|
-    = f.input :id , label: 'ID:'
-    = f.input :id_articulo , label: 'Num de articulo:'
-    = f.input :fecha , label: 'Fecha:'
-    = f.input :tipo , label: 'Tipo:'
-    = f.input :motivo , label: 'Motivo:'
+    = f.input :id, readonly: true, label: 'ID:'
+    = f.input :id_articulo, readonly: true, label: 'Num de articulo:'
+    - if valid_date?(@baja.fecha)
+        = f.input :fecha, readonly: true , label: 'Fecha:'
+    - else
+        = f.input :fecha, disabled: false, label: 'Fecha:'
+    - if valid_word?(@baja.tipo)
+        = f.input :tipo, readonly: true , label: 'Tipo:'
+    - else
+        = f.inpuit :tipo, disabled: false, label: 'Tipo:'
+    = f.input :motivo, readonly: true, label: 'Motivo:'
     = f.button :submit, class: 'btn btn-primary'

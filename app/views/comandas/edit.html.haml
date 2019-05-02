@@ -1,7 +1,10 @@
 = simple_form_for @comanda, url:  comanda_path, method: :put do |f|
-    = f.input :id , label: 'ID:'
-    = f.input :id_reservacion , label: 'Num de reservación:'
-    = f.input :id_empleado , label: 'Num de empleado:'
-    = f.input :fecha , label: 'Fecha:'
-    = f.input :hora_reservacion , label: 'Hora de reservación:'
+    = f.input :id, readonly: true, label: 'ID:'
+    = f.input :id_reservacion, readonly: true, label: 'Num de reservación:'
+    = f.input :id_empleado, readonly: true , label: 'Num de empleado:'
+    - if valid_date?(@comanda.fecha)
+        = f.input :fecha, readonly: true , label: 'Fecha:'
+    - else
+        = f.input :fecha, disabled: false, label: 'Fecha:'
+    = f.input :hora_reservacion, readonly: true, label: 'Hora de reservación:'
     = f.button :submit, class: 'btn btn-primary'

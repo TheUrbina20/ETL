@@ -14,7 +14,7 @@
         %td=ingrediente_por_proveedor.id
         %td=ingrediente_por_proveedor.id_ingrediente
         %td=ingrediente_por_proveedor.id_proveedor
-        - if valid_precio?(ingrediente_por_proveedor.precio)
+        - if valid_price?(ingrediente_por_proveedor.precio)
           %td=ingrediente_por_proveedor.precio
         -else
           %td.text-danger=ingrediente_por_proveedor.precio

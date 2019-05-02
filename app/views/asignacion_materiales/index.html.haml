@@ -3,7 +3,6 @@
   %thead
     %tr
       %td='ID'
-      %td='Asignación'
       %td='Cantidad'
       %td='Num de habitacion'
       %td='Num de material'
@@ -13,7 +12,7 @@
     - @asignacionm.each do |ma|
       %tr
         %td=ma.id
-        - if valid_cantidad? (ma.cantidad)
+        - if valid_cantidad?(ma.cantidad)
           %td=ma.cantidad
         - else
           %td.text-danger=ma.cantidad

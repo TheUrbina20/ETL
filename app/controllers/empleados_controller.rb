@@ -27,7 +27,9 @@ class EmpleadosController < ApplicationController
 
   def update
     @empleado = Empleado.using(:dwh_t).find(params[:id])
-    if @empleado.update(empleado_params)
+    @empleado.update(empleado_params)
+    if validate_attributes
+      @empleado.update_attributes(error: false)
       flash[:notice] = 'Actualizado'
       redirect_to empleados_path
     else
@@ -38,5 +40,9 @@ class EmpleadosController < ApplicationController
 
   def empleado_params
     params.require(:empleado).permit(:nombre, :f_nacimiento, :c_electronico, :n_telefono, :genero, :rfc, :baja, :sistema, :f_entrada)
+  end
+
+  def validate_attributes 
+    valid_name?(@empleado.nombre) && valid_date?(@empleado.f_nacimiento) && valid_email?(@empleado.c_electronico) && valid_telefono?(@empleado.n_telefono) && valid_genero?(@empleado.genero) && valid_rfc?(@empleado.rfc) && valid_date?(@empleado.f_entrada)
   end
 end

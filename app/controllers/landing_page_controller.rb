@@ -17,10 +17,10 @@ class LandingPageController < ApplicationController
     initialize_clientes
     initialize_comandas
     initialize_detalle_factura_restaurante
-    initialize_detalle_factura_restaurante
+    initialize_detalle_factura_hotel
     initialize_dhabitaciones
-    #initialize_mantenimiento
-    #initialize_mantenimientoh
+    initialize_mantenimiento
+    initialize_mantenimientoh
     initialize_empleados
     initialice_empresas
     initialice_equiposh
@@ -44,7 +44,7 @@ class LandingPageController < ApplicationController
     initialize_materiales_por_recibo
     initialize_mesas
     initialize_mesas_por_reservacion
-    # initialize_mantenimientos_por_equipo
+    initialize_mantenimientos_por_equipo
     initialize_paquetes
     initialize_paquetesvr
     initialize_pedidos_por_empleados
@@ -63,7 +63,7 @@ class LandingPageController < ApplicationController
     initialize_serviciosl
     initialize_servicioslh
     initialize_servicios
-    # initialize_mesas_por_reservacion
+    initialize_mesas_por_reservacion
     initialize_serviciosp
     initialice_solicitudes
     initialize_tipos_productos
@@ -121,7 +121,7 @@ class LandingPageController < ApplicationController
       area.id = area_r.id
       area.nombre = area_r.nombre
       area.clave = area_r.clave
-      unless valid_name?(area.nombre)
+      unless valid_nombrecosas?(area.nombre)
         area.error = true
       end
       unless area.clave == area.clave.upcase
@@ -157,8 +157,7 @@ class LandingPageController < ApplicationController
       material = AsignacionMaterial.using(:dwh_t).new
       material.id = se.idAsignacion
       material.cantidad = se.Cantidad
-      material.error = false
-      unless valid_number?(material.cantidad)
+      unless valid_cantidad?(material.cantidad)
         material.error = true
       end
       material.id_habitacion = se.idHabitacion
@@ -219,6 +218,11 @@ class LandingPageController < ApplicationController
       baja.id = baja_r.id
       baja.id_empleado = baja_r.id_empleado
       baja.motivo = baja_r.motivo
+      baja.fecha = baja_r.f_baja
+
+      unless valid_date?(baja.fecha)
+        baja.error = true
+      end
       baja.save!
     end
   end
@@ -234,8 +238,11 @@ class LandingPageController < ApplicationController
       bebida.nombre = bebida_r[:nombre]
       bebida.precio = bebida_r[:precio]
       bebida.descripcion = bebida_r[:descripcion]
-      bebida.error = false
-      unless valid_name?(bebida.nombre)
+      unless valid_nombrecosas?(bebida.nombre)
+        bebida.error = true
+      end
+
+      unless valid_price?(bebida.precio)
         bebida.error = true
       end
       bebida.save!
@@ -253,7 +260,7 @@ class LandingPageController < ApplicationController
       bebida.id_comanda = bebida_r[:id_comanda]
       bebida.id_bebida = bebida_r[:id_bebida]
       bebida.cantidad = bebida_r[:cantidad]
-      unless valid_number?(bebida.cantidad)
+      unless valid_cantidad?(bebida.cantidad)
         bebida.error = true
       end
       bebida.save!
@@ -280,7 +287,7 @@ class LandingPageController < ApplicationController
       unless valid_date?(capacitacion.f_fin)
         capacitacion.error = true
       end
-      unless valid_name?(capacitacion.f_fin)
+      unless valid_estado_capacitacion?(capacitacion.estado)
         capacitacion.error = true
       end
       capacitacion.save!
@@ -298,8 +305,19 @@ class LandingPageController < ApplicationController
       cliente.nombre = cliente_r.Nombres + ' ' + cliente_r.ApellidoP + ' ' + cliente_r.ApellidoM
       cliente.estado = cliente_r.EntidadFederativa
       cliente.correo = cliente_r.Correo
-      cliente.error = true
-      # cliente.telefono = cliente_r.Telefono
+
+      unless valid_estadoc?(cliente.estado)
+        cliente.error = true
+      end
+
+      unless valid_name?(cliente.nombre)
+        cliente.error = true
+      end
+
+      unless valid_email?(cliente.correo)
+        cliente.error = true
+      end
+
       cliente.save!
     end
 
@@ -309,7 +327,15 @@ class LandingPageController < ApplicationController
       cliente = Cliente.using(:dwh_t).new
       cliente.nombre = cliente_r[:nombre] + ' ' + cliente_r[:apellido_p] + ' ' + cliente_r[:apellido_m]
       cliente.telefono = cliente_r[:telefono]
-      cliente.error = true
+
+      unless valid_name?(cliente.nombre)
+        cliente.error = true
+      end
+
+      unless valid_telefono?(cliente.telefono)
+        cliente.error = true
+      end
+
       cliente.save!
     end
 
@@ -394,7 +420,7 @@ class LandingPageController < ApplicationController
       habitacion_t.id = pa.idTipo
       habitacion_t.nombre = pa.Nombre
       habitacion_t.precio = pa.Precio
-      unless valid_words?(habitacion_t.nombre)
+      unless valid_nombrecosas?(habitacion_t.nombre)
         habitacion_t.error = true
       end
       unless valid_price?(habitacion_t.precio)
@@ -509,7 +535,18 @@ class LandingPageController < ApplicationController
       empleado.f_nacimiento = empleado_r.FechaNa
       empleado.n_telefono = empleado_r.Telefono
       empleado.sistema = 'R'
-      empleado.error = true
+
+      unless valid_name?(empleado.nombre)
+        empleado.error = true
+      end
+
+      unless valid_date?(empleado.f_nacimiento)
+        empleado.error = true
+      end
+
+      unless valid_telefono?(empleado.n_telefono)
+        empleado.error = true
+      end
       empleado.save!
     end
   end
@@ -523,7 +560,7 @@ class LandingPageController < ApplicationController
       empresa = Empresa.using(:dwh_t).new
       empresa.id = empresa_r.id
       empresa.nombre = empresa_r.nombre
-      unless valid_name?(empresa.nombre)
+      unless valid_nombrecosas?(empresa.nombre)
         empresa.error = true
       end
       empresa.save!
@@ -555,10 +592,7 @@ class LandingPageController < ApplicationController
       equipo.id_sistema = equipo_r.id
       equipo.nombre = equipo_r.nombre
       equipo.modelo = equipo_r.modelo
-      unless valid_name?(equipo.nombre)
-        equipo.error = true
-      end
-      unless valid_name?(equipo.nombre)
+      unless valid_nombrecosas?(equipo.nombre)
         equipo.error = true
       end
       equipo.sistema = 'RH'
@@ -572,7 +606,11 @@ class LandingPageController < ApplicationController
       equipo.id_sistema = equipo_r[:Id]
       equipo.nombre = equipo_r[:nombre]
       equipo.sistema = 'R'
-      equipo.error = true
+
+      unless valid_nombrecosas?(equipo.nombre)
+        equipo.error = true
+      end
+
       equipo.save!
     end
 
@@ -583,7 +621,10 @@ class LandingPageController < ApplicationController
       equipo = Equipo.using(:dwh_t).new
       equipo.id_sistema = equipo_r.idEquipo
       equipo.nombre = equipo_r.Nombre
-      equipo.error = true
+
+      unless valid_nombrecosas?(equipo.nombre)
+        equipo.error = true
+      end
       equipo.sistema = 'H'
       equipo.save!
     end
@@ -628,7 +669,7 @@ class LandingPageController < ApplicationController
       equipo_por_recibo.id_recibo_compra = equipo_por_recibio_r.id_recibo_compra
       equipo_por_recibo.n_serie = equipo_por_recibio_r.n_serie
       equipo_por_recibo.f_finalizacion_garantia = equipo_por_recibio_r.f_finalizacion_garantia
-      unless valid_name?(equipo_por_recibo.n_serie)
+      unless valid_numserie?(equipo_por_recibo.n_serie)
         equipo_por_recibo.error = true
       end
 
@@ -683,7 +724,7 @@ class LandingPageController < ApplicationController
       habitacion.id = ha.idHabitacion
       habitacion.tipo_habitacion = ha.idTipo
       habitacion.estado = ha.Estado
-      unless valid_name?(habitacion.estado)
+      unless valid_activah?(habitacion.estado)
         habitacion.error = true
       end
       habitacion.save!
@@ -719,7 +760,7 @@ class LandingPageController < ApplicationController
   end
 
 
-  def initialize_servicios
+  def initialize_historicoservicios
     HistoricoServicio.using(:dwh_t).delete_all
     historicos = HistoricoServicio.using(:restaurant).all
     historico = HistoricoServicio.using(:dwh_t).new()
@@ -732,10 +773,13 @@ class LandingPageController < ApplicationController
       historico.f_termino = se.FechaTermino
       historico.id_servicio = se.idServicio
       unless valid_date?(historico.f_inicio)
-        historico.error
+        historico.error = true
       end
       unless valid_date?(historico.f_termino)
-        historico.error
+        historico.error = true
+      end
+      unless valid_price?(historico.precio)
+        historico.error = true
       end
       historico.save!
     end
@@ -756,7 +800,7 @@ class LandingPageController < ApplicationController
       ingrediente.stock_minimo = ingrediente_r[:stock_min]
       ingrediente.stock_maximo = ingrediente_r[:stock_max]
       ingrediente.cantidad_stock = ingrediente_r[:cantidad]
-      unless valid_words?(ingrediente.nombre)
+      unless valid_nombrecosas?(ingrediente.nombre)
         ingrediente.error = true
       end
       unless valid_number?(ingrediente.stock_maximo)
@@ -842,7 +886,7 @@ class LandingPageController < ApplicationController
       mantenimiento = Mantenimiento.using(:dwh_t).new()
       mantenimiento.id = ma.id
       mantenimiento.tipo = ma.tipo
-      unless valid_word?(mantenimiento.tipo)
+      unless valid_tipomantenimietno(mantenimiento.tipo)
         mantenimiento.error = true
       end
       mantenimiento.save!
@@ -863,6 +907,23 @@ class LandingPageController < ApplicationController
       material.stock_max = material_r.Max
       material.stock_min = material_r.Min
       material.sistema = 'H'
+
+      unless valid_number?(material.cantidad)
+        material.error = true
+      end
+
+      unless valid_number?(material.stock_max)
+        material.error = true
+      end
+
+      unless valid_number?(material.stock_min)
+        material.error = true
+      end
+
+      unless valid_alpha?(material.nombre)
+        material.error = true
+      end
+
       material.save!
     end
 
@@ -901,6 +962,23 @@ class LandingPageController < ApplicationController
       material.stock_max = material_r[:stock_max]
       material.stock_min = material_r[:stock_min]
       material.sistema = 'R'
+
+      unless valid_number?(material.cantidad)
+        material.error = true
+      end
+
+      unless valid_number?(material.stock_max)
+        material.error = true
+      end
+
+      unless valid_number?(material.stock_min)
+        material.error = true
+      end
+
+      unless valid_alpha?(material.nombre)
+        material.error = true
+      end
+
       material.save!
     end
   end
@@ -933,6 +1011,11 @@ class LandingPageController < ApplicationController
       material_por_pedido.id_material = material_por_pedido_r[:id_material]
       material_por_pedido.cantidad = material_por_pedido_r[:cantidad]
       material_por_pedido.sistema = 'R'
+
+      unless valid_number?(material_por_pedido.cantidad)
+        material_por_pedido.error = true
+      end
+
       material_por_pedido.save!
     end
 
@@ -976,6 +1059,16 @@ class LandingPageController < ApplicationController
       material_por_recibo.id_recibo_compra = material_por_recibo_r[:id_rec_rm]
       material_por_recibo.cantidad = material_por_recibo_r[:cantidad]
       material_por_recibo.sistema = 'R'
+
+      unless valid_date?(material_por_recibo.f_caducidad)
+        material_por_recibo.error = true
+      end
+
+      unless valid_name?(material_por_recibo.tipo_paquete)
+        material_por_recibo.error = true
+      end
+
+
       material_por_recibo.save!
     end
   end
@@ -1099,12 +1192,13 @@ class LandingPageController < ApplicationController
       paquete_t.nombre = pa.Nombre
       paquete_t.descripcion = pa.Descripcion
       paquete_t.precio_por_dia = pa.PrecioDia
-      unless valid_name?(paquete_t.nombre)
-        paquete.errro = true
+
+      unless valid_nombrecosas?(paquete_t.nombre)
+        paquete_t.error = true
       end
 
-      unless valid_number?(paquete_t.precio_por_dia)
-        paquete.errro = true
+      unless valid_price?(paquete_t.precio_por_dia)
+        paquete_t.error = true
       end
 
       paquete_t.save!
@@ -1138,6 +1232,9 @@ class LandingPageController < ApplicationController
       pedido.id_empleado = pedido_r.id_empleado
       pedido.f_peticion = pedido_r.f_peticion
       pedido.sistema = 'RR'
+      unless valid_date?(pedido.f_peticion)
+        pedido.error = true
+      end
       pedido.save!
     end
 
@@ -1149,6 +1246,9 @@ class LandingPageController < ApplicationController
       pedido.id_empleado = pedido_r[:id_empleado]
       pedido.f_peticion = pedido_r[:fecha]
       pedido.sistema = 'R'
+      unless valid_date?(pedido.f_peticion)
+        pedido.error = true
+      end
       pedido.save!
     end
 
@@ -1179,10 +1279,10 @@ class LandingPageController < ApplicationController
       platillo.nombre = platillo_r[:nombre]
       platillo.precio = platillo_r[:precio]
       platillo.descripcion = platillo_r[:descripcion]
-      unless valid_name?(platillo.nombre)
+      unless valid_nombrecosas?(platillo.nombre)
         platillo.error = true
       end
-      unless valid_number?(platillo.precio)
+      unless valid_price?(platillo.precio)
         platillo.error = true
       end
       platillo.save!
@@ -1223,7 +1323,7 @@ class LandingPageController < ApplicationController
       unless valid_name?(postulante.nombre)
         postulante.error = true
       end
-      unless valid_name?(postulante.estado.to_s)
+      unless valid_estadopostulante?(postulante.estado.to_s)
         postulante.error = true
       end
       postulante.save!
@@ -1244,7 +1344,7 @@ class LandingPageController < ApplicationController
       programa.nombre = programa_r.nombre
       programa.costo = programa_r.costo
       programa.duracion = programa_r.duracion
-      unless valid_words?(programa.nombre)
+      unless valid_nombrecosas?(programa.nombre)
         programa.error = true
       end
       unless valid_price?(programa.costo)
@@ -1282,6 +1382,9 @@ class LandingPageController < ApplicationController
       proveedor.id_sistema = proveedor_r[:Id]
       proveedor.nombre = proveedor_r[:razon_social]
       proveedor.sistema = 'R'
+      unless valid_name?(proveedor.nombre)
+        proveedor.error = true
+      end
       proveedor.save!
     end
 
@@ -1313,6 +1416,9 @@ class LandingPageController < ApplicationController
       recibo.id_pedido_compra = recibo_r[:id_pedido]
       recibo.f_entrega = recibo_r[:fecha]
       recibo.sistema = 'R'
+      unless valid_date?(recibo.f_entrega)
+        recibo.error = true
+      end
       recibo.save!
     end
   end
@@ -1356,6 +1462,12 @@ class LandingPageController < ApplicationController
       servicio_t.id_habitacion = s.idHabitacion
       servicio_t.id_empleado = s.idEmpleado
       servicio_t.id_material = s.idMaterial
+      unless valid_number?(servicio_t.cantidad)
+        servicio_t.error = true
+      end
+      unless valid_date?(servicio_t.fecha)
+        servicio_t.error = true
+      end
       servicio_t.save!
     end
   end
@@ -1384,7 +1496,7 @@ class LandingPageController < ApplicationController
         unless valid_date?(reservacion.FechaReserv)
           reservacion.error = true
         end
-        unless valid_name?(reservacion.Estado)
+        unless valid_status?(reservacion.Estado)
           reservacion.error = true
         end
         reservacion.save!
@@ -1412,7 +1524,7 @@ class LandingPageController < ApplicationController
         unless valid_date?(reservacion.f_salida)
           reservacion.error = true
         end
-        unless valid_name?(reservacion.estado)
+        unless valid_status?(reservacion.estado)
           reservacion.error = true
         end
         unless valid_date?(reservacion.f_reservacion)
@@ -1469,7 +1581,7 @@ class LandingPageController < ApplicationController
       servicio_t = ServicioLimpieza.using(:dwh_t).new()
       servicio_t.id = s.idServicioL
       servicio_t.nombre = s.Nombre
-      unless valid_words?(servicio_t.nombre)
+      unless valid_nombrecosas?(servicio_t.nombre)
         servicio_t.error = true
       end
       servicio_t.save!
@@ -1538,7 +1650,7 @@ class LandingPageController < ApplicationController
       servicio_t = Servicio.using(:dwh_t).new
       servicio_t.id = s.idServicio
       servicio_t.nombre = s.Nombre
-      unless valid_name?(servicio_t.nombre)
+      unless valid_nombrecosas?(servicio_t.nombre)
         servicio_t.error = true
       end
       servicio_t.save!
@@ -1581,12 +1693,6 @@ class LandingPageController < ApplicationController
       unless valid_date?(solicitud.f_recibo)
         solicitud.error = true
       end
-      unless valid_name?(solicitud.estado)
-        solicitud.error = true
-      end
-      unless valid_name?(solicitud.motivo)
-        solicitud.error = true
-      end
       solicitud.save!
     end
   end
@@ -1601,7 +1707,7 @@ class LandingPageController < ApplicationController
       tipo_de_producto = TipoDeProducto.using(:dwh_t).new
       tipo_de_producto.id = tipo_de_producto_r[:Id]
       tipo_de_producto.tipo = tipo_de_producto_r[:tipo]
-      unless valid_name?(tipo_de_producto.tipo)
+      unless valid_nombrecosas?(tipo_de_producto.tipo)
         tipo_de_producto.error = true
       end
       tipo_de_producto.save!
@@ -1619,7 +1725,7 @@ class LandingPageController < ApplicationController
       tipo_medida = TipoMedida.using(:dwh_t).new
       tipo_medida.id = tipo_medida_r[:Id]
       tipo_medida.nombre = tipo_medida_r[:nombre]
-      unless valid_name?(tipo_medida.nombre)
+      unless valid_nombrecosas?(tipo_medida.nombre)
         tipo_medida.error = true
       end
       tipo_medida.save!
@@ -1637,10 +1743,10 @@ class LandingPageController < ApplicationController
       vacante.id = vacante_r.id
       vacante.nombre = vacante_r.nombre
       vacante.estado = vacante_r.estado
-      unless valid_words?(vacante.nombre)
+      unless valid_nombrecosas?(vacante.nombre)
         vacante.error = true
       end
-      unless valid_name?(vacante.estado.to_s)
+      unless valid_estado?(vacante.estado.to_s)
         vacante.error = true
       end
       vacante.save!
@@ -1665,7 +1771,10 @@ class LandingPageController < ApplicationController
       unless valid_price?(factura.total)
         factura.error = true
       end
-      unless valid_price?(factura&.fecha)
+      unless valid_date?(factura.fecha)
+        factura.error = true
+      end
+      unless valid_tipopago?(factura.tipo_pago)
         factura.error = true
       end
 

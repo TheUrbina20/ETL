@@ -20,7 +20,9 @@ class IngredientesPorBebidaController < ApplicationController
 
   def update
     @ingrediente_por_bebida = IngredientePorBebida.using(:dwh_t).find(params[:id])
-    if @ingrediente_por_bebida.update(ingrediente_por_bebida_params)
+    @ingrediente_por_bebida.update(ingrediente_por_bebida_params)
+    if validate_attributes 
+      @ingrediente_por_bebida.update_attributes(error: false)
       flash[:notice] = 'Actualizado'
       redirect_to ingredientes_por_bebida_index_path
     else
@@ -32,4 +34,9 @@ class IngredientesPorBebidaController < ApplicationController
   def ingrediente_por_bebida_params
     params.require(:ingrediente_por_bebida).permit(:id_bebida, :id_producto, :id_tipo_medida, :cantidad)
   end
+
+  def validate_attributes 
+    valid_number?(@ingrediente_por_bebida.cantidad)
+  end
+
 end

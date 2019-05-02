@@ -20,8 +20,9 @@ class ProgramasCapacitacionController < ApplicationController
 
   def update
     @programas = ProgramaCapacitacion.using(:dwh_t).find(params[:id])
-
-    if @programas.update(programas_params)
+    @programas.update(programas_params)
+    if validate_attributes 
+      @programas.update_attributes(error: false)
       flash[:notice] = 'Actualizado Correctamente'
       redirect_to programas_capacitacion_index_path
     else
@@ -34,6 +35,8 @@ class ProgramasCapacitacionController < ApplicationController
     params.require(:programa_capacitacion).permit(:id, :id_empresa, :nombre, :costo, :duracion)
   end
 
-  private
+  def validate_attributes 
+    valid_price?(@programas.costo) && valid_number?(@programas.duracion) && valid_nombrecosas?(@programas.nombre)
+  end
 
 end

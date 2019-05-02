@@ -18,10 +18,10 @@
           %td=detalle_factura.cantidad
         -else
           %td.text-danger=detalle_factura.cantidad
-        -if valid_precio?(detalle_factura.total)
+        -if valid_price?(detalle_factura.total)
           %td=detalle_factura.total
         -else
-          %td.text.danger=detalle_factura.total
+          %td.text-danger=detalle_factura.total
         %td=detalle_factura.id_factura
         %td=detalle_factura.id_servicio_hotel
         %td

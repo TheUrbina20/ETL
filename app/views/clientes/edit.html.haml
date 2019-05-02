@@ -1,6 +1,19 @@
 = simple_form_for @cliente, url:  cliente_path, method: :put do |f|
-    = f.input :id , label: 'ID:'
-    = f.input :nombre , label: 'Nombre:'
-    = f.input :correo , label: 'Correo:'
-    = f.input :telefono , label: 'Telefono:'
+    = f.input :id, readonly: true , label: 'ID:'
+    - if valid_name?(@cliente.nombre)
+        = f.input :nombre, readonly: true , label: 'Nombre:'
+    - else
+        = f.input :nombre, disabled: false , label: 'Nombre:'
+    - if valid_email?(@cliente.correo)
+        = f.input :correo, readonly: true , label: 'Correo:'
+    - else
+        = f.input :correo, disabled: false , label: 'Correo:'
+    - if valid_estadoc?(@cliente.estado)
+        = f.input :estado, readonly: true, label: 'Cliente'
+    - else
+        = f.input :estado, disabled: false,  label: 'Cliente'
+    - if valid_telefono?(@cliente.telefono)
+        = f.input :telefono, readonly: true, label: 'Telefono:'
+    - else
+        = f.input :telefono, disabled: false, label: 'Telefono:'
     = f.button :submit, class: 'btn btn-primary'

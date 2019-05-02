@@ -1,5 +1,9 @@
 = simple_form_for @baja_empleado, url:  bajas_empleado_path, method: :put do |f|
-    = f.input :id , label: 'ID:'
-    = f.input :id_empleado , label: 'Num de empleado:'
-    = f.input :motivo , label: 'Motivo:'
+    = f.input :id, readonly: true, label: 'ID:'
+    = f.input :id_empleado, readonly: true, label: 'Num de empleado:'
+    = f.input :motivo, readonly: true
+    - if valid_date?(@baja_empleado.fecha)
+        = f.input :fecha, readonly: true , label: 'Motivo:'
+    - else
+        = f.input :fecha, disabled: false, label: 'Motivo:'
     = f.button :submit, class: 'btn btn-primary'

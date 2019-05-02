@@ -17,7 +17,8 @@
         %td=material_por_pedido.id_sistema
         %td=material_por_pedido.sistema
         %td=material_por_pedido.id_material
-        -if valid_canitdad?(material_por_pedido.cantidad)
+        %td=material_por_pedido.id_pedido
+        -if valid_cantidad?(material_por_pedido.cantidad)
           %td=material_por_pedido.cantidad
         -else
           %td.text-danger=material_por_pedido.cantidad

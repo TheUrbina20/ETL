@@ -1,8 +1,17 @@
 = simple_form_for @capacitaciones, url:  capacitaciones_por_empleado_path, method: :put do |f|
-    = f.input :id , label: 'ID:'
-    = f.input :id_empleado , label: 'Num de empleado:'
-    = f.input :id_programa , label: 'Num de programa:'
-    = f.input :f_inicio , label: 'Fecha de inicio:'
-    = f.input :f_fin , label: 'Fecha de fin:'
-    = f.input :estado , label: 'Estado:'
+    = f.input :id, readonly: true, label: 'ID:'
+    = f.input :id_empleado, readonly: true, label: 'Num de empleado:'
+    = f.input :id_programa, readonly: true, label: 'Num de programa:'
+    - if valid_date?(@capacitaciones.f_inicio)
+        = f.input :f_inicio, readonly: true, label: 'Fecha de inicio:'
+    - else
+        = f.input :f_inicio, disabled: false , label: 'Fecha de inicio:'
+    - if valid_date?(@capacitaciones.f_fin)
+        = f.input :f_fin, readonly: true, label: 'Fecha de fin:'
+    - else
+        = f.input :f_fin, disabled: false, label: 'Fecha de fin:'
+    - if valid_estado_capacitacion?(@capacitaciones.estado)
+        = f.input :estado, readonly: true , label: 'Estado:'
+    - else
+        = f.input :estado, disabled: false, label: 'Estado:'
     = f.button :submit, class: 'btn btn-primary'

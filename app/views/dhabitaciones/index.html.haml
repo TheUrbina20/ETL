@@ -3,7 +3,6 @@
   %thead
     %tr
       %td='ID'
-      %td='Num de Tipo'
       %td='Nombre'
       %td='Precio'
       %td='Acciones'
@@ -11,11 +10,11 @@
     - @dhabitaciones.each do |ha|
       %tr
         %td=ha.id
-        - if valid_name? (ha.nombre)
+        - if valid_nombrecosas?(ha.nombre)
           %td=ha.nombre
         - else
           %td.text-danger=ha.nombre
-        - if valid_precio? (ha.precio)
+        - if valid_price?(ha.precio)
           %td=ha.precio
         - else
           %td.text-danger=ha.precio

@@ -12,7 +12,7 @@
       %tr
         %td=mesa.id
         %td=mesa.numero
-        -if valid_canitdad?(mesa.capacidad)
+        -if valid_cantidad?(mesa.capacidad)
           %td=mesa.capacidad
         -else
           %td.text-danger=mesa.capacidad
