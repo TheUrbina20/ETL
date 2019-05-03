@@ -1,18 +1,13 @@
 = simple_form_for @historicos, url: historico_servicio_path, method: :put do |f|
  = f.input :id, readonly: true, label: 'ID:'
  - if valid_price?(@historicos.precio)
-  = f.input :precio, readonly: true
- - if valid_precio?(@historicos.precio)
-  = f.input :precio, readonly: true , label: 'Precio:'
+  = f.input :precio, readonly: true, label: 'Preicio'
  - else
   = f.input :precio, disabled: false , label: 'Precio:'
  - if valid_date?(@historicos.f_inicio)
   = f.input :f_inicio, readonly: true , label: 'Fecha de inicio:'
  - else
   = f.input :f_inicio, disabled: false , label: 'Fecha de inicio:'
- - if valid_date?(@historicos.f_termino)
-  = f.input :f_termino, readonly: true  , label: 'Fecha de termino:'
- - else
-  = f.input :f_termino, disabled: false , label: 'Fecha de termino:'
+ = f.input :f_termino, readonly: true  , label: 'Fecha de termino:'
  = f.input :id_servicio, readonly: true , label: 'Num de servicio:'
  = f.submit 'Actualizar',  class: 'btn btn-primary'

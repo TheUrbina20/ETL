@@ -1,10 +1,13 @@
 = simple_form_for @proveedor, url:  proveedore_path, method: :put do |f|
-    = f.input :id, readonly: true, label: 'ID:'
-    = f.input :id_sistema, readonly: true, label: 'Num de sistema:'
-    = f.input :sistema, readonly: true, label: 'Sistema:'
+  = f.input :id, readonly: true, label: 'ID:'
+  = f.input :id_sistema, readonly: true, label: 'Num de sistema:'
+  = f.input :sistema, readonly: true, label: 'Sistema:'
+  - if valid_number?(@proveedor.id_empresa)
     = f.input :id_empresa, readonly: true, label: 'Num de empresa:'
-    - if valid_name?(@proveedor.nombre)
-        = f.input :nombre, readonly: true, label: 'Nombre:'
-    - else
-        = f.input :nombre, disabled: false, label: 'Nombre:'
-    = f.submit 'Actualizar',  class: 'btn btn-primary'
+  - else
+    = f.input :id_empresa, disabled: false, label: 'Num de empresa'
+  - if valid_name?(@proveedor.nombre)
+    = f.input :nombre, readonly: true, label: 'Nombre:'
+  - else
+    = f.input :nombre, disabled: false, label: 'Nombre:'
+  = f.submit 'Actualizar',  class: 'btn btn-primary'

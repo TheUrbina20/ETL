@@ -5,7 +5,7 @@
  - else
   = f.input :nombre, disabled: false, label: 'Nombre:'
  = f.input :descripcion, readonly: true , label: 'Descripción:'
- - if valid_precio?(@paquete.precio_por_dia)
+ - if valid_price?(@paquete.precio_por_dia)
   = f.input :precio_por_dia, readonly: true , label: 'Precio:'
  - else
   = f.input :precio_por_dia, disabled: false , label: 'Precio:'

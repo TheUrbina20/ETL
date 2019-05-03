@@ -21,10 +21,7 @@
           %td=ma.f_inicio
         - else
           %td.text.danger=ma.f_inicio
-        - if valid_date?(ma.f_termino)
-          %td=ma.f_termino
-        - else
-          %td.text.danger=ma.f_termino
+        %td=ma.f_termino
         %td=ma.id_servicio
         %td
           = link_to edit_historico_servicio_path(ma) do
