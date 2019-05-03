@@ -30,6 +30,7 @@ class LandingPageController < ApplicationController
     initialize_facturas_hotel
     initialize_facturas
     initialize_habitaciones
+    initialize_historicoservicios
     initialize_hrentadas
     initialize_hreservadas
     initialize_servicios
@@ -1076,10 +1077,20 @@ class LandingPageController < ApplicationController
       unless valid_name?(material_por_recibo.tipo_paquete)
         material_por_recibo.error = true
       end
-
-
       material_por_recibo.save!
     end
+
+    materiales_por_pedido = MaterialPorRecibo.using(:restaurant).all
+    material_por_pedido = MaterialPorRecibo.using(:dwh_t).new
+
+    materiales_por_pedido.each do |materal_r|
+      material_por_pedido = MaterialPorRecibo.using(:dwh_t).new
+      material_por_pedido.id_sistema = materal_r.idRecibo
+      material_por_pedido.sistema = 'H'
+      material_por_pedido.id_material = materal_r.idMaterial
+      material_por_pedido.id_recibo_compra = materal_r.idPedido
+    end
+
   end
 
   def initialize_material_gastado_por_habitacion

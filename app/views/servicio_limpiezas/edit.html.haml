@@ -1,7 +1,7 @@
 = simple_form_for @serviciol, url: servicio_limpieza_path, method: :put do |f|
  = f.input :id, readonly: true , label: 'ID:'
  - if valid_name?(@serviciol.nombre)
-  = f.input :nombre, readonly: true 
- - else 
+  = f.input :nombre, readonly: true
+ - else
   = f.input :nombre, disabled: false , label: 'Nombre:'
- = f.button :submit, class: 'btn btn-primary'
+ = f.submit 'Actualizar',  class: 'btn btn-primary'

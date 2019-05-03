@@ -71,6 +71,7 @@ Rails.application.routes.draw do
   resources :vacantes#
 
   resources :exporter, only: [:new]
+  resources :logs, only: [:index]
   resources :sql_server_exporter, only: [:new]
 end
 

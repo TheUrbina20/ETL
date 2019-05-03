@@ -1,11 +1,16 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!
-  after_update_commit :register_log, on: :update
+  before_action :register_log_update, only: [:update, :destroy]
 
-  def register_log
-    binding.pry
+  def register_log_update
+    controller = params[:controller].sub("Controller", "").underscore.split('/').last.singularize
+
+    Log.using(:dwh_t).create(action: params[:action], user: current_user.email, time: Date.today, controller: controller, element_id:params[:id])
   end
 
+  def register_log_delete
+    Log.using(:dwh_t).create(action: 'Intento de actualizacion', user: current_user.email, time: Date.today)
+  end
 
   def valid_word?(word)
     reg = /^[a-zA-Z ]*/

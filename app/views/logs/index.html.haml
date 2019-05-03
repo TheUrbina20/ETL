@@ -1,0 +1,18 @@
+<h1>Logs</h1>
+%table.table.table-bordered
+  %thead
+    %tr
+      %td='Acción'
+      %td='Usuario'
+      %td='Controlador'
+      %td='Elemento'
+      %td='Timestamp'
+
+  %tbody
+    - @logs.each do |log|
+      %tr
+        %td=log.action
+        %td=log.user
+        %td=log.controller
+        %td=log.element_id
+        %td=log.time

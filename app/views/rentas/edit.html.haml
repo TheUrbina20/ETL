@@ -2,12 +2,12 @@
  = f.input :id, readonly: true , label: 'ID:'
  = f.input :id_cliente, readonly: true , label: 'Num de cliente:'
  = f.input :id_empleado, readonly: true , label: 'Num de empleado:'
- - if valid_date?(@renta.f_entrada) 
+ - if valid_date?(@renta.f_entrada)
   = f.input :f_entrada, readonly: true  , label: 'Fecha de entrada:'
- - else 
+ - else
   = f.input :f_entrada, disabled: false , label: 'Fecha de entrada:'
  - if valid_date?(@renta.f_salida)
   = f.input :f_salida, readonly: true , label: 'Fecha de salida:'
- - else 
+ - else
   = f.input :f_salida, disabled: false , label: 'Fecha de salida:'
- = f.button :submit, class: 'btn btn-primary'
+ = f.submit 'Actualizar',  class: 'btn btn-primary'

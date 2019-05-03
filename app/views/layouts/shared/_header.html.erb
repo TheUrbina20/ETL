@@ -92,6 +92,11 @@
                 <%= 'Cerrar sesión' %>
               <%- end%>
             </li>
+            <li class='active'>
+              <%- if current_user.admin? %>
+                <%= link_to('Logs',logs_path)%>
+              <%- end%>
+            </li>
           <%- end%>
         </ul>
       </div>

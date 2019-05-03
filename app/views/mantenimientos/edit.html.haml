@@ -2,6 +2,6 @@
  = f.input :id, readonly: true , label: 'ID:'
  - if valid_tipomantenimietno(@mantenimientoe.tipo)
   = f.input :tipo, readonly: true , label: 'Tipo:'
- - else 
+ - else
   = f.input :tipo, disabled: false , label: 'Tipo:'
- = f.button :submit, class: 'btn btn-primary'
+ = f.submit 'Actualizar',  class: 'btn btn-primary'
