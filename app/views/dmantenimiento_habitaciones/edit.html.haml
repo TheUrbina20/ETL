@@ -1,10 +1,15 @@
 = simple_form_for @mantenimientoh, url: dmantenimiento_habitacione_path, method: :put do |f|
-    = f.input :id , label: 'ID:'
-    = f.input :idDetalle , label: 'Num de detalle:'
-    = f.input :Descripcion , label: 'Descripción:'
-    = f.input :FechaInicio , label: 'Fecha de inicio:'
-    = f.input :FechaTermino , label: 'Fecha de termino:'
-    = f.input :idHabitacion , label: 'Num de habitación:'
-    = f.input :idMantenimientoH , label: 'Num de mantenimiento:'
-    = f.input :idEmpleado , label: 'Num de empleado:'
-    = f.submit 'Actualizar',  class: 'btn btn-primary'
+  = f.input :id , readonly: true,  label: 'ID:'
+  = f.input :Descripcion , readonly: true, label: 'Descripción:'
+  - if valid_date?(@mantenimientoh.FechaInicio)
+    = f.input :FechaInicio , readonly: true, label: 'Fecha de inicio:'
+  - else
+    = f.input :FechaInicio, disabled: false, label: 'Fecha de inicio'
+  - if valid_date?(@mantenimientoh.FechaTermino)
+    = f.input :FechaTermino , readonly: true, label: 'Fecha de termino:'
+  - else
+    = f.input :FechaTermino, disabled: false, label: 'Fecha de termino'
+  = f.input :idHabitacion , readonly: true, label: 'Num de habitación:'
+  = f.input :idMantenimientoH , readonly: true, label: 'Num de mantenimiento:'
+  = f.input :idEmpleado , readonly: true, label: 'Num de empleado:'
+  = f.submit 'Actualizar',  class: 'btn btn-primary'

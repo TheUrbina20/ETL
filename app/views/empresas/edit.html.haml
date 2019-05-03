@@ -1,7 +1,6 @@
 = simple_form_for @empresa do |f|
   - if valid_nombrecosas?(@empresa.nombre)
     = f.input :nombre, readonly: true, label: 'Nombre:'
-  - if valid_name?(@empresa.nombre)
-    = f.input :nombre, readonly: true , label: 'Nombre:'
   -else
-  = f.button :submit, class: 'btn-success'
+    = f.input :nombre, disabled: false , label: 'Nombre:'
+  = f.submit 'Actualizar',  class: 'btn btn-primary'

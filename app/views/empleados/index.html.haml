@@ -19,20 +19,20 @@
           - if valid_name?(empleado.nombre)
             =empleado.nombre
           - else
-            .text.danger=empleado.nombre
+            .text.text-danger=empleado.nombre
           - if valid_email?(empleado.c_electronico)
             =empleado.c_electronico
           -else
-            .text.danger=empleado.c_electronico
+            .text.text-danger=empleado.c_electronico
         %td
           - if valid_date?(empleado.f_nacimiento)
             =empleado.f_nacimiento
           - else
-            .text.danger=empleado.f_nacimiento
+            .text.text-danger=empleado.f_nacimiento
           -if valid_date?(empleado.f_entrada)
             =empleado.f_entrada
           - else
-            .text.danger=empleado.f_entrada
+            .text.text-danger=empleado.f_entrada
         - if valid_telefono?(empleado.n_telefono)
           %td=empleado.n_telefono
         - else

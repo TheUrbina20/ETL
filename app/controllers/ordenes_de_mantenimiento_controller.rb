@@ -28,7 +28,9 @@ class OrdenesDeMantenimientoController < ApplicationController
 
   def update
     @mantenimiento_por_equipo = MantenimientoPorEquipo.using(:dwh_t).find(params[:id])
-    if @mantenimiento_por_equipo.update(orden_de_mantenimiento_params)
+    @mantenimiento_por_equipo.update(orden_de_mantenimiento_params)
+    if valid
+      @mantenimiento_por_equipo.update_attributes(error: false)
       flash[:notice] = 'Actualizado'
       redirect_to ordenes_de_mantenimiento_index_path
     else
@@ -39,6 +41,10 @@ class OrdenesDeMantenimientoController < ApplicationController
 
   def orden_de_mantenimiento_params
     params.require(:mantenimiento_por_equipo).permit(:id_sistema, :f_inicio, :f_termino, :id_equipo, :tipo_mantenimiento, :id_empleado)
+  end
+
+  def valid
+    valid_date?(@mantenimiento_por_equipo.f_inicio) && valid_date?(@mantenimiento_por_equipo.f_termino)
   end
 
 end

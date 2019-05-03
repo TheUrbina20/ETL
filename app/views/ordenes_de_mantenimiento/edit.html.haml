@@ -1,10 +1,16 @@
 = simple_form_for @mantenimiento_por_equipo, url: ordenes_de_mantenimiento_path, method: :put do |f|
-    = f.input :id , label: 'ID:'
-    = f.input :id_sistema , label: 'Num de sistema:'
-    = f.input :sistema , label: 'Sistema:'
-    = f.input :f_inicio , label: 'Fecha de inicio:'
-    = f.input :f_termino , label: 'Fecha de termino:'
-    = f.input :id_equipo , label: 'Num de equipo:'
-    = f.input :tipo_mantenimiento , label: 'Tipo de mantenimiento:'
-    = f.input :id_empleado , label: 'Num de empleado:'
-    = f.submit 'Actualizar',  class: 'btn btn-primary'
+  = f.input :id , readonly: true, label: 'ID:'
+  = f.input :id_sistema , readonly: true, label: 'Num de sistema:'
+  = f.input :sistema , readonly: true, label: 'Sistema:'
+  - if valid_date?(@mantenimiento_por_equipo.f_inicio)
+    = f.input :f_inicio , readonly: true, label: 'Fecha de inicio:'
+  - else
+    = f.input :f_inicio, disabled: false, label: 'Fecha de inicio'
+  - if valid_date?(@mantenimiento_por_equipo.f_termino)
+    = f.input :f_termino , readonly: true, label: 'Fecha de termino:'
+  - else
+    = f.input :f_termino, disabeld: false, label: 'Fecha de termino'
+  = f.input :id_equipo , readonly: true, label: 'Num de equipo:'
+  = f.input :tipo_mantenimiento , readonly: true, label: 'Tipo de mantenimiento:'
+  = f.input :id_empleado , readonly: true, label: 'Num de empleado:'
+  = f.submit 'Actualizar',  class: 'btn btn-primary'

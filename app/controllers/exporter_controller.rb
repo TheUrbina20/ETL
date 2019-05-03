@@ -28,7 +28,7 @@ class ExporterController < ApplicationController
       sheet.add_row ['id', 'id postulante', 'id vacante', 'Fecha aplicación', 'id empleado']
       aplicaciones_a_vacantes = AplicacionAVacante.using(:dwh).all
       aplicaciones_a_vacantes.each do |aplicacion|
-        shet.add_row [aplicacion.id, aplicacion.id_postulante, aplicacion.id_vacante, aplicacion.f_aplicacion, aplicacion.id_empleado]
+        sheet.add_row [aplicacion.id, aplicacion.id_postulante, aplicacion.id_vacante, aplicacion.f_aplicacion, aplicacion.id_empleado]
       end
     end
 
@@ -52,7 +52,7 @@ class ExporterController < ApplicationController
       sheet.add_row ['id', 'id empleado', 'Fecha', 'Hora entrada', 'Hora salida']
       asistencias = Asistencia.using(:dwh).all
       asistencias.each do |asistencia|
-        sheet.add_row [asistencia.id, asistencia.id_empleado, asistencia.fecha, asistencia.h_entrada, asistencia.h_salida]
+        sheet.add_row [asistencia.id, asistencia.id_empleado, asistencia.fecha, asistencia.hora_entrada, asistencia.hora_salida]
       end
     end
 
@@ -114,7 +114,7 @@ class ExporterController < ApplicationController
 
       comandas = Comanda.using(:dwh).all
       comandas.each do |comanda|
-        sheet.add_row [ comanda.id, comanda.id_reservacion, comanda.id_empleado, comanda.fecha, comanda.hora ]
+        sheet.add_row [ comanda.id, comanda.id_reservacion, comanda.id_empleado, comanda.fecha, comanda.hora_reservacion ]
       end
     end
 
@@ -199,7 +199,7 @@ class ExporterController < ApplicationController
       sheet.add_row ['id', 'id cliente', 'Fecha emisión', 'Tipo pago']
       facturas = FacturaRestaurante.using(:dwh).all
       facturas.each do |factura|
-        sheet.add_row [factura.id, factura.id_cliente, factura.f_emision, f.tipo_pago]
+        sheet.add_row [factura.id, factura.id_cliente, factura.fecha_emision, factura.tipo_pago]
       end
     end
 

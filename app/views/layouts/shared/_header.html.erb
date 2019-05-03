@@ -46,8 +46,8 @@
                   <%= link_to('Facturas restaurante', facturas_restaurante_index_path) if current_user&.can_manage_restaurant? %>
                   <%= link_to('Facturas Hotel', facturas_hotel_index_path) if current_user&.can_manage_hotel? %>
                   <%= link_to('Habitaciones', habitaciones_path) if current_user&.can_manage_hotel? %>
-                  <%= link_to('Habitaciones rentadas', habitaciones_rentadas_path) if current_user&.can_manage_hotel? %>
-                  <%= link_to('Habitaciones reservadas', habitaciones_reservadas_path) if current_user&.can_manage_hotel? %>
+                  <%#= link_to('Habitaciones rentadas', habitaciones_rentadas_path) if current_user&.can_manage_hotel? %>
+                  <%#= link_to('Habitaciones reservadas', habitaciones_reservadas_path) if current_user&.can_manage_hotel? %>
                   <%= link_to('Historico de servicios', historico_servicios_path) if current_user&.can_manage_hotel? %>
                   <%= link_to('Ingredientes', ingredientes_path) if current_user&.can_manage_restaurant? %>
                   <%= link_to('Ingredientes por proveedror', ingredientes_por_proveedor_index_path) if current_user&.can_manage_restaurant? %>
@@ -59,11 +59,11 @@
                   <%= link_to('Materiales por recibo', materiales_por_recibo_index_path)%>
                   <%= link_to('Materiales por habitación', materialgastado_habitaciones_path) if current_user&.can_manage_hotel? %>
                   <%= link_to('Mesas', mesas_path) if current_user&.can_manage_restaurant? %>
-                  <%= link_to('Mesas por reservación', mesas_por_reservacion_index_path) if current_user&.can_manage_restaurant? %>
+                  <%#= link_to('Mesas por reservación', mesas_por_reservacion_index_path) if current_user&.can_manage_restaurant? %>
                   <%= link_to('Ordenes de mantenimiento', ordenes_de_mantenimiento_index_path)%>
                   <%= link_to('Pedidos por empleado', pedidos_por_empleado_index_path)%>
                   <%= link_to('Paquetes', paquetes_path) if current_user&.can_manage_hotel? %>
-                  <%= link_to('Paquetes vendidos', paquetes_vendidos_rentas_path) if current_user&.can_manage_hotel? %>
+                  <%#= link_to('Paquetes vendidos', paquetes_vendidos_rentas_path) if current_user&.can_manage_hotel? %>
                   <%= link_to('Platillos', platillos_path) if current_user&.can_manage_restaurant? %>
                   <%= link_to('Platillos por comanda', platillos_por_comanda_index_path) if current_user&.can_manage_restaurant? %>
                   <%= link_to('Postulantes', postulantes_path) if current_user&.can_manage_rrhh? %>
@@ -80,7 +80,7 @@
                   <%#= link_to('Servicios por habitación', servicio_habitaciones_path) if current_user&.can_manage_hotel? %>
                   <%#= link_to('Servicios por paquete', servicios_paquetes_path) if current_user&.can_manage_hotel? %>
                   <%= link_to('Servicios del restaurante al hotel', servicios_a_domicilio_index_path) if current_user&.can_manage_restaurant? %>
-                  <%= link_to('Solicitudes de mantenimiento', solicitudes_de_mantenimiento_index_path) if current_user&.can_manage_rrhh? %>
+                  <%#= link_to('Solicitudes de mantenimiento', solicitudes_de_mantenimiento_index_path) if current_user&.can_manage_rrhh? %>
                   <%= link_to('Tipos de medidas para ingredientes', tipos_medidas_path) if current_user&.can_manage_restaurant? %>
                   <%= link_to('Tipos de productos', tipos_de_productos_path) if current_user&.can_manage_restaurant? %>
                   <%= link_to('Vacantes', vacantes_path) if current_user&.can_manage_rrhh? %>

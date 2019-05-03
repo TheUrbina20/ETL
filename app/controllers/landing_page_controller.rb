@@ -785,9 +785,6 @@ class LandingPageController < ApplicationController
       unless valid_date?(historico.f_inicio)
         historico.error = true
       end
-      unless valid_date?(historico.f_termino)
-        historico.error = true
-      end
       unless valid_price?(historico.precio)
         historico.error = true
       end

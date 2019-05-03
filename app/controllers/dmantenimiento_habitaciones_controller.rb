@@ -20,8 +20,9 @@ class DmantenimientoHabitacionesController < ApplicationController
 
   def update
     @mantenimientoh = DmantenimientoHabitacion.using(:dwh_t).find(params[:id])
-
-    if @mantenimientoh.update(mantenimientos_params)
+    @mantenimientoh.update(mantenimientos_params)
+    if validacion
+      @mantenimientoh.update_attributes(error: false)
       flash[:notice] = 'Actualizado Correctamente'
       redirect_to dmantenimiento_habitaciones_path
     else
@@ -32,5 +33,9 @@ class DmantenimientoHabitacionesController < ApplicationController
 
   def mantenimientos_params
     params.require(:dmantenimiento_habitacion).permit(:id, :idDetalle, :Descripcion, :FechaInicio, :FechaTermino, :idHabitacion, :idMantenimientoH, :idEmpleado)
+  end
+
+  def validacion
+    valid_date?(@mantenimientoh.FechaInicio) && valid_date?(@mantenimientoh.FechaTermino)
   end
 end
