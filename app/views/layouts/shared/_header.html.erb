@@ -27,7 +27,7 @@
                   <%= link_to('Bajas de materiales', bajas_path) if current_user&.can_manage_rrhh? %>
                   <%= link_to('Bajas de empleados', bajas_empleado_index_path) if current_user&.can_manage_rrhh? %>
                   <%= link_to('Bebidas', bebidas_path) if current_user&.can_manage_restaurant? %>
-                  <%= link_to('Bebidas por comanda', bebidas_por_comanda_index_path) if current_user&.can_manage_restaurant? %>
+                  <%#= link_to('Bebidas por comanda', bebidas_por_comanda_index_path) if current_user&.can_manage_restaurant? %>
                   <%= link_to('Capacitaciones por empleado', capacitaciones_por_empleado_index_path) if current_user&.can_manage_rrhh? %>
                   <%= link_to('Clientes', clientes_path) if current_user&.can_manage_restaurant? || current_user&.can_manage_hotel? %>
                   <%= link_to('Comandas', comandas_path) if current_user&.can_manage_restaurant? %>
@@ -53,7 +53,7 @@
                   <%= link_to('Ingredientes por proveedror', ingredientes_por_proveedor_index_path) if current_user&.can_manage_restaurant? %>
                   <%= link_to('Ingredientes por bebida', ingredientes_por_bebida_index_path) if current_user&.can_manage_restaurant? %>
                   <%= link_to('Ingreidentes por platillo', ingredientes_por_platillo_index_path) if current_user&.can_manage_restaurant? %>
-                  <%= link_to('Mantenimientos', mantenimientos_path) if current_user&.can_manage_rrhh? || current_user&.can_manage_hotel?%>
+                  <%#= link_to('Mantenimientos', mantenimientos_path) if current_user&.can_manage_rrhh? || current_user&.can_manage_hotel?%>
                   <%= link_to('Materiales', materiales_path)%>
                   <%= link_to('Materiales por pedido', materiales_por_pedido_index_path)%>
                   <%= link_to('Materiales por recibo', materiales_por_recibo_index_path)%>
@@ -77,10 +77,10 @@
                   <%= link_to('Servicios', servicios_path) if current_user&.can_manage_hotel? %>
                   <%= link_to('Servicios limpieza en habitación', serviciol_habitaciones_path) if current_user&.can_manage_hotel? %>
                   <%= link_to('Servicios de limpieza', servicio_limpiezas_path) if current_user&.can_manage_hotel? %>
-                  <%= link_to('Servicios por habitación', servicio_habitaciones_path) if current_user&.can_manage_hotel? %>
-                  <%= link_to('Servicios por paquete', servicios_paquetes_path) if current_user&.can_manage_hotel? %>
+                  <%#= link_to('Servicios por habitación', servicio_habitaciones_path) if current_user&.can_manage_hotel? %>
+                  <%#= link_to('Servicios por paquete', servicios_paquetes_path) if current_user&.can_manage_hotel? %>
                   <%= link_to('Servicios del restaurante al hotel', servicios_a_domicilio_index_path) if current_user&.can_manage_restaurant? %>
-                  <%# <%= link_to('Solicitudes de mantenimiento', solicitudes_de_mantenimiento_index_path)%>
+                  <%= link_to('Solicitudes de mantenimiento', solicitudes_de_mantenimiento_index_path) if current_user&.can_manage_rrhh? %>
                   <%= link_to('Tipos de medidas para ingredientes', tipos_medidas_path) if current_user&.can_manage_restaurant? %>
                   <%= link_to('Tipos de productos', tipos_de_productos_path) if current_user&.can_manage_restaurant? %>
                   <%= link_to('Vacantes', vacantes_path) if current_user&.can_manage_rrhh? %>
@@ -90,6 +90,11 @@
             <li class='active'>
               <%= link_to destroy_user_session_path, method: :delete do%>
                 <%= 'Cerrar sesión' %>
+              <%- end%>
+            </li>
+            <li class='active'>
+              <%- if current_user.admin? %>
+                <%= link_to('Logs',logs_path)%>
               <%- end%>
             </li>
           <%- end%>

@@ -38,7 +38,7 @@
           = link_to solicitudes_de_mantenimiento_path(solicitud), method: :delete, data: {confirm: '¿Estás seguro?'} do
             = fa_icon 'trash'
 
-    %tr='Total'
+    %tr='Total: '
     %tr=@solicitudes.count
 
 

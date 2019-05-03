@@ -7,7 +7,7 @@
         = f.input :cantidad, disabled: false, label: 'Cantidad:'
     = f.input :id_servicio_hotel, readonly: true, label: 'Num servicio hotel :'
     - if valid_price?(@detalle_de_factura_hotel.total)
-        = f.input :total, readonly: true , label: 'Total:'
+        = f.input :total, readonly: true , label: 'Total'
     - else
-        = f.input :total, disabled: false, label: 'Total:'
-    = f.button :submit, class: 'btn btn-primary'
+        = f.input :total, disabled: false, label: 'Total'
+    = f.submit 'Actualizar',  class: 'btn btn-primary'

@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: { registrations: "registrations" }
+  devise_for :users, controllers: { registrations: "registrations", sessions: 'custom_sessions' }
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'landing_page#index'
   resources :accidentes_laborales
@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   resources :clientes
   resources :comandas
   resources :detalles_de_factura_restaurante
-  resources :detalles_de_factura_hotel
+  resources :detalles_de_factura_hotel#
   resources :dhabitaciones
   resources :dmantenimiento_equipos ##REMOVED
   resources :dmantenimiento_habitaciones ## REMOVED
@@ -33,13 +33,13 @@ Rails.application.routes.draw do
   resources :habitaciones_reservadas
   resources :historico_servicios
   resources :ingredientes
-  resources :ingredientes_por_proveedor
   resources :ingredientes_por_bebida
   resources :ingredientes_por_platillo
+  resources :ingredientes_por_proveedor
   resources :landing_page, only: [:index, :new]
   resources :mantenimientos
   resources :materiales
-  #resources :materiales_por_habitaciones
+  # resources :materiales_por_habitaciones
   resources :materiales_por_pedido
   resources :materiales_por_recibo
   resources :materialgastado_habitaciones
@@ -65,12 +65,13 @@ Rails.application.routes.draw do
   resources :servicio_habitaciones
   resources :servicios_paquetes
   resources :servicios_a_domicilio
-  resources :solicitudes_de_mantenimiento
+  resources :solicitudes_de_mantenimiento#
   resources :tipos_medidas
   resources :tipos_de_productos
-  resources :vacantes
+  resources :vacantes#
 
   resources :exporter, only: [:new]
+  resources :logs, only: [:index]
   resources :sql_server_exporter, only: [:new]
 end
 

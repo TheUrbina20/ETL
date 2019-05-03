@@ -1,5 +1,5 @@
 document.addEventListener('turbolinks:load', function() {
   setTimeout(() => {
-    $('.alert').fadeOut();
+    $('.alert').slideUp(300);
   }, 3000);
 });

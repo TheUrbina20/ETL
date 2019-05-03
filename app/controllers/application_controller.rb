@@ -1,6 +1,16 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!
+  before_action :register_log_update, only: [:update, :destroy]
 
+  def register_log_update
+    controller = params[:controller].sub("Controller", "").underscore.split('/').last.singularize
+
+    Log.using(:dwh_t).create(action: params[:action], user: current_user.email, time: Date.today, controller: controller, element_id:params[:id])
+  end
+
+  def register_log_delete
+    Log.using(:dwh_t).create(action: 'Intento de actualizacion', user: current_user.email, time: Date.today)
+  end
 
   def valid_word?(word)
     reg = /^[a-zA-Z ]*/
@@ -11,12 +21,11 @@ class ApplicationController < ActionController::Base
     reg = /^[a-zA-Z0-9 ]*/
   end
 
-  def valid_alpha?(words)
+  def valid_alpha_with_?(words)
     reg = /^[a-zA-Z0-9 -]*/
   end
 
   def valid_name?(name)
-    puts 'VALIDANDON NOMBRES DE PERSONAS'
     #reg = /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/
     reg = /^([A-Za-zÁÉÍÓÚñáéíóúÑ]{0}?[A-Za-zÁÉÍÓÚñáéíóúÑ\']+[\s])+([A-Za-zÁÉÍÓÚñáéíóúÑ]{0}?[A-Za-zÁÉÍÓÚñáéíóúÑ\'])+[\s]?([A-Za-zÁÉÍÓÚñáéíóúÑ]{0}?[A-Za-zÁÉÍÓÚñáéíóúÑ\'])?$/
     regex_validator(reg, name)
@@ -48,8 +57,9 @@ class ApplicationController < ActionController::Base
   end
 
   def valid_date?(date)
-    reg = /^[0-3][0-9]\/(0?[1-9]|1[012])\/[0-1][0-9]$/
-    regex_validator(reg, date.to_s)
+    #reg = /^[0-3][0-9]\/(0?[1-9]|1[012])\/([0-1][0-9])|([5-9][0-9])$/
+    !!(date&.match(/\d{2}-\d{2}-\d{4}/) && Date.strptime(date, '%d-%m-%y'))
+    #regex_validator(reg, date.to_s)
   end
 
   def valid_rfc?(rfc)
@@ -78,7 +88,6 @@ class ApplicationController < ActionController::Base
   end
 
   def valid_nombrecosas?(nombre)
-    puts 'VALIDANDO EL NOMBRE DE LAS COSAS'
     reg = /^[A-Za-zÁÉÍÓÚñáéíóúÑ]*$|^[A-Za-zÁÉÍÓÚñáéíóúÑ]*\s{1}[A-Za-zÁÉÍÓÚñáéíóúÑ]*$|^[A-Za-zÁÉÍÓÚñáéíóúÑ]*\s{1}[A-Za-zÁÉÍÓÚñáéíóúÑ]*\s{1}[A-Za-zÁÉÍÓÚñáéíóúÑ]*$/
     regex_validator(reg, nombre)
   end

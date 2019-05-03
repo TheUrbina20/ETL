@@ -29,7 +29,7 @@
             = fa_icon 'pencil'
           = link_to renta_path(renta), method: :delete, data: {confirm: '¿Estás seguro?'} do
             = fa_icon 'trash'
-    %tr='Total'
+    %tr='Total: '
     %tr=@rentas.count
 
 

@@ -24,7 +24,7 @@
           = link_to ingredientes_por_proveedor_path(ingrediente_por_proveedor), method: :delete, data: {confirm: '¿Estás seguro?'} do
             = fa_icon 'trash'
 
-    %tr='Total'
+    %tr='Total: '
     %tr=@ingredientes_por_proveedor.count
 
 

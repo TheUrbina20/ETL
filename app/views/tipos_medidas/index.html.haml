@@ -19,7 +19,7 @@
           = link_to tipos_medidas_path(tipo_medida), method: :delete, data: {confirm: '¿Estás seguro?'} do
             = fa_icon 'trash'
 
-    %tr='Total'
+    %tr='Total: '
     %tr=@tipos_medidas.count
 
 

@@ -3,6 +3,6 @@
  = f.input :tipo_habitacion, readonly: true , label: 'Tipo de habitación:'
  - if valid_activah?(@habitaciones.estado)
   = f.input :estado, readonly: true , label: 'Estado:'
- - else 
+ - else
   = f.input :estado, disabled: false , label: 'Estado:'
- = f.button :submit, class: 'btn btn-primary'
+  = f.submit 'Actualizar',  class: 'btn btn-primary'

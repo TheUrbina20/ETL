@@ -26,7 +26,7 @@
             = fa_icon 'pencil'
           = link_to facturas_restaurante_path(factura), method: :delete, data: {confirm: '¿Estás seguro?'} do
             = fa_icon 'trash'
-    %tr='Total'
+    %tr='Total: '
     %tr=@facturas.count
 
 
