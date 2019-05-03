@@ -25,6 +25,6 @@
           = link_to aplicaciones_a_vacante_path(aplicacion), method: :delete, data: {confirm: '¿Estás seguro?'} do
             = fa_icon 'trash'
 
-    %tr='Total'
+    %tr='Total: '
     %tr=@aplicaciones.count
 

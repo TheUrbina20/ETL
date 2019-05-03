@@ -18,10 +18,7 @@
         %td=equipo_por_recibo.id_sistema
         %td=equipo_por_recibo.sistema
         %td=equipo_por_recibo.id_recibo_compra
-        - if valid_numserie?(equipo_por_recibo.n_serie)
-          %td=equipo_por_recibo.n_serie
-        - else
-          %td.text.danger=equipo_por_recibo.n_serie
+        %td=equipo_por_recibo.n_serie
         %td=equipo_por_recibo.id_equipo
         -if valid_date?(equipo_por_recibo.f_finalizacion_garantia)
           %td=equipo_por_recibo.f_finalizacion_garantia

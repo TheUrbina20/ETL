@@ -2,9 +2,9 @@
     = f.input :id, readonly: true, label: 'ID:'
     = f.input :id_cliente, readonly: true, label: 'Num de cliente:'
     - if valid_price?(@factura_hotel.total)
-        = f.input :total, readonly: true, label: 'Total:'
+        = f.input :total, readonly: true, label: 'Total'
     - else
-        = f.input :total, disabled: false, label: 'Total:'
+        = f.input :total, disabled: false, label: 'Total'
     - if valid_date?(@factura_hotel.fecha_emision)
         = f.input :fecha_emision, readonly: true, label: 'Fecha de emisión:'
     - else

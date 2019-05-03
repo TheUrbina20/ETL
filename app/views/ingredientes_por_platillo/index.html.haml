@@ -25,7 +25,7 @@
           = link_to ingredientes_por_platillo_path(ingrediente_por_platillo), method: :delete, data: {confirm: '¿Estás seguro?'} do
             = fa_icon 'trash'
 
-    %tr='Total'
+    %tr='Total: '
     %tr=@ingredientes_por_platillo.count
 
 

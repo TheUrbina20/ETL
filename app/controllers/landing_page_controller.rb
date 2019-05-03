@@ -44,7 +44,7 @@ class LandingPageController < ApplicationController
     initialize_materiales_por_recibo
     initialize_mesas
     initialize_mesas_por_reservacion
-    # initialize_mantenimientos_por_equipo
+    initialize_mantenimientos_por_equipo
     initialize_paquetes
     initialize_paquetesvr
     initialize_pedidos_por_empleados
@@ -65,7 +65,7 @@ class LandingPageController < ApplicationController
     initialize_servicios
     initialize_mesas_por_reservacion
     initialize_serviciosp
-    initialice_solicitudes
+    # initialice_solicitudes
     initialize_tipos_productos
     initialize_tipos_medidas
     initialize_vacantes
@@ -138,6 +138,7 @@ class LandingPageController < ApplicationController
 
     areas.each do |area_r|
       area = AreasPorEmpleado.using(:dwh_t).new
+      area.id = area_r.id
       area.id_area = area_r.id_area
       area.id_empleado = area_r.id_empleado
       area.f_asignacion = area_r.f_asignacion
@@ -383,7 +384,7 @@ class LandingPageController < ApplicationController
         detalles_de_factura.error = true
       end
       unless valid_price?(detalles_de_factura.total)
-        detalle_de_factura.error = true
+        detalles_de_factura.error = true
       end
       detalles_de_factura.save!
     end
@@ -491,7 +492,7 @@ class LandingPageController < ApplicationController
       empleado.nombre = empleado_r[:nombre].titleize + ' ' + empleado_r[:apellido_p].titleize
       + ' ' + empleado_r[:apellido_m].titleize
       empleado.n_telefono = empleado_r[:telefono]
-      empleado.sistema = 'A'
+      empleado.sistema = 'R'
       empleado.error = true
       empleado.save!
     end
@@ -506,7 +507,7 @@ class LandingPageController < ApplicationController
       empleado.genero = empleado_r.genero
       empleado.rfc = empleado_r.rfc
       empleado.baja = empleado_r.baja
-      empleado.sistema = 'M'
+      empleado.sistema = 'RR'
       unless valid_name?(empleado.nombre)
         empleado.error = true
       end
@@ -541,7 +542,7 @@ class LandingPageController < ApplicationController
       empleado.id_sistema = empleado.id
       empleado.f_nacimiento = empleado_r.FechaNa
       empleado.n_telefono = empleado_r.Telefono
-      empleado.sistema = 'R'
+      empleado.sistema = 'H'
 
       unless valid_name?(empleado.nombre)
         empleado.error = true
@@ -713,6 +714,7 @@ class LandingPageController < ApplicationController
       factura.fecha_emision = factura_r[:fecha_factura]
       factura.tipo_pago = factura_r[:id_tipo_pago]
       factura.sistema = 'R'
+      factura.total = factura_r[:total]
       unless valid_date?(factura.fecha_emision)
         factura.error = true
       end
@@ -1132,61 +1134,61 @@ class LandingPageController < ApplicationController
     end
   end
 
-  # def initialize_mantenimientos_por_equipo
-  #   MantenimientoPorEquipo.using(:dwh_t).delete_all
-  #   mantenimientos = MantenimientoPorEquipo.using(:restaurant).all
-  #   mantenimiento = MantenimientoPorEquipo.using(:dwh_t).new
+  def initialize_mantenimientos_por_equipo
+    MantenimientoPorEquipo.using(:dwh_t).delete_all
+    mantenimientos = MantenimientoPorEquipo.using(:restaurant).all
+    mantenimiento = MantenimientoPorEquipo.using(:dwh_t).new
 
-  #   mantenimientos.each do |mantenimiento_r|
-  #     mantenimiento = MantenimientoPorEquipo.using(:dwh_t).new
-  #     mantenimiento.id_sistema = mantenimiento_r.id
-  #     mantenimiento.f_inicio = mantenimiento_r.FechaInicio
-  #     mantenimiento.f_termino = mantenimiento_r.FechaTermino
-  #     mantenimiento.id_equipo = mantenimiento_r.idEquipo_recibo
-  #     mantenimiento.tipo_mantenimiento = mantenimiento_r.tipo_mantenimiento
-  #     mantenimiento.id_empleado = mantenimiento_r.idEmpleado
-  #     mantenimiento.sistema = 'H'
-  #     mantenimiento.error = true
-  #     mantenimiento.save!
-  #   end
+    mantenimientos.each do |mantenimiento_r|
+      mantenimiento = MantenimientoPorEquipo.using(:dwh_t).new
+      mantenimiento.id_sistema = mantenimiento_r.id
+      mantenimiento.f_inicio = mantenimiento_r.FechaInicio
+      mantenimiento.f_termino = mantenimiento_r.FechaTermino
+      mantenimiento.id_equipo = mantenimiento_r.idEquipo_recibo
+      mantenimiento.tipo_mantenimiento = mantenimiento_r.tipo_mantenimiento
+      mantenimiento.id_empleado = mantenimiento_r.idEmpleado
+      mantenimiento.sistema = 'H'
+      mantenimiento.error = true
+      mantenimiento.save!
+    end
 
-  #   mantenimientos = MantenimientoPorEquipo.using(:rrhh).all
+    mantenimientos = MantenimientoPorEquipo.using(:rrhh).all
 
-  #   mantenimientos.each do |mantenimiento_r|
-  #     mantenimiento = MantenimientoPorEquipo.using(:dwh_t).new
-  #     mantenimiento.id_sistema = mantenimiento_r.id
-  #     mantenimiento.f_inicio = mantenimiento_r.f_solicitud
-  #     mantenimiento.f_termino = mantenimiento_r.f_recibo
-  #     mantenimiento.estado = mantenimiento_r.estado
-  #     mantenimiento.id_equipo = mantenimiento_r.id_equipo_por_recibo
-  #     mantenimiento.tipo_mantenimiento = mantenimiento_r.tipo
-  #     mantenimiento.id_empleado = mantenimiento_r.id_empleado
-  #     mantenimiento.sistema = 'RR'
-  #     unless valid_date?(mantenimiento.f_inicio)
-  #       mantenimiento.error = true
-  #     end
-  #     unless valid_date?(mantenimiento.f_termino)
-  #       mantenimiento.error = true
-  #     end
-  #     unless valid_name?(mantenimiento.tipo_mantenimiento)
-  #       mantenimiento.error = true
-  #     end
-  #     mantenimiento.save!
-  #   end
+    mantenimientos.each do |mantenimiento_r|
+      mantenimiento = MantenimientoPorEquipo.using(:dwh_t).new
+      mantenimiento.id_sistema = mantenimiento_r.id
+      mantenimiento.f_inicio = mantenimiento_r.f_solicitud
+      mantenimiento.f_termino = mantenimiento_r.f_recibo
+      mantenimiento.estado = mantenimiento_r.estado
+      mantenimiento.id_equipo = mantenimiento_r.id_equipo_por_recibo
+      mantenimiento.tipo_mantenimiento = mantenimiento_r.tipo
+      mantenimiento.id_empleado = mantenimiento_r.id_empleado
+      mantenimiento.sistema = 'RR'
+      unless valid_date?(mantenimiento.f_inicio)
+        mantenimiento.error = true
+      end
+      unless valid_date?(mantenimiento.f_termino)
+        mantenimiento.error = true
+      end
+      unless valid_name?(mantenimiento.tipo_mantenimiento)
+        mantenimiento.error = true
+      end
+      mantenimiento.save!
+    end
 
-  #   mantenimientos = Mdb.open(Rails.root.join('db', 'access_db.accdb'))['D_correccion_mantenimiento']
+    mantenimientos = Mdb.open(Rails.root.join('db', 'access_db.accdb'))['D_correccion_mantenimiento']
 
-  #   mantenimientos.each do |mantenimiento_r|
-  #     mantenimiento = MantenimientoPorEquipo.using(:dwh_t).new
-  #     mantenimiento.id_sistema = mantenimiento_r[:ID]
-  #     mantenimiento.f_inicio = mantenimiento_r[:fecha]
-  #     mantenimiento.id_equipo = mantenimiento_r[:id_equipo_c]
-  #     mantenimiento.tipo_mantenimiento = mantenimiento_r[:Id_cor_mant]
-  #     mantenimiento.sistema = 'R'
-  #     mantenimiento.error = true
-  #     mantenimiento.save!
-  #   end
-  # end
+    mantenimientos.each do |mantenimiento_r|
+      mantenimiento = MantenimientoPorEquipo.using(:dwh_t).new
+      mantenimiento.id_sistema = mantenimiento_r[:ID]
+      mantenimiento.f_inicio = mantenimiento_r[:fecha]
+      mantenimiento.id_equipo = mantenimiento_r[:id_equipo_c]
+      mantenimiento.tipo_mantenimiento = mantenimiento_r[:Id_cor_mant]
+      mantenimiento.sistema = 'R'
+      mantenimiento.error = true
+      mantenimiento.save!
+    end
+  end
 
   def initialize_paquetes
     Paquete.using(:dwh_t).delete_all
@@ -1679,30 +1681,30 @@ class LandingPageController < ApplicationController
   end
 
 
-  def initialice_solicitudes
-    SolicitudMantenimiento.using(:dwh_t).delete_all
-    solicitudes = SolicitudMantenimiento.using(:rrhh).all
-    solicitud = SolicitudMantenimiento.using(:dwh_t).new
+  # def initialice_solicitudes
+  #   SolicitudMantenimiento.using(:dwh_t).delete_all
+  #   solicitudes = SolicitudMantenimiento.using(:rrhh).all
+  #   solicitud = SolicitudMantenimiento.using(:dwh_t).new
 
-    solicitudes.each do |solicitud_r|
-      solicitud = SolicitudMantenimiento.using(:dwh_t).new
-      solicitud.id = solicitud_r.id
-      solicitud.id_empleado = solicitud_r.id_empleado
-      solicitud.id_equipo_por_recibo = solicitud.id_equipo_por_recibo
-      solicitud.f_solicitud = solicitud_r.f_solicitud
-      solicitud.f_recibo =solicitud_r.f_recibo
-      solicitud.estado = solicitud_r.estado
-      solicitud.motivo = solicitud_r.estado
-      solicitud.tipo = solicitud_r.tipo
-      unless valid_date?(solicitud.f_solicitud)
-        solicitud.error = true
-      end
-      unless valid_date?(solicitud.f_recibo)
-        solicitud.error = true
-      end
-      solicitud.save!
-    end
-  end
+  #   solicitudes.each do |solicitud_r|
+  #     solicitud = SolicitudMantenimiento.using(:dwh_t).new
+  #     solicitud.id = solicitud_r.id
+  #     solicitud.id_empleado = solicitud_r.id_empleado
+  #     solicitud.id_equipo_por_recibo = solicitud.id_equipo_por_recibo
+  #     solicitud.f_solicitud = solicitud_r.f_solicitud
+  #     solicitud.f_recibo =solicitud_r.f_recibo
+  #     solicitud.estado = solicitud_r.estado
+  #     solicitud.motivo = solicitud_r.estado
+  #     solicitud.tipo = solicitud_r.tipo
+  #     unless valid_date?(solicitud.f_solicitud)
+  #       solicitud.error = true
+  #     end
+  #     unless valid_date?(solicitud.f_recibo)
+  #       solicitud.error = true
+  #     end
+  #     solicitud.save!
+  #   end
+  # end
 
 
   def initialize_tipos_productos

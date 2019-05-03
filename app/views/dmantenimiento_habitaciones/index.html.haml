@@ -3,7 +3,6 @@
   %thead
     %tr
       %td='ID'
-      %td='Num de detalle'
       %td='Descripcion'
       %td='Fecha de inicio'
       %td='Fecha de termino'
@@ -16,7 +15,6 @@
     - @mantenimientoh.each do |ma|
       %tr
         %td=ma.id
-        %td=ma.idDetalle
         %td=ma.Descripcion
         -if valid_date?(ma.FechaInicio)
           %td=ma.FechaInicio

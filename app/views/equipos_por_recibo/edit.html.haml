@@ -3,10 +3,7 @@
     = f.input :id_sistema, readonly: true, label: 'Num de sistema:'
     = f.input :sistema, readonly: true, label: 'Sistema:'
     = f.input :id_equipo, readonly: true, label: 'Num de equipo:'
-    - if valid_numserie?(@equipo_por_recibo.n_serie)
-        = f.input :n_serie, readonly: true , label: 'Num de serie:'
-    - else
-        = f.input :n_serie, disabled: false , label: 'Num de serie:'
+    = f.input :n_serie, readonly: true , label: 'Num de serie:'
     = f.input :id_recibo_compra, readonly: true, label: 'Num de recibo compra:'
     - if valid_date?(@equipo_por_recibo.f_finalizacion_garantia)
         = f.input :f_finalizacion_garantia, readonly: true , label: 'Fecha finalización garantia:'

@@ -7,7 +7,7 @@
     - else
         = f.input :fecha_emision, disabled: false , label: 'Fecha de emisión:'
     - if valid_price?(@detalle_de_factura_restaurante.total)
-        = f.input :total, readonly: true , label: 'Total:'
+        = f.input :total, readonly: true , label: 'Total'
     - else
-        = f.input :total, disabled: false, label: 'Total:'
+        = f.input :total, disabled: false, label: 'Total'
     = f.button :submit, class: 'btn btn-primary'

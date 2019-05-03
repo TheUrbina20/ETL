@@ -18,13 +18,16 @@
           %td=proveedor.nombre
         - else
           %td.text.danger=proveedor.nombre
-        %td=proveedor.id_empresa
+        -if valid_number?(proveedor.id_empresa)
+          %td=proveedor.id_empresa
+        -else
+          %td.text.danger=proveedor.id_empresa
         %td
           = link_to edit_proveedore_path(proveedor) do
             = fa_icon 'pencil'
           = link_to proveedore_path(proveedor), method: :delete, data: {confirm: '¿Estás seguro?'} do
             = fa_icon 'trash'
-    %tr='Total'
+    %tr='Total: '
     %tr=@proveedores.count
 
 

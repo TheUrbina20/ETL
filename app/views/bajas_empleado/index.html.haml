@@ -24,7 +24,7 @@
           = link_to bajas_empleado_path(baja_empleado), method: :delete, data: {confirm: '¿Estás seguro?'} do
             = fa_icon 'trash'
 
-    %tr='Total'
+    %tr='Total: '
     %tr=@bajas_por_empleado.count
 
 

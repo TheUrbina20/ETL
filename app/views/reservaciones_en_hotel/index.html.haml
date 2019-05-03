@@ -37,5 +37,5 @@
             = fa_icon 'pencil'
           = link_to reservaciones_en_hotel_path(reservacion), method: :delete, data: {confirm: '¿Estás seguro?'} do
             = fa_icon 'trash'
-    %tr='Total'
+    %tr='Total: '
     %tr=@reservaciones.count

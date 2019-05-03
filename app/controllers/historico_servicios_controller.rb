@@ -20,7 +20,7 @@ class HistoricoServiciosController < ApplicationController
   def update
     @historicos = HistoricoServicio.using(:dwh_t).find(params[:id])
     @historicos.update(hservicios_params)
-    if validate_attributes 
+    if validate_attributes
       @historicos.update_attributes(error: false)
       flash[:notice] = 'Actualizado Correctamente'
       redirect_to historico_servicios_path
@@ -34,7 +34,7 @@ class HistoricoServiciosController < ApplicationController
     params.require(:historico_servicio).permit(:id,:precio, :f_inicio, :f_termino, :id_servicio)
   end
 
-  def validate_attributes 
+  def validate_attributes
     valid_date?(@historicos.f_inicio) && valid_date?(@historicos.f_termino) && valid_price?(@historicos.precio)
   end
 end

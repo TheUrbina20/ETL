@@ -4,7 +4,7 @@
     %tr
       %td='ID'
       %td='Num de cliente'
-      %td='Total'
+      %td='Total: '
       %td='Fecha de emisión'
       %td='Tipo de pago'
       %td='Num de renta'
@@ -32,7 +32,7 @@
             = fa_icon 'pencil'
           = link_to facturas_hotel_path(factura), method: :delete, data: {confirm: '¿Estás seguro?'} do
             = fa_icon 'trash'
-    %tr='Total'
+    %tr='Total: '
     %tr=@facturas.count
 
 
