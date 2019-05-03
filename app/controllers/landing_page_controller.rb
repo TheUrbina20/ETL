@@ -332,6 +332,10 @@ class LandingPageController < ApplicationController
         cliente.error = true
       end
 
+      unless valid_estadoc?(cliente.estado)
+        cliente.error = true
+      end
+
       unless valid_telefono?(cliente.telefono)
         cliente.error = true
       end

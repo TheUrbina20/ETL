@@ -7,6 +7,6 @@
     - if valid_price?(@bebida.precio)
         = f.input :precio, readonly: true  , label: 'Precio:'
     - else
-        = f.input :precio, disables: false , label: 'Precio:'
+        = f.input :precio, disabled: false , label: 'Precio:'
     = f.input :descripcion, readonly: true, label: 'Descripción:'
     = f.button :submit, class: 'btn btn-primary'

@@ -98,7 +98,7 @@ module ApplicationHelper
     end
 
     def valid_estadoc?(estado)
-      reg = /^[A-Za-zÁÉÍÓÚñáéíóúÑ]*$|^[A-Za-zÁÉÍÓÚñáéíóúÑ]*\s[A-Za-zÁÉÍÓÚñáéíóúÑ]*$/
+      reg = /^([A-Za-zÁÉÍÓÚñáéíóúÑ]|[A-Za-zÁÉÍÓÚñáéíóúÑ\']+[\s])+([A-Za-zÁÉÍÓÚñáéíóúÑ]{0}?[A-Za-zÁÉÍÓÚñáéíóúÑ\'])+[\s]?([A-Za-zÁÉÍÓÚñáéíóúÑ]{0}?[A-Za-zÁÉÍÓÚñáéíóúÑ\'])?$/
       regex_validator(reg, estado)
     end
 

@@ -1,12 +1,12 @@
 = simple_form_for @dhabitaciones, url: dhabitacione_path, method: :put do |f|
-= f.input :id, readonly:true , label: 'ID:'
- - if valid_nombrecosas?(@dhabitaciones.nombre)
-  = f.input :nombre, readonly: true , label: 'Nombre:'
- - else
-  = f.input :nombre, disabled: false, label: 'Nombre:'
- - if valid_price?(@dhabitaciones.precio)
-  = f.input :precio, readonly: true , label: 'Precio:'
- - else
-  =f.input :precio, disabled: false , label: 'Precio:'
- = f.button :submit, class: 'btn btn-primary'
+  = f.input :id, readonly:true , label: 'ID:'
+  - if valid_nombrecosas?(@dhabitaciones.nombre)
+    = f.input :nombre, readonly: true , label: 'Nombre:'
+  - else
+    = f.input :nombre, disabled: false, label: 'Nombre:'
+  - if valid_price?(@dhabitaciones.precio)
+    = f.input :precio, readonly: true , label: 'Precio:'
+  - else
+    =f.input :precio, disabled: false , label: 'Precio:'
+  = f.button :submit, class: 'btn btn-primary'
 
