@@ -1,4 +1,5 @@
 <h1>Empleados</h1>
+%p= "Total: #{@empleados.count} regitros"
 %table.table.table-bordered
   %thead
     %tr
@@ -52,7 +53,3 @@
             = fa_icon 'pencil'
           = link_to empleado_path(empleado), method: :delete, data: {confirm: '¿Estás seguro?'} do
             = fa_icon 'trash'
-    %tr='Total: '
-    %tr=@empleados.count
-
-

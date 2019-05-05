@@ -31,15 +31,14 @@
                   <%= link_to('Capacitaciones por empleado', capacitaciones_por_empleado_index_path) if current_user&.can_manage_rrhh? %>
                   <%= link_to('Clientes', clientes_path) if current_user&.can_manage_restaurant? || current_user&.can_manage_hotel? %>
                   <%= link_to('Comandas', comandas_path) if current_user&.can_manage_restaurant? %>
-                  <%= link_to('Detalle factura restaurante', detalles_de_factura_restaurante_index_path) if current_user&.can_manage_restaurant? %>
-                  <%= link_to('Detalle de factura hotel', detalles_de_factura_hotel_index_path) if current_user&.can_manage_hotel?%>
+                  <%= link_to('Detalles de factura restaurante', detalles_de_factura_restaurante_index_path) if current_user&.can_manage_restaurant? %>
+                  <%= link_to('Detalles de factura hotel', detalles_de_factura_hotel_index_path) if current_user&.can_manage_hotel?%>
                   <%= link_to('Detalles de habitaciones', dhabitaciones_path) if current_user&.can_manage_hotel? %>
                   <%= link_to('Detalle de mantenimiento a habitaciones', dmantenimiento_habitaciones_path) if current_user&.can_manage_hotel?%>
-
                   <%= link_to('Tipos de habitaciones', dhabitaciones_path) if current_user&.can_manage_hotel? %>
                   <%= link_to('Equipos', equipos_path)%>
                   <%# link_to('Equipos por habitacion', equipo_habitaciones_path) if current_user&.can_manage_hotel? %>
-                  <%# link_to('Equipos por pedido', equipos_por_pedido_index_path)%>
+                  <%#= link_to('Equipos por pedido', equipos_por_pedido_index_path)%>
                   <%= link_to('Equipos por recibo', equipos_por_recibo_index_path)%>
                   <%= link_to('Empleados', empleados_path)%>
                   <%= link_to('Empresas', empresas_path) if current_user&.can_manage_rrhh? %>

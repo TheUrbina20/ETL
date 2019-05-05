@@ -1,5 +1,6 @@
 %h1
   Ingredientes por proveedor
+%p= "Total: #{@ingredientes_por_proveedor.count} regitros"
 %table.table.table-bordered
   %thead
     %tr
@@ -23,8 +24,3 @@
             = fa_icon 'pencil'
           = link_to ingredientes_por_proveedor_path(ingrediente_por_proveedor), method: :delete, data: {confirm: '¿Estás seguro?'} do
             = fa_icon 'trash'
-
-    %tr='Total: '
-    %tr=@ingredientes_por_proveedor.count
-
-

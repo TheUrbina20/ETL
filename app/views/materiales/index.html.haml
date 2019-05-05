@@ -1,5 +1,5 @@
-
 <h1>Materiales</h1>
+%p= "Total: #{@materiales.count} regitros"
 %table.table.table-bordered
   %thead
     %tr
@@ -38,8 +38,4 @@
             = fa_icon 'pencil'
           = link_to materiale_path(material), method: :delete, data: {confirm: '¿Estás seguro?'} do
             = fa_icon 'trash'
-
-    %tr='Total: '
-    %tr=@materiales.count
-
 
