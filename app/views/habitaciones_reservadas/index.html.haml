@@ -1,11 +1,12 @@
 <h1>Habitaciones reservadas</h1>
+%p= "Total: #{@habitacionesreservadas.count} regitros"
 %table.table.table-bordered
   %thead
     %tr
       %td='ID'
       %td='Num de reservación'
       %td='Num de habitación'
-     
+
   %tbody
     - @habitacionesreservadas.each do |habitacion|
       %tr

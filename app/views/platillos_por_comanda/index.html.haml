@@ -1,4 +1,5 @@
 <h1>Platillos por comanda</h1>
+%p= "Total: #{@platillos_por_comanda.count} regitros"
 %table.table.table-bordered
   %thead
     %tr
@@ -23,9 +24,3 @@
             = fa_icon 'pencil'
           = link_to platillos_por_comanda_path(platillo_por_comanda), method: :delete, data: {confirm: '¿Estás seguro?'} do
             = fa_icon 'trash'
-
-
-    %tr='Total: '
-    %tr=@platillos_por_comanda.count
-
-
