@@ -1,4 +1,5 @@
 <h1>Bajas de materiales</h1>
+%p= "Total: #{@bajas.count} regitros"
 %table.table.table-bordered
   %thead
     %tr
@@ -32,9 +33,5 @@
           = link_to baja_path(baja), method: :delete, data: {confirm: '¿Estás seguro?'} do
             = fa_icon 'trash'
 
-
-
-    %tr='Total: '
-    %tr=@bajas.count
 
 

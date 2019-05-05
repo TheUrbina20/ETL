@@ -130,6 +130,10 @@ module ApplicationHelper
     def regex_validator(reg, word)
       reg.match(word) ? true : false
     end
+
+    def verify_path(path)
+      controller_path == path
+    end
  end
 
 

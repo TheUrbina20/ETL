@@ -13,7 +13,10 @@ class RegistrationsController < Devise::RegistrationsController
   def create
     super
     resource.role = params[:user][:role]
-    resource.save! if resource.valid?
+    return unless resource.valid?
+
+    resource.save!
+    register_log_action(resource)
   end
 
   # GET /resource/edit
@@ -61,4 +64,10 @@ class RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+  private
+
+  def register_log_action(user)
+    Log.using(:dwh_t).create(action: 'Registro de usuario', user: user.email, time: DateTime.now, controller: 'Registration', element_id: "Rol: #{user.role}")
+  end
+
 end

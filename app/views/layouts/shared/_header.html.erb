@@ -18,84 +18,88 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Registros <span class="caret"></span></a>
               <ul class="dropdown-menu scrollable-menu" role="menu">
                 <li>
-                  <%= link_to('Accidentes laborales', accidentes_laborales_path) if current_user&.can_manage_rrhh? %>
-                  <%= link_to('Asignacion de materiales', asignacion_materiales_path) if current_user&.can_manage_hotel?%>
-                  <%= link_to('Aplicaciones a vacantes', aplicaciones_a_vacantes_path) if current_user&.can_manage_rrhh? %>
-                  <%= link_to('Areas', areas_path) if current_user&.can_manage_rrhh? %>
-                  <%= link_to('Areas por empleado', areas_por_empleado_index_path) if current_user&.can_manage_rrhh? %>
-                  <%= link_to('Asistencias', asistencias_path) if current_user&.can_manage_rrhh? %>
-                  <%= link_to('Bajas de materiales', bajas_path) if current_user&.can_manage_rrhh? %>
-                  <%= link_to('Bajas de empleados', bajas_empleado_index_path) if current_user&.can_manage_rrhh? %>
-                  <%= link_to('Bebidas', bebidas_path) if current_user&.can_manage_restaurant? %>
+                  <%= link_to('Accidentes laborales', accidentes_laborales_path, html_options = { class: "#{ 'is_active' if verify_path('accidentes_laborales')}"}) if current_user&.can_manage_rrhh?%>
+                  <%= link_to('Aplicaciones a vacantes', aplicaciones_a_vacantes_path, html_options = { class: "#{ 'is_active' if verify_path('aplicaciones_a_vacantes')}"}) if current_user&.can_manage_rrhh? %>
+                  <%= link_to('Areas', areas_path, html_options = { class: "#{ 'is_active' if verify_path('areas')}"}) if current_user&.can_manage_rrhh? %>
+                  <%= link_to('Areas por empleado', areas_por_empleado_index_path, html_options = { class: "#{ 'is_active' if verify_path('areas_por_empleado')}"}) if current_user&.can_manage_rrhh? %>
+                  <%= link_to('Asignacion de materiales', asignacion_materiales_path, html_options = { class: "#{ 'is_active' if verify_path('asignacion_materiales')}"}) if current_user&.can_manage_hotel?%>
+                  <%= link_to('Asistencias', asistencias_path, html_options = { class: "#{ 'is_active' if verify_path('asistencias')}"}) if current_user&.can_manage_rrhh? %>
+                  <%= link_to('Bebidas', bebidas_path, html_options = { class: "#{ 'is_active' if verify_path('bebidas')}"}) if current_user&.can_manage_restaurant? %>
+                  <%= link_to('Bajas de empleados', bajas_empleado_index_path, html_options = { class: "#{ 'is_active' if verify_path('bajas_empleado')}"}) if current_user&.can_manage_rrhh? %>
+                  <%= link_to('Bajas de materiales', bajas_path, html_options = { class: "#{ 'is_active' if verify_path('bajas')}"}) if current_user&.can_manage_rrhh? %>
                   <%#= link_to('Bebidas por comanda', bebidas_por_comanda_index_path) if current_user&.can_manage_restaurant? %>
-                  <%= link_to('Capacitaciones por empleado', capacitaciones_por_empleado_index_path) if current_user&.can_manage_rrhh? %>
-                  <%= link_to('Clientes', clientes_path) if current_user&.can_manage_restaurant? || current_user&.can_manage_hotel? %>
-                  <%= link_to('Comandas', comandas_path) if current_user&.can_manage_restaurant? %>
-                  <%= link_to('Detalle factura restaurante', detalles_de_factura_restaurante_index_path) if current_user&.can_manage_restaurant? %>
-                  <%= link_to('Detalle de factura hotel', detalles_de_factura_hotel_index_path) if current_user&.can_manage_hotel?%>
-                  <%= link_to('Detalles de habitaciones', dhabitaciones_path) if current_user&.can_manage_hotel? %>
-                  <%= link_to('Detalle de mantenimiento a habitaciones', dmantenimiento_habitaciones_path) if current_user&.can_manage_hotel?%>
-
-                  <%= link_to('Tipos de habitaciones', dhabitaciones_path) if current_user&.can_manage_hotel? %>
-                  <%= link_to('Equipos', equipos_path)%>
+                  <%= link_to('Capacitaciones por empleado', capacitaciones_por_empleado_index_path, html_options = { class: "#{ 'is_active' if verify_path('capacitaciones_por_empleado')}"}) if current_user&.can_manage_rrhh? %>
+                  <%= link_to('Clientes', clientes_path, html_options = { class: "#{ 'is_active' if verify_path('clientes')}"}) if current_user&.can_manage_restaurant? || current_user&.can_manage_hotel? %>
+                  <%= link_to('Comandas', comandas_path, html_options = { class: "#{ 'is_active' if verify_path('comandas')}"}) if current_user&.can_manage_restaurant? %>
+                  <%= link_to('Detalles de factura hotel', detalles_de_factura_hotel_index_path, html_options = { class: "#{ 'is_active' if verify_path('detalles_de_factura_hotel')}"}) if current_user&.can_manage_hotel?%>
+                  <%= link_to('Detalles de factura restaurante', detalles_de_factura_restaurante_index_path, html_options = { class: "#{ 'is_active' if verify_path('detalles_de_factura_restaurante')}"}) if current_user&.can_manage_restaurant? %>
+                  <%#= link_to('Detalles de habitaciones', dhabitaciones_path, html_options = { class: "#{ 'is_active' if verify_path('dhabitaciones')}"}) if current_user&.can_manage_hotel? %>
+                  <%= link_to('Detalles de mantenimiento a habitaciones', dmantenimiento_habitaciones_path, html_options = { class: "#{ 'is_active' if verify_path('dmantenimiento_habitaciones')}"}) if current_user&.can_manage_hotel?%>
+                  <%= link_to('Equipos', equipos_path, html_options = { class: "#{ 'is_active' if verify_path('equipos')}"})%>
                   <%# link_to('Equipos por habitacion', equipo_habitaciones_path) if current_user&.can_manage_hotel? %>
-                  <%# link_to('Equipos por pedido', equipos_por_pedido_index_path)%>
-                  <%= link_to('Equipos por recibo', equipos_por_recibo_index_path)%>
-                  <%= link_to('Empleados', empleados_path)%>
-                  <%= link_to('Empresas', empresas_path) if current_user&.can_manage_rrhh? %>
-                  <%= link_to('Facturas restaurante', facturas_restaurante_index_path) if current_user&.can_manage_restaurant? %>
-                  <%= link_to('Facturas Hotel', facturas_hotel_index_path) if current_user&.can_manage_hotel? %>
-                  <%= link_to('Habitaciones', habitaciones_path) if current_user&.can_manage_hotel? %>
+                  <%#= link_to('Equipos por pedido', equipos_por_pedido_index_path)%>
+                  <%= link_to('Equipos por recibo', equipos_por_recibo_index_path, html_options = { class: "#{ 'is_active' if verify_path('equipos_por_recibo')}"})%>
+                  <%= link_to('Empleados', empleados_path, html_options = { class: "#{ 'is_active' if verify_path('empleados')}"})%>
+                  <%= link_to('Empresas', empresas_path, html_options = { class: "#{ 'is_active' if verify_path('empresas')}"}) if current_user&.can_manage_rrhh? %>
+                  <%= link_to('Facturas Hotel', facturas_hotel_index_path, html_options = { class: "#{ 'is_active' if verify_path('facturas_hotel')}"}) if current_user&.can_manage_hotel? %>
+                  <%= link_to('Facturas Restaurante', facturas_restaurante_index_path, html_options = { class: "#{ 'is_active' if verify_path('facturas_restaurante')}"}) if current_user&.can_manage_restaurant? %>
+                  <%= link_to('Habitaciones', habitaciones_path, html_options = { class: "#{ 'is_active' if verify_path('habitaciones')}"}) if current_user&.can_manage_hotel? %>
                   <%#= link_to('Habitaciones rentadas', habitaciones_rentadas_path) if current_user&.can_manage_hotel? %>
                   <%#= link_to('Habitaciones reservadas', habitaciones_reservadas_path) if current_user&.can_manage_hotel? %>
-                  <%= link_to('Historico de servicios', historico_servicios_path) if current_user&.can_manage_hotel? %>
-                  <%= link_to('Ingredientes', ingredientes_path) if current_user&.can_manage_restaurant? %>
-                  <%= link_to('Ingredientes por proveedror', ingredientes_por_proveedor_index_path) if current_user&.can_manage_restaurant? %>
-                  <%= link_to('Ingredientes por bebida', ingredientes_por_bebida_index_path) if current_user&.can_manage_restaurant? %>
-                  <%= link_to('Ingreidentes por platillo', ingredientes_por_platillo_index_path) if current_user&.can_manage_restaurant? %>
+                  <%= link_to('Historico de servicios', historico_servicios_path, html_options = { class: "#{ 'is_active' if verify_path('historico_servicios')}"}) if current_user&.can_manage_hotel? %>
+                  <%= link_to('Ingredientes', ingredientes_path, html_options = { class: "#{ 'is_active' if verify_path('ingredientes')}"}) if current_user&.can_manage_restaurant? %>
+                  <%= link_to('Ingredientes por bebida', ingredientes_por_bebida_index_path, html_options = { class: "#{ 'is_active' if verify_path('ingredientes_por_bebida')}"}) if current_user&.can_manage_restaurant? %>
+                  <%= link_to('Ingredientes por platillo', ingredientes_por_platillo_index_path, html_options = { class: "#{ 'is_active' if verify_path('ingredientes_por_platillo')}"}) if current_user&.can_manage_restaurant? %>
+                  <%= link_to('Ingredientes por proveedor', ingredientes_por_proveedor_index_path, html_options = { class: "#{ 'is_active' if verify_path('ingredientes_por_proveedor')}"}) if current_user&.can_manage_restaurant? %>
                   <%#= link_to('Mantenimientos', mantenimientos_path) if current_user&.can_manage_rrhh? || current_user&.can_manage_hotel?%>
-                  <%= link_to('Materiales', materiales_path)%>
-                  <%= link_to('Materiales por pedido', materiales_por_pedido_index_path)%>
-                  <%= link_to('Materiales por recibo', materiales_por_recibo_index_path)%>
-                  <%= link_to('Materiales por habitación', materialgastado_habitaciones_path) if current_user&.can_manage_hotel? %>
-                  <%= link_to('Mesas', mesas_path) if current_user&.can_manage_restaurant? %>
+                  <%= link_to('Materiales', materiales_path, html_options = { class: "#{ 'is_active' if verify_path('materiales')}"})%>
+                  <%= link_to('Materiales por habitación', materialgastado_habitaciones_path, html_options = { class: "#{ 'is_active' if verify_path('materialgastado_habitaciones')}"}) if current_user&.can_manage_hotel? %>
+                  <%= link_to('Materiales por pedido', materiales_por_pedido_index_path, html_options = { class: "#{ 'is_active' if verify_path('materiales_por_pedido')}"})%>
+                  <%= link_to('Materiales por recibo', materiales_por_recibo_index_path, html_options = { class: "#{ 'is_active' if verify_path('materiales_por_recibo')}"})%>
+                  <%= link_to('Mesas', mesas_path, html_options = { class: "#{ 'is_active' if verify_path('mesas')}"}) if current_user&.can_manage_restaurant? %>
                   <%#= link_to('Mesas por reservación', mesas_por_reservacion_index_path) if current_user&.can_manage_restaurant? %>
-                  <%= link_to('Ordenes de mantenimiento', ordenes_de_mantenimiento_index_path)%>
-                  <%= link_to('Pedidos por empleado', pedidos_por_empleado_index_path)%>
-                  <%= link_to('Paquetes', paquetes_path) if current_user&.can_manage_hotel? %>
+                  <%= link_to('Ordenes de mantenimiento', ordenes_de_mantenimiento_index_path, html_options = { class: "#{ 'is_active' if verify_path('ordenes_de_mantenimiento')}"})%>
+                  <%= link_to('Paquetes', paquetes_path, html_options = { class: "#{ 'is_active' if verify_path('paquetes')}"}) if current_user&.can_manage_hotel? %>
+                  <%= link_to('Pedidos por empleado', pedidos_por_empleado_index_path, html_options = { class: "#{ 'is_active' if verify_path('pedidos_por_empleado')}"})%>
                   <%#= link_to('Paquetes vendidos', paquetes_vendidos_rentas_path) if current_user&.can_manage_hotel? %>
-                  <%= link_to('Platillos', platillos_path) if current_user&.can_manage_restaurant? %>
-                  <%= link_to('Platillos por comanda', platillos_por_comanda_index_path) if current_user&.can_manage_restaurant? %>
-                  <%= link_to('Postulantes', postulantes_path) if current_user&.can_manage_rrhh? %>
-                  <%= link_to('Programas de capacitación', programas_capacitacion_index_path) if current_user&.can_manage_rrhh? %>
-                  <%= link_to('Proveedores', proveedores_path) if current_user&.can_manage_rrhh? || current_user&.can_manage_restaurant?  %>
-                  <%= link_to('Recibos de compras', recibos_de_compras_path)%>
-                  <%= link_to('Rentas', rentas_path) if current_user&.can_manage_hotel? %>
-                  <%= link_to('Reservaciones en hotel', reservaciones_en_hotel_index_path) if current_user&.can_manage_hotel? %>
-                  <%= link_to('Reservaciones en restaurante', reservaciones_en_restaurante_index_path) if current_user&.can_manage_restaurant? %>
-                  <%= link_to('Reportes de perdidas o robo', reporte_perdido_robos_path) if current_user&.can_manage_hotel? %>
-                  <%= link_to('Servicios', servicios_path) if current_user&.can_manage_hotel? %>
-                  <%= link_to('Servicios limpieza en habitación', serviciol_habitaciones_path) if current_user&.can_manage_hotel? %>
-                  <%= link_to('Servicios de limpieza', servicio_limpiezas_path) if current_user&.can_manage_hotel? %>
+                  <%= link_to('Platillos', platillos_path, html_options = { class: "#{ 'is_active' if verify_path('platillos')}"}) if current_user&.can_manage_restaurant? %>
+                  <%= link_to('Platillos por comanda', platillos_por_comanda_index_path, html_options = { class: "#{ 'is_active' if verify_path('platillos_por_comanda')}"}) if current_user&.can_manage_restaurant? %>
+                  <%= link_to('Postulantes', postulantes_path, html_options = { class: "#{ 'is_active' if verify_path('postulantes')}"}) if current_user&.can_manage_rrhh? %>
+                  <%= link_to('Programas de capacitación', programas_capacitacion_index_path, html_options = { class: "#{ 'is_active' if verify_path('programas_capacitacion')}"}) if current_user&.can_manage_rrhh? %>
+                  <%= link_to('Proveedores', proveedores_path, html_options = { class: "#{ 'is_active' if verify_path('proveedores')}"}) if current_user&.can_manage_rrhh? || current_user&.can_manage_restaurant?  %>
+                  <%= link_to('Recibos de compras', recibos_de_compras_path, html_options = { class: "#{ 'is_active' if verify_path('recibos_de_compras')}"})%>
+                  <%= link_to('Rentas', rentas_path, html_options = { class: "#{ 'is_active' if verify_path('rentas')}"}) if current_user&.can_manage_hotel? %>
+                  <%= link_to('Reservaciones en restaurante', reservaciones_en_restaurante_index_path, html_options = { class: "#{ 'is_active' if verify_path('reservaciones_en_restaurante')}"}) if current_user&.can_manage_restaurant? %>
+                  <%= link_to('Reservaciones en hotel', reservaciones_en_hotel_index_path, html_options = { class: "#{ 'is_active' if verify_path('reservaciones_en_hotel')}"}) if current_user&.can_manage_hotel? %>
+                  <%= link_to('Reportes de perdidas o robo', reporte_perdido_robos_path, html_options = { class: "#{ 'is_active' if verify_path('reporte_perdido_robos')}"}) if current_user&.can_manage_hotel? %>
+                  <%= link_to('Servicios', servicios_path, html_options = { class: "#{ 'is_active' if verify_path('servicios')}"}) if current_user&.can_manage_hotel? %>
+                  <%= link_to('Servicios de limpieza', servicio_limpiezas_path, html_options = { class: "#{ 'is_active' if verify_path('servicio_limpiezas')}"}) if current_user&.can_manage_hotel? %>
+                  <%= link_to('Servicios limpieza en habitación', serviciol_habitaciones_path, html_options = { class: "#{ 'is_active' if verify_path('serviciol_habitaciones')}"}) if current_user&.can_manage_hotel? %>
                   <%#= link_to('Servicios por habitación', servicio_habitaciones_path) if current_user&.can_manage_hotel? %>
                   <%#= link_to('Servicios por paquete', servicios_paquetes_path) if current_user&.can_manage_hotel? %>
-                  <%= link_to('Servicios del restaurante al hotel', servicios_a_domicilio_index_path) if current_user&.can_manage_restaurant? %>
+                  <%= link_to('Servicios del restaurante al hotel', servicios_a_domicilio_index_path, html_options = { class: "#{ 'is_active' if verify_path('servicios_a_domicilio')}"}) if current_user&.can_manage_restaurant? %>
                   <%#= link_to('Solicitudes de mantenimiento', solicitudes_de_mantenimiento_index_path) if current_user&.can_manage_rrhh? %>
-                  <%= link_to('Tipos de medidas para ingredientes', tipos_medidas_path) if current_user&.can_manage_restaurant? %>
-                  <%= link_to('Tipos de productos', tipos_de_productos_path) if current_user&.can_manage_restaurant? %>
-                  <%= link_to('Vacantes', vacantes_path) if current_user&.can_manage_rrhh? %>
+                  <%= link_to('Tipos de habitaciones', dhabitaciones_path, html_options = { class: "#{ 'is_active' if verify_path('dhabitaciones')}"}) if current_user&.can_manage_hotel? %>
+                  <%= link_to('Tipos de medidas para ingredientes', tipos_medidas_path, html_options = { class: "#{ 'is_active' if verify_path('tipos_medidas')}"}) if current_user&.can_manage_restaurant? %>
+                  <%= link_to('Tipos de productos', tipos_de_productos_path, html_options = { class: "#{ 'is_active' if verify_path('tipos_de_productos')}"}) if current_user&.can_manage_restaurant? %>
+                  <%= link_to('Vacantes', vacantes_path, html_options = { class: "#{ 'is_active' if verify_path('vacantes')}"}) if current_user&.can_manage_rrhh? %>
                 </li>
               </ul>
             </li>
-            <li class='active'>
-              <%= link_to destroy_user_session_path, method: :delete do%>
-                <%= 'Cerrar sesión' %>
-              <%- end%>
-            </li>
-            <li class='active'>
-              <%- if current_user.admin? %>
-                <%= link_to('Logs',logs_path)%>
-              <%- end%>
+            <li class= 'dropdown'>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Acciones <span class="caret"></span></a>
+              <ul class="dropdown-menu scrollable-menu" role="menu">
+                <li>
+                  <%= link_to destroy_user_session_path, method: :delete do%>
+                    <%= 'Cerrar sesión' %>
+                  <%- end%>
+                </li>
+                <li>
+                  <%- if current_user.admin? %>
+                    <%= link_to('Logs',logs_path)%>
+                  <%- end%>
+                </li>
+              </ul>
             </li>
           <%- end%>
         </ul>
