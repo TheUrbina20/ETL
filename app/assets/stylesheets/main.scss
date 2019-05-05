@@ -10,7 +10,7 @@ barranav .navbar-brand {
   height: auto;
   width: 86px;
   margin-top: -19px;
-
+  padding: 11px;
 }
 
 .barranav .nav >li >a {
@@ -31,7 +31,7 @@ barranav .navbar-brand {
 
 .scrollable-menu {
   height: auto;
-  max-height: 260px;
+  max-height: 400px;
   overflow-x: hidden;
 }
 element.style {
@@ -81,4 +81,9 @@ thead{
 
 td:last-child{
   width: 50px;
+}
+
+.dropdown-menu > li > a.is_active{
+  font-weight: bold;
+  background-color: #EDEDED
 }

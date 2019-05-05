@@ -6,7 +6,7 @@
       %td='Usuario'
       %td='Controlador'
       %td='Elemento'
-      %td='Timestamp'
+      %td.default-td='Timestamp'
 
   %tbody
     - @logs.each do |log|
@@ -15,4 +15,4 @@
         %td=log.user
         %td=log.controller
         %td=log.element_id
-        %td=log.time
+        %td.default-td=log.time
