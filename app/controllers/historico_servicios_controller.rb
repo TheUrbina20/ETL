@@ -34,6 +34,6 @@ class HistoricoServiciosController < ApplicationController
   end
 
   def validate_attributes
-    valid_date?(@historicos.f_inicio) && valid_price?(@historicos.precio)
+    valid_date?(params[:historico_servicio][:f_inicio]) && valid_price?(params[:historico_servicio][:precio])
   end
 end

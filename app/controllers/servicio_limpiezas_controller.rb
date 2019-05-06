@@ -35,7 +35,7 @@ class ServicioLimpiezasController < ApplicationController
     end
 
     def validate_attributes
-      valid_nombrecosas?(@serviciol.nombre)
+      valid_nombrecosas?(params[:servicio_limpieza][:nombre])
     end
 
 end

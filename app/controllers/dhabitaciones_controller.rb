@@ -35,6 +35,6 @@ class DhabitacionesController < ApplicationController
   end
 
   def validate_attributes
-    valid_nombrecosas?(@dhabitaciones.nombre) && valid_price?(@dhabitaciones.precio)
+    valid_nombrecosas?(params[:dhabitacion][:nombre]) && valid_price?(params[:dhabitacion][:precio])
   end
 end

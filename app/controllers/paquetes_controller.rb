@@ -34,6 +34,6 @@ class PaquetesController < ApplicationController
   end
 
   def validate_attributes
-    valid_price?(@paquete.precio_por_dia) && valid_nombrecosas?(@paquete.nombre)
+    valid_price?(params[:paquete][:precio_por_dia]) && valid_nombrecosas?(params[:paquete][:nombre])
   end
 end

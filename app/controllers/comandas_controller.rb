@@ -35,7 +35,7 @@ class ComandasController < ApplicationController
   end
 
   def validate_attributes
-    valid_date?(@comanda.fecha)
+    valid_date?(params[:comanda][:fecha])
   end
 
 end

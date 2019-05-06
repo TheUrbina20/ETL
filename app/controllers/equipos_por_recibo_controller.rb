@@ -42,6 +42,6 @@ class EquiposPorReciboController < ApplicationController
   end
 
   def validate_attributes
-    valid_numserie?(@equipo_por_recibo.n_serie) && valid_date?(@equipo_por_recibo.f_finalizacion_garantia)
+    valid_numserie?(params[:equipo_por_recibo][:n_serie]) && valid_date?(params[:equipo_por_recibo][:f_finalizacion_garantia])
   end
 end

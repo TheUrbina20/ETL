@@ -35,6 +35,6 @@ class DmantenimientoHabitacionesController < ApplicationController
   end
 
   def validacion
-    valid_date?(@mantenimientoh.FechaInicio) && valid_date?(@mantenimientoh.FechaTermino)
+    valid_date?(params[:dmantenimiento_habitacion][:FechaInicio]) && valid_date?(params[:dmantenimiento_habitacion][:FechaTermino])
   end
 end

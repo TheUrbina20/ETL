@@ -35,7 +35,7 @@ class MesasController < ApplicationController
   end
 
   def validate_attributes
-    valid_number?(@mesa.capacidad)
+    valid_number?(params[:mesa][:capacidad])
   end
 
 end

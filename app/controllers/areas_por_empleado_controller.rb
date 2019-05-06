@@ -34,6 +34,6 @@ class AreasPorEmpleadoController < ApplicationController
   end
 
   def validate_attributes
-    valid_date?(@areas_por_empleado.f_asignacion)
+    valid_date?(params[:areas_por_empleado][:f_asignacion])
   end
 end

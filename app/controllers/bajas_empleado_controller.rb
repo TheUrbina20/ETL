@@ -35,7 +35,7 @@ class BajasEmpleadoController < ApplicationController
   end
 
   def validate_attributes
-    valid_date?(@baja_empleado.fecha)
+    valid_date?(params[:baja_empleado][:fecha])
   end
 
 end

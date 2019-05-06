@@ -34,7 +34,7 @@ class AreasController < ApplicationController
   end
 
   def validate_attributes
-    valid_nombrecosas?(@areas.nombre)
+    valid_nombrecosas?(params[:area][:nombre])
   end
 
 end

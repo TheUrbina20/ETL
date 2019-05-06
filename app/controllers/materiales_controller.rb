@@ -42,7 +42,7 @@ class MaterialesController < ApplicationController
   end
 
   def validate_attributes
-    valid_number?(@material.cantidad_stock) && valid_number?(@material.stock_max) && valid_number?(@material.stock_min) && valid_alpha?(@material.nombre)
+    valid_number?(params[:material][:cantidad_stock]) && valid_number?(params[:material])[:stock_max] && valid_number?(params[:material][:stock_min]) && valid_alpha?(params[:material][:nombre])
   end
 
 end

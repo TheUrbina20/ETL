@@ -35,7 +35,7 @@ class ReservacionesEnHotelController < ApplicationController
   end
 
   def validate_attributes
-    valid_date?(@reservacion.f_entrada) && valid_date?(@reservacion.f_salida) && valid_date?(@reservacion.f_reservacion) && valid_status?(@reservacion.estado)
+    valid_date?(params[:reservacion_en_hotel][:f_entrada]) && valid_date?(params[:reservacion_en_hotel][:f_salida]) && valid_date?(params[:reservacion_en_hotel][:f_reservacion]) && valid_status?(params[:reservacion_en_hotel][:estado])
   end
 
 end

@@ -35,6 +35,6 @@ class VacantesController < ApplicationController
 
 
   def validate_attributes
-    valid_nombrecosas?(@vacantes.nombre) && valid_estado?(@vacantes.estado)
+    valid_nombrecosas?(params[:vacante][:nombre]) && valid_estado?(params[:vacante][:estado])
   end
 end

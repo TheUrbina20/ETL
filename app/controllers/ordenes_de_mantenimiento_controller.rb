@@ -43,7 +43,7 @@ class OrdenesDeMantenimientoController < ApplicationController
   end
 
   def valid
-    valid_date?(@mantenimiento_por_equipo.f_inicio) && valid_date?(@mantenimiento_por_equipo.f_termino)
+    valid_date?(params[:mantenimiento_por_equipo][:f_inicio]) && valid_date?(params[:mantenimiento_por_equipo][:f_termino])
   end
 
 end

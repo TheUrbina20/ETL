@@ -34,7 +34,7 @@ class PlatillosController < ApplicationController
   end
 
   def validate_attributes
-    valid_price?(@platillo.precio) && valid_nombrecosas?(@platillo.nombre)
+    valid_price?(params[:platillo][:precio]) && valid_nombrecosas?(params[:platillo][:nombre])
   end
 
 end

@@ -34,7 +34,7 @@ class DetallesDeFacturaHotelController < ApplicationController
   end
 
   def validate_attributes
-    valid_number?(@detalle_de_factura_hotel.cantidad) && valid_price?(@detalle_de_factura_hotel.total)
+    valid_number?(params[:detalle_de_factura_hotel][:cantidad]) && valid_price?(params[:detalle_de_factura_hotel][:total])
   end
 
 end

@@ -35,7 +35,7 @@ class PostulantesController < ApplicationController
   end
 
   def validate_attributes
-    valid_estadopostulante?(@postulantes.estado) && valid_name?(@postulantes.nombre)
+    valid_estadopostulante?(params[:postulante][:estado]) && valid_name?(params[:postulante][:nombre])
   end
 
 end

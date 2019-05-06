@@ -42,6 +42,6 @@ class EmpleadosController < ApplicationController
   end
 
   def validate_attributes
-    valid_name?(@empleado.nombre) && valid_date?(@empleado.f_nacimiento) && valid_email?(@empleado.c_electronico) && valid_telefono?(@empleado.n_telefono) && valid_genero?(@empleado.genero) && valid_rfc?(@empleado.rfc) && valid_date?(@empleado.f_entrada)
+    valid_name?(params[:empleado][:nombre]) && valid_date?(params[:empleado][:f_nacimiento]) && valid_email?(params[:empleado][:c_electronico]) && valid_telefono?(params[:empleado][:n_telefono]) && valid_genero?(params[:empleado][:genero]) && valid_rfc?(params[:empleado][:rfc]) && valid_date?(params[:empleado][:f_entrada])
   end
 end

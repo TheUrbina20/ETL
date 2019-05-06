@@ -35,7 +35,7 @@ class AsignacionMaterialesController < ApplicationController
     end
 
     def validate_attributes
-      valid_cantidad?(@asignacionm.cantidad)
+      valid_cantidad?(params[:asignacion_material][:cantidad])
     end
 
 end

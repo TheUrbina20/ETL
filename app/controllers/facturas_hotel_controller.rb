@@ -35,6 +35,6 @@ class FacturasHotelController < ApplicationController
   end
 
   def validate_attributes
-    valid_tipopago?(@factura_hotel.tipo_pago) && valid_date?(@factura_hotel.fecha_emision) && valid_price?(@factura_hotel.total)
+    valid_tipopago?(params[:factura_hotel][:tipo_pago]) && valid_date?(params[:factura_hotel][:fecha_emision]) && valid_price?(params[:factura_hotel][:total])
   end
 end

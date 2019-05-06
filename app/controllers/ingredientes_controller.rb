@@ -35,6 +35,6 @@ class IngredientesController < ApplicationController
   end
 
   def validate_attributes
-    valid_nombrecosas?(@ingrediente.nombre) && valid_number?(@ingrediente.stock_minimo) && valid_number?(@ingrediente.stock_maximo) && valid_number?(@ingrediente.cantidad_stock)
+    valid_nombrecosas?(params[:ingrediente][:nombre]) && valid_number?(params[:ingrediente][:stock_minimo]) && valid_number?(params[:ingrediente][:stock_maximo]) && valid_number?(params[:ingrediente][:cantidad_stock])
   end
 end

@@ -35,7 +35,7 @@ class CapacitacionesPorEmpleadoController < ApplicationController
   end
 
   def validate_attributes
-    valid_date?(@capacitaciones.f_fin) && valid_date?(@capacitaciones.f_fin) && valid_estado_capacitacion?(@capacitaciones.estado)
+    valid_date?(params[:capacitacion_por_empleado][:f_inicio]) && valid_date?(params[:capacitacion_por_empleado][:f_fin]) && valid_estado_capacitacion?(params[:capacitacion_por_empleado][:estado])
   end
 
 end

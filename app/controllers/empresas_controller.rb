@@ -36,6 +36,6 @@ class EmpresasController < ApplicationController
   end
 
   def validate_attributes
-    valid_nombrecosas?(@empresa.nombre)
+    valid_nombrecosas?(params[:empresa][:nombre])
   end
 end

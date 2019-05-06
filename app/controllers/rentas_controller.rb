@@ -35,7 +35,7 @@ class RentasController < ApplicationController
   end
 
   def validate_attributes
-    valid_date?(@renta.f_entrada) && valid_date?(@renta.f_salida)
+    valid_date?(params[:renta][:f_entrada]) && valid_date?(params[:renta][:f_salida])
   end
 
 end
