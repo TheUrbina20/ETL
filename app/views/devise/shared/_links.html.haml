@@ -1,5 +1,5 @@
 .form-group-.containerStyle.formC
-  - if controller_name != 'sessions'
+  - if controller_name != 'custom_sessions'
     = link_to t(".sign_in"), new_session_path(resource_name)
     %br/
   - if devise_mapping.registerable? && controller_name != 'registrations'

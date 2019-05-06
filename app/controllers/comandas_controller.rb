@@ -20,8 +20,7 @@ class ComandasController < ApplicationController
 
   def update
     @comanda = Comanda.using(:dwh_t).find(params[:id])
-    @comanda.update(comanda_params)
-    if validate_attributes 
+    if validate_attributes && @comanda.update(comanda_params)
       @comanda.update_attributes(error: false)
       flash[:notice] = 'Actualizado'
       redirect_to comandas_path
@@ -35,7 +34,7 @@ class ComandasController < ApplicationController
     params.require(:comanda).permit(:id_reservacion, :id_empleado, :fecha, :hora_reservacion)
   end
 
-  def validate_attributes 
+  def validate_attributes
     valid_date?(@comanda.fecha)
   end
 

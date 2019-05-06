@@ -27,8 +27,7 @@ class PedidosPorEmpleadoController < ApplicationController
 
   def update
     @pedido_empleado = PedidoPorEmpleado.using(:dwh_t).find(params[:id])
-    @pedido_empleado.update(pedidos_por_empleado_params)
-    if validate_attributes
+    if validate_attributes && @pedido_empleado.update(pedidos_por_empleado_params)
       @pedido_empleado.update_attributes(error: false)
       flash[:notice] = 'Actualizado'
       redirect_to pedidos_por_empleado_index_path
@@ -42,7 +41,7 @@ class PedidosPorEmpleadoController < ApplicationController
     params.require(:pedido_por_empleado).permit(:id_sistema, :sistema, :f_peticion, :id_empleado)
   end
 
-  def validate_attributes 
+  def validate_attributes
     valid_date?(@pedido_empleado.f_peticion)
   end
 end

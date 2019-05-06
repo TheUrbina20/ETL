@@ -20,8 +20,7 @@ class MesasController < ApplicationController
 
   def update
     @mesa = Mesa.using(:dwh_t).find(params[:id])
-    @mesa.update(mesa_params)
-    if validate_attributes 
+    if validate_attributes && @mesa.update(mesa_params)
       @mesa.update_attributes(error: false)
       flash[:notice] = 'Actualizado'
       redirect_to mesas_path
@@ -35,7 +34,7 @@ class MesasController < ApplicationController
     params.require(:mesa).permit(:numero, :capacidad)
   end
 
-  def validate_attributes 
+  def validate_attributes
     valid_number?(@mesa.capacidad)
   end
 

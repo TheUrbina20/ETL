@@ -18,8 +18,7 @@ class ServiciolHabitacionesController < ApplicationController
 
     def update
       @serviciolh = ServiciolHabitacion.using(:dwh_t).find(params[:id])
-      @serviciolh.update(serviciosl_params)
-      if validate_attributes 
+      if validate_attributes && @serviciolh.update(serviciosl_params)
         @serviciolh.update_attributes(error: false)
         flash[:notice] = 'Actualizado Correctamente'
         redirect_to serviciol_habitaciones_path
@@ -33,7 +32,7 @@ class ServiciolHabitacionesController < ApplicationController
       params.require(:serviciol_habitacion).permit(:id, :fecha, :id_servicio_limpieza, :id_habitacion, :id_empleado)
     end
 
-    def validate_attributes 
+    def validate_attributes
       valid_date?(@serviciolh.fecha)
     end
 

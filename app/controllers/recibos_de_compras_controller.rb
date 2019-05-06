@@ -27,8 +27,7 @@ class RecibosDeComprasController < ApplicationController
 
   def update
     @recibo_compra = ReciboDeCompra.using(:dwh_t).find(params[:id])
-    @recibo_compra.update(recibo_de_compra_params)
-    if validate_attributes 
+    if validate_attributes && @recibo_compra.update(recibo_de_compra_params)
       @recibo_compra.update_attributes(error: false)
       flash[:notice] = 'Actualizado'
       redirect_to recibos_de_compras_path
@@ -42,7 +41,7 @@ class RecibosDeComprasController < ApplicationController
     params.require(:recibo_de_compra).permit(:id_sistema, :sistema, :id_pedido_compra, :f_entrega)
   end
 
-  def validate_attributes 
+  def validate_attributes
     valid_date?(@recibo_compra.f_entrega)
   end
 

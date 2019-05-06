@@ -19,8 +19,7 @@ class HabitacionesController < ApplicationController
 
   def update
     @habitaciones = Habitacion.using(:dwh_t).find(params[:id])
-    @habitaciones.update(habitaciones_params)
-    if validate_attributes 
+    if validate_attributes && @habitaciones.update(habitaciones_params)
       @habitaciones.update_attributes(error: false)
       flash[:notice] = 'Actualizado Correctamente'
       redirect_to habitaciones_path
@@ -34,7 +33,7 @@ class HabitacionesController < ApplicationController
     params.require(:habitacion).permit(:id, :tipo_habitacion, :estado)
   end
 
-  def validate_attributes 
+  def validate_attributes
     valid_activah?(@habitaciones.estado)
   end
 end

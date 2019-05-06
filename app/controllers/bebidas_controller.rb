@@ -20,8 +20,7 @@ class BebidasController < ApplicationController
 
   def update
     @bebida = Bebida.using(:dwh_t).find(params[:id])
-    @bebida.update(bebida_params)
-    if validate_attributes 
+    if validate_attributes && @bebida.update(bebida_params)
       @bebida.update_attributes(error: false)
       flash[:notice] = 'Actualizado'
       redirect_to bebidas_path
@@ -35,7 +34,7 @@ class BebidasController < ApplicationController
     params.require(:bebida).permit(:nombre, :precio, :descripcion)
   end
 
-  def validate_attributes 
+  def validate_attributes
     valid_nombrecosas?(@bebida.nombre) && valid_price?(@bebida.precio)
   end
 end

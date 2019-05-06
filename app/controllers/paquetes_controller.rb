@@ -19,8 +19,7 @@ class PaquetesController < ApplicationController
 
   def update
     @paquete = Paquete.using(:dwh_t).find(params[:id])
-    @paquete.update(paquetes_params)
-    if validate_attributes 
+    if validate_attributes && @paquete.update(paquetes_params)
       @paquete.update_attributes(error: false)
       flash[:notice] = 'Actualizado Correctamente'
       redirect_to paquetes_path
@@ -34,7 +33,7 @@ class PaquetesController < ApplicationController
     params.require(:paquete).permit(:id, :nombre, :descripcion, :precio_por_dia)
   end
 
-  def validate_attributes 
+  def validate_attributes
     valid_price?(@paquete.precio_por_dia) && valid_nombrecosas?(@paquete.nombre)
   end
 end

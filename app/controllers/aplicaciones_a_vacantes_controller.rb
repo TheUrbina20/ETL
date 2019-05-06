@@ -20,8 +20,7 @@ class AplicacionesAVacantesController < ApplicationController
 
   def update
     @aplicacion_a_vacante = AplicacionAVacante.using(:dwh_t).find(params[:id])
-    @aplicacion_a_vacante.update(aplicacion_a_vacante_params)
-    if validate_attributes
+    if validate_attributes && @aplicacion_a_vacante.update(aplicacion_a_vacante_params)
       @aplicacion_a_vacante.update_attributes(error: false)
       flash[:notice] = 'Actualizado'
       redirect_to aplicaciones_a_vacantes_path
@@ -35,7 +34,7 @@ class AplicacionesAVacantesController < ApplicationController
     params.require(:aplicacion_a_vacante).permit(:id_postulante, :id_empleado, :id_vacante, :f_aplicacion)
   end
 
-  def validate_attributes 
+  def validate_attributes
     valid_date?(@aplicacion_a_vacante.f_aplicacion)
   end
 end

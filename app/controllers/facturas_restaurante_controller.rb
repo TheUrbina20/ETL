@@ -21,8 +21,7 @@ class FacturasRestauranteController < ApplicationController
 
   def update
     @factura_restaurante = FacturaRestaurante.using(:dwh_t).find(params[:id])
-    @factura_restaurante.update(factura_restaurante_params)
-    if validate_attributes 
+    if validate_attributes && @factura_restaurante.update(factura_restaurante_params)
       @factura_restaurante.update_attributes(error: false)
       flash[:notice] = 'Actualizado'
       redirect_to facturas_restaurante_index_path
@@ -36,7 +35,7 @@ class FacturasRestauranteController < ApplicationController
     params.require(:factura_restaurante).permit(:id_sistema, :id_cliente, :fecha_emision, :tipo_pago, :sistema)
   end
 
-  def validate_attributes 
+  def validate_attributes
     valid_date?(@factura_restaurante.fecha_emision)
   end
 end

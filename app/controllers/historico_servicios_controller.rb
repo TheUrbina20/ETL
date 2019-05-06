@@ -19,8 +19,7 @@ class HistoricoServiciosController < ApplicationController
 
   def update
     @historicos = HistoricoServicio.using(:dwh_t).find(params[:id])
-    @historicos.update(hservicios_params)
-    if validate_attributes
+    if validate_attributes && @historicos.update(hservicios_params)
       @historicos.update_attributes(error: false)
       flash[:notice] = 'Actualizado Correctamente'
       redirect_to historico_servicios_path
