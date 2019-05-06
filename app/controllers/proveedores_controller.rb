@@ -35,6 +35,6 @@ class ProveedoresController < ApplicationController
   end
 
   def validate_attributes
-    valid_name?(params[:nombre])
+    valid_name?(params[:proveedor][:nombre])
   end
 end

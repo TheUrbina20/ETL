@@ -132,7 +132,7 @@ class ApplicationController < ActionController::Base
   end
 
   def regex_validator(reg, word)
-    reg.match(word) ? true : false
+    reg.match(word.to_s) ? true : false
   end
 
 end

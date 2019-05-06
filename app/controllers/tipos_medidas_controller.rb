@@ -36,7 +36,7 @@ class TiposMedidasController < ApplicationController
 
 
   def validate_attributes
-    valid_nombrecosas?(parmas[:tipo_medida][:nombre])
+    valid_nombrecosas?(params[:tipo_medida][:nombre])
   end
 
 end
