@@ -19,8 +19,7 @@ class EmpresasController < ApplicationController
 
   def update
     @empresa = Empresa.using(:dwh_t).find(params[:id])
-    @empresa.update(empresa_attributes)
-    if validate_attributes
+    if validate_attributes && @empresa.update(empresa_attributes)
       @empresa.update_attributes(error: false)
       flash[:notice] = 'Actualizado'
       redirect_to empresas_path
@@ -36,7 +35,7 @@ class EmpresasController < ApplicationController
     params.require(:empresa).permit(:nombre)
   end
 
-  def validate_attributes 
+  def validate_attributes
     valid_nombrecosas?(@empresa.nombre)
   end
 end

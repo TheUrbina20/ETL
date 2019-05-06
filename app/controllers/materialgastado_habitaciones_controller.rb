@@ -20,8 +20,7 @@ class MaterialgastadoHabitacionesController < ApplicationController
 
     def update
       @materialgh = MgHabitacion.using(:dwh_t).find(params[:id])
-      @materialgh.update(hservicios_params)
-      if validate_attributes 
+      if validate_attributes && @materialgh.update(hservicios_params)
         @materialgh.update_attributes(error: false)
         flash[:notice] = 'Actualizado Correctamente'
         redirect_to materialgastado_habitaciones_path
@@ -35,7 +34,7 @@ class MaterialgastadoHabitacionesController < ApplicationController
       params.require(:mg_habitacion).permit(:id, :cantidad, :id_material_por_recibo, :id_servicio_limpieza)
     end
 
-    def validate_attributes 
+    def validate_attributes
       valid_number?(@materialgh.cantidad)
     end
 

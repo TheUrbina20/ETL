@@ -20,8 +20,7 @@ class IngredientesPorPlatilloController < ApplicationController
 
   def update
     @ingrediente_por_platillo = IngredientePorPlatillo.using(:dwh_t).find(params[:id])
-    @ingrediente_por_platillo.update(ingrediente_por_platillo_param)
-    if validate_attributes 
+    if validate_attributes && @ingrediente_por_platillo.update(ingrediente_por_platillo_param)
       @ingrediente_por_platillo.update_attributes(error: false)
       flash[:notice] = 'Actualizado'
       redirect_to ingredientes_por_platillo_index_path
@@ -35,7 +34,7 @@ class IngredientesPorPlatilloController < ApplicationController
     params.require(:ingrediente_por_platillo).permit(:id_platillo, :id_producto, :id_tipo_medida, :cantidad)
   end
 
-  def validate_attributes 
+  def validate_attributes
     valid_number?(@ingrediente_por_platillo.cantidad)
   end
 

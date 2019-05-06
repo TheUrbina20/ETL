@@ -19,8 +19,7 @@ class AccidentesLaboralesController < ApplicationController
 
   def update
     @accidentes = AccidenteLaboral.using(:dwh_t).find(params[:id])
-    @accidentes.update(accidentes_params)
-    if validate_attributes
+    if validate_attributes && @accidentes.update(accidentes_params)
       @accidentes.update_attributes(error: false)
       flash[:notice] = 'Actualizado Correctamente'
       redirect_to accidentes_laborales_path
@@ -34,7 +33,7 @@ class AccidentesLaboralesController < ApplicationController
     params.require(:accidente_laboral).permit(:id, :id_empleado, :f_accidente)
   end
 
-  def validate_attributes 
+  def validate_attributes
     valid_date?(@accidentes.f_accidente)
   end
 

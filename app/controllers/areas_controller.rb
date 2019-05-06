@@ -19,8 +19,7 @@ class AreasController < ApplicationController
 
   def update
     @areas = Area.using(:dwh_t).find(params[:id])
-    @areas.update(areas_params)
-    if validate_attributes
+    if validate_attributes && @areas.update(areas_params)
       @areas.update_attributes(error: false)
       flash[:notice] = 'Actualizado Correctamente'
       redirect_to areas_path

@@ -20,8 +20,7 @@ class TiposDeProductosController < ApplicationController
 
   def update
     @tipo_de_producto = TipoDeProducto.using(:dwh_t).find(params[:id])
-    @tipo_de_producto.update(tipo_de_producto_params)
-    if validate_attributes 
+    if validate_attributes && @tipo_de_producto.update(tipo_de_producto_params)
       @tipo_de_producto.update_attributes(error: false)
       flash[:notice] = 'Actualizado'
       redirect_to tipos_de_productos_path
@@ -35,7 +34,7 @@ class TiposDeProductosController < ApplicationController
     params.require(:tipo_de_producto).permit(:tipo)
   end
 
-  def validate_attributes 
+  def validate_attributes
     valid_nombrecosas?(@tipo_de_producto.tipo)
   end
 

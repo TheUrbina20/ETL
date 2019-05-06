@@ -20,8 +20,7 @@ class DmantenimientoHabitacionesController < ApplicationController
 
   def update
     @mantenimientoh = DmantenimientoHabitacion.using(:dwh_t).find(params[:id])
-    @mantenimientoh.update(mantenimientos_params)
-    if validacion
+    if validacion && @mantenimientoh.update(mantenimientos_params)
       @mantenimientoh.update_attributes(error: false)
       flash[:notice] = 'Actualizado Correctamente'
       redirect_to dmantenimiento_habitaciones_path

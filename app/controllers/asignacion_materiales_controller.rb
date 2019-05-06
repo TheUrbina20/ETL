@@ -20,8 +20,7 @@ class AsignacionMaterialesController < ApplicationController
 
     def update
       @asignacionm = AsignacionMaterial.using(:dwh_t).find(params[:id])
-      @asignacionm.update(asignacion_params)
-      if validate_attributes 
+      if validate_attributes && @asignacionm.update(asignacion_params)
         @asignacionm.update_attributes(error: false)
         flash[:notice] = 'Actualizado Correctamente'
         redirect_to asignacion_materiales_path
@@ -35,8 +34,8 @@ class AsignacionMaterialesController < ApplicationController
       params.require(:asignacion_material).permit(:id, :cantidad, :id_habitacion, :id_material)
     end
 
-    def validate_attributes 
-      valid_cantidad?(@asignacionm.cantidad)   
+    def validate_attributes
+      valid_cantidad?(@asignacionm.cantidad)
     end
 
 end

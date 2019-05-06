@@ -20,8 +20,7 @@ class BajasEmpleadoController < ApplicationController
 
   def update
     @baja_empleado =  BajaEmpleado.using(:dwh_t).find(params[:id])
-    @baja_empleado.update(baja_empleado_params)
-    if validate_attributes 
+    if validate_attributes && @baja_empleado.update(baja_empleado_params)
       @baja_empleado.update_attributes(error: false)
       flash[:notice] = 'Actualizado'
       redirect_to bajas_empleado_index_path
@@ -35,7 +34,7 @@ class BajasEmpleadoController < ApplicationController
     params.require(:baja_empleado).permit(:id, :id_empleado, :motivo, :fecha)
   end
 
-  def validate_attributes 
+  def validate_attributes
     valid_date?(@baja_empleado.fecha)
   end
 

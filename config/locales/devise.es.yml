@@ -65,7 +65,7 @@ es:
       links:
         sign_up: "Registrarse"
         sign_in: "Iniciar Sesión"
-        forgot_your_password: "Olvidaste tu contraseña"
+        forgot_your_password: "¿Olvidaste tu contraseña?"
     sessions:
       signed_in: "Ha iniciado sesión satisfactoriamente."
       signed_out: "Ha cerrado la sesión satisfactoriamente."

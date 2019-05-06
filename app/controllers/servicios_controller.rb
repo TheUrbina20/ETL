@@ -19,8 +19,7 @@ class ServiciosController < ApplicationController
 
     def update
       @servicio = Servicio.using(:dwh_t).find(params[:id])
-      @servicio.update(servicios_params)
-      if validate_attributes 
+      if validate_attributes && @servicio.update(servicios_params)
         @servicio.update_attributes(error: false)
         flash[:notice] = 'Actualizado Correctamente'
         redirect_to servicios_path
@@ -34,7 +33,7 @@ class ServiciosController < ApplicationController
       params.require(:servicio).permit(:id, :nombre)
     end
 
-    def validate_attributes 
+    def validate_attributes
       valid_nombrecosas?(@servicio.nombre)
     end
 

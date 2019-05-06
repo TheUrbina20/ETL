@@ -19,8 +19,7 @@ class BebidasPorComandaController < ApplicationController
 
   def update
     @bebida_por_comanda = BebidaPorComanda.using(:dwh_t).find(params[:id])
-    @bebida_por_comanda.update(bebida_por_comanda_params)
-    if validate_attributes 
+    if validate_attributes && @bebida_por_comanda.update(bebida_por_comanda_params)
       @bebida_por_comanda.update_attributes(error: false)
       flash[:notice] = 'Actualizado'
       redirect_to bebidas_por_comanda_index_path
@@ -34,7 +33,7 @@ class BebidasPorComandaController < ApplicationController
     params.require(:bebida_por_comanda).permit(:id_comanda, :id_bebida, :cantidad)
   end
 
-  def validate_attributes 
+  def validate_attributes
     valid_cantidad?(@bebida_por_comanda.cantidad)
   end
 

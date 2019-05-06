@@ -20,8 +20,7 @@ class PlatillosPorComandaController < ApplicationController
 
   def update
     @platillo_por_comanda = PlatilloPorComanda.using(:dwh_t).find(params[:id])
-    @platillo_por_comanda.update(platillo_por_comanda_params)
-    if validate_attributes 
+    if validate_attributes && @platillo_por_comanda.update(platillo_por_comanda_params)
       @platillo_por_comanda.update_attributes(error: false)
       flash[:notice] = 'Actualizado'
       redirect_to platillos_por_comanda_index_path
@@ -35,7 +34,7 @@ class PlatillosPorComandaController < ApplicationController
     params.require(:platillo_por_comanda).permit(:id_comanda, :id_platillo, :cantidad)
   end
 
-  def validate_attributes 
+  def validate_attributes
     valid_number?(@platillo_por_comanda.cantidad)
   end
 end
