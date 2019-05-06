@@ -35,6 +35,6 @@ class AplicacionesAVacantesController < ApplicationController
   end
 
   def validate_attributes
-    valid_date?(@aplicacion_a_vacante.f_aplicacion)
+    valid_date?(params[:aplicacion_a_vacante][:f_aplicacion])
   end
 end

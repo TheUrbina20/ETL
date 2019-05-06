@@ -34,7 +34,7 @@ class MantenimientosController < ApplicationController
     end
 
     def validate_attributes
-      valid_tipomantenimietno(@mantenimientoe.tipo)
+      valid_tipomantenimietno(params[:mantenimiento][:tipo])
     end
 
 end

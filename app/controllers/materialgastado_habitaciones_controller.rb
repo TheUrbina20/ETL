@@ -35,7 +35,7 @@ class MaterialgastadoHabitacionesController < ApplicationController
     end
 
     def validate_attributes
-      valid_number?(@materialgh.cantidad)
+      valid_number?(params[:mg_habitacion][:cantidad])
     end
 
 end

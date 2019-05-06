@@ -44,7 +44,7 @@ class MaterialesPorReciboController < ApplicationController
   end
 
   def validate_attributes
-    valid_number?(@material_por_recibo.cantidad) && valid_date?(@material_por_recibo.f_caducidad)
+    valid_number?(params[:material_por_recibo][:cantidad]) && valid_date?(parmas[:material_por_recibo][:f_caducidad])
   end
 
 

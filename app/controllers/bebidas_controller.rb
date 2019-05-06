@@ -35,6 +35,6 @@ class BebidasController < ApplicationController
   end
 
   def validate_attributes
-    valid_nombrecosas?(@bebida.nombre) && valid_price?(@bebida.precio)
+    valid_nombrecosas?(params[:bebida][:nombre]) && valid_price?(params[:bebida][:precio])
   end
 end

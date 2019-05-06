@@ -35,6 +35,6 @@ class IngredientesPorProveedorController < ApplicationController
   end
 
   def validate_attributes
-    valid_price?(@ingrediente_por_proveedor.precio)
+    valid_price?(params[:ingrediente_por_proveedor][:precio])
   end
 end

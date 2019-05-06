@@ -35,7 +35,7 @@ class ReportePerdidoRobosController < ApplicationController
     end
 
     def validate_attributes
-      valid_number?(@reporte.cantidad) && valid_date?(@reporte.fecha)
+      valid_number?(params[:reporte_perdida_robo][:cantidad]) && valid_date?(params[:reporte_perdida_robo][:fecha])
     end
 
 end

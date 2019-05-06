@@ -33,6 +33,6 @@ class ServiciosADomicilioController < ApplicationController
     params.require(:servicio_a_domicilio).permit(:id_habitacion, :fecha)
   end
   def validate_attributes
-    valid_date?(@servicio_a_domicilio.fecha)
+    valid_date?(params[:servicio_a_domicilio][:fecha])
   end
 end

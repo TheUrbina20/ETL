@@ -35,7 +35,7 @@ class AsistenciasController < ApplicationController
   end
 
   def validate_attributes
-    valid_date?(@asistencias.fecha)
+    valid_date?(params[:asistencia][:fecha])
   end
 
 end

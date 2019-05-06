@@ -35,7 +35,7 @@ class IngredientesPorPlatilloController < ApplicationController
   end
 
   def validate_attributes
-    valid_number?(@ingrediente_por_platillo.cantidad)
+    valid_number?(params[:ingrediente_por_platillo][:cantidad])
   end
 
 end

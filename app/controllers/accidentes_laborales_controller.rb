@@ -34,7 +34,7 @@ class AccidentesLaboralesController < ApplicationController
   end
 
   def validate_attributes
-    valid_date?(@accidentes.f_accidente)
+    valid_date?(params[:accidente_laboral][:f_accidente])
   end
 
   private

@@ -35,7 +35,7 @@ class ClientesController < ApplicationController
   end
 
   def validate_attributes
-    valid_name?(@cliente.nombre) && valid_email?(@cliente.correo) && valid_telefono?(@cliente.telefono) && valid_estadoc?(@cliente.estado)
+    valid_name?(params[:cliente][:nombre]) && valid_email?(params[:cliente][:correo]) && valid_telefono?(params[:cliente][:telefono]) && valid_estadoc?(params[:cliente][:estado])
   end
 
 end

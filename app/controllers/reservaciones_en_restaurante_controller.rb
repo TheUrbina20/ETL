@@ -34,7 +34,7 @@ class ReservacionesEnRestauranteController < ApplicationController
   end
 
   def validate_attributes
-    valid_date?(@reservacion_en_restaurante.f_reservacion)
+    valid_date?(parmas[:reservacion_en_restaurante][:f_reservacion])
   end
 
 end

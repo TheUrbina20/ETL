@@ -42,6 +42,6 @@ class PedidosPorEmpleadoController < ApplicationController
   end
 
   def validate_attributes
-    valid_date?(@pedido_empleado.f_peticion)
+    valid_date?(params[:pedido_empleado][:f_peticion])
   end
 end

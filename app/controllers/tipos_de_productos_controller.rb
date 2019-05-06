@@ -35,7 +35,7 @@ class TiposDeProductosController < ApplicationController
   end
 
   def validate_attributes
-    valid_nombrecosas?(@tipo_de_producto.tipo)
+    valid_nombrecosas?(params[:tipo_de_producto][:tipo])
   end
 
 end

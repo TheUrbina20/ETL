@@ -42,7 +42,7 @@ class MaterialesPorPedidoController < ApplicationController
   end
 
   def validate_attributes
-    valid_number?(@material_por_pedido.cantidad)
+    valid_number?(params[:material_por_pedido][:cantidad])
   end
 
 end

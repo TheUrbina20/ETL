@@ -33,7 +33,7 @@ class ServiciolHabitacionesController < ApplicationController
     end
 
     def validate_attributes
-      valid_date?(@serviciolh.fecha)
+      valid_date?(params[:serviciol_habitacion][:fecha])
     end
 
 end

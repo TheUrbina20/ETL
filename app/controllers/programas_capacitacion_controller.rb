@@ -35,7 +35,7 @@ class ProgramasCapacitacionController < ApplicationController
   end
 
   def validate_attributes
-    valid_price?(@programas.costo) && valid_number?(@programas.duracion) && valid_nombrecosas?(@programas.nombre)
+    valid_price?(params[:programa_capacitacion][:costo]) && valid_number?(params[:programa_capacitacion][:duracion]) && valid_nombrecosas?(params[:programa_capacitacion][:nombre])
   end
 
 end
