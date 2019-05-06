@@ -6,7 +6,8 @@
       %td='ID'
       %td='Numero'
       %td='Capacidad'
-      %td='Acciones'
+      - unless current_user.admin?
+        %td='Acciones'
 
   %tbody
     - @mesas.each do |mesa|
@@ -17,8 +18,9 @@
           %td=mesa.capacidad
         -else
           %td.text.danger=mesa.capacidad
-        %td
-          = link_to edit_mesa_path(mesa) do
-            = fa_icon 'pencil'
-          = link_to mesa_path(mesa), method: :delete, data: {confirm: '¿Estás seguro?'} do
-            = fa_icon 'trash'
+        - unless current_user.admin?
+          %td
+            = link_to edit_mesa_path(mesa) do
+              = fa_icon 'pencil'
+            = link_to mesa_path(mesa), method: :delete, data: {confirm: '¿Estás seguro?'} do
+              = fa_icon 'trash'

@@ -5,7 +5,8 @@
     %tr
       %td='ID'
       %td='Tipo'
-      %td='Acciones'
+      - unless current_user.admin?
+        %td='Acciones'
 
   %tbody
     - @tipos_de_productos.each do |tipo_de_producto|
@@ -15,8 +16,9 @@
           %td=tipo_de_producto.tipo
         - else
           %td.text.danger=tipo_de_producto.tipo
-        %td
-          = link_to edit_tipos_de_producto_path(tipo_de_producto) do
-            = fa_icon 'pencil'
-          = link_to tipos_de_productos_path(tipo_de_producto), method: :delete, data: {confirm: '¿Estás seguro?'} do
-            = fa_icon 'trash'
+        - unless current_user.admin?
+          %td
+            = link_to edit_tipos_de_producto_path(tipo_de_producto) do
+              = fa_icon 'pencil'
+            = link_to tipos_de_productos_path(tipo_de_producto), method: :delete, data: {confirm: '¿Estás seguro?'} do
+              = fa_icon 'trash'

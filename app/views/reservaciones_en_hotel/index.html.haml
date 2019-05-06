@@ -10,7 +10,8 @@
       %td='Estado'
       %td='Num de Cliente'
       %td='Num de Empleado'
-      %td='Acciones'
+      - unless current_user.admin?
+        %td='Acciones'
   %tbody
     - @reservaciones.each do |reservacion|
       %tr
@@ -33,8 +34,9 @@
           %td.text.danger=reservacion.estado
         %td=reservacion.id_cliente
         %td=reservacion.id_empleado
-        %td
-          = link_to edit_reservaciones_en_hotel_path(reservacion) do
-            = fa_icon 'pencil'
-          = link_to reservaciones_en_hotel_path(reservacion), method: :delete, data: {confirm: '¿Estás seguro?'} do
-            = fa_icon 'trash'
+        - unless current_user.admin?
+          %td
+            = link_to edit_reservaciones_en_hotel_path(reservacion) do
+              = fa_icon 'pencil'
+            = link_to reservaciones_en_hotel_path(reservacion), method: :delete, data: {confirm: '¿Estás seguro?'} do
+              = fa_icon 'trash'

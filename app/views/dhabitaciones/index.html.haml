@@ -6,7 +6,8 @@
       %td='ID'
       %td='Nombre'
       %td='Precio'
-      %td='Acciones'
+      - unless current_user.admin?
+        %td='Acciones'
   %tbody
     - @dhabitaciones.each do |ha|
       %tr
@@ -19,8 +20,9 @@
           %td=ha.precio
         - else
           %td.text.danger=ha.precio
-        %td
-          = link_to edit_dhabitacione_path(ha) do
-            = fa_icon 'pencil'
-          = link_to dhabitacione_path(ha), method: :delete, data: {confirm: '¿Estás seguro?'} do
-            = fa_icon 'trash'
+        - unless current_user.admin?
+          %td
+            = link_to edit_dhabitacione_path(ha) do
+              = fa_icon 'pencil'
+            = link_to dhabitacione_path(ha), method: :delete, data: {confirm: '¿Estás seguro?'} do
+              = fa_icon 'trash'

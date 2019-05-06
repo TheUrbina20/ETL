@@ -9,7 +9,8 @@
       %td='Fecha de emisión'
       %td='Tipo de pago'
       %td='Sistema'
-      %td='Acciones'
+      - unless current_user.admin?
+        %td='Acciones'
   %tbody
     - @facturas.each do |factura|
       %tr
@@ -22,11 +23,12 @@
           %td.text.danger=factura.fecha_emision
         %td=factura.tipo_pago
         %td=factura.sistema
-        %td
-          = link_to edit_facturas_restaurante_path(factura) do
-            = fa_icon 'pencil'
-          = link_to facturas_restaurante_path(factura), method: :delete, data: {confirm: '¿Estás seguro?'} do
-            = fa_icon 'trash'
+        - unless current_user.admin?
+          %td
+            = link_to edit_facturas_restaurante_path(factura) do
+              = fa_icon 'pencil'
+            = link_to facturas_restaurante_path(factura), method: :delete, data: {confirm: '¿Estás seguro?'} do
+              = fa_icon 'trash'
     %tr='Total: '
     %tr=@facturas.count
 

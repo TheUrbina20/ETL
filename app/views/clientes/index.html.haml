@@ -8,7 +8,8 @@
       %td='Estado'
       %td='Correo'
       %td='Telefono'
-      %td='Acciones'
+      - unless current_user.admin?
+        %td='Acciones'
   %tbody
     - @clientes.each do |cliente|
       %tr
@@ -29,8 +30,9 @@
           %td=cliente.telefono
         -else
           %td.text.danger=cliente.telefono
-        %td
-          = link_to edit_cliente_path(cliente) do
-            = fa_icon 'pencil'
-          = link_to cliente_path(cliente), method: :delete, data: {confirm: '¿Estás seguro?'} do
-            = fa_icon 'trash'
+        - unless current_user.admin?
+          %td
+            = link_to edit_cliente_path(cliente) do
+              = fa_icon 'pencil'
+            = link_to cliente_path(cliente), method: :delete, data: {confirm: '¿Estás seguro?'} do
+              = fa_icon 'trash'
