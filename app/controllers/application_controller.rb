@@ -58,7 +58,11 @@ class ApplicationController < ActionController::Base
 
   def valid_date?(date)
     #reg = /^[0-3][0-9]\/(0?[1-9]|1[012])\/([0-1][0-9])|([5-9][0-9])$/
-    !!(date&.match(/\d{2}-\d{2}-\d{4}/) && Date.strptime(date, '%d-%m-%y'))
+    begin
+      !!(date&.match(/\d{2}-\d{2}-\d{4}/) && Date.strptime(date, '%d-%m-%y'))
+    rescue
+      false
+    end
     #regex_validator(reg, date.to_s)
   end
 
