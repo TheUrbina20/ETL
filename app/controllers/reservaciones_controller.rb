@@ -20,6 +20,7 @@ class ReservacionesController < ApplicationController
     def update
       @reservaciones = Reservacion.using(:dwh_t).find(params[:id])
       if @reservaciones.update(reservaciones_params)
+        @reservaciones.update_attributes(error: false)
         flash[:notice] = 'Actualizado Correctamente'
         redirect_to reservaciones_path
       else
