@@ -42,7 +42,7 @@ class RecibosDeComprasController < ApplicationController
   end
 
   def validate_attributes
-    valid_date?(params[:recibo_compra][:f_entrega])
+    valid_date?(params[:recibo_de_compra][:f_entrega])
   end
 
 end

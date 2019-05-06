@@ -15,7 +15,7 @@ class BajasEmpleadoController < ApplicationController
     else
       flash[:alert] = 'Error eliminando'
     end
-    redirect_to asistencias_path
+    redirect_to bajas_empleado_index_path
   end
 
   def update

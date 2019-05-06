@@ -9,7 +9,7 @@ class DetallesDeFacturaHotelController < ApplicationController
 
   def destroy
     @detalle_de_factura_hotel = DetalleDeFacturaHotel.using(:dwh_t).find(params[:id])
-    if @asistencias.destroy
+    if @detalle_de_factura_hotel.destroy
       flash[:notice] = 'Eliminado'
     else
       flash[:alert] = 'Error eliminando'

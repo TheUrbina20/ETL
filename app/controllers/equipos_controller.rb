@@ -44,7 +44,7 @@ class EquiposController < ApplicationController
   end
 
   def validate_attributes
-    valid_nombrecosas?(@equipo.nombre)
+    valid_nombrecosas?(params[:equipo][:nombre])
   end
 
   private

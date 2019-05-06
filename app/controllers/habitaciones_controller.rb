@@ -34,6 +34,6 @@ class HabitacionesController < ApplicationController
   end
 
   def validate_attributes
-    valid_activah?(params[:abitacion][:estado])
+    valid_activah?(params[:habitacion][:estado])
   end
 end

@@ -10,7 +10,7 @@ class IngredientesPorProveedorController < ApplicationController
 
   def destroy
     @ingrediente_por_proveedor = IngredientePorProveedor.using(:dwh_t).find(params[:id])
-    if @areingrediente_por_proveedoras.destroy
+    if @ingrediente_por_proveedor.destroy
       flash[:notice] = 'Eliminado'
     else
       flash[:alert] = 'Error eliminando'
