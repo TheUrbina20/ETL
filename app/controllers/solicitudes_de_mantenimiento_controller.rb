@@ -21,6 +21,7 @@ class SolicitudesDeMantenimientoController < ApplicationController
   def update
     @solicitud_mantenimiento = SolicitudMantenimiento.using(:dwh_t).find(params[:id])
     if @solicitud_mantenimiento.update(solicitud_mantenimiento_params)
+      @solicitud_mantenimiento.update_attributes(error: false)
       flash[:notice] = 'Actualizado'
       redirect_to solicitudes_de_mantenimiento_index_path
     else

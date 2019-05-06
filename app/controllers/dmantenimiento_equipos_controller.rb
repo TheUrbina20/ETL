@@ -20,6 +20,7 @@ class DmantenimientoEquiposController < ApplicationController
   def update
     @mantenimientoe = DmantenimientoEquipo.using(:dwh_t).find(params[:id])
     if @mantenimientoe.update(mantenimientos_params)
+      @mantenimientoe.update_attributes(error: false)
       flash[:notice] = 'Actualizado Correctamente'
       redirect_to dmantenimiento_equipos_path
     else

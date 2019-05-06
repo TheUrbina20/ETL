@@ -236,16 +236,16 @@ class SqlServerExporterController < ApplicationController
   end
 
   def copy_habitaciones
-    EquipoHabitacion.using(:dwh).delete_all
     equipos_habitacion = EquipoHabitacion.using(:dwh_t).where.not(error: true)
+    EquipoHabitacion.using(:dwh).delete_all
     equipos_habitacion.each do |equipos_habitacion|
       EquipoHabitacion.using(:dwh).create(equipo_por_pedido.serializable_hash)
     end
   end
 
   def copy_equipo
-    Equipo.using(:dwh).delete_all
     equipos = Equipo.using(:dwh_t).where.not(error: true)
+    Equipo.using(:dwh).delete_all
 
     equipos.each do |equipo|
       Equipo.using(:dwh).create(equipo.serializable_hash)
@@ -253,72 +253,72 @@ class SqlServerExporterController < ApplicationController
   end
 
   def copy_equipos_por_pedido
-    EquipoPorPedido.using(:dwh).delete_all
     equipos_por_pedido = EquipoPorPedido.using(:dwh_t).where.not(error: true)
+    EquipoPorPedido.using(:dwh).delete_all
     equipos_por_pedido.each do |equipo_por_pedido|
       EquipoPorPedido.using(:dwh).create(equipo_por_pedido.serializable_hash)
     end
   end
 
   def copy_equipos_por_recibo
-    EquipoPorRecibo.using(:dwh).delete_all
     equipos_por_recibo = EquipoPorRecibo.using(:dwh_t).where.not(error: true)
+    EquipoPorRecibo.using(:dwh).delete_all
     equipos_por_recibo.each do |equipo_por_recibo|
       EquipoPorRecibo.using(:dwh).create(equipo_por_recibo.serializable_hash)
     end
   end
 
   def copy_facturas_hotel
-    FacturaHotel.using(:dwh).delete_all
     facturas_hotel = FacturaHotel.using(:dwh_t).where.not(error: true)
+    FacturaHotel.using(:dwh).delete_all
     facturas_hotel.each do |factura_hotel|
       FacturaHotel.using(:dwh).create(factura_hotel.serializable_hash)
     end
   end
 
   def copy_facturas_restaurante
-    FacturaRestaurante.using(:dwh).delete_all
     facturas_restaurante = FacturaRestaurante.using(:dwh_t).where.not(error: true)
+    FacturaRestaurante.using(:dwh).delete_all
     facturas_restaurante.each do |factura_restaurante|
       FacturaRestaurante.using(:dwh).create(factura_restaurante.serializable_hash)
     end
   end
 
   def copy_habitaciones
-    Habitacion.using(:dwh).delete_all
     habitaciones = Habitacion.using(:dwh_t).where.not(error: true)
+    Habitacion.using(:dwh).delete_all
     habitaciones.each do |habitacio|
       Habitacion.using(:dwh).create(habitacio.serializable_hash)
     end
   end
 
   def copy_habitaciones_rentadas
-    HabitacionRentada.using(:dwh).delete_all
     habitaciones_por_renta = HabitacionRentada.using(:dwh_t).where.not(error: true)
+    HabitacionRentada.using(:dwh).delete_all
     habitaciones_por_renta.each do |haabitacion_por_renta|
       HabitacionRentada.using(:dwh).create(haabitacion_por_renta.serializable_hash)
     end
   end
 
   def copy_habitaciones_reservadas
-    HabitacionReservada.using(:dwh).delete_all
     habitaciones_reservadas = HabitacionReservada.using(:dwh_t).where.not(error: true)
+    HabitacionReservada.using(:dwh).delete_all
     habitaciones_reservadas.each do |habitacion_reservada|
       HabitacionReservada.using(:dwh).create(habitacion_reservada.serializable_hash)
     end
   end
 
   def copy_historial_de_servicios
-    HistoricoServicio.using(:dwh).delete_all
     historial_de_servicios = HistoricoServicio.using(:dwh_t).where.not(error: true)
+    HistoricoServicio.using(:dwh).delete_all
     historial_de_servicios.each do |historial|
       HistoricoServicio.using(:dwh).create(historial.serializable_hash)
     end
   end
 
   def copy_ingredientes
-    Ingrediente.using(:dwh).delete_all
     ingredientes = Ingrediente.using(:dwh_t).where.not(error: true)
+    Ingrediente.using(:dwh).delete_all
     ingredientes.each do |ingrediente|
       Ingrediente.using(:dwh).create(ingrediente.serializable_hash)
     end

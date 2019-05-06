@@ -20,6 +20,7 @@ class ServicioHabitacionesController < ApplicationController
   def update
     @servicio_habitacion = ServicioHabitacion.using(:dwh_t).find(params[:id])
     if @servicio_habitacion.update(servicio_habitacion_params)
+      @servicio_habitacion.update_attributes(error: false)
       flash[:notice] = 'Actualizado'
       redirect_to servicio_habitaciones_path
     else
