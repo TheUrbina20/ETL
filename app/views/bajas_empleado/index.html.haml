@@ -7,7 +7,8 @@
       %td='Num de Empleado'
       %td='Motivo'
       %td='Fecha'
-      %td='Acciones'
+      - unless current_user.admin?
+        %td='Acciones'
 
   %tbody
     - @bajas_por_empleado.each do |baja_empleado|
@@ -19,9 +20,10 @@
           %td=baja_empleado.fecha
         - else
           %td.text.danger=baja_empleado.fecha
-        %td
-          = link_to edit_bajas_empleado_path(baja_empleado) do
-            = fa_icon 'pencil'
-          = link_to bajas_empleado_path(baja_empleado), method: :delete, data: {confirm: '¿Estás seguro?'} do
-            = fa_icon 'trash'
+        - unless current_user.admin?
+          %td
+            = link_to edit_bajas_empleado_path(baja_empleado) do
+              = fa_icon 'pencil'
+            = link_to bajas_empleado_path(baja_empleado), method: :delete, data: {confirm: '¿Estás seguro?'} do
+              = fa_icon 'trash'
 

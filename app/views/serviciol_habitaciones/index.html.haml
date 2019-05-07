@@ -8,7 +8,8 @@
       %td='# servicio de limpieza'
       %td='# habitación'
       %td='# empleado'
-      %td='Acciones'
+      - unless current_user.admin?
+        %td='Acciones'
   %tbody
     - @serviciolh.each do |s|
       %tr
@@ -20,8 +21,9 @@
         %td=s.id_servicio_limpieza
         %td=s.id_habitacion
         %td=s.id_empleado
-        %td
-          = link_to edit_serviciol_habitacione_path(s) do
-            = fa_icon 'pencil'
-          = link_to serviciol_habitacione_path(s), method: :delete, data: {confirm: '¿Estás seguro?'} do
-            = fa_icon 'trash'
+        - unless current_user.admin?
+          %td
+            = link_to edit_serviciol_habitacione_path(s) do
+              = fa_icon 'pencil'
+            = link_to serviciol_habitacione_path(s), method: :delete, data: {confirm: '¿Estás seguro?'} do
+              = fa_icon 'trash'

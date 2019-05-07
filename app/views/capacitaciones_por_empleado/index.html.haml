@@ -9,7 +9,8 @@
       %td='Fecha de inicio'
       %td='Fecha de fin'
       %td='Estado'
-      %td='Acciones'
+      - unless current_user.admin?
+        %td='Acciones'
 
   %tbody
     - @capacitaciones.each do |capacitacion|
@@ -29,10 +30,11 @@
           %td=capacitacion.estado
         - else
           %td.text.danger=capacitacion.estado
-        %td
-          = link_to edit_capacitaciones_por_empleado_path(capacitacion) do
-            = fa_icon 'pencil'
-          = link_to capacitaciones_por_empleado_path(capacitacion), method: :delete, data: {confirm: '¿Estás seguro?'} do
-            = fa_icon 'trash'
+        - unless current_user.admin?
+          %td
+            = link_to edit_capacitaciones_por_empleado_path(capacitacion) do
+              = fa_icon 'pencil'
+            = link_to capacitaciones_por_empleado_path(capacitacion), method: :delete, data: {confirm: '¿Estás seguro?'} do
+              = fa_icon 'trash'
 
 

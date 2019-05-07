@@ -5,7 +5,8 @@
     %tr
       %td='ID'
       %td='Nombre'
-      %td='Acciones'
+      - unless current_user.admin?
+        %td='Acciones'
   %tbody
     - @empresas.each do |empresa|
       %tr
@@ -14,9 +15,10 @@
           %td=empresa.nombre
         - else
           %td.text.danger=empresa.nombre
-        %td
-          = link_to edit_empresa_path(empresa) do
-            = fa_icon 'pencil'
-          = link_to empresa_path(empresa), method: :delete, data: {confirm: '¿Estás seguro?'} do
-            = fa_icon 'trash'
+        - unless current_user.admin?
+          %td
+            = link_to edit_empresa_path(empresa) do
+              = fa_icon 'pencil'
+            = link_to empresa_path(empresa), method: :delete, data: {confirm: '¿Estás seguro?'} do
+              = fa_icon 'trash'
 

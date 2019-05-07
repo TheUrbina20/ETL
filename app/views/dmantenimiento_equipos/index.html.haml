@@ -10,7 +10,8 @@
       %td='Num de equipo por habitacion'
       %td='Num de mantenimiento por equipo'
       %td='Num de Empleado'
-      %td='Acciones'
+      - unless current_user.admin?
+        %td='Acciones'
 
   %tbody
     - @mantenimientoe.each do |ma|
@@ -28,8 +29,9 @@
         %td=ma.idEquipoH
         %td=ma.idMantenimientoE
         %td=ma.idEmpleado
-        %td
-          = link_to edit_dmantenimiento_equipo_path(ma) do
-            = fa_icon 'pencil'
-          = link_to dmantenimiento_equipo_path(ma), method: :delete, data: {confirm: '¿Estás seguro?'} do
-            = fa_icon 'trash'
+        - unless current_user.admin?
+          %td
+            = link_to edit_dmantenimiento_equipo_path(ma) do
+              = fa_icon 'pencil'
+            = link_to dmantenimiento_equipo_path(ma), method: :delete, data: {confirm: '¿Estás seguro?'} do
+              = fa_icon 'trash'

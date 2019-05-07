@@ -8,7 +8,8 @@
       %td='Num de empleado'
       %td='Fecha'
       %td='Hora de reservación'
-      %td='Acciones'
+      - unless current_user.admin?
+        %td='Acciones'
 
   %tbody
     - @comandas.each do |comanda|
@@ -21,8 +22,9 @@
         -else
           %td.text.danger=comanda.fecha
         %td=comanda.hora_reservacion
-        %td
-          = link_to edit_comanda_path(comanda) do
-            = fa_icon 'pencil'
-          = link_to comanda_path(comanda), method: :delete, data: {confirm: '¿Estás seguro?'} do
-            = fa_icon 'trash'
+        - unless current_user.admin?
+          %td
+            = link_to edit_comanda_path(comanda) do
+              = fa_icon 'pencil'
+            = link_to comanda_path(comanda), method: :delete, data: {confirm: '¿Estás seguro?'} do
+              = fa_icon 'trash'
