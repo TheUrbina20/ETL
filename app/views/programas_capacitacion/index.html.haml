@@ -8,7 +8,8 @@
       %td='Nombre'
       %td='Costo'
       %td='Duración'
-      %td='Acciones'
+      - unless current_user.admin?
+        %td='Acciones'
 
   %tbody
     - @programas.each do |programa|
@@ -27,9 +28,10 @@
           %td=programa.duracion
         -else
           %td.text.danger=programa.duracion
-        %td
-          = link_to edit_programas_capacitacion_path(programa) do
-            = fa_icon 'pencil'
-          = link_to programas_capacitacion_path(programa), method: :delete, data: {confirm: '¿Estás seguro?'} do
-            = fa_icon 'trash'
+        - unless current_user.admin?
+          %td
+            = link_to edit_programas_capacitacion_path(programa) do
+              = fa_icon 'pencil'
+            = link_to programas_capacitacion_path(programa), method: :delete, data: {confirm: '¿Estás seguro?'} do
+              = fa_icon 'trash'
 

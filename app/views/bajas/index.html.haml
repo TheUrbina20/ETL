@@ -8,7 +8,8 @@
       %td='Tipo'
       %td='Fecha'
       %td='Motivo'
-      %td='Acciones'
+      - unless current_user.admin?
+        %td='Acciones'
 
   %tbody
     - @bajas.each do |baja|
@@ -27,11 +28,12 @@
           %td=baja.motivo
         -else
           %td.text.danger=baja.motivo
-        %td
-          = link_to edit_baja_path(baja) do
-            = fa_icon 'pencil'
-          = link_to baja_path(baja), method: :delete, data: {confirm: '¿Estás seguro?'} do
-            = fa_icon 'trash'
+        - unless current_user.admin?
+          %td
+            = link_to edit_baja_path(baja) do
+              = fa_icon 'pencil'
+            = link_to baja_path(baja), method: :delete, data: {confirm: '¿Estás seguro?'} do
+              = fa_icon 'trash'
 
 
 

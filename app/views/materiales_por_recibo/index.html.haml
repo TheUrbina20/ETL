@@ -11,7 +11,8 @@
       %td='Cantidad'
       %td='Tipo de paquete'
       %td='Fecha caducidad'
-      %td='Acciones'
+      - unless current_user.admin?
+        %td='Acciones'
 
   %tbody
     - @materiales_por_recibo.each do |material_por_recibo|
@@ -30,8 +31,9 @@
           %td=material_por_recibo.f_caducidad
         -else
           %td.text.danger=material_por_recibo.f_caducidad
-        %td
-          = link_to edit_materiales_por_recibo_path(material_por_recibo) do
-            = fa_icon 'pencil'
-          = link_to materiales_por_recibo_path(material_por_recibo), method: :delete, data: {confirm: '¿Estás seguro?'} do
-            = fa_icon 'trash'
+        - unless current_user.admin?
+          %td
+            = link_to edit_materiales_por_recibo_path(material_por_recibo) do
+              = fa_icon 'pencil'
+            = link_to materiales_por_recibo_path(material_por_recibo), method: :delete, data: {confirm: '¿Estás seguro?'} do
+              = fa_icon 'trash'

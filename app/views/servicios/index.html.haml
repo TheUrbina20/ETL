@@ -6,7 +6,8 @@
     %tr
       %td='ID'
       %td='Nombre'
-      %td='Acciones'
+      - unless current_user.admin?
+        %td='Acciones'
   %tbody
     - @servicio.each do |s|
       %tr
@@ -15,8 +16,9 @@
           %td=s.nombre
         - else
           %td.text.danger=s.nombre
-        %td
-          = link_to edit_servicio_path(s) do
-            = fa_icon 'pencil'
-          = link_to servicio_path(s), method: :delete, data: {confirm: '¿Estás seguro?'} do
-            = fa_icon 'trash'
+        - unless current_user.admin?
+          %td
+            = link_to edit_servicio_path(s) do
+              = fa_icon 'pencil'
+            = link_to servicio_path(s), method: :delete, data: {confirm: '¿Estás seguro?'} do
+              = fa_icon 'trash'

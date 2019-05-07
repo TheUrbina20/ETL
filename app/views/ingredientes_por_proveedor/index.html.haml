@@ -8,7 +8,8 @@
       %td='Num ingrediente'
       %td='Num proveedor'
       %td='Precio'
-      %td='Acciones'
+      - unless current_user.admin?
+        %td='Acciones'
   %tbody
     - @ingredientes_por_proveedor.each do |ingrediente_por_proveedor|
       %tr
@@ -19,8 +20,9 @@
           %td=ingrediente_por_proveedor.precio
         -else
           %td.text.danger=ingrediente_por_proveedor.precio
-        %td
-          = link_to edit_ingredientes_por_proveedor_path(ingrediente_por_proveedor) do
-            = fa_icon 'pencil'
-          = link_to ingredientes_por_proveedor_path(ingrediente_por_proveedor), method: :delete, data: {confirm: '¿Estás seguro?'} do
-            = fa_icon 'trash'
+        - unless current_user.admin?
+          %td
+            = link_to edit_ingredientes_por_proveedor_path(ingrediente_por_proveedor) do
+              = fa_icon 'pencil'
+            = link_to ingredientes_por_proveedor_path(ingrediente_por_proveedor), method: :delete, data: {confirm: '¿Estás seguro?'} do
+              = fa_icon 'trash'

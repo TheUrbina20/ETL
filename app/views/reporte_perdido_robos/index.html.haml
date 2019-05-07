@@ -10,7 +10,8 @@
       %td='# habitación'
       %td='# Empleado'
       %td='# Material'
-      %td='Acciones'
+      - unless current_user.admin?
+        %td='Acciones'
   %tbody
     - @reporte.each do |s|
       %tr
@@ -27,8 +28,9 @@
         %td=s.id_habitacion
         %td=s.id_empleado
         %td=s.id_material
-        %td
-          = link_to edit_reporte_perdido_robo_path(s) do
-            = fa_icon 'pencil'
-          = link_to  reporte_perdido_robo_path(s), method: :delete, data: {confirm: '¿Estás seguro?'} do
-            = fa_icon 'trash'
+        - unless current_user.admin?
+          %td
+            = link_to edit_reporte_perdido_robo_path(s) do
+              = fa_icon 'pencil'
+            = link_to  reporte_perdido_robo_path(s), method: :delete, data: {confirm: '¿Estás seguro?'} do
+              = fa_icon 'trash'

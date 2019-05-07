@@ -10,7 +10,8 @@
       %td='Stock minimo'
       %td='Stock maximo'
       %td='Cantidad en stock'
-      %td='Acciones'
+      - unless current_user.admin?
+        %td='Acciones'
   %tbody
     - @materiales.each do |material|
       %tr
@@ -33,9 +34,10 @@
           %td=material.cantidad_stock
         -else
           %td.text.danger=material.cantidad_stock
-        %td
-          = link_to edit_materiale_path(material) do
-            = fa_icon 'pencil'
-          = link_to materiale_path(material), method: :delete, data: {confirm: '¿Estás seguro?'} do
-            = fa_icon 'trash'
+        - unless current_user.admin?
+          %td
+            = link_to edit_materiale_path(material) do
+              = fa_icon 'pencil'
+            = link_to materiale_path(material), method: :delete, data: {confirm: '¿Estás seguro?'} do
+              = fa_icon 'trash'
 

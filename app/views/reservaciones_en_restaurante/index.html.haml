@@ -8,7 +8,8 @@
       %td='Hora'
       %td='Num de cliente'
       %td='Num de empleado'
-      %td='Acciones'
+      - unless current_user.admin?
+        %td='Acciones'
   %tbody
     - @reservaciones_en_restaurante.each do |reservacion_restaurante|
       %tr
@@ -20,8 +21,9 @@
         %td=reservacion_restaurante.hora
         %td=reservacion_restaurante.id_cliente
         %td=reservacion_restaurante.id_empleado
-        %td
-          = link_to edit_reservaciones_en_restaurante_path(reservacion_restaurante) do
-            = fa_icon 'pencil'
-          = link_to reservaciones_en_restaurante_path(reservacion_restaurante), method: :delete, data: {confirm: '¿Estás seguro?'} do
-            = fa_icon 'trash'
+        - unless current_user.admin?
+          %td
+            = link_to edit_reservaciones_en_restaurante_path(reservacion_restaurante) do
+              = fa_icon 'pencil'
+            = link_to reservaciones_en_restaurante_path(reservacion_restaurante), method: :delete, data: {confirm: '¿Estás seguro?'} do
+              = fa_icon 'trash'

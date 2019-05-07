@@ -8,7 +8,8 @@
       %td='Vacante'
       %td='Empleado'
       %td='Fecha aplicacion'
-      %td='Acciones'
+      - unless current_user.admin?
+        %td='Acciones'
   %tbody
     - @aplicaciones.each do |aplicacion|
       %tr
@@ -20,9 +21,10 @@
           %td=aplicacion.f_aplicacion
         - else
           %td.text.danger=aplicacion.f_aplicacion
-        %td
-          = link_to edit_aplicaciones_a_vacante_path(aplicacion) do
-            = fa_icon 'pencil'
-          = link_to aplicaciones_a_vacante_path(aplicacion), method: :delete, data: {confirm: '¿Estás seguro?'} do
-            = fa_icon 'trash'
+        - unless current_user.admin?
+          %td
+            = link_to edit_aplicaciones_a_vacante_path(aplicacion) do
+              = fa_icon 'pencil'
+            = link_to aplicaciones_a_vacante_path(aplicacion), method: :delete, data: {confirm: '¿Estás seguro?'} do
+              = fa_icon 'trash'
 
