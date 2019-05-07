@@ -29,6 +29,11 @@ class HistoricoServiciosController < ApplicationController
     end
   end
 
+  def delete_with_errors_historico_servicios
+    HistoricoServicio.using(:dwh_t).where(error: true).delete_all
+    redirect_to landing_page_index_path
+  end 
+
   def hservicios_params
     params.require(:historico_servicio).permit(:id,:precio, :f_inicio, :f_termino, :id_servicio)
   end

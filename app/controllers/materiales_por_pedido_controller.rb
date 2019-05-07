@@ -37,6 +37,13 @@ class MaterialesPorPedidoController < ApplicationController
     end
   end
 
+  def delete_with_errors_materiales_por_pedido
+    if current_user.hotel?
+      MaterialPorPedido.using(:dwh_t).where(sistema: 'H', error: true).delete_all
+    end 
+    redirect_to landing_page_index_path
+  end 
+
   def material_por_pedido_params
     params.require(:material_por_pedido).permit(:id_sistema, :sistema, :id_material, :id_pedido, :cantidad)
   end

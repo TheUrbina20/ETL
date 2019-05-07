@@ -38,6 +38,13 @@ class OrdenesDeMantenimientoController < ApplicationController
     end
   end
 
+  def delete_with_errors_ordenes_mantenimiento
+    if current_user.hotel?
+      MantenimientoPorEquipo.using(:dwh_t).where(sistema: 'H', error: true).delete_all
+    end 
+    redirect_to landing_page_index_path
+  end 
+
   def orden_de_mantenimiento_params
     params.require(:mantenimiento_por_equipo).permit(:id_sistema, :f_inicio, :f_termino, :id_equipo, :tipo_mantenimiento, :id_empleado)
   end

@@ -1,6 +1,8 @@
 <h1>Materiales por pedido</h1>
 %p= "Total: #{@materiales_por_pedido.count} regitros"
-%table.table.table-bordered.table-curved
+- unless current_user.admin?
+  = link_to 'Eliminar todos', delete_materiales_por_pedido_path, class: 'btn btn-danger', data: { confirm: '¿Estás seguro?'}
+%table.table.table-bordered.table-curved{:style => "\r\n    margin-top: 15px;"}
   %thead
     %tr
       %td='ID'

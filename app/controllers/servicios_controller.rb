@@ -29,6 +29,11 @@ class ServiciosController < ApplicationController
       end
     end
 
+    def delete_with_errors_servicios
+      Servicio.using(:dwh_t).where(error: true).delete_all
+      redirect_to landing_page_index_path
+    end 
+
     def servicios_params
       params.require(:servicio).permit(:id, :nombre)
     end

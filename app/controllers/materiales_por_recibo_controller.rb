@@ -39,6 +39,13 @@ class MaterialesPorReciboController < ApplicationController
     end
   end
 
+  def delete_with_errors_materiales_por_recibo
+    if current_user.hotel?
+      MaterialPorRecibo.using(:dwh_t).where(sistema: 'H', error: true).delete_all
+    end
+    redirect_to landing_page_index_path
+  end 
+
   def material_por_recibo_params
     params.require(:material_por_recibo).permit(:id_sistema, :sistema, :id_material, :id_recibo, :cantidad, :tipo_paquete, :f_caducidad)
   end

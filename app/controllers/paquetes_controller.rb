@@ -29,6 +29,11 @@ class PaquetesController < ApplicationController
     end
   end
 
+  def delete_with_errors_paquetes
+    Paquete.using(:dwh_t).where(error: true).delete_all
+    redirect_to landing_page_index_path
+  end 
+
   def paquetes_params
     params.require(:paquete).permit(:id, :nombre, :descripcion, :precio_por_dia)
   end

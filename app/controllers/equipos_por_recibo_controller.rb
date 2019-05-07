@@ -37,6 +37,13 @@ class EquiposPorReciboController < ApplicationController
     end
   end
 
+  def delete_with_errors_equipos_por_recibo
+    if current_user.hotel?
+      EquipoPorRecibo.using(:dwh_t).where(sistema: 'H', error: true).delete_all
+    end
+    redirect_to landing_page_index_path
+  end 
+
   def equipo_por_recibo_params
     params.require(:equipo_por_recibo).permit(:id_sistema, :sistema, :id_equipo, :n_serie, :id_recibo_compra, :f_finalizacion_garantia)
   end

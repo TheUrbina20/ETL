@@ -39,6 +39,13 @@ class EquiposController < ApplicationController
     end
   end
 
+  def delete_with_errors_equipos
+    if current_user.hotel?
+      Equipo.using(:dwh_t).where(sistema: 'H', error: true).delete_all
+    end
+    redirect_to landing_page_index_path
+  end 
+
   def equipo_params
     params.require(:equipo).permit(:id_sistema, :sistema, :nombre, :modelo)
   end

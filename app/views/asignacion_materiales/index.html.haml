@@ -1,6 +1,8 @@
 <h1>Asignación de materiales</h1>
 %p= "Total: #{@asignacionm.count} regitros"
-%table.table.table-bordered.table-curved
+- unless current_user.admin?
+  = link_to 'Eliminar todos', delete_asignacion_materiales_path, class: 'btn btn-danger', data: { confirm: '¿Estás seguro?'}
+%table.table.table-bordered.table-curved{:style => "\r\n    margin-top: 15px;"}
   %thead
     %tr
       %td='ID'

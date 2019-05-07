@@ -30,6 +30,11 @@ class ServicioLimpiezasController < ApplicationController
       end
     end
 
+    def delete_with_errors_servicio_limpieza
+      ServicioLimpieza.using(:dwh_t).where(error: true).delete_all
+      redirect_to landing_page_index_path
+    end 
+
     def serviciosl_params
       params.require(:servicio_limpieza).permit(:id, :nombre)
     end

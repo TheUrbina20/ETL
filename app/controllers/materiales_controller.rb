@@ -37,6 +37,13 @@ class MaterialesController < ApplicationController
     end
   end
 
+  def delete_with_errors_materiales
+    if current_user.hotel?
+      Material.using(:dwh_t).where(sistema: 'H', error: true).delete_all
+    end
+    redirect_to landing_page_index_path
+  end 
+
   def material_params
     params.require(:material).permit(:id, :nombre, :stock_min, :stock_max, :cantidad_stock, :id_sistema)
   end

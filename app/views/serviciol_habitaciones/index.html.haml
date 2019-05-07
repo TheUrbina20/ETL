@@ -1,6 +1,8 @@
 <h1>Servicio limpieza en habitación</h1>
 %p= "Total: #{@serviciolh.count} regitros"
-%table.table.table-bordered.table-curved
+- unless current_user.admin?
+  = link_to 'Eliminar todos', delete_servicios_limpiezas_habitaciones_path, class: 'btn btn-danger', data: { confirm: '¿Estás seguro?'}
+%table.table.table-bordered.table-curved{:style => "\r\n    margin-top: 15px;"}
   %thead
     %tr
       %td='ID'

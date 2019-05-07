@@ -1,6 +1,5 @@
 class ClientesController < ApplicationController
   def index
-
     @clientes = Cliente.using(:dwh_t).where(error: true)
   end
 
@@ -29,6 +28,11 @@ class ClientesController < ApplicationController
       render 'edit'
     end
   end
+
+  def delete_with_errors_clientes
+    Cliente.using(:dwh_t).where(error: true).delete_all
+    redirect_to landing_page_index_path
+  end 
 
   def cliente_params
     params.require(:cliente).permit(:id, :nombre, :correo, :telefono, :estado)

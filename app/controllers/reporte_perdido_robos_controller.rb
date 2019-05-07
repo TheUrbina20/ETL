@@ -30,6 +30,11 @@ class ReportePerdidoRobosController < ApplicationController
       end
     end
 
+    def delete_with_errors_reporte
+      ReportePerdidaRobo.using(:dwh_t).where(error: true).delete_all
+      redirect_to landing_page_index_path
+    end 
+
     def serviciosl_params
       params.require(:reporte_perdida_robo).permit(:id, :cantidad, :fecha, :id_servicio_limpieza, :id_habitacion, :id_empleado, :id_material)
     end
