@@ -1,25 +1,32 @@
 <h1>Areas</h1>
 %p= "Total: #{@areas.count} regitros"
+-# IF USER IS NOT ADMIN SHOW DELETE ALL RECORD BUTTON
+- unless current_user.admin?
+  = link_to 'Eliminar todos', delete_areas_path, class: 'btn btn-danger', data: { confirm: '¿Estás seguro?' }
+-#
 %table.table.table-bordered.table-curved.table-curved
   %thead
     %tr
       %td='ID'
       %td='Nombre'
       %td='Clave'
-      %td='Acciones'
+      - unless current_user.admin?
+        %td='Acciones'
   %tbody
+
     - @areas.each do |area|
       %tr
         %td=area.id
-        -if valid_nombrecosas?(area.nombre)
+        -if valid_nombrecosas?(area.nombre)<
           %td=area.nombre
         -else
           %td.text.danger=area.nombre
         %td=area.clave
-        %td
-          = link_to edit_area_path(area) do
-            = fa_icon 'pencil'
-          = link_to area_path(area), method: :delete, data: {confirm: '¿Estás seguro?'} do
-            = fa_icon 'trash'
+        - unless current_user.admin?
+          %td
+            = link_to edit_area_path(area) do
+              = fa_icon 'pencil'
+            = link_to area_path(area), method: :delete, data: {confirm: '¿Estás seguro?'} do
+              = fa_icon 'trash'
 
 

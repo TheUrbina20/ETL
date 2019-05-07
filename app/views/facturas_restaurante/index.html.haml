@@ -9,6 +9,7 @@
       %td='Fecha de emisión'
       %td='Tipo de pago'
       %td='Sistema'
+      %td='Total'
       %td='Acciones'
   %tbody
     - @facturas.each do |factura|
@@ -22,6 +23,10 @@
           %td.text.danger=factura.fecha_emision
         %td=factura.tipo_pago
         %td=factura.sistema
+        - if valid_price?(factura.total)
+          %td=factura.total
+        - else
+          %td.text.danger=factura.total
         %td
           = link_to edit_facturas_restaurante_path(factura) do
             = fa_icon 'pencil'

@@ -73,5 +73,9 @@ Rails.application.routes.draw do
   resources :exporter, only: [:new]
   resources :logs, only: [:index]
   resources :sql_server_exporter, only: [:new]
+
+
+  #DELETE ALL RECORDS WITH ERROR, ORUTES
+  get 'delete_with_errors', to: 'areas#delete_with_errors', as: :delete_areas #delete_areas IS THE PATH TO CALL THE CONTROLLER ACTION delte_with_errors
 end
 
