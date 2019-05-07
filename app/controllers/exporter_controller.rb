@@ -174,7 +174,7 @@ class ExporterController < ApplicationController
       sheet.add_row ['id', 'id sistema', 'sistema', 'Nombre','Fecha nacimiento', 'Correo electrónico', '# teléfono', 'Genero', 'RFC', 'Baja', 'Fecha ingreso']
       empleados = Empleado.using(:dwh).all
       empleados.each do |empleado|
-        sheet.add_row [empleado.id, empleado.id_sistema, empleado.sistema, empleado.nombre, empleado.f_nacimiento, empleado.c_electronico, empleado.n_telefono, empleado.genero, empleado.rfc, empleado.baja, empleado.f_ingreso]
+        sheet.add_row [empleado.id, empleado.id_sistema, empleado.sistema, empleado.nombre, empleado.f_nacimiento, empleado.c_electronico, empleado.n_telefono, empleado.genero, empleado.rfc, empleado.baja, empleado.f_entrada]
       end
     end
 
@@ -338,10 +338,10 @@ class ExporterController < ApplicationController
     end
 
     workbook.add_worksheet(name: 'Ordenes de mantenimiento') do |sheet|
-      sheet.add_row ['id', 'id_sistema', 'Sistema', 'Fecha inicio', 'Fecha termino', 'id equipo', 'Tipo mantenimiento', 'id empleado', 'Tipo']
+      sheet.add_row ['id', 'id_sistema', 'Sistema', 'Fecha inicio', 'Fecha termino', 'id equipo', 'Tipo mantenimiento', 'id empleado']
       mantenimientos = MantenimientoPorEquipo.using(:dwh).all
       mantenimientos.each do |mantenimiento|
-        sheet.add_row [mantenimiento.id, mantenimiento.id_sistema, mantenimiento.sistema, mantenimiento.f_inicio, mantenimiento.f_termino, mantenimiento.id_equipo, mantenimiento.tipo_mantenimiento, mantenimiento.id_empleado, mantenimiento.tipo]
+        sheet.add_row [mantenimiento.id, mantenimiento.id_sistema, mantenimiento.sistema, mantenimiento.f_inicio, mantenimiento.f_termino, mantenimiento.id_equipo, mantenimiento.tipo_mantenimiento, mantenimiento.id_empleado]
       end
     end
 

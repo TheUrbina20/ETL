@@ -36,6 +36,6 @@ class FacturasRestauranteController < ApplicationController
   end
 
   def validate_attributes
-    valid_date?(params[:factura_restaurante][:fecha_emision])
+    valid_date?(params[:factura_restaurante][:fecha_emision]) && valid_price?(params[:factura_restaurante][:total])
   end
 end

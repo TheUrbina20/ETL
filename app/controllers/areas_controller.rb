@@ -28,6 +28,11 @@ class AreasController < ApplicationController
       render 'edit'
     end
   end
+  #  FUNCTION TO DELETE ALL RECORDS WITH ERRORS
+  def delete_with_errors
+   Area.using(:dwh_t).where(error: true).delete_all
+  end
+  #
 
   def areas_params
     params.require(:area).permit(:id, :nombre, :clave)

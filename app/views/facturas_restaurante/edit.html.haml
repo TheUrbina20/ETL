@@ -6,6 +6,12 @@
         = f.input :fecha_emision, readonly: true, label: 'Fecha de emisión:'
     - else
         = f.input :fecha_emision, disabled: false, label: 'Fecha de emisión:'
+
     = f.input :tipo_pago, readonly: true, label: 'Tipo de pago:'
     = f.input :sistema, readonly: true , label: 'Sistema:'
+    - if valid_price?(@factura_restaurante.total)
+        = f.input :total, readonly: true, label: 'Total:'
+    - else
+        = f.input :total, disabled: false, label: 'Total:'
+
     = f.submit 'Actualizar', class: 'button'

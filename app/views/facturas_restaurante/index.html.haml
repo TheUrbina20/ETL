@@ -9,6 +9,7 @@
       %td='Fecha de emisión'
       %td='Tipo de pago'
       %td='Sistema'
+      %td='Total'
       - unless current_user.admin?
         %td='Acciones'
   %tbody
@@ -23,6 +24,10 @@
           %td.text.danger=factura.fecha_emision
         %td=factura.tipo_pago
         %td=factura.sistema
+        - if valid_price?(factura.total)
+          %td=factura.total
+        - else
+          %td.text.danger=factura.total
         - unless current_user.admin?
           %td
             = link_to edit_facturas_restaurante_path(factura) do

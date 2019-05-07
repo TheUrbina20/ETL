@@ -1,7 +1,14 @@
 class ClientesController < ApplicationController
   def index
-
-    @clientes = Cliente.using(:dwh_t).where(error: true)
+    if current_user.admn?
+      @clientes = Cliente.using(:dwh_t).where(error: true)
+    elsif current_user.rrhh?
+      @clientes = Cliente.using(:dwh_t).where(sistema: 'RR', error: true).order(:nombre)
+    elsif current_user.restaurant?
+      @clientes = Cliente.using(:dwh_t).where(sistema: 'R', error: true).order(:nombre)
+    else
+      @clientes = Cliente.using(:dwh_t).where(sistema: 'H', error: true).order(:nombre)
+    end
   end
 
   def edit
