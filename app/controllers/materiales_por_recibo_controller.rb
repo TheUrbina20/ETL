@@ -5,7 +5,7 @@ class MaterialesPorReciboController < ApplicationController
     elsif current_user.hotel?
       @materiales_por_recibo = MaterialPorRecibo.using(:dwh_t).where(sistema: 'H', error: true)
     elsif current_user.rrhh?
-      @materiales_por_recibo = MaterialPorRecibo.using(:dwh_t).where(sistema: 'RR', error: true)
+      @materiales_por_recibo = MaterialPorRecibo.using(:dwh_t).where(sistema: 'RH', error: true)
     else
       @materiales_por_recibo = MaterialPorRecibo.using(:dwh_t).where(sistema: 'R', error: true)
     end
@@ -41,7 +41,7 @@ class MaterialesPorReciboController < ApplicationController
     if current_user.hotel?
       MaterialPorRecibo.using(:dwh_t).where(sistema: 'H', error: true).delete_all
     elsif current_user.rrhh?
-      MaterialPorRecibo.using(:dwh_t).where(sistema: 'RR', error: true).delete_all
+      MaterialPorRecibo.using(:dwh_t).where(sistema: 'RH', error: true).delete_all
     else
       MaterialPorRecibo.using(:dwh_t).where(sistema: 'R', error: true).delete_all
     end

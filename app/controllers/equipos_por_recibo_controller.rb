@@ -5,7 +5,7 @@ class EquiposPorReciboController < ApplicationController
     elsif current_user.hotel?
       @equipos_por_recibo = EquipoPorRecibo.using(:dwh_t).where(sistema: 'H', error: true)
     elsif current_user.rrhh?
-      @equipos_por_recibo = EquipoPorRecibo.using(:dwh_t).where(sistema: 'RR', error: true)
+      @equipos_por_recibo = EquipoPorRecibo.using(:dwh_t).where(sistema: 'RH', error: true)
     else
       @equipos_por_recibo = EquipoPorRecibo.using(:dwh_t).where(sistema: 'R', error: true)
     end
@@ -41,7 +41,7 @@ class EquiposPorReciboController < ApplicationController
     if current_user.hotel?
       EquipoPorRecibo.using(:dwh_t).where(sistema: 'H', error: true).delete_all
     elsif current_user.rrhh?
-      EquipoPorRecibo.using(:dwh_t).where(sistema: 'RR', error: true).delete_all
+      EquipoPorRecibo.using(:dwh_t).where(sistema: 'RH', error: true).delete_all
     else
       EquipoPorRecibo.using(:dwh_t).where(sistema: 'R', error: true).delete_all
     end

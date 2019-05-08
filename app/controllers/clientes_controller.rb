@@ -1,9 +1,9 @@
 class ClientesController < ApplicationController
   def index
-    if current_user.admn?
+    if current_user.admin?
       @clientes = Cliente.using(:dwh_t).where(error: true)
     elsif current_user.rrhh?
-      @clientes = Cliente.using(:dwh_t).where(sistema: 'RR', error: true).order(:nombre)
+      @clientes = Cliente.using(:dwh_t).where(sistema: 'RH', error: true).order(:nombre)
     elsif current_user.restaurant?
       @clientes = Cliente.using(:dwh_t).where(sistema: 'R', error: true).order(:nombre)
     else
@@ -39,7 +39,7 @@ class ClientesController < ApplicationController
 
   def delete_with_errors_clientes
     if current_user.rrhh?
-      Cliente.using(:dwh_t).where(sistema: 'RR', error: true).delete_all
+      Cliente.using(:dwh_t).where(sistema: 'RH', error: true).delete_all
     elsif current_user.restaurant?
       Cliente.using(:dwh_t).where(sistema: 'R', error: true).delete_all
     else

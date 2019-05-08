@@ -5,7 +5,7 @@ class OrdenesDeMantenimientoController < ApplicationController
     elsif current_user.hotel?
       @mantenimientos_por_equipo = MantenimientoPorEquipo.using(:dwh_t).where(sistema: 'H', error: true)
     elsif current_user.rrhh?
-      @mantenimientos_por_equipo = MantenimientoPorEquipo.using(:dwh_t).where(sistema: 'RR', error: true)
+      @mantenimientos_por_equipo = MantenimientoPorEquipo.using(:dwh_t).where(sistema: 'RH', error: true)
     else
       @mantenimientos_por_equipo = MantenimientoPorEquipo.using(:dwh_t).where(sistema: 'R', error: true)
     end
@@ -41,7 +41,7 @@ class OrdenesDeMantenimientoController < ApplicationController
     if current_user.hotel?
       MantenimientoPorEquipo.using(:dwh_t).where(sistema: 'H', error: true).delete_all
     elsif current_user.rrhh?
-      MantenimientoPorEquipo.using(:dwh_t).where(sistema: 'RR', error: true).delete_all
+      MantenimientoPorEquipo.using(:dwh_t).where(sistema: 'RH', error: true).delete_all
     else
       MantenimientoPorEquipo.using(:dwh_t).where(sistema: 'R', error: true).delete_all
     end

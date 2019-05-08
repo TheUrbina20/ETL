@@ -5,7 +5,7 @@ class PedidosPorEmpleadoController < ApplicationController
     elsif current_user.hotel?
       @ordenes_por_empleados = PedidoPorEmpleado.using(:dwh_t).where(sistema: 'H', error: true)
     elsif current_user.rrhh?
-      @ordenes_por_empleados = PedidoPorEmpleado.using(:dwh_t).where(sistema: 'RR', error: true)
+      @ordenes_por_empleados = PedidoPorEmpleado.using(:dwh_t).where(sistema: 'RH', error: true)
     else
       @ordenes_por_empleados = PedidoPorEmpleado.using(:dwh_t).where(sistema: 'R', error: true)
     end
@@ -41,7 +41,7 @@ class PedidosPorEmpleadoController < ApplicationController
     if current_user.hotel?
       PedidoPorEmpleado.using(:dwh_t).where(sistema: 'H', error: true).delete_all
     elsif current_user.rrhh?
-      PedidoPorEmpleado.using(:dwh_t).where(sistema: 'RR', error: true).delete_all
+      PedidoPorEmpleado.using(:dwh_t).where(sistema: 'RH', error: true).delete_all
     else
       PedidoPorEmpleado.using(:dwh_t).where(sistema: 'R', error: true).delete_all
     end

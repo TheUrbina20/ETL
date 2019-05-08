@@ -5,7 +5,7 @@ class EmpleadosController < ApplicationController
     elsif current_user.hotel?
       @empleados = Empleado.using(:dwh_t).where(sistema: 'H', error: true).order(:nombre)
     elsif current_user.rrhh?
-      @empleados = Empleado.using(:dwh_t).where(sistema: 'RR', error: true).order(:nombre)
+      @empleados = Empleado.using(:dwh_t).where(sistema: 'RH', error: true).order(:nombre)
     else
       @empleados = Empleado.using(:dwh_t).where(sistema: 'R', error: true).order(:nombre)
     end
@@ -41,7 +41,7 @@ class EmpleadosController < ApplicationController
     if current_user.hotel?
       Empleado.using(:dwh_t).where(sistema: 'H', error: true).delete_all
     elsif current_user.rrhh?
-      Empleado.using(:dwh_t).where(sistema: 'RR', error: true).delete_all
+      Empleado.using(:dwh_t).where(sistema: 'RH', error: true).delete_all
     else
       Empleado.using(:dwh_t).where(sistema: 'R', error: true).delete_all
     end

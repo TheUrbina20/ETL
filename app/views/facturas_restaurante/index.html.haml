@@ -1,6 +1,8 @@
 <h1>Facturas restaurante</h1>
 %p= "Total: #{@facturas.count} regitros"
-%table.table.table-bordered.table-curved
+- unless current_user.admin?
+  = link_to 'Eliminar todos', new_deletter_path(model: 'FacturaRestaurante'), class: 'btn btn-danger', data: { confirm: '¿Estás seguro?'}
+%table.table.table-bordered.table-curved{:style => "\r\n    margin-top: 15px;"}
   %thead
     %tr
       %td='ID'
@@ -34,7 +36,5 @@
               = fa_icon 'pencil'
             = link_to facturas_restaurante_path(factura), method: :delete, data: {confirm: '¿Estás seguro?'} do
               = fa_icon 'trash'
-    %tr='Total: '
-    %tr=@facturas.count
 
 

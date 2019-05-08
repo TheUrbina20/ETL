@@ -5,7 +5,7 @@ class MaterialesController < ApplicationController
     elsif current_user.hotel?
       @materiales = Material.using(:dwh_t).where(sistema: 'H', error: true).order(:nombre)
     elsif current_user.rrhh?
-      @materiales = Material.using(:dwh_t).where(sistema: 'RR', error: true).order(:nombre)
+      @materiales = Material.using(:dwh_t).where(sistema: 'RH', error: true).order(:nombre)
     else
       @materiales = Material.using(:dwh_t).where(sistema: 'R', error: true).order(:nombre)
     end
@@ -41,7 +41,7 @@ class MaterialesController < ApplicationController
     if current_user.hotel?
       Material.using(:dwh_t).where(sistema: 'H', error: true).delete_all
     elsif current_user.rrhh?
-      Material.using(:dwh_t).where(sistema: 'RR', error: true).delete_all
+      Material.using(:dwh_t).where(sistema: 'RH', error: true).delete_all
     else
       Material.using(:dwh_t).where(sistema: 'R', error: true).delete_all
     end

@@ -1,7 +1,10 @@
 class ProveedoresController < ApplicationController
   def index
-
-    @proveedores = Proveedor.using(:dwh_t).where(error: true)
+    if current_user.restaurant?
+      @proveedores = Proveedor.using(:dwh_t).where(sistema: 'R', error: true)
+    else
+      @proveedores = Proveedor.using(:dwh_t).where(sistema: 'RH', error: true)
+    end
   end
 
   def edit

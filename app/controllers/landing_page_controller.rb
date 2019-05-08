@@ -303,6 +303,8 @@ class LandingPageController < ApplicationController
     cliente = Cliente.using(:dwh_t).new
 
     clientes.each do |cliente_r|
+      cliente.id_sistema = cliente_r.id
+      cliente.sistema = 'H'
       cliente = Cliente.using(:dwh_t).new
       cliente.nombre = cliente_r.Nombres + ' ' + cliente_r.ApellidoP + ' ' + cliente_r.ApellidoM
       cliente.estado = cliente_r.EntidadFederativa
@@ -327,6 +329,8 @@ class LandingPageController < ApplicationController
 
     clientes.each do |cliente_r|
       cliente = Cliente.using(:dwh_t).new
+      cliente.id_sistema = cliente_r.id
+      clien.sistema = 'RH'
       cliente.nombre = cliente_r[:nombre] + ' ' + cliente_r[:apellido_p] + ' ' + cliente_r[:apellido_m]
       cliente.telefono = cliente_r[:telefono]
 
@@ -508,7 +512,7 @@ class LandingPageController < ApplicationController
       empleado.genero = empleado_r.genero
       empleado.rfc = empleado_r.rfc
       empleado.baja = empleado_r.baja
-      empleado.sistema = 'RR'
+      empleado.sistema = 'RH'
       unless valid_name?(empleado.nombre)
         empleado.error = true
       end
@@ -649,7 +653,7 @@ class LandingPageController < ApplicationController
       equipo.id_sistema = equipo_r.id
       equipo.id_pedido = equipo_r.id_pedido
       equipo.id_equipo = equipo_r.id_equipo
-      equipo.sistema = 'RR'
+      equipo.sistema = 'RH'
       equipo.save!
     end
 
@@ -685,7 +689,7 @@ class LandingPageController < ApplicationController
       unless valid_date?(equipo_por_recibo.f_finalizacion_garantia)
         equipo_por_recibo.error = true
       end
-      equipo_por_recibo.sistema = 'RR'
+      equipo_por_recibo.sistema = 'RH'
       equipo_por_recibo.save!
     end
 
@@ -943,7 +947,7 @@ class LandingPageController < ApplicationController
       material.cantidad_stock = material_r.cantidad_stock
       material.stock_max = material_r.cantidad_maxima
       material.stock_min = material_r.cantidad_minima
-      material.sistema = 'RR'
+      material.sistema = 'RH'
       unless valid_number?(material.stock_max)
         material.error = true
       end
@@ -1002,7 +1006,7 @@ class LandingPageController < ApplicationController
       material_por_pedido.id_pedido = material_por_pedido_r.id_pedido_empleado
       material_por_pedido.id_material = material_por_pedido_r.id_material
       material_por_pedido.cantidad = material_por_pedido_r.cantidad
-      material_por_pedido.sistema = 'RR'
+      material_por_pedido.sistema = 'RH'
       unless valid_number?(material_por_pedido.cantidad)
         material_por_pedido.error = true
       end
@@ -1041,7 +1045,7 @@ class LandingPageController < ApplicationController
       material_por_recibo.cantidad = material_por_recibo_r.cantidad
       material_por_recibo.f_caducidad = material_por_recibo_r.f_caducidad
       material_por_recibo.tipo_paquete = material_por_recibo_r.tipo_paquete
-      material_por_recibo.sistema = 'RR'
+      material_por_recibo.sistema = 'RH'
       unless valid_number?(material_por_recibo.cantidad)
         material_por_recibo.error = true
       end
@@ -1171,7 +1175,7 @@ class LandingPageController < ApplicationController
       mantenimiento.id_equipo = mantenimiento_r.id_equipo_por_recibo
       mantenimiento.tipo_mantenimiento = mantenimiento_r.tipo
       mantenimiento.id_empleado = mantenimiento_r.id_empleado
-      mantenimiento.sistema = 'RR'
+      mantenimiento.sistema = 'RH'
       unless valid_date?(mantenimiento.f_inicio)
         mantenimiento.error = true
       end
@@ -1248,7 +1252,7 @@ class LandingPageController < ApplicationController
       pedido.id_sistema = pedido_r.id
       pedido.id_empleado = pedido_r.id_empleado
       pedido.f_peticion = pedido_r.f_peticion
-      pedido.sistema = 'RR'
+      pedido.sistema = 'RH'
       unless valid_date?(pedido.f_peticion)
         pedido.error = true
       end
@@ -1385,7 +1389,7 @@ class LandingPageController < ApplicationController
       proveedor.id_sistema = proveedor_r.id
       proveedor.nombre = proveedor_r.nombre
       proveedor.id_empresa = proveedor_r.id_empresa
-      proveedor.sistema = 'RR'
+      proveedor.sistema = 'RH'
       unless valid_name?(proveedor.nombre)
         proveedor.error = true
       end
@@ -1417,7 +1421,7 @@ class LandingPageController < ApplicationController
     recibos.each do |recibo_r|
       recibo = ReciboDeCompra.using(:dwh_t).new
       recibo.id_sistema = recibo_r.id
-      recibo.sistema = 'RR'
+      recibo.sistema = 'RH'
       recibo.id_pedido_compra = recibo_r.id_pedido_compra
       recibo.f_entrega = recibo_r.f_entrega
       unless valid_date?(recibo.f_entrega)
