@@ -101,5 +101,7 @@ Rails.application.routes.draw do
 
   #DELETE ALL RECORDS WITH ERROR, ORUTES
   get 'delete_with_errors_areas', to: 'areas#delete_with_errors_areas', as: :delete_areas #delete_areas IS THE PATH TO CALL THE CONTROLLER ACTION delte_with_errors
+
+  resources :deletter, only: [:new]
 end
 

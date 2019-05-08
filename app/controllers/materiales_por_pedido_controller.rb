@@ -5,7 +5,7 @@ class MaterialesPorPedidoController < ApplicationController
     elsif current_user.hotel?
       @materiales_por_pedido = MaterialPorPedido.using(:dwh_t).where(sistema: 'H', error: true)
     elsif current_user.rrhh?
-      @materiales_por_pedido = MaterialPorPedido.using(:dwh_t).where(sistema: 'RR', error: true)
+      @materiales_por_pedido = MaterialPorPedido.using(:dwh_t).where(sistema: 'RH', error: true)
     else
       @materiales_por_pedido = MaterialPorPedido.using(:dwh_t).where(sistema: 'R', error: true)
     end
@@ -41,7 +41,7 @@ class MaterialesPorPedidoController < ApplicationController
     if current_user.hotel?
       MaterialPorPedido.using(:dwh_t).where(sistema: 'H', error: true).delete_all
     elsif current_user.rrhh?
-      MaterialPorPedido.using(:dwh_t).where(sistema: 'RR', error: true).delete_all
+      MaterialPorPedido.using(:dwh_t).where(sistema: 'RH', error: true).delete_all
     else
       MaterialPorPedido.using(:dwh_t).where(sistema: 'R', error: true).delete_all
     end

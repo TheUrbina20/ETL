@@ -5,7 +5,7 @@ class RecibosDeComprasController < ApplicationController
     elsif current_user.hotel?
       @recibos = ReciboDeCompra.using(:dwh_t).where(sistema: 'H', error: true)
     elsif current_user.rrhh?
-      @recibos = ReciboDeCompra.using(:dwh_t).where(sistema: 'RR', error: true)
+      @recibos = ReciboDeCompra.using(:dwh_t).where(sistema: 'RH', error: true)
     else
       @recibos = ReciboDeCompra.using(:dwh_t).where(sistema: 'R', error: true)
     end
@@ -39,9 +39,9 @@ class RecibosDeComprasController < ApplicationController
 
   def delete_with_errors_recibos_de_compra
     if current_user.hotel?
-      ReciboDeCompra.using(:dwh_t).where(sistema: 'H', error: true).delete_all¿
+      ReciboDeCompra.using(:dwh_t).where(sistema: 'H', error: true).delete_all
     elsif current_user.rrhh?
-      ReciboDeCompra.using(:dwh_t).where(sistema: 'RR', error: true).delete_all
+      ReciboDeCompra.using(:dwh_t).where(sistema: 'RH', error: true).delete_all
     else
       ReciboDeCompra.using(:dwh_t).where(sistema: 'R', error: true).delete_all
     end

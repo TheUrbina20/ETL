@@ -77,7 +77,7 @@ class SqlServerExporterController < ApplicationController
 
   def user_can_export?
     flash[:alert] = 'Registros en accidentes laborales'
-    return false if AccidenteLabotal.using(:dwh_t).where(error: true).any?
+    return false if AccidenteLaboral.using(:dwh_t).where(error: true).any?
 
     flash[:alert] = 'Registros en aplicaciones a vacantes'
     return false if AplicacionAVacante.using(:dwh_t).where(error: true).any?
@@ -96,7 +96,6 @@ class SqlServerExporterController < ApplicationController
 
     flash[:alert] = 'Registros en bajas de empleados'
     return false if BajaEmpleado.using(:dwh_t).where(error: true).any?
-
 
     flash[:alert] = 'Registros en bajas de productos'
     return false if Baja.using(:dwh_t).where(error: true).any?
@@ -122,16 +121,16 @@ class SqlServerExporterController < ApplicationController
     flash[:alert] = 'Registros en detalles de factura del restaurante'
     return false if DetalleDeFacturaRestaurante.using(:dwh_t).where(error: true).any?
 
-    flash[:alert] = 'Registros en adetalle de habitaciones'
+    flash[:alert] = 'Registros en tipo de habitaciones'
     return false if Dhabitacion.using(:dwh_t).where(error: true).any?
 
-    flash[:alert] = 'Registros en detalle de mantenimiento a equipos'
-    return false if DmantenimientoEquipo.using(:dwh_t).where(error: true).any?
+    # flash[:alert] = 'Registros en detalle de mantenimiento a equipos'
+    # return false if DmantenimientoEquipo.using(:dwh_t).where(error: true).any?
 
     flash[:alert] = 'Registros en detalle de mantenimiento a habitaciones'
     return false if DmantenimientoHabitacion.using(:dwh_t).where(error: true).any?
 
-    flash[:alert] = 'Registros en empleado'
+    flash[:alert] = 'Registros en empleados'
     return false if Empleado.using(:dwh_t).where(error: true).any?
 
     flash[:alert] = 'Registros en empresas'
@@ -179,7 +178,7 @@ class SqlServerExporterController < ApplicationController
     flash[:alert] = 'Registros en ingredientes'
     return false if Ingrediente.using(:dwh_t).where(error: true).any?
 
-    flash[:alert] = 'Registros en mantenimiento por equipo'
+    flash[:alert] = 'Registros en ordenes de mantenimiento'
     return false if MantenimientoPorEquipo.using(:dwh_t).where(error: true).any?
 
     flash[:alert] = 'Registros en mantenimiento'
@@ -269,7 +268,8 @@ class SqlServerExporterController < ApplicationController
     flash[:alert] = 'Registros en vacates'
     return false if Vacante.using(:dwh_t).where(error: true).any?
 
-    flash[:alert] = nil
+    flash.clear
+    true
   end
 
   def copy_acidentes_laborales

@@ -1,7 +1,9 @@
 %h1
   Ingredientes por proveedor
 %p= "Total: #{@ingredientes_por_proveedor.count} regitros"
-%table.table.table-bordered.table-curved
+- unless current_user.admin?
+  = link_to 'Eliminar todos', new_deletter_path(model: 'IngredientePorProveedor'), class: 'btn btn-danger', data: { confirm: '¿Estás seguro?'}
+%table.table.table-bordered.table-curved{:style => "\r\n    margin-top: 15px;"}
   %thead
     %tr
       %td='ID'
