@@ -8,7 +8,8 @@
       %td='Fecha'
       %td='H.Entrada'
       %td='H.Salida'
-      %td='Acciones'
+      - unless current_user.admin?
+        %td='Acciones'
 
   %tbody
     - @asistencias.each do |asistencia|
@@ -21,10 +22,11 @@
           %td.text.danger=asistencia.fecha
         %td=asistencia.hora_entrada
         %td=asistencia.hora_salida
-        %td
-          = link_to edit_asistencia_path(asistencia) do
-            = fa_icon 'pencil'
-          = link_to asistencia_path(asistencia), method: :delete, data: {confirm: '¿Estás seguro?'} do
-            = fa_icon 'trash'
+        - unless current_user.admin?
+          %td
+            = link_to edit_asistencia_path(asistencia) do
+              = fa_icon 'pencil'
+            = link_to asistencia_path(asistencia), method: :delete, data: {confirm: '¿Estás seguro?'} do
+              = fa_icon 'trash'
 
 

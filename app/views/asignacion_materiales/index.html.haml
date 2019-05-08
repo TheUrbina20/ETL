@@ -9,7 +9,8 @@
       %td='Cantidad'
       %td='Num de habitacion'
       %td='Num de material'
-      %td='Acciones'
+      - unless current_user.admin?
+        %td='Acciones'
 
   %tbody
     - @asignacionm.each do |ma|
@@ -21,8 +22,9 @@
           %td.text.danger=ma.cantidad
         %td=ma.id_habitacion
         %td=ma.id_material
-        %td
-          = link_to edit_asignacion_materiale_path(ma) do
-            = fa_icon 'pencil'
-          = link_to asignacion_materiale_path(ma), method: :delete, data: {confirm: '¿Estás seguro?'} do
-            = fa_icon 'trash'
+        - unless current_user.admin?
+          %td
+            = link_to edit_asignacion_materiale_path(ma) do
+              = fa_icon 'pencil'
+            = link_to asignacion_materiale_path(ma), method: :delete, data: {confirm: '¿Estás seguro?'} do
+              = fa_icon 'trash'

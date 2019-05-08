@@ -9,7 +9,8 @@
       %td='Cantidad'
       %td='Num de material por recibo'
       %td='Num de Servicio de limpieza por habitación'
-      %td='Acciones'
+      - unless current_user.admin?
+        %td='Acciones'
 
   %tbody
     - @materialgh.each do |ma|
@@ -21,8 +22,9 @@
           %td.text.danger=ma.cantidad
         %td=ma.id_material_por_recibo
         %td=ma.id_servicio_limpieza
-        %td
-          = link_to edit_materialgastado_habitacione_path(ma) do
-            = fa_icon 'pencil'
-          = link_to materialgastado_habitacione_path(ma), method: :delete, data: {confirm: '¿Estás seguro?'} do
-            = fa_icon 'trash'
+        - unless current_user.admin?
+          %td
+            = link_to edit_materialgastado_habitacione_path(ma) do
+              = fa_icon 'pencil'
+            = link_to materialgastado_habitacione_path(ma), method: :delete, data: {confirm: '¿Estás seguro?'} do
+              = fa_icon 'trash'

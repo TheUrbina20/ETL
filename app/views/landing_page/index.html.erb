@@ -27,7 +27,7 @@
           <%- if current_user.admin?%>
             <%= link_to 'Iniciar ETL', new_landing_page_path, class: 'btn btn-primary', data: { confirm: 'Esta acción eliminará a la última versión del ETL. ¿Desea continuar?'} if current_user.admin? %>
             <%= link_to 'Exportar xlsx', new_exporter_path, class: 'btn btn-success' if current_user.admin? %>
-            <%= link_to 'Exportar a SQL SERVER', new_sql_server_exporter_path,data:{ confirm: 'Tene encuenta que solo se toman los registro sin errores, ¿continuar?' }, class: 'btn btn-primary' if current_user.admin? %>
+            <%= link_to 'Exportar a SQL SERVER', new_sql_server_exporter_path,data:{ confirm: 'Tene encuenta que solo se toman los registro sin errores, ¿continuar?' }, class: 'btn btn-primary' if current_user.admin? && can_export? %>
           <%- end %>
         </div>
       </div>

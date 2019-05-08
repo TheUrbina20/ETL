@@ -13,7 +13,8 @@
       %td='Num de equipo'
       %td='Tipo de mantenimiento'
       %td='Num de empleado'
-      %td='Acciones'
+      - unless current_user.admin?
+        %td='Acciones'
   %tbody
     - @mantenimientos_por_equipo.each do |mantenimiento_por_equipo|
       %tr
@@ -34,8 +35,9 @@
         -else
           %td.text.danger=mantenimiento_por_equipo.tipo_mantenimiento
         %td=mantenimiento_por_equipo.id_empleado
-        %td
-          = link_to edit_ordenes_de_mantenimiento_path(mantenimiento_por_equipo) do
-            = fa_icon 'pencil'
-          = link_to ordenes_de_mantenimiento_path(mantenimiento_por_equipo), method: :delete, data: {confirm: '¿Estás seguro?'} do
-            = fa_icon 'trash'
+        - unless current_user.admin?
+          %td
+            = link_to edit_ordenes_de_mantenimiento_path(mantenimiento_por_equipo) do
+              = fa_icon 'pencil'
+            = link_to ordenes_de_mantenimiento_path(mantenimiento_por_equipo), method: :delete, data: {confirm: '¿Estás seguro?'} do
+              = fa_icon 'trash'

@@ -11,7 +11,8 @@
       %td='Num de material'
       %td='Num de pedido'
       %td='Cantidad'
-      %td='Acciones'
+      - unless current_user.admin?
+        %td='Acciones'
 
   %tbody
     - @materiales_por_pedido.each do |material_por_pedido|
@@ -25,8 +26,9 @@
           %td=material_por_pedido.cantidad
         -else
           %td.text.danger=material_por_pedido.cantidad
-        %td
-          = link_to edit_materiales_por_pedido_path(material_por_pedido) do
-            = fa_icon 'pencil'
-          = link_to materiales_por_pedido_path(material_por_pedido), method: :delete, data: {confirm: '¿Estás seguro?'} do
-            = fa_icon 'trash'
+        - unless current_user.admin?
+          %td
+            = link_to edit_materiales_por_pedido_path(material_por_pedido) do
+              = fa_icon 'pencil'
+            = link_to materiales_por_pedido_path(material_por_pedido), method: :delete, data: {confirm: '¿Estás seguro?'} do
+              = fa_icon 'trash'

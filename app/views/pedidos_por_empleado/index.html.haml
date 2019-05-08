@@ -10,7 +10,8 @@
       %td='Sistema'
       %td='Fecha de petición'
       %td='Num de empleado'
-      %td='Acciones'
+      - unless current_user.admin?
+        %td='Acciones'
   %tbody
     - @ordenes_por_empleados.each do |orden_por_empleado|
       %tr
@@ -22,8 +23,9 @@
         -else
           %td.text.danger=orden_por_empleado.f_peticion
         %td=orden_por_empleado.id_empleado
-        %td
-          = link_to edit_pedidos_por_empleado_path(orden_por_empleado) do
-            = fa_icon 'pencil'
-          = link_to pedidos_por_empleado_path(orden_por_empleado), method: :delete, data: {confirm: '¿Estás seguro?'} do
-            = fa_icon 'trash'
+        - unless current_user.admin?
+          %td
+            = link_to edit_pedidos_por_empleado_path(orden_por_empleado) do
+              = fa_icon 'pencil'
+            = link_to pedidos_por_empleado_path(orden_por_empleado), method: :delete, data: {confirm: '¿Estás seguro?'} do
+              = fa_icon 'trash'

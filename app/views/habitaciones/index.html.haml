@@ -8,7 +8,8 @@
       %td='ID'
       %td='Tipo de habitación'
       %td='Estado'
-      %td='Acciones'
+      - unless current_user.admin?
+        %td='Acciones'
   %tbody
     - @habitaciones.each do |habitacion|
       %tr
@@ -18,8 +19,9 @@
           %td=habitacion.estado
         - else
           %td.text.danger=habitacion.estado
-        %td
-          = link_to edit_habitacione_path(habitacion) do
-            = fa_icon 'pencil'
-          = link_to habitacione_path(habitacion), method: :delete, data: {confirm: '¿Estás seguro?'} do
-            = fa_icon 'trash'
+        - unless current_user.admin?
+          %td
+            = link_to edit_habitacione_path(habitacion) do
+              = fa_icon 'pencil'
+            = link_to habitacione_path(habitacion), method: :delete, data: {confirm: '¿Estás seguro?'} do
+              = fa_icon 'trash'

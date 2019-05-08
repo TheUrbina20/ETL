@@ -1,5 +1,9 @@
 class SqlServerExporterController < ApplicationController
+
   def new
+
+    return redirect_to root_path unless user_can_export?
+
     copy_acidentes_laborales
     copy_aplicaciones_a_vacantes
     copy_areas
@@ -68,6 +72,204 @@ class SqlServerExporterController < ApplicationController
     copy_vacantes
     flash[:notice] = 'Datos exportados 👏🏻'
     redirect_to root_path
+  end
+
+
+  def user_can_export?
+    flash[:alert] = 'Registros en accidentes laborales'
+    return false if AccidenteLabotal.using(:dwh_t).where(error: true).any?
+
+    flash[:alert] = 'Registros en aplicaciones a vacantes'
+    return false if AplicacionAVacante.using(:dwh_t).where(error: true).any?
+
+    flash[:alert] = 'Registros en areas'
+    return false if Area.using(:dwh_t).where(error: true).any?
+
+    flash[:alert] = 'Registros en areas por empleado'
+    return false if AreasPorEmpleado.using(:dwh_t).where(error: true).any?
+
+    flash[:alert] = 'Registros en asignacion de materiales'
+    return false if AsignacionMaterial.using(:dwh_t).where(error: true).any?
+
+    flash[:alert] = 'Registros en asistencias'
+    return false if Asistencia.using(:dwh_t).where(error: true).any?
+
+    flash[:alert] = 'Registros en bajas de empleados'
+    return false if BajaEmpleado.using(:dwh_t).where(error: true).any?
+
+
+    flash[:alert] = 'Registros en bajas de productos'
+    return false if Baja.using(:dwh_t).where(error: true).any?
+
+    flash[:alert] = 'Registros en bebidas por comanda'
+    return fasle if BebidaPorComanda.using(:dwh_t).where(error: true).any?
+
+    flash[:alert] = 'Registros en bebidas'
+    return false if Bebida.using(:dwh_t).where(error: true).any?
+
+    flash[:alert] = 'Registros en capacitacion por empleado'
+    return false if CapacitacionPorEmpleado.using(:dwh_t).where(error: true).any?
+
+    flash[:alert] = 'Registros en clientes'
+    return false if Cliente.using(:dwh_t).where(error: true).any?
+
+    flash[:alert] = 'Registros en comandas'
+    return false if Comanda.using(:dwh_t).where(error: true).any?
+
+    flash[:alert] = 'Registros en detalles de factura del hotel'
+    return false if DetalleDeFacturaHotel.using(:dwh_t).where(error: true).any?
+
+    flash[:alert] = 'Registros en detalles de factura del restaurante'
+    return false if DetalleDeFacturaRestaurante.using(:dwh_t).where(error: true).any?
+
+    flash[:alert] = 'Registros en adetalle de habitaciones'
+    return false if Dhabitacion.using(:dwh_t).where(error: true).any?
+
+    flash[:alert] = 'Registros en detalle de mantenimiento a equipos'
+    return false if DmantenimientoEquipo.using(:dwh_t).where(error: true).any?
+
+    flash[:alert] = 'Registros en detalle de mantenimiento a habitaciones'
+    return false if DmantenimientoHabitacion.using(:dwh_t).where(error: true).any?
+
+    flash[:alert] = 'Registros en empleado'
+    return false if Empleado.using(:dwh_t).where(error: true).any?
+
+    flash[:alert] = 'Registros en empresas'
+    return false if Empresa.using(:dwh_t).where(error: true).any?
+
+    flash[:alert] = 'Registros en equipos en habitaciones'
+    return false if EquipoHabitacion.using(:dwh_t).where(error: true).any?
+
+    flash[:alert] = 'Registros en equipos por pedido'
+    return false if EquipoPorPedido.using(:dwh_t).where(error: true).any?
+
+    flash[:alert] = 'Registros en equipos por recibo'
+    return false if EquipoPorRecibo.using(:dwh_t).where(error: true).any?
+
+    flash[:alert] = 'Registros en equipos'
+    return false if Equipo.using(:dwh_t).where(error: true).any?
+
+    flash[:alert] = 'Registros en facturas del hotel'
+    return false if FacturaHotel.using(:dwh_t).where(error: true).any?
+
+    flash[:alert] = 'Registros en fasturas del restaurante'
+    return false if FacturaRestaurante.using(:dwh_t).where(error: true).any?
+
+    flash[:alert] = 'Registros en habitaciones rentadas'
+    return false if HabitacionRentada.using(:dwh_t).where(error: true).any?
+
+    flash[:alert] = 'Registros en habitaciones reservadas'
+    return false if HabitacionReservada.using(:dwh_t).where(error: true).any?
+
+    flash[:alert] = 'Registros en habitaciones'
+    return false if Habitacion.using(:dwh_t).where(error: true).any?
+
+    flash[:alert] = 'Registros en historial de servicios'
+    return false if HistoricoServicio.using(:dwh_t).where(error: true).any?
+
+    flash[:alert] = 'Registros en bebidas'
+    return false if IngredientePorBebida.using(:dwh_t).where(error: true).any?
+
+    flash[:alert] = 'Registros en ingredientes por platillo'
+    return false if IngredientePorPlatillo.using(:dwh_t).where(error: true).any?
+
+    flash[:alert] = 'Registros en ingredientes por proveedor'
+    return false if IngredientePorProveedor.using(:dwh_t).where(error: true).any?
+
+    flash[:alert] = 'Registros en ingredientes'
+    return false if Ingrediente.using(:dwh_t).where(error: true).any?
+
+    flash[:alert] = 'Registros en mantenimiento por equipo'
+    return false if MantenimientoPorEquipo.using(:dwh_t).where(error: true).any?
+
+    flash[:alert] = 'Registros en mantenimiento'
+    return false if Mantenimiento.using(:dwh_t).where(error: true).any?
+
+    flash[:alert] = 'Registros en materiales por pedido'
+    return false if MaterialPorPedido.using(:dwh_t).where(error: true).any?
+
+    flash[:alert] = 'Registros en material por recibo'
+    return false if MaterialPorRecibo.using(:dwh_t).where(error: true).any?
+
+    flash[:alert] = 'Registros en materiales'
+    return false if Material.using(:dwh_t).where(error: true).any?
+
+    flash[:alert] = 'Registros en material gastado por habitacion'
+    return false if MgHabitacion.using(:dwh_t).where(error: true).any?
+
+    flash[:alert] = 'Registros en paquetes vendidos por renta'
+    return false if PaqueteVendidoRenta.using(:dwh_t).where(error: true).any?
+
+    flash[:alert] = 'Registros en paquetes'
+    return false if Paquete.using(:dwh_t).where(error: true).any?
+
+    flash[:alert] = 'Registros en pedidos por empleado'
+    return false if PedidoPorEmpleado.using(:dwh_t).where(error: true).any?
+
+    flash[:alert] = 'Registros en platillos por comanda'
+    return false if PlatilloPorComanda.using(:dwh_t).where(error: true).any?
+
+    flash[:alert] = 'Registros en platillos'
+    return false if Platillo.using(:dwh_t).where(error: true).any?
+
+    flash[:alert] = 'Registros en postulantes'
+    return false if Postulante.using(:dwh_t).where(error: true).any?
+
+    flash[:alert] = 'Registros en programas de capacitación'
+    return false if ProgramaCapacitacion.using(:dwh_t).where(error: true).any?
+
+    flash[:alert] = 'Registros en proveedores'
+    return false if Proveedor.using(:dwh_t).where(error: true).any?
+
+    flash[:alert] = 'Registros en recibos de compra'
+    return false if ReciboDeCompra.using(:dwh_t).where(error: true).any?
+
+    flash[:alert] = 'Registros en rentas'
+    return false if Renta.using(:dwh_t).where(error: true).any?
+
+    flash[:alert] = 'Registros en reportes de perdida o robo'
+    return false if ReportePerdidaRobo.using(:dwh_t).where(error: true).any?
+
+    flash[:alert] = 'Registros en reservaciones en hotel'
+    return false if ReservacionEnHotel.using(:dwh_t).where(error: true).any?
+
+    flash[:alert] = 'Registros en reservaciones en restaurante'
+    return false if ReservacionEnRestaurante.using(:dwh_t).where(error: true).any?
+
+    flash[:alert] = 'Registros en reservaciones por mesa'
+    return false if ReservacionPorMesa.using(:dwh_t).where(error: true).any?
+
+    flash[:alert] = 'Registros en servicios a domicilio'
+    return false if ServicioADomicilio.using(:dwh_t).where(error: true).any?
+
+    flash[:alert] = 'Registros en servicio a habitacion del restaurante'
+    return false if ServicioHabitacion.using(:dwh_t).where(error: true).any?
+
+    flash[:alert] = 'Registros en servicios de limpieza'
+    return false if ServicioLimpieza.using(:dwh_t).where(error: true).any?
+
+    flash[:alert] = 'Registros en servicios por paquete'
+    return false if ServicioPaquete.using(:dwh_t).where(error: true).any?
+
+    flash[:alert] = 'Registros en servicios'
+    return false if Servicio.using(:dwh_t).where(error: true).any?
+
+    flash[:alert] = 'Registros en servicios por habitación'
+    return false if ServiciolHabitacion.using(:dwh_t).where(error: true).any?
+
+    flash[:alert] = 'Registros en solicitudes de mantenimiento'
+    return false if SolicitudMantenimiento.using(:dwh_t).where(error: true).any?
+
+    flash[:alert] = 'Registros en tipos de productos'
+    return false if TipoDeProducto.using(:dwh_t).where(error: true).any?
+
+    flash[:alert] = 'Registros en tipos de medidas'
+    return false if TipoMedida.using(:dwh_t).where(error: true).any?
+
+    flash[:alert] = 'Registros en vacates'
+    return false if Vacante.using(:dwh_t).where(error: true).any?
+
+    flash[:alert] = nil
   end
 
   def copy_acidentes_laborales

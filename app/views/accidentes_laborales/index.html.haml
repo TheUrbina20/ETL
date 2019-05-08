@@ -6,7 +6,8 @@
       %td='ID'
       %td='Num de empleado'
       %td='Fecha accidente'
-      %td='Acciones'
+      - unless current_user.admin?
+        %td='Acciones'
 
   %tbody
     - @accidentes.each do |accidente|
@@ -17,10 +18,11 @@
           %td=accidente.f_accidente
         - else
           %td.text.danger=accidente.f_accidente
-        %td
-          = link_to edit_accidentes_laborale_path(accidente) do
-            = fa_icon 'pencil'
-          = link_to accidentes_laborale_path(accidente), method: :delete, data: {confirm: '¿Estás seguro?'} do
-            = fa_icon 'trash'
+        - unless current_user.admin?
+          %td
+            = link_to edit_accidentes_laborale_path(accidente) do
+              = fa_icon 'pencil'
+            = link_to accidentes_laborale_path(accidente), method: :delete, data: {confirm: '¿Estás seguro?'} do
+              = fa_icon 'trash'
 
 

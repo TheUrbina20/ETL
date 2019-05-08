@@ -13,7 +13,8 @@
       %td='RFC'
       %td='Baja'
       %td='Sistema'
-      %td='Acciones'
+      - unless current_user.admin?
+        %td='Acciones'
   %tbody
     - @empleados.each do |empleado|
       %tr
@@ -50,8 +51,9 @@
           %td.text.danger=empleado.rfc
         %td=empleado.baja
         %td=empleado.sistema
-        %td
-          = link_to edit_empleado_path(empleado) do
-            = fa_icon 'pencil'
-          = link_to empleado_path(empleado), method: :delete, data: {confirm: '¿Estás seguro?'} do
-            = fa_icon 'trash'
+        - unless current_user.admin?
+          %td
+            = link_to edit_empleado_path(empleado) do
+              = fa_icon 'pencil'
+            = link_to empleado_path(empleado), method: :delete, data: {confirm: '¿Estás seguro?'} do
+              = fa_icon 'trash'

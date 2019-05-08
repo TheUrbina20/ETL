@@ -98,5 +98,8 @@ Rails.application.routes.draw do
   get 'delete_with_errors_servicio_limpieza', to: 'servicio_limpiezas#delete_with_errors_servicio_limpieza', as: :delete_servicios_limpiezas
   get 'delete_with_errors_servicio_limpieza_habitaciones', to: 'serviciol_habitaciones#delete_with_errors_servicio_limpieza_habitaciones', as: :delete_servicios_limpiezas_habitaciones
   get 'delete_with_errors_tipo_habitaciones', to: 'dhabitaciones#delete_with_errors_tipo_habitaciones', as: :delete_tipo_habitaciones
+
+  #DELETE ALL RECORDS WITH ERROR, ORUTES
+  get 'delete_with_errors_areas', to: 'areas#delete_with_errors_areas', as: :delete_areas #delete_areas IS THE PATH TO CALL THE CONTROLLER ACTION delte_with_errors
 end
 
