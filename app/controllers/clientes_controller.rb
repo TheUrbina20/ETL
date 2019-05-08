@@ -37,6 +37,17 @@ class ClientesController < ApplicationController
     end
   end
 
+  def delete_with_errors_clientes
+    if current_user.rrhh?
+      Cliente.using(:dwh_t).where(sistema: 'RR', error: true).delete_all
+    elsif current_user.restaurant?
+      Cliente.using(:dwh_t).where(sistema: 'R', error: true).delete_all
+    else
+      Cliente.using(:dwh_t).where(sistema: 'H', error: true).delete_all
+    end
+    redirect_to landing_page_index_path
+  end
+
   def cliente_params
     params.require(:cliente).permit(:id, :nombre, :correo, :telefono, :estado)
   end

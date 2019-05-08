@@ -37,6 +37,17 @@ class EmpleadosController < ApplicationController
     end
   end
 
+  def delete_with_errors_empleados
+    if current_user.hotel?
+      Empleado.using(:dwh_t).where(sistema: 'H', error: true).delete_all
+    elsif current_user.rrhh?
+      Empleado.using(:dwh_t).where(sistema: 'RR', error: true).delete_all
+    else
+      Empleado.using(:dwh_t).where(sistema: 'R', error: true).delete_all
+    end
+    redirect_to landing_page_index_path
+  end
+
   def empleado_params
     params.require(:empleado).permit(:nombre, :f_nacimiento, :c_electronico, :n_telefono, :genero, :rfc, :baja, :sistema, :f_entrada)
   end

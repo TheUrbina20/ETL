@@ -1,6 +1,8 @@
 <h1>Pedidos por empleado</h1>
 %p= "Total: #{@ordenes_por_empleados.count} regitros"
-%table.table.table-bordered.table-curved
+- unless current_user.admin?
+  = link_to 'Eliminar todos', delete_pedidos_por_empleado_path, class: 'btn btn-danger', data: { confirm: '¿Estás seguro?'}
+%table.table.table-bordered.table-curved{:style => "\r\n    margin-top: 15px;"}
   %thead
     %tr
       %td='ID'

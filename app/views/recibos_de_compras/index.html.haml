@@ -1,6 +1,8 @@
 <h1>Recibos de compras</h1>
 %p= "Total: #{@recibos.count} regitros"
-%table.table.table-bordered.table-curved
+- unless current_user.admin?
+  = link_to 'Eliminar todos', delete_recibos_de_compras_path, class: 'btn btn-danger', data: { confirm: '¿Estás seguro?'}
+%table.table.table-bordered.table-curved{:style => "\r\n    margin-top: 15px;"}
   %thead
     %tr
       %td='ID'

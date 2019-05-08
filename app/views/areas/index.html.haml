@@ -17,7 +17,7 @@
     - @areas.each do |area|
       %tr
         %td=area.id
-        -if valid_nombrecosas?(area.nombre)<
+        -if valid_nombrecosas?(area.nombre)
           %td=area.nombre
         -else
           %td.text.danger=area.nombre

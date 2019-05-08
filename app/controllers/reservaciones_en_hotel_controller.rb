@@ -30,6 +30,11 @@ class ReservacionesEnHotelController < ApplicationController
     end
   end
 
+  def delete_with_errors_reservacion_hotel
+    ReservacionEnHotel.using(:dwh_t).where(error: true).delete_all
+    redirect_to landing_page_index_path
+  end 
+
   def reservacion_params
     params.require(:reservacion_en_hotel).permit(:f_entrada, :f_salida, :f_reservacion, :estado, :id_cliente, :id_empleado)
   end

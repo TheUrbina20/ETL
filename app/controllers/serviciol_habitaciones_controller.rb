@@ -28,6 +28,11 @@ class ServiciolHabitacionesController < ApplicationController
       end
     end
 
+    def delete_with_errors_servicio_limpieza_habitaciones
+      ServiciolHabitacion.using(:dwh_t).where(error: true).delete_all
+      redirect_to landing_page_index_path
+    end 
+
     def serviciosl_params
       params.require(:serviciol_habitacion).permit(:id, :fecha, :id_servicio_limpieza, :id_habitacion, :id_empleado)
     end

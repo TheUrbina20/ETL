@@ -30,6 +30,11 @@ class DhabitacionesController < ApplicationController
     end
   end
 
+  def delete_with_errors_tipo_habitaciones
+    Dhabitacion.using(:dwh_t).where(error: true).delete_all
+    redirect_to landing_page_index_path
+  end 
+
   def dhabitaciones_params
     params.require(:dhabitacion).permit(:id, :nombre, :precio)
   end

@@ -1,6 +1,5 @@
 class OrdenesDeMantenimientoController < ApplicationController
   def index
-
     if current_user.admin?
       @mantenimientos_por_equipo = MantenimientoPorEquipo.using(:dwh_t).where(error: true)
     elsif current_user.hotel?
@@ -36,6 +35,18 @@ class OrdenesDeMantenimientoController < ApplicationController
       flash.now[:alert] = 'Error actualizando'
       render 'edit'
     end
+  end
+
+  def delete_with_errors_ordenes_mantenimiento
+    if current_user.hotel?
+      MantenimientoPorEquipo.using(:dwh_t).where(sistema: 'H', error: true).delete_all
+    elsif current_user.rrhh?
+      MantenimientoPorEquipo.using(:dwh_t).where(sistema: 'RR', error: true).delete_all
+    else
+      MantenimientoPorEquipo.using(:dwh_t).where(sistema: 'R', error: true).delete_all
+    end
+
+    redirect_to landing_page_index_path
   end
 
   def orden_de_mantenimiento_params

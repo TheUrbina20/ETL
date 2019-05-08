@@ -30,6 +30,11 @@ class FacturasHotelController < ApplicationController
     end
   end
 
+  def delete_with_errors_factura_hotel
+    FacturaHotel.using(:dwh_t).where(error: true).delete_all
+    redirect_to landing_page_index_path
+  end 
+
   def factura_hotel_params
     params.require(:factura_hotel).permit(:id_sistema, :id_cliente, :total, :fecha_emision, :tipo_pago, :id_renta)
   end

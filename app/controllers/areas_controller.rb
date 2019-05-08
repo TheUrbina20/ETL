@@ -29,8 +29,9 @@ class AreasController < ApplicationController
     end
   end
   #  FUNCTION TO DELETE ALL RECORDS WITH ERRORS
-  def delete_with_errors
+  def delete_with_errors_areas
    Area.using(:dwh_t).where(error: true).delete_all
+   redirect_to root_path
   end
   #
 

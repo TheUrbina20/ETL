@@ -37,6 +37,17 @@ class RecibosDeComprasController < ApplicationController
     end
   end
 
+  def delete_with_errors_recibos_de_compra
+    if current_user.hotel?
+      ReciboDeCompra.using(:dwh_t).where(sistema: 'H', error: true).delete_all¿
+    elsif current_user.rrhh?
+      ReciboDeCompra.using(:dwh_t).where(sistema: 'RR', error: true).delete_all
+    else
+      ReciboDeCompra.using(:dwh_t).where(sistema: 'R', error: true).delete_all
+    end
+    redirect_to landing_page_index_path
+  end
+
   def recibo_de_compra_params
     params.require(:recibo_de_compra).permit(:id_sistema, :sistema, :id_pedido_compra, :f_entrega)
   end

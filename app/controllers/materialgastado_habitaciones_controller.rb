@@ -30,6 +30,11 @@ class MaterialgastadoHabitacionesController < ApplicationController
       end
     end
 
+    def delete_with_errors_materialesgastados_habitacion
+      MgHabitacion.using(:dwh_t).where(error: true).delete_all
+      redirect_to landing_page_index_path
+    end 
+
     def hservicios_params
       params.require(:mg_habitacion).permit(:id, :cantidad, :id_material_por_recibo, :id_servicio_limpieza)
     end

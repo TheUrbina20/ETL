@@ -1,6 +1,8 @@
 <h1>Historico de servicios</h1>
 %p= "Total: #{@historicos.count} regitros"
-%table.table.table-bordered.table-curved
+- unless current_user.admin?
+  = link_to 'Eliminar todos', delete_historico_servicios_path, class: 'btn btn-danger', data: { confirm: '¿Estás seguro?'}
+%table.table.table-bordered.table-curved{:style => "\r\n    margin-top: 15px;"}
   %thead
     %tr
       %td='ID'

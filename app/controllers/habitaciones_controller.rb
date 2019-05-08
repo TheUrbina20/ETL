@@ -29,6 +29,11 @@ class HabitacionesController < ApplicationController
     end
   end
 
+  def delete_with_errors_habitaciones
+    Habitacion.using(:dwh_t).where(error: true).delete_all
+    redirect_to landing_page_index_path
+  end 
+
   def habitaciones_params
     params.require(:habitacion).permit(:id, :tipo_habitacion, :estado)
   end
