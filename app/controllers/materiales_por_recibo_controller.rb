@@ -1,6 +1,5 @@
 class MaterialesPorReciboController < ApplicationController
   def index
-
     if current_user.admin?
       @materiales_por_recibo = MaterialPorRecibo.using(:dwh_t).where(error: true)
     elsif current_user.hotel?
@@ -10,7 +9,6 @@ class MaterialesPorReciboController < ApplicationController
     else
       @materiales_por_recibo = MaterialPorRecibo.using(:dwh_t).where(sistema: 'R', error: true)
     end
-
   end
 
   def edit
@@ -42,9 +40,13 @@ class MaterialesPorReciboController < ApplicationController
   def delete_with_errors_materiales_por_recibo
     if current_user.hotel?
       MaterialPorRecibo.using(:dwh_t).where(sistema: 'H', error: true).delete_all
+    elsif current_user.rrhh?
+      MaterialPorRecibo.using(:dwh_t).where(sistema: 'RR', error: true).delete_all
+    else
+      MaterialPorRecibo.using(:dwh_t).where(sistema: 'R', error: true).delete_all
     end
     redirect_to landing_page_index_path
-  end 
+  end
 
   def material_por_recibo_params
     params.require(:material_por_recibo).permit(:id_sistema, :sistema, :id_material, :id_recibo, :cantidad, :tipo_paquete, :f_caducidad)

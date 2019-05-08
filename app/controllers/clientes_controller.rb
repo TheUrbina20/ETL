@@ -32,7 +32,7 @@ class ClientesController < ApplicationController
   def delete_with_errors_clientes
     Cliente.using(:dwh_t).where(error: true).delete_all
     redirect_to landing_page_index_path
-  end 
+  end
 
   def cliente_params
     params.require(:cliente).permit(:id, :nombre, :correo, :telefono, :estado)

@@ -40,9 +40,13 @@ class PedidosPorEmpleadoController < ApplicationController
   def delete_with_errors_pedidos_por_empleado
     if current_user.hotel?
       PedidoPorEmpleado.using(:dwh_t).where(sistema: 'H', error: true).delete_all
-    end 
+    elsif current_user.rrhh?
+      PedidoPorEmpleado.using(:dwh_t).where(sistema: 'RR', error: true).delete_all
+    else
+      PedidoPorEmpleado.using(:dwh_t).where(sistema: 'R', error: true).delete_all
+    end
     redirect_to landing_page_index_path
-  end 
+  end
 
   def pedidos_por_empleado_params
     params.require(:pedido_por_empleado).permit(:id_sistema, :sistema, :f_peticion, :id_empleado)

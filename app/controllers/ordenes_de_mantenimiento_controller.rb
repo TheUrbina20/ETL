@@ -1,6 +1,5 @@
 class OrdenesDeMantenimientoController < ApplicationController
   def index
-
     if current_user.admin?
       @mantenimientos_por_equipo = MantenimientoPorEquipo.using(:dwh_t).where(error: true)
     elsif current_user.hotel?
@@ -41,9 +40,14 @@ class OrdenesDeMantenimientoController < ApplicationController
   def delete_with_errors_ordenes_mantenimiento
     if current_user.hotel?
       MantenimientoPorEquipo.using(:dwh_t).where(sistema: 'H', error: true).delete_all
-    end 
+    elsif current_user.rrhh?
+      MantenimientoPorEquipo.using(:dwh_t).where(sistema: 'RR', error: true).delete_all
+    else
+      MantenimientoPorEquipo.using(:dwh_t).where(sistema: 'R', error: true).delete_all
+    end
+
     redirect_to landing_page_index_path
-  end 
+  end
 
   def orden_de_mantenimiento_params
     params.require(:mantenimiento_por_equipo).permit(:id_sistema, :f_inicio, :f_termino, :id_equipo, :tipo_mantenimiento, :id_empleado)

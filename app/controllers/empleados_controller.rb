@@ -3,7 +3,7 @@ class EmpleadosController < ApplicationController
     if current_user.admin?
       @empleados = Empleado.using(:dwh_t).where(error: true).order(:nombre)
     elsif current_user.hotel?
-      @empleados = Empleado.using(:dwh_t).where(sistema: 'R', error: true).order(:nombre)
+      @empleados = Empleado.using(:dwh_t).where(sistema: 'H', error: true).order(:nombre)
     elsif current_user.rrhh?
       @empleados = Empleado.using(:dwh_t).where(sistema: 'RR', error: true).order(:nombre)
     else
@@ -39,10 +39,14 @@ class EmpleadosController < ApplicationController
 
   def delete_with_errors_empleados
     if current_user.hotel?
+      Empleado.using(:dwh_t).where(sistema: 'H', error: true).delete_all
+    elsif current_user.rrhh?
+      Empleado.using(:dwh_t).where(sistema: 'RR', error: true).delete_all
+    else
       Empleado.using(:dwh_t).where(sistema: 'R', error: true).delete_all
-    end 
+    end
     redirect_to landing_page_index_path
-  end 
+  end
 
   def empleado_params
     params.require(:empleado).permit(:nombre, :f_nacimiento, :c_electronico, :n_telefono, :genero, :rfc, :baja, :sistema, :f_entrada)
